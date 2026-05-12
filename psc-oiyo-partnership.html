@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSC × OiYO — Junior Partnership Framework 2026–2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --psc-green: #1B4D2E;
+  --psc-green-mid: #2D7A4F;
+  --psc-lime: #8CC63F;
+  --oiyo-orange: #F47920;
+  --oiyo-yellow: #FFC72C;
+  --cream: #FFF8EE;
+  --white: #FFFFFF;
+  --dark: #0F1A0F;
+  --grey-light: #F2F2F0;
+  --grey-mid: #9B9B8A;
+  --text-dark: #1A1A1A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 60px;
+}
+.nav-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  letter-spacing: 2px;
+}
+.nav-brand span { color: var(--oiyo-orange); }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--grey-mid);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--oiyo-orange); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,.015) 40px, rgba(255,255,255,.015) 41px);
+  pointer-events: none;
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px 80px 80px;
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--oiyo-orange);
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 7vw, 7rem);
+  line-height: .92;
+  color: var(--white);
+  margin-bottom: 30px;
+}
+.hero-title .highlight {
+  color: var(--oiyo-orange);
+  display: block;
+}
+.hero-title .highlight-green {
+  color: var(--psc-lime);
+  display: block;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.65);
+  line-height: 1.7;
+  max-width: 440px;
+  margin-bottom: 40px;
+}
+.hero-pills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.pill-orange { background: rgba(244,121,32,.15); color: var(--oiyo-orange); border: 1px solid rgba(244,121,32,.3); }
+.pill-green { background: rgba(140,198,63,.15); color: var(--psc-lime); border: 1px solid rgba(140,198,63,.3); }
+.pill-white { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.15); }
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 80px 80px 80px 40px;
+  position: relative;
+  z-index: 2;
+}
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+}
+.stat-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  padding: 28px 24px;
+  transition: transform .3s, background .3s;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,.08);
+}
+.stat-card.accent-orange { border-color: rgba(244,121,32,.4); background: rgba(244,121,32,.08); }
+.stat-card.accent-green { border-color: rgba(140,198,63,.4); background: rgba(140,198,63,.08); }
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.stat-num .unit { font-size: 1.8rem; color: var(--oiyo-orange); }
+.stat-num .unit-green { font-size: 1.8rem; color: var(--psc-lime); }
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+.hero-divider {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--psc-green), var(--psc-lime), var(--oiyo-orange), var(--oiyo-yellow));
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 100px 80px; }
+
+.section-tag {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--oiyo-orange);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1;
+  color: var(--psc-green);
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--grey-mid);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ─── AUDIENCE ─── */
+#audience { background: var(--white); }
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+}
+.audience-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid var(--grey-light);
+  transition: transform .3s, box-shadow .3s;
+}
+.audience-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.1);
+}
+.audience-card-top {
+  padding: 32px 28px 24px;
+  position: relative;
+}
+.audience-card-top.orange { background: linear-gradient(135deg, var(--oiyo-orange), #F5A623); }
+.audience-card-top.green { background: linear-gradient(135deg, var(--psc-green), var(--psc-green-mid)); }
+.audience-card-top.lime { background: linear-gradient(135deg, var(--psc-lime), #A8D74F); }
+.audience-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  display: block;
+}
+.audience-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.audience-card-sub {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.75);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.audience-card-body {
+  padding: 24px 28px 28px;
+  background: var(--white);
+}
+.audience-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.a-tag {
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--grey-light);
+  color: var(--text-dark);
+}
+.audience-insight {
+  font-size: 0.9rem;
+  color: var(--grey-mid);
+  line-height: 1.6;
+}
+
+/* ─── LIFECYCLE ─── */
+#lifecycle { background: var(--dark); }
+#lifecycle .section-title { color: var(--white); }
+#lifecycle .section-sub { color: rgba(255,255,255,.5); }
+
+.lifecycle-phases {
+  display: flex;
+  gap: 0;
+  margin-top: 60px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.phase {
+  flex: 1;
+  padding: 36px 28px;
+  border-right: 1px solid rgba(255,255,255,.1);
+  position: relative;
+  transition: flex .4s ease, background .3s;
+  cursor: pointer;
+  overflow: hidden;
+}
+.phase:last-child { border-right: none; }
+.phase:hover { flex: 1.5; background: rgba(255,255,255,.04); }
+.phase-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: rgba(255,255,255,.06);
+  margin-bottom: -20px;
+}
+.phase-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.phase-label.orange { color: var(--oiyo-orange); }
+.phase-label.lime { color: var(--psc-lime); }
+.phase-label.yellow { color: var(--oiyo-yellow); }
+.phase-label.green { color: var(--psc-green-mid); }
+.phase-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--white);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.phase-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.phase-items li {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,.55);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.phase-items li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--oiyo-orange);
+  font-size: 0.7rem;
+  top: 1px;
+}
+
+/* ─── PROGRAMMES ─── */
+#programmes { background: var(--grey-light); }
+.programmes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+}
+.prog-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid transparent;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.prog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.08);
+  border-color: var(--oiyo-orange);
+}
+.prog-header {
+  padding: 28px 32px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1.5px solid var(--grey-light);
+}
+.prog-info {}
+.prog-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+.prog-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--psc-green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.prog-tagline {
+  font-size: 0.8rem;
+  color: var(--grey-mid);
+  font-weight: 500;
+}
+.prog-price-box {
+  text-align: right;
+}
+.prog-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--oiyo-orange);
+  line-height: 1;
+}
+.prog-price-label {
+  font-size: 0.72rem;
+  color: var(--grey-mid);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.prog-body { padding: 24px 32px 32px; }
+.prog-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.prog-detail-item {}
+.prog-detail-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--grey-mid);
+  margin-bottom: 3px;
+}
+.prog-detail-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.prog-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.prog-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+.prog-feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--psc-lime);
+  flex-shrink: 0;
+}
+.prog-revenue-bar {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: var(--grey-light);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prog-revenue-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--grey-mid);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.prog-revenue-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--psc-green);
+}
+
+/* ─── REVENUE ─── */
+#revenue { background: var(--white); }
+.revenue-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 60px;
+  align-items: start;
+}
+.revenue-streams {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.revenue-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border-radius: 14px;
+  border: 1.5px solid var(--grey-light);
+  transition: transform .2s, border-color .2s;
+  cursor: default;
+}
+.revenue-item:hover {
+  transform: translateX(6px);
+  border-color: var(--oiyo-orange);
+}
+.revenue-rank {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--grey-light);
+  line-height: 1;
+  min-width: 36px;
+}
+.revenue-content { flex: 1; }
+.revenue-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+.revenue-desc { font-size: 0.8rem; color: var(--grey-mid); line-height: 1.4; }
+.revenue-amount {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--psc-green);
+  white-space: nowrap;
+}
+
+.revenue-summary {
+  background: var(--dark);
+  border-radius: 24px;
+  padding: 40px;
+  position: sticky;
+  top: 80px;
+}
+.revenue-summary-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  letter-spacing: 1px;
+  margin-bottom: 32px;
+}
+.rev-bar-group { margin-bottom: 20px; }
+.rev-bar-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.rev-bar-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.7);
+}
+.rev-bar-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--oiyo-orange);
+}
+.rev-bar-track {
+  height: 8px;
+  background: rgba(255,255,255,.08);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.rev-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.rev-total {
+  border-top: 1px solid rgba(255,255,255,.1);
+  margin-top: 28px;
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rev-total-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+.rev-total-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--oiyo-orange);
+}
+.rev-note {
+  margin-top: 16px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,.3);
+  line-height: 1.5;
+}
+
+/* ─── TIMELINE ─── */
+#timeline { background: var(--cream); }
+.timeline-toggle {
+  display: flex;
+  gap: 0;
+  background: var(--grey-light);
+  border-radius: 100px;
+  padding: 4px;
+  width: fit-content;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.toggle-btn {
+  padding: 10px 28px;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s;
+  color: var(--grey-mid);
+}
+.toggle-btn.active {
+  background: var(--psc-green);
+  color: var(--white);
+}
+
+.timeline-grid {
+  display: grid;
+  gap: 16px;
+}
+.timeline-month {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  align-items: stretch;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp .4s ease forwards;
+}
+.timeline-month:nth-child(1) { animation-delay: .05s; }
+.timeline-month:nth-child(2) { animation-delay: .1s; }
+.timeline-month:nth-child(3) { animation-delay: .15s; }
+.timeline-month:nth-child(4) { animation-delay: .2s; }
+.timeline-month:nth-child(5) { animation-delay: .25s; }
+.timeline-month:nth-child(6) { animation-delay: .3s; }
+.timeline-month:nth-child(7) { animation-delay: .35s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.month-label-col {
+  background: var(--white);
+  border: 1.5px solid var(--grey-light);
+  border-right: none;
+  border-radius: 14px 0 0 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 16px;
+}
+.month-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--psc-green);
+  line-height: 1;
+}
+.month-year {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--grey-mid);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.month-content {
+  background: var(--white);
+  border: 1.5px solid var(--grey-light);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.month-phase-badge {
+  flex-shrink: 0;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge-launch { background: rgba(244,121,32,.12); color: var(--oiyo-orange); }
+.badge-build { background: rgba(140,198,63,.12); color: #5A8A00; }
+.badge-scale { background: rgba(27,77,46,.12); color: var(--psc-green); }
+.badge-peak { background: rgba(255,199,44,.18); color: #A07000; }
+
+.month-activities {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.activity-chip {
+  padding: 5px 12px;
+  background: var(--grey-light);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.month-revenue {
+  flex-shrink: 0;
+  text-align: right;
+}
+.month-rev-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--psc-green);
+}
+.month-rev-label {
+  font-size: 0.68rem;
+  color: var(--grey-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ─── PR & MARKETING ─── */
+#marketing { background: var(--dark); }
+#marketing .section-title { color: var(--white); }
+#marketing .section-sub { color: rgba(255,255,255,.5); }
+
+.marketing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 60px;
+}
+.mkt-card {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: transform .3s, border-color .3s;
+}
+.mkt-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(244,121,32,.4);
+}
+.mkt-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  display: block;
+}
+.mkt-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+.mkt-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mkt-items li {
+  font-size: 0.83rem;
+  color: rgba(255,255,255,.55);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.mkt-items li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  font-size: 0.4rem;
+  top: 5px;
+  color: var(--oiyo-orange);
+}
+
+.mkt-highlight {
+  margin-top: 40px;
+  background: linear-gradient(135deg, rgba(244,121,32,.15), rgba(140,198,63,.1));
+  border: 1px solid rgba(244,121,32,.25);
+  border-radius: 20px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+.mkt-kpi-item {}
+.mkt-kpi-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--oiyo-orange);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.mkt-kpi-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,.5);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ─── WIN-WIN ─── */
+#winwin { background: var(--white); }
+.winwin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 60px;
+}
+.win-card {
+  border-radius: 24px;
+  overflow: hidden;
+}
+.win-card-header {
+  padding: 32px 36px;
+}
+.win-card-header.psc { background: var(--psc-green); }
+.win-card-header.oiyo { background: var(--oiyo-orange); }
+.win-card-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--white);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.win-card-role {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+}
+.win-card-body {
+  padding: 32px 36px;
+  background: var(--grey-light);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.win-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.win-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.win-dot.green { background: var(--psc-lime); }
+.win-dot.orange { background: var(--oiyo-orange); }
+.win-text {}
+.win-text-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+.win-text-desc {
+  font-size: 0.82rem;
+  color: var(--grey-mid);
+  line-height: 1.5;
+}
+
+/* ─── CTA ─── */
+.cta-section {
+  background: linear-gradient(135deg, var(--psc-green), var(--psc-green-mid));
+  padding: 80px;
+  text-align: center;
+}
+.cta-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.cta-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+.cta-pills {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cta-pill {
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.cta-pill:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+.cta-pill.primary { background: var(--oiyo-orange); color: var(--white); }
+.cta-pill.secondary { background: rgba(255,255,255,.12); color: var(--white); border: 1.5px solid rgba(255,255,255,.3); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark);
+  padding: 40px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: rgba(255,255,255,.3);
+  letter-spacing: 2px;
+}
+.footer-brand span { color: var(--oiyo-orange); }
+.footer-note {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,.25);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  section { padding: 80px 40px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 80px 40px 40px; }
+  .hero-right { padding: 40px 40px 80px; align-items: flex-start; }
+  .hero-stats-grid { max-width: 100%; }
+  .audience-grid { grid-template-columns: 1fr 1fr; }
+  .programmes-grid { grid-template-columns: 1fr; }
+  .revenue-layout { grid-template-columns: 1fr; }
+  .revenue-summary { position: static; }
+  .marketing-grid { grid-template-columns: 1fr 1fr; }
+  .mkt-highlight { grid-template-columns: 1fr; gap: 20px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  section { padding: 60px 24px; }
+  .hero-left, .hero-right { padding: 60px 24px 30px; }
+  .hero-stats-grid { grid-template-columns: 1fr 1fr; }
+  .audience-grid { grid-template-columns: 1fr; }
+  .lifecycle-phases { flex-direction: column; }
+  .phase { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .phase:last-child { border-bottom: none; }
+  .timeline-month { grid-template-columns: 80px 1fr; }
+  .month-content { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .marketing-grid { grid-template-columns: 1fr; }
+  .winwin-grid { grid-template-columns: 1fr; }
+  .cta-section { padding: 60px 24px; }
+  footer { padding: 30px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">PSC <span>×</span> OiYO</div>
+  <ul class="nav-links">
+    <li><a href="#audience">Audience</a></li>
+    <li><a href="#lifecycle">Lifecycle</a></li>
+    <li><a href="#programmes">Programmes</a></li>
+    <li><a href="#revenue">Revenue</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#marketing">Marketing</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Junior Partnership Framework · 2026–2027</div>
+    <h1 class="hero-title">
+      PLAY.
+      <span class="highlight">HYDRATE.</span>
+      <span class="highlight-green">GROW.</span>
+    </h1>
+    <p class="hero-desc">A 12-month junior ecosystem built at the intersection of Malaysia's fastest-growing sport and its leading family drinkware brand — turning courts into classrooms and sessions into community.</p>
+    <div class="hero-pills">
+      <span class="pill pill-orange">🏓 8 Courts · Bukit Kiara</span>
+      <span class="pill pill-green">Ages 4–15</span>
+      <span class="pill pill-white">June 2026 – June 2027</span>
+      <span class="pill pill-white">PSC × LF × KLPA × OiYO</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats-grid">
+      <div class="stat-card accent-orange">
+        <div class="stat-num">32<span class="unit">K</span></div>
+        <div class="stat-label">PSC Active Members</div>
+      </div>
+      <div class="stat-card accent-green">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Courts · 4 Indoor 4 Outdoor</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">400<span class="unit">K</span></div>
+        <div class="stat-label">Pickleball Players in Malaysia</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">#3</div>
+        <div class="stat-label">Malaysia Globally in Pickleball</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="audience">
+  <div class="section-tag">Who We Reach</div>
+  <h2 class="section-title">TARGET AUDIENCE</h2>
+  <p class="section-sub">Three interconnected audience groups — each valuable to both PSC and OiYO — united by active, aspirational, family-first lifestyles in urban KL.</p>
+
+  <div class="audience-grid">
+    <div class="audience-card">
+      <div class="audience-card-top orange">
+        <span class="audience-icon">👧</span>
+        <div class="audience-card-title">THE LITTLE PICKLERS</div>
+        <div class="audience-card-sub">Ages 4–15 · Primary Programme Participant</div>
+      </div>
+      <div class="audience-card-body">
+        <div class="audience-tag-list">
+          <span class="a-tag">Expat Kids</span>
+          <span class="a-tag">Affluent Malaysian</span>
+          <span class="a-tag">Japanese · Korean</span>
+          <span class="a-tag">American · Russian</span>
+          <span class="a-tag">Learning Fresh Students</span>
+        </div>
+        <p class="audience-insight">Motor-skills-ready, social-play hungry. Already attending enrichment programmes. First exposure to racket sports. High lifetime value if retained through junior pathway. OiYO's core product user — the child carries, uses, and shows off the bottle daily.</p>
+      </div>
+    </div>
+
+    <div class="audience-card">
+      <div class="audience-card-top green">
+        <span class="audience-icon">👨‍👩‍👧</span>
+        <div class="audience-card-title">THE ACTIVE PARENTS</div>
+        <div class="audience-card-sub">25–45 · Decision Maker & Wallet</div>
+      </div>
+      <div class="audience-card-body">
+        <div class="audience-tag-list">
+          <span class="a-tag">HHI RM10K+</span>
+          <span class="a-tag">Dual Income</span>
+          <span class="a-tag">School-Run Routine</span>
+          <span class="a-tag">Instagram-Active</span>
+          <span class="a-tag">Wellness Conscious</span>
+        </div>
+        <p class="audience-insight">OiYO's primary buyer. PSC's primary enrolling customer. They value quality, aesthetics, and convenience. They share milestones on social media. They buy when they trust — and trust is built courtside. Saturday family sessions convert parents into repeat buyers and community evangelists.</p>
+      </div>
+    </div>
+
+    <div class="audience-card">
+      <div class="audience-card-top lime">
+        <span class="audience-icon">🏢</span>
+        <div class="audience-card-title">CORPORATE FAMILIES</div>
+        <div class="audience-card-sub">HR · Wellness Leads · Team Buyers</div>
+      </div>
+      <div class="audience-card-body">
+        <div class="audience-tag-list">
+          <span class="a-tag">MNCs in KL</span>
+          <span class="a-tag">Family Day Budgets</span>
+          <span class="a-tag">Employee Benefits</span>
+          <span class="a-tag">HRDC Adjacent</span>
+          <span class="a-tag">Bulk Gifting</span>
+        </div>
+        <p class="audience-insight">Companies seek meaningful family wellness benefits. PSC + OiYO co-branded "Corporate Family Pack" (court session + junior enrolment + OiYO kit) is a differentiated, premium offering. Strong channel for bulk OiYO sales and PSC event bookings simultaneously.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFECYCLE -->
+<section id="lifecycle">
+  <div class="section-tag">The Child's Journey</div>
+  <h2 class="section-title">CUSTOMER LIFECYCLE</h2>
+  <p class="section-sub">From first trial to community advocate — every stage is a revenue and brand-building opportunity for both PSC and OiYO.</p>
+
+  <div class="lifecycle-phases">
+    <div class="phase">
+      <div class="phase-num">01</div>
+      <div class="phase-label orange">Awareness</div>
+      <div class="phase-title">FIRST TOUCH</div>
+      <ul class="phase-items">
+        <li>Learning Fresh school demo day</li>
+        <li>Parent referral via WhatsApp community</li>
+        <li>OiYO in-store QR to PSC sign-up</li>
+        <li>Social reel — kid holding OiYO paddle</li>
+        <li>KLPA junior programme listing</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-num">02</div>
+      <div class="phase-label lime">Trial</div>
+      <div class="phase-title">FIRST SESSION</div>
+      <ul class="phase-items">
+        <li>Free trial Friday or Saturday</li>
+        <li>OiYO goodie bag on arrival</li>
+        <li>Photo op — kid with OiYO bottle + paddle</li>
+        <li>Parent lounge with OiYO display</li>
+        <li>Certificate with OiYO "Supported By" logo</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-num">03</div>
+      <div class="phase-label yellow">Enrol</div>
+      <div class="phase-title">COMMITMENT</div>
+      <ul class="phase-items">
+        <li>Term programme or holiday camp booking</li>
+        <li>OiYO starter kit included in enrolment fee</li>
+        <li>Welcome email with OiYO shop discount code</li>
+        <li>Passport to Play book issued</li>
+        <li>WhatsApp parent group — OiYO hydration tips</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-num">04</div>
+      <div class="phase-label orange">Retain</div>
+      <div class="phase-title">HABIT LOOP</div>
+      <ul class="phase-items">
+        <li>Weekly sessions — OiYO bottle in hand every class</li>
+        <li>Best Pickler of the Month recognition</li>
+        <li>OiYO sticker achievement rewards</li>
+        <li>Level progression — Rally Starter → Rally Star</li>
+        <li>Re-enrol incentive: new OiYO colourway</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-num">05</div>
+      <div class="phase-label lime">Advocate</div>
+      <div class="phase-title">COMMUNITY</div>
+      <ul class="phase-items">
+        <li>Inter-school mini league participation</li>
+        <li>Parent-child doubles tournament</li>
+        <li>OiYO x PSC year-end showcase + awards</li>
+        <li>Family refers another family → discount</li>
+        <li>Corporate gifting programme joins ecosystem</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMMES -->
+<section id="programmes">
+  <div class="section-tag">What We Run</div>
+  <h2 class="section-title">PROGRAMME SIMULATIONS</h2>
+  <p class="section-sub">Four core formats, each with distinct audience, pricing, and revenue potential — designed to stack and scale across the partnership year.</p>
+
+  <div class="programmes-grid">
+
+    <!-- Programme 1 -->
+    <div class="prog-card">
+      <div class="prog-header">
+        <div class="prog-info">
+          <span class="prog-icon">🌱</span>
+          <div class="prog-name">LITTLE PICKLERS<br>FRIDAY SESSIONS</div>
+          <div class="prog-tagline">Weekly after-school intro format · Ages 4–12</div>
+        </div>
+        <div class="prog-price-box">
+          <div class="prog-price">RM150</div>
+          <div class="prog-price-label">per session / child</div>
+        </div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-details">
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Capacity</div>
+            <div class="prog-detail-value">20 kids</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Duration</div>
+            <div class="prog-detail-value">3.5 hrs</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Frequency</div>
+            <div class="prog-detail-value">Every Friday</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Partners</div>
+            <div class="prog-detail-value">PSC + LF + OiYO</div>
+          </div>
+        </div>
+        <div class="prog-features">
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Lunch at NOA Café included</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>2.5 hrs PSC-qualified coach-led court time</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>OiYO Hydration High 5 Kit in goodie bag</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Certificate with OiYO branding</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Parent join at 4pm — meet the community</div>
+        </div>
+        <div class="prog-revenue-bar">
+          <div class="prog-revenue-label">Monthly Revenue Potential</div>
+          <div class="prog-revenue-value">RM12,000 / month (full cohort)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Programme 2 -->
+    <div class="prog-card">
+      <div class="prog-header">
+        <div class="prog-info">
+          <span class="prog-icon">☀️</span>
+          <div class="prog-name">SCHOOL HOLIDAY<br>INTENSIVE CAMP</div>
+          <div class="prog-tagline">PSC × LF × OiYO · Full-day premium format</div>
+        </div>
+        <div class="prog-price-box">
+          <div class="prog-price">RM280</div>
+          <div class="prog-price-label">per day / child</div>
+        </div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-details">
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Capacity</div>
+            <div class="prog-detail-value">40 kids</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Duration</div>
+            <div class="prog-detail-value">5 days</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Frequency</div>
+            <div class="prog-detail-value">4× per year</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Split</div>
+            <div class="prog-detail-value">PSC + LF + OiYO</div>
+          </div>
+        </div>
+        <div class="prog-features">
+          <div class="prog-feature"><div class="prog-feature-dot"></div>AM: Learning Fresh enrichment block</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>PM: PSC court session + mini-tournament</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>OiYO lunch kit + bottle included</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Customisation station — kids personalise bottles</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Camp certificate + group photo + OiYO tote</div>
+        </div>
+        <div class="prog-revenue-bar">
+          <div class="prog-revenue-label">Per Camp Revenue (Gross)</div>
+          <div class="prog-revenue-value">RM56,000 per camp · RM224K/year</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Programme 3 -->
+    <div class="prog-card">
+      <div class="prog-header">
+        <div class="prog-info">
+          <span class="prog-icon">🏆</span>
+          <div class="prog-name">INTER-SCHOOL<br>MINI LEAGUE</div>
+          <div class="prog-tagline">KLPA-endorsed · Quarterly tournament series</div>
+        </div>
+        <div class="prog-price-box">
+          <div class="prog-price">RM200</div>
+          <div class="prog-price-label">per team entry</div>
+        </div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-details">
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Teams</div>
+            <div class="prog-detail-value">16 schools</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Format</div>
+            <div class="prog-detail-value">Quarterly</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Endorsement</div>
+            <div class="prog-detail-value">KLPA Official</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Title Sponsor</div>
+            <div class="prog-detail-value">OiYO by MONTIGO</div>
+          </div>
+        </div>
+        <div class="prog-features">
+          <div class="prog-feature"><div class="prog-feature-dot"></div>OiYO sponsors medals, trophies, and winner kits</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>PSC hosts all matches across 4 indoor courts</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>KLPA-certified referees and ranking points</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>OiYO product booth — retail conversion moment</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Year-end finals — full media + parent audience</div>
+        </div>
+        <div class="prog-revenue-bar">
+          <div class="prog-revenue-label">Annual Revenue (Entry + Merch)</div>
+          <div class="prog-revenue-value">RM18,000+ per event</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Programme 4 -->
+    <div class="prog-card">
+      <div class="prog-header">
+        <div class="prog-info">
+          <span class="prog-icon">🎂</span>
+          <div class="prog-name">BIRTHDAY PARTY<br>SPORTS PACKAGE</div>
+          <div class="prog-tagline">Premium experience · OiYO personalised gifting</div>
+        </div>
+        <div class="prog-price-box">
+          <div class="prog-price">RM1,200</div>
+          <div class="prog-price-label">per party (10 kids)</div>
+        </div>
+      </div>
+      <div class="prog-body">
+        <div class="prog-details">
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Capacity</div>
+            <div class="prog-detail-value">10–20 kids</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Duration</div>
+            <div class="prog-detail-value">3 hrs</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">OiYO Role</div>
+            <div class="prog-detail-value">Gift partner</div>
+          </div>
+          <div class="prog-detail-item">
+            <div class="prog-detail-label">Target</div>
+            <div class="prog-detail-value">2× / month</div>
+          </div>
+        </div>
+        <div class="prog-features">
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Private court booking (2 courts, 3 hours)</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>PSC coach-hosted mini-tournament format</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>OiYO personalised bottle as take-home gift</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Birthday kid gets OiYO "Champion" bundle</div>
+          <div class="prog-feature"><div class="prog-feature-dot"></div>Photo package + social content included</div>
+        </div>
+        <div class="prog-revenue-bar">
+          <div class="prog-revenue-label">Monthly Revenue (2 parties)</div>
+          <div class="prog-revenue-value">RM2,400+ / month · RM28,800/year</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section id="revenue">
+  <div class="section-tag">The Commercial Case</div>
+  <h2 class="section-title">REVENUE BREAKDOWN</h2>
+  <p class="section-sub">Multiple stacked revenue streams — from naming fees to retail conversion — ensure both partners generate measurable returns throughout the year.</p>
+
+  <div class="revenue-layout">
+    <div class="revenue-streams">
+      <div class="revenue-item">
+        <div class="revenue-rank">01</div>
+        <div class="revenue-content">
+          <div class="revenue-name">Named Programme Sponsorship</div>
+          <div class="revenue-desc">OiYO pays monthly naming rights fee for "OiYO's Little Picklers at PSC" — clean cash line, analogous to event sponsorship but recurring.</div>
+        </div>
+        <div class="revenue-amount">RM2,000<br><small style="font-size:.7rem;color:var(--grey-mid)">/month</small></div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-rank">02</div>
+        <div class="revenue-content">
+          <div class="revenue-name">Friday Weekly Session Fees</div>
+          <div class="revenue-desc">RM150/child × 20 kids × 4 Fridays/month. Core recurring programme revenue — PSC retains after LF coaching split.</div>
+        </div>
+        <div class="revenue-amount">RM9,600<br><small style="font-size:.7rem;color:var(--grey-mid)">/month (net)</small></div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-rank">03</div>
+        <div class="revenue-content">
+          <div class="revenue-name">School Holiday Camps (PSC Share)</div>
+          <div class="revenue-desc">4 camps per year × RM56K gross. PSC's ~40% share after LF and OiYO splits = RM22K per camp.</div>
+        </div>
+        <div class="revenue-amount">RM88,000<br><small style="font-size:.7rem;color:var(--grey-mid)">/year</small></div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-rank">04</div>
+        <div class="revenue-content">
+          <div class="revenue-name">OiYO Pro Shop Revenue Share</div>
+          <div class="revenue-desc">15–20% of OiYO product sold on PSC premises or via PSC-exclusive promo code. Scales with enrolment and footfall.</div>
+        </div>
+        <div class="revenue-amount">RM800<br><small style="font-size:.7rem;color:var(--grey-mid)">/month est.</small></div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-rank">05</div>
+        <div class="revenue-content">
+          <div class="revenue-name">Birthday Party Packages</div>
+          <div class="revenue-desc">2 parties per month × RM1,200. OiYO subsidises the gift kit, PSC charges full party fee. Underutilised revenue line.</div>
+        </div>
+        <div class="revenue-amount">RM2,400<br><small style="font-size:.7rem;color:var(--grey-mid)">/month</small></div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-rank">06</div>
+        <div class="revenue-content">
+          <div class="revenue-name">Inter-School League (Entry + Court)</div>
+          <div class="revenue-desc">Quarterly events. PSC charges court hire + entry fees. OiYO funds prizes. PSC nets RM18K+ per event.</div>
+        </div>
+        <div class="revenue-amount">RM72,000<br><small style="font-size:.7rem;color:var(--grey-mid)">/year</small></div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-rank">07</div>
+        <div class="revenue-content">
+          <div class="revenue-name">Corporate Family Wellness Packages</div>
+          <div class="revenue-desc">B2B packages: court access + junior enrolment + OiYO kit. Sold to MNCs as employee family benefits. 1 corporate client = RM5–10K.</div>
+        </div>
+        <div class="revenue-amount">RM30,000<br><small style="font-size:.7rem;color:var(--grey-mid)">/year est.</small></div>
+      </div>
+    </div>
+
+    <div class="revenue-summary">
+      <div class="revenue-summary-title">PSC 12-MONTH REVENUE PROJECTION</div>
+
+      <div class="rev-bar-group">
+        <div class="rev-bar-label">
+          <span class="rev-bar-name">Weekly Friday Sessions</span>
+          <span class="rev-bar-val">RM115,200</span>
+        </div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:45%;background:linear-gradient(90deg,var(--oiyo-orange),var(--oiyo-yellow))"></div>
+        </div>
+      </div>
+      <div class="rev-bar-group">
+        <div class="rev-bar-label">
+          <span class="rev-bar-name">Holiday Camps (PSC share)</span>
+          <span class="rev-bar-val">RM88,000</span>
+        </div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:34%;background:linear-gradient(90deg,var(--psc-lime),var(--psc-green-mid))"></div>
+        </div>
+      </div>
+      <div class="rev-bar-group">
+        <div class="rev-bar-label">
+          <span class="rev-bar-name">Inter-School League</span>
+          <span class="rev-bar-val">RM72,000</span>
+        </div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:28%;background:linear-gradient(90deg,#5A9FFF,#3D7FDD)"></div>
+        </div>
+      </div>
+      <div class="rev-bar-group">
+        <div class="rev-bar-label">
+          <span class="rev-bar-name">Sponsorship Fee</span>
+          <span class="rev-bar-val">RM24,000</span>
+        </div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:9%;background:rgba(255,255,255,.4)"></div>
+        </div>
+      </div>
+      <div class="rev-bar-group">
+        <div class="rev-bar-label">
+          <span class="rev-bar-name">Birthday Parties</span>
+          <span class="rev-bar-val">RM28,800</span>
+        </div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:11%;background:linear-gradient(90deg,#FF7EB3,#FF4F9A)"></div>
+        </div>
+      </div>
+      <div class="rev-bar-group">
+        <div class="rev-bar-label">
+          <span class="rev-bar-name">Corporate + Pro Shop</span>
+          <span class="rev-bar-val">RM39,600</span>
+        </div>
+        <div class="rev-bar-track">
+          <div class="rev-bar-fill" style="width:15%;background:rgba(255,199,44,.6)"></div>
+        </div>
+      </div>
+
+      <div class="rev-total">
+        <div class="rev-total-label">Total PSC Revenue Est.</div>
+        <div class="rev-total-val">RM367K</div>
+      </div>
+      <div class="rev-note">*Projections based on 80% fill rate for weekly sessions, 4 holiday camps, 4 league events, 2 birthday parties/month. Net of estimated partner splits. Conservative corporate estimate of 3 clients.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-tag">The 12-Month Plan</div>
+  <h2 class="section-title">PARTNERSHIP ROADMAP</h2>
+  <p class="section-sub">A phased build — from launch to scale — ensuring momentum compounds across both partnership years.</p>
+
+  <div class="timeline-toggle">
+    <button class="toggle-btn active" onclick="showPhase('2026', this)">Jun – Dec 2026</button>
+    <button class="toggle-btn" onclick="showPhase('2027', this)">Jan – Jun 2027</button>
+  </div>
+
+  <div id="timeline-2026" class="timeline-grid">
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">JUN</div>
+        <div class="month-year">2026</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-launch">Launch</span>
+        <div class="month-activities">
+          <span class="activity-chip">Partnership signed</span>
+          <span class="activity-chip">OiYO x PSC announcement post</span>
+          <span class="activity-chip">Friday sessions begin</span>
+          <span class="activity-chip">OiYO Sip Corner installed</span>
+          <span class="activity-chip">School outreach to LF cohort</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM14K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">JUL</div>
+        <div class="month-year">2026</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-launch">Launch</span>
+        <div class="month-activities">
+          <span class="activity-chip">Holiday camp #1 (Jul school hols)</span>
+          <span class="activity-chip">PSC × LF × OiYO full-day format</span>
+          <span class="activity-chip">OiYO Studio customisation station</span>
+          <span class="activity-chip">First parent social media content push</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM36K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">AUG</div>
+        <div class="month-year">2026</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-build">Build</span>
+        <div class="month-activities">
+          <span class="activity-chip">Weekly Friday sessions full cohort</span>
+          <span class="activity-chip">Best Pickler of Month launch</span>
+          <span class="activity-chip">Birthday party packages go live</span>
+          <span class="activity-chip">School outreach #2 — new semester</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM18K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">SEP</div>
+        <div class="month-year">2026</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-build">Build</span>
+        <div class="month-activities">
+          <span class="activity-chip">Inter-school league #1</span>
+          <span class="activity-chip">KLPA endorsement activated</span>
+          <span class="activity-chip">OiYO retail booth on match day</span>
+          <span class="activity-chip">Corporate wellness deck distributed</span>
+          <span class="activity-chip">Passport to Play mid-term stamp</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM32K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">OCT</div>
+        <div class="month-year">2026</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-scale">Scale</span>
+        <div class="month-activities">
+          <span class="activity-chip">Holiday camp #2 (Oct school hols)</span>
+          <span class="activity-chip">Hydration Tip video series drops</span>
+          <span class="activity-chip">OiYO Pro Shop extended range</span>
+          <span class="activity-chip">First corporate client onboarded</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM42K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">NOV</div>
+        <div class="month-year">2026</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-scale">Scale</span>
+        <div class="month-activities">
+          <span class="activity-chip">Inter-school league #2</span>
+          <span class="activity-chip">Parent-Child Challenge Day</span>
+          <span class="activity-chip">OiYO limited festive colourway drop</span>
+          <span class="activity-chip">Product testing survey + gift vouchers</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM30K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">DEC</div>
+        <div class="month-year">2026</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-peak">Peak</span>
+        <div class="month-activities">
+          <span class="activity-chip">Year-end Junior Showcase + Finals</span>
+          <span class="activity-chip">OiYO awards ceremony gifting</span>
+          <span class="activity-chip">Impact report published</span>
+          <span class="activity-chip">Year 2 renewal conversation opens</span>
+          <span class="activity-chip">Holiday camp #3 (Dec school hols)</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM48K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="timeline-2027" class="timeline-grid" style="display:none">
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">JAN</div>
+        <div class="month-year">2027</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-launch">Renew</span>
+        <div class="month-activities">
+          <span class="activity-chip">Year 2 partnership terms signed</span>
+          <span class="activity-chip">New cohort enrolment open</span>
+          <span class="activity-chip">OiYO new colourway for returning kids</span>
+          <span class="activity-chip">School outreach expands — 5 new schools</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM20K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">FEB</div>
+        <div class="month-year">2027</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-build">Build</span>
+        <div class="month-activities">
+          <span class="activity-chip">CNY family double sessions</span>
+          <span class="activity-chip">OiYO festive edition kit</span>
+          <span class="activity-chip">Family Paddle + Picnic Day</span>
+          <span class="activity-chip">Corporate Q1 wellness activation</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM26K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">MAR</div>
+        <div class="month-year">2027</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-build">Build</span>
+        <div class="month-activities">
+          <span class="activity-chip">Holiday camp #1 of 2027</span>
+          <span class="activity-chip">Inter-school league season 2 opens</span>
+          <span class="activity-chip">OiYO Breakfast League pilot</span>
+          <span class="activity-chip">Media feature push — Buro / SAYS</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM44K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">APR</div>
+        <div class="month-year">2027</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-scale">Scale</span>
+        <div class="month-activities">
+          <span class="activity-chip">Ramadan family programme</span>
+          <span class="activity-chip">Corporate gifting Raya package</span>
+          <span class="activity-chip">OiYO Raya edition limited drop</span>
+          <span class="activity-chip">Junior DUPR rating pilot launch</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM35K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">MAY</div>
+        <div class="month-year">2027</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-scale">Scale</span>
+        <div class="month-activities">
+          <span class="activity-chip">Inter-school season 2 finals</span>
+          <span class="activity-chip">Holiday camp #2 of 2027</span>
+          <span class="activity-chip">OiYO × PSC 1-year anniversary content</span>
+          <span class="activity-chip">Tiny Tour Series begins</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM50K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-month">
+      <div class="month-label-col">
+        <div class="month-name">JUN</div>
+        <div class="month-year">2027</div>
+      </div>
+      <div class="month-content">
+        <span class="month-phase-badge badge-peak">Showcase</span>
+        <div class="month-activities">
+          <span class="activity-chip">Junior Grand Finale + Awards Night</span>
+          <span class="activity-chip">Year 2 impact report + PR push</span>
+          <span class="activity-chip">Year 3 renewal + potential SE Asia expansion</span>
+          <span class="activity-chip">OiYO commemorative edition for graduates</span>
+        </div>
+        <div class="month-revenue">
+          <div class="month-rev-val">RM58K</div>
+          <div class="month-rev-label">Est. Revenue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETING -->
+<section id="marketing">
+  <div class="section-tag">Go-To-Market</div>
+  <h2 class="section-title">PR & MARKETING PUSH</h2>
+  <p class="section-sub">A coordinated, multi-channel strategy where both brands show up stronger together — each amplifying the other's reach to their respective audiences.</p>
+
+  <div class="marketing-grid">
+    <div class="mkt-card">
+      <span class="mkt-card-icon">📱</span>
+      <div class="mkt-card-title">SOCIAL MEDIA</div>
+      <ul class="mkt-items">
+        <li>Joint Instagram Reel series: "Court-to-Classroom" — following a child from school run to court</li>
+        <li>Weekly OiYO hydration tip posted from PSC coach IG stories</li>
+        <li>Monthly "Best Pickler" feature post — tag OiYO + PSC, share to both channels</li>
+        <li>OiYO Studio customisation content — kids personalising bottles at PSC</li>
+        <li>Parent UGC campaign: #MyLittlePickler — reshared on both brand accounts</li>
+        <li>TikTok: 30-sec rally clips + bottle reveal moments post-session</li>
+      </ul>
+    </div>
+    <div class="mkt-card">
+      <span class="mkt-card-icon">📰</span>
+      <div class="mkt-card-title">PR & MEDIA</div>
+      <ul class="mkt-items">
+        <li>Joint press release — Buro247, SAYS, NST, The Star Lifestyle section</li>
+        <li>BFM 89.9 segment: "Raising Active Kids in KL" — Mark + OiYO founder interview</li>
+        <li>Marketing Interactive feature on brand-sport community partnership model</li>
+        <li>Year-end impact report pitched to lifestyle press: enrolment, kids trained, community stats</li>
+        <li>1-year anniversary content — "What We Built Together" editorial feature</li>
+      </ul>
+    </div>
+    <div class="mkt-card">
+      <span class="mkt-card-icon">🤝</span>
+      <div class="mkt-card-title">COMMUNITY & EVENTS</div>
+      <ul class="mkt-items">
+        <li>Monthly Family Saturday: open court for parents + kids, OiYO pop-up booth on site</li>
+        <li>Learning Fresh school demo days — OiYO product seeding to LF families</li>
+        <li>KLPA junior ranking announcements hosted at PSC — OiYO as presenting sponsor</li>
+        <li>OiYO Studio x PSC pop-up at Mid Valley or 1U — drive reverse foot traffic to courts</li>
+        <li>Birthday party referral programme — PSC parents refer OiYO customers and vice versa</li>
+      </ul>
+    </div>
+    <div class="mkt-card">
+      <span class="mkt-card-icon">✉️</span>
+      <div class="mkt-card-title">CRM & DIGITAL</div>
+      <ul class="mkt-items">
+        <li>OiYO logo + CTA in every PSC junior enrolment confirmation email</li>
+        <li>Exclusive promo code: PICKLER10 — 10% off oiyoshop.com for PSC families</li>
+        <li>WhatsApp parent group: weekly OiYO hydration tip + PSC schedule update</li>
+        <li>Beyond Class listing: PSC x OiYO package bookable on beyondclass.app</li>
+        <li>OiYO Shopee bundle: "Little Picklers Starter Kit" — co-listed with PSC mention</li>
+      </ul>
+    </div>
+    <div class="mkt-card">
+      <span class="mkt-card-icon">🎬</span>
+      <div class="mkt-card-title">CONTENT SERIES</div>
+      <ul class="mkt-items">
+        <li>"Hydration Tip of the Week" — 30-sec vertical video, PSC coach + OiYO bottle, 6-part series</li>
+        <li>"School Run to Court Run" — parent lifestyle reel series, 4 episodes</li>
+        <li>"Little Pickler Diaries" — one child's journey from trial to mini-league, told in 8 posts</li>
+        <li>Holiday camp recap video — full production, shared across both brand channels</li>
+        <li>OiYO x PSC Year-End Showcase highlight film — pitched to lifestyle media</li>
+      </ul>
+    </div>
+    <div class="mkt-card">
+      <span class="mkt-card-icon">🏢</span>
+      <div class="mkt-card-title">B2B & CORPORATE</div>
+      <ul class="mkt-items">
+        <li>Joint corporate deck: "Active Family Wellness Package" for HR teams</li>
+        <li>PSC + OiYO co-branded Raya / CNY corporate gift bundle — Montigo bottle + junior session</li>
+        <li>LinkedIn content: Mark + OiYO founder on "why brands should invest in youth sport"</li>
+        <li>HRDC-linked wellness programme framework — PSC coaching, OiYO product, family benefits</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mkt-highlight">
+    <div class="mkt-kpi-item">
+      <div class="mkt-kpi-val">240+</div>
+      <div class="mkt-kpi-label">Social posts across both brand channels over 12 months</div>
+    </div>
+    <div class="mkt-kpi-item">
+      <div class="mkt-kpi-val">6×</div>
+      <div class="mkt-kpi-label">PR media placements targeted (Buro, SAYS, BFM, NST, Mktg Interactive, The Star)</div>
+    </div>
+    <div class="mkt-kpi-item">
+      <div class="mkt-kpi-val">500+</div>
+      <div class="mkt-kpi-label">Family touchpoints annually — sessions, camps, events, and league days</div>
+    </div>
+  </div>
+</section>
+
+<!-- WIN-WIN -->
+<section id="winwin">
+  <div class="section-tag">The Exchange of Value</div>
+  <h2 class="section-title">WHAT EACH PARTNER WINS</h2>
+  <p class="section-sub">This only works long-term if both sides walk away with more than they put in. Here's the honest case for each brand.</p>
+
+  <div class="winwin-grid">
+    <div class="win-card">
+      <div class="win-card-header psc">
+        <div class="win-card-logo">PICKLE SOCIAL CLUB</div>
+        <div class="win-card-role">Sport · Community · Experience Platform</div>
+      </div>
+      <div class="win-card-body">
+        <div class="win-item">
+          <div class="win-dot green"></div>
+          <div class="win-text">
+            <div class="win-text-title">Recurring Cash Revenue</div>
+            <div class="win-text-desc">RM2,000/month naming fee + programme fees + revenue share = RM367K+ annual projection. Real, stackable money — not just logo swaps.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot green"></div>
+          <div class="win-text">
+            <div class="win-text-title">Off-Peak Court Utilisation</div>
+            <div class="win-text-desc">Friday afternoons and Saturday mornings converted from idle to earning. Junior programmes fill the hours adult casual play won't.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot green"></div>
+          <div class="win-text">
+            <div class="win-text-title">Differentiated Brand Story</div>
+            <div class="win-text-desc">PSC becomes KL's leading junior sport development platform — not just an adult pickleball club. Changes how schools, parents, and media perceive us.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot green"></div>
+          <div class="win-text">
+            <div class="win-text-title">Access to OiYO's Family Audience</div>
+            <div class="win-text-desc">OiYO's Shopee (33K followers), mall presence, and influencer network introduces PSC to families who haven't yet found us through sport channels.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot green"></div>
+          <div class="win-text">
+            <div class="win-text-title">Content & Credibility Engine</div>
+            <div class="win-text-desc">240+ co-branded touchpoints per year. Kids with OiYO bottles and PSC paddles are the most shareable content in the family lifestyle space.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="win-card">
+      <div class="win-card-header oiyo">
+        <div class="win-card-logo">OiYO by MONTIGO</div>
+        <div class="win-card-role">Family Drinkware · Mealtime · Lifestyle Brand</div>
+      </div>
+      <div class="win-card-body">
+        <div class="win-item">
+          <div class="win-dot orange"></div>
+          <div class="win-text">
+            <div class="win-text-title">In-Use Brand Salience — Not Shelf Salience</div>
+            <div class="win-text-desc">OiYO bottles used on court every session. Kids carry them to school, to practice, to parties. That's daily brand exposure money can't replicate on Shopee.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot orange"></div>
+          <div class="win-text">
+            <div class="win-text-title">Premium Family Audience Access</div>
+            <div class="win-text-desc">Expat and affluent Malaysian parents at PSC are OiYO's exact target customer — high HHI, aesthetics-conscious, willing to pay for quality kids gear.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot orange"></div>
+          <div class="win-text">
+            <div class="win-text-title">Retail Conversion — Beyond Mall Footfall</div>
+            <div class="win-text-desc">On-site Pro Shop sales, PSC promo codes, and camp bundles give OiYO a sales channel outside their existing retail footprint. Measurable sell-through.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot orange"></div>
+          <div class="win-text">
+            <div class="win-text-title">Sport + Health Brand Story</div>
+            <div class="win-text-desc">"OiYO champions Small Wins" comes alive when kids celebrate their first rally with an OiYO bottle in hand. Authentic storytelling that ads alone can't create.</div>
+          </div>
+        </div>
+        <div class="win-item">
+          <div class="win-dot orange"></div>
+          <div class="win-text">
+            <div class="win-text-title">R&D Feedback Loop</div>
+            <div class="win-text-desc">Semi-annual product testing surveys at PSC give OiYO live feedback from active kids and parents on product performance, colours, and features.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-title">READY TO BUILD THIS TOGETHER?</div>
+  <p class="cta-sub">The strongest junior sports and family lifestyle platform in Klang Valley — starting June 2026.</p>
+  <div class="cta-pills">
+    <a href="mailto:hello@picklesocialclub.co" class="cta-pill primary">Let's Talk · PSC</a>
+    <a href="#programmes" class="cta-pill secondary">View Programmes</a>
+    <a href="#revenue" class="cta-pill secondary">Revenue Model</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">PSC <span>×</span> OiYO · Junior Partnership Framework</div>
+  <div class="footer-note">Pickle Social Club · The Courts @ KLGCC Resort, Bukit Kiara, KL · Confidential — June 2026</div>
+</footer>
+
+<script>
+function showPhase(phase, btn) {
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('timeline-2026').style.display = phase === '2026' ? 'grid' : 'none';
+  document.getElementById('timeline-2027').style.display = phase === '2027' ? 'grid' : 'none';
+}
+
+// Animate revenue bars on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.rev-bar-fill').forEach(bar => {
+        bar.style.width = bar.style.width;
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+const revenueSection = document.getElementById('revenue');
+if (revenueSection) observer.observe(revenueSection);
+</script>
+
+</body>
+</html>
