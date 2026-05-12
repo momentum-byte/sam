@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Courts @ KLGCC — Venue Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #A0FF6B;
+      --dark: #0e0e0e;
+      --card-bg: #f7f6f2;
+      --white: #ffffff;
+      --muted: #6b6b6b;
+      --border: #e4e2dc;
+      --accent-warm: #f0ede6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--accent-warm);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--dark);
+      color: var(--white);
+      padding: 80px 5% 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(160,255,107,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-tagline {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section {
+      padding: 64px 5%;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--green);
+      padding: 32px 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 24px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(0,0,0,0.65);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ─── INTRO TEXT ─── */
+    .intro-block {
+      background: var(--white);
+      padding: 56px 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .intro-text {
+      font-size: 16px;
+      color: #3a3a3a;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .intro-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--dark);
+      border-left: 3px solid var(--green);
+      padding-left: 24px;
+      line-height: 1.4;
+    }
+
+    /* ─── TENANT CARDS ─── */
+    .tenants {
+      padding: 64px 5%;
+      background: var(--accent-warm);
+    }
+
+    .tenants-header {
+      margin-bottom: 40px;
+    }
+
+    .tenant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .tenant-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tenant-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    }
+
+    .tenant-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .tenant-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .tenant-emoji {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .tenant-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .tenant-category {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .tenant-desc {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .tenant-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--dark);
+      background: #f0fde6;
+      border: 1px solid #c8f5a0;
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+
+    /* ─── PARTNERS MARQUEE ─── */
+    .partners {
+      background: var(--dark);
+      padding: 48px 5%;
+      overflow: hidden;
+    }
+
+    .partners-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+
+    .marquee-item span {
+      color: var(--green);
+      margin-right: 12px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── WHY SECTION ─── */
+    .why {
+      background: var(--white);
+      padding: 64px 5%;
+    }
+
+    .why-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .why-card {
+      background: var(--accent-warm);
+      border-radius: 14px;
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+
+    .why-icon {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .why-title {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .why-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ─── LOCATION ─── */
+    .location {
+      background: var(--accent-warm);
+      padding: 64px 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .location-details {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .location-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .location-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .location-info strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .location-info p {
+      font-size: 14.5px;
+      color: var(--dark);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .map-placeholder {
+      background: var(--dark);
+      border-radius: 20px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+    }
+
+    .map-placeholder .map-emoji {
+      font-size: 40px;
+    }
+
+    /* ─── CTA ─── */
+    .cta {
+      background: var(--dark);
+      padding: 72px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(160,255,107,0.15) 0%, transparent 70%);
+    }
+
+    .cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,0.55);
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--dark);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #080808;
+      padding: 32px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .footer-brand span { color: var(--green); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--green); }
+
+    /* ─── AUDIENCE ─── */
+    .audience {
+      background: var(--white);
+      padding: 64px 5%;
+    }
+
+    .audience-inner { max-width: 1200px; margin: 0 auto; }
+
+    .audience-header { margin-bottom: 40px; }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .aud-card {
+      background: var(--accent-warm);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .aud-card--dark {
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .aud-card--dark .aud-label { color: rgba(255,255,255,0.45); }
+    .aud-card--dark .aud-value { color: var(--white); }
+    .aud-card--dark .aud-sub   { color: rgba(255,255,255,0.55); }
+
+    .aud-card--green {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .aud-card--green .aud-label { color: rgba(0,0,0,0.5); }
+    .aud-card--green .aud-value { color: var(--dark); }
+    .aud-card--green .aud-sub   { color: rgba(0,0,0,0.6); }
+
+    .aud-card--outline {
+      background: transparent;
+      border: 2px solid var(--dark);
+    }
+
+    .aud-icon { font-size: 22px; margin-bottom: 6px; }
+
+    .aud-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .aud-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    .aud-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    .aud-value-split {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin: 4px 0;
+    }
+
+    .split-f { color: var(--dark); }
+    .split-m { color: var(--muted); }
+    .split-div { color: var(--border); }
+    .aud-value-split em { font-style: normal; font-size: 13px; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+
+    .gender-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 100px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .gender-bar-fill {
+      height: 100%;
+      background: var(--dark);
+      border-radius: 100px;
+    }
+
+    .aud-interests { }
+
+    .interest-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .itag {
+      background: var(--accent-warm);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--dark);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .intro-block {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 5%;
+      }
+
+      .location {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .map-placeholder { display: none; }
+
+      .hero { padding: 56px 5% 48px; }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* ─── ENTRANCE ANIMATION ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">📍 Bukit Kiara, Kuala Lumpur</p>
+    <h1>The Courts<br>at <em>KLGCC Resort</em></h1>
+    <p class="hero-tagline">A curated sports, wellness & lifestyle destination — where KL's most active communities come together.</p>
+    <div class="hero-pills">
+      <span class="pill">🎾 Pickleball</span>
+      <span class="pill">🏸 Padel</span>
+      <span class="pill">🧘 Yoga & Pilates</span>
+      <span class="pill">🚴 Spincycle</span>
+      <span class="pill">💆 Salon & Spa</span>
+      <span class="pill">🍽️ Food & Beverage</span>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-number">7</div>
+      <div class="stat-label">Tenant Brands</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Racket Courts</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Catchment Areas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">20K+</div>
+      <div class="stat-label">Monthly Footfall</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">1</div>
+      <div class="stat-label">Iconic Address</div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-block">
+    <div class="intro-text fade-up">
+      <p class="section-label">About The Courts</p>
+      <p>The Courts at KLGCC Resort is KL's premier multi-sport and lifestyle destination, nestled within the prestigious KLGCC golf resort in Bukit Kiara. More than a venue — it's a thriving community of athletes, wellness seekers, and lifestyle enthusiasts from Damansara Heights, Bangsar, Mont Kiara, and Bukit Tunku.</p>
+      <br>
+      <p>Operated by <strong>Momentum (Thud Thud Sdn. Bhd.)</strong>, The Courts brings together best-in-class tenants under one roof, creating a uniquely powerful platform for brands to activate, engage, and grow alongside an affluent, active audience.</p>
+    </div>
+    <blockquote class="intro-quote fade-up">
+      "Where purpose meets comfort — and every aspiration finds its home."
+    </blockquote>
+  </div>
+
+  <!-- AUDIENCE -->
+  <section class="audience">
+    <div class="audience-inner">
+      <div class="audience-header fade-up">
+        <p class="section-label">Audience Profile</p>
+        <h2 class="section-title">Who You're<br>Reaching</h2>
+      </div>
+
+      <div class="audience-grid">
+
+        <div class="aud-card aud-card--dark fade-up">
+          <div class="aud-icon">📍</div>
+          <div class="aud-label">Location</div>
+          <div class="aud-value">Klang Valley</div>
+          <p class="aud-sub">Affluent & influential — drawn from KL's most premium postcodes</p>
+        </div>
+
+        <div class="aud-card fade-up">
+          <div class="aud-icon">🎯</div>
+          <div class="aud-label">Age Range</div>
+          <div class="aud-value">25 – 45</div>
+          <p class="aud-sub">Young professionals, entrepreneurs & C-suite leaders</p>
+        </div>
+
+        <div class="aud-card fade-up">
+          <div class="aud-icon">👩‍💼</div>
+          <div class="aud-label">Gender Split</div>
+          <div class="aud-value-split">
+            <span class="split-f">70% <em>Female</em></span>
+            <span class="split-div">·</span>
+            <span class="split-m">30% <em>Male</em></span>
+          </div>
+          <div class="gender-bar">
+            <div class="gender-bar-fill" style="width: 70%"></div>
+          </div>
+        </div>
+
+        <div class="aud-card aud-card--green fade-up">
+          <div class="aud-icon">💰</div>
+          <div class="aud-label">Income</div>
+          <div class="aud-value">85%</div>
+          <p class="aud-sub">earn above RM 8,000/month — high purchasing power & brand affinity</p>
+        </div>
+
+        <div class="aud-card fade-up">
+          <div class="aud-icon">🛍️</div>
+          <div class="aud-label">Purchase Behaviour</div>
+          <div class="aud-value">72%</div>
+          <p class="aud-sub">lifestyle-driven purchases — primed for experiential activation</p>
+        </div>
+
+        <div class="aud-card aud-card--outline fade-up">
+          <div class="aud-icon">🔗</div>
+          <div class="aud-label">Social Profile</div>
+          <div class="aud-value" style="font-size: 22px; line-height: 1.3;">Highly Social<br>& Networked</div>
+          <p class="aud-sub">Word-of-mouth amplifiers with strong peer influence</p>
+        </div>
+
+      </div>
+
+      <div class="aud-interests fade-up">
+        <p class="section-label" style="margin-bottom: 16px;">Interests & Target Audience</p>
+        <div class="interest-tags">
+          <span class="itag">🏃 Fitness & Wellness</span>
+          <span class="itag">🥗 Health-Conscious Living</span>
+          <span class="itag">⚖️ Work-Life Balance</span>
+          <span class="itag">🎾 Sports</span>
+          <span class="itag">💼 Working Professionals</span>
+          <span class="itag">🤝 Socially Connected</span>
+          <span class="itag">✈️ Lifestyle & Travel</span>
+          <span class="itag">📱 Digitally Active</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENANTS -->
+  <section class="tenants">
+    <div class="tenants-header">
+      <p class="section-label">Our Tenants</p>
+      <h2 class="section-title">Seven Worlds Under One Roof</h2>
+    </div>
+    <div class="tenant-grid">
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">🏓</span>
+        <div class="tenant-name">Pickle Social Club</div>
+        <div class="tenant-category">Pickleball · Courts</div>
+        <p class="tenant-desc">Malaysia's most exciting pickleball venue — home to competitive leagues, social open plays, and international-level events. A fast-growing community at the heart of The Courts.</p>
+        <span class="tenant-tag">🏆 PSC Arena: Road to EPIC</span>
+      </div>
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">🎾</span>
+        <div class="tenant-name">Padelground</div>
+        <div class="tenant-category">Padel · Courts</div>
+        <p class="tenant-desc">The benchmark for padel in Malaysia — professional-grade courts and a passionate player community. Attracting top brands for private and corporate activations alike.</p>
+        <span class="tenant-tag">🌟 Premium Court Venue</span>
+      </div>
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">🧘</span>
+        <div class="tenant-name">The Flow Studio</div>
+        <div class="tenant-category">Yoga · Pilates · Wellness</div>
+        <p class="tenant-desc">A sanctuary for mind-body practice. The Flow brings world-class yoga and pilates instruction to an audience that invests deeply in their wellbeing and lifestyle.</p>
+        <span class="tenant-tag">✨ Mindful Living</span>
+      </div>
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">🚴</span>
+        <div class="tenant-name">TRIBE</div>
+        <div class="tenant-category">Spincycle · Fitness</div>
+        <p class="tenant-desc">High-energy rhythm cycling with a cult following. TRIBE's immersive classes and passionate instructor community drive repeat visits and brand loyalty at scale.</p>
+        <span class="tenant-tag">🔥 Community-Driven Fitness</span>
+      </div>
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">💆</span>
+        <div class="tenant-name">176 Avenue</div>
+        <div class="tenant-category">Salon · Spa · Beauty</div>
+        <p class="tenant-desc">The Courts' premium beauty and wellness anchor. 176 Avenue serves a discerning clientele who pair their active lifestyle with professional grooming and self-care rituals.</p>
+        <span class="tenant-tag">💅 Luxury Self-Care</span>
+      </div>
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">🍽️</span>
+        <div class="tenant-name">NOA</div>
+        <div class="tenant-category">Food & Beverage</div>
+        <p class="tenant-desc">From post-workout fuel to social dining and private events, NOA is the social hub of The Courts — a venue within a venue, designed for connection and celebration.</p>
+        <span class="tenant-tag">🥂 Dining & Events</span>
+      </div>
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">🔄</span>
+        <div class="tenant-name">SYNC Social Club</div>
+        <div class="tenant-category">Lifestyle · Community</div>
+        <p class="tenant-desc">Curated community experiences that bring members together. SYNC adds a social layer to The Courts ecosystem, elevating it beyond sport into genuine lifestyle territory.</p>
+        <span class="tenant-tag">🤝 Social Lifestyle</span>
+      </div>
+
+      <div class="tenant-card fade-up">
+        <span class="tenant-emoji">💳</span>
+        <div class="tenant-name">The Courts Loyalty Program</div>
+        <div class="tenant-category">Membership · Rewards · Powered by Binfinite</div>
+        <p class="tenant-desc">Launching June 2026 — a unified loyalty programme tying all seven tenants together. Members earn and redeem points across the full Courts ecosystem. A powerful retention and upsell engine for brands.</p>
+        <span class="tenant-tag">🚀 Launching June 2026</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARTNERS MARQUEE -->
+  <div class="partners">
+    <p class="partners-label">✦ Trusted by leading brands</p>
+    <div class="marquee-track" aria-hidden="true">
+      <span class="marquee-item"><span>✦</span>Cathay Pacific</span>
+      <span class="marquee-item"><span>✦</span>Alliance Bank</span>
+      <span class="marquee-item"><span>✦</span>Skechers Malaysia</span>
+      <span class="marquee-item"><span>✦</span>Volvo Cars Malaysia</span>
+      <span class="marquee-item"><span>✦</span>Visa</span>
+      <span class="marquee-item"><span>✦</span>CelcomDigi</span>
+      <span class="marquee-item"><span>✦</span>MONTIGO</span>
+      <span class="marquee-item"><span>✦</span>OPPO</span>
+      <span class="marquee-item"><span>✦</span>Pestle & Mortar</span>
+      <span class="marquee-item"><span>✦</span>Precise Rehab</span>
+      <span class="marquee-item"><span>✦</span>Cathay Pacific</span>
+      <span class="marquee-item"><span>✦</span>Alliance Bank</span>
+      <span class="marquee-item"><span>✦</span>Skechers Malaysia</span>
+      <span class="marquee-item"><span>✦</span>Volvo Cars Malaysia</span>
+      <span class="marquee-item"><span>✦</span>Visa</span>
+      <span class="marquee-item"><span>✦</span>CelcomDigi</span>
+      <span class="marquee-item"><span>✦</span>MONTIGO</span>
+      <span class="marquee-item"><span>✦</span>OPPO</span>
+      <span class="marquee-item"><span>✦</span>Pestle & Mortar</span>
+      <span class="marquee-item"><span>✦</span>Precise Rehab</span>
+    </div>
+  </div>
+
+  <!-- WHY THE COURTS -->
+  <section class="why">
+    <p class="section-label">Why Partner With Us</p>
+    <h2 class="section-title">Built for Brands That Want to<br>Go Beyond Advertising</h2>
+
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon">👥</div>
+        <div class="why-title">Premium Active Audience</div>
+        <p class="why-text">Our members are professionals and families from KL's most affluent postcodes — Damansara Heights, Bangsar, Mont Kiara, Bukit Tunku. High disposable income, high engagement.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <div class="why-icon">📍</div>
+        <div class="why-title">Prestigious Address</div>
+        <p class="why-text">Situated within KLGCC Resort in Bukit Kiara — one of KL's most iconic and aspirational addresses. The setting itself elevates every brand that activates here.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">End-to-End Activation</div>
+        <p class="why-text">From court sponsorships to private events, pop-up experiences, digital content creation, and loyalty integrations — we design partnerships that perform.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <div class="why-icon">🏆</div>
+        <div class="why-title">Proven Event Track Record</div>
+        <p class="why-text">Hosts of the Alliance Bank KL Pickleball Open, PSC Arena: Road to EPIC, Volvo A-moose-ment Day, and The Courts Weekender — with 1,200+ footfall events and counting.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <div class="why-icon">🔗</div>
+        <div class="why-title">Ecosystem Access</div>
+        <p class="why-text">Partnering with The Courts connects brands to the WFH Group ecosystem — PSC, TRIBE, SYNC, NOA, and beyond. Cross-promotion built in from day one.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <div class="why-icon">📈</div>
+        <div class="why-title">Loyalty-Powered Reach</div>
+        <p class="why-text">With The Courts Loyalty Program launching June 2026 (powered by Binfinite), brands can integrate directly into our member rewards programme — reaching a captive, high-intent audience across all seven tenants.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location">
+    <div class="location-details fade-up">
+      <div>
+        <p class="section-label">Find Us</p>
+        <h2 class="section-title" style="margin-bottom: 32px;">Perfectly Positioned<br>in the Heart of KL</h2>
+      </div>
+
+      <div class="location-item">
+        <span class="location-icon">📍</span>
+        <div class="location-info">
+          <strong>Address</strong>
+          <p>The Courts @ KLGCC Resort<br>Bukit Kiara, 60000 Kuala Lumpur</p>
+        </div>
+      </div>
+
+      <div class="location-item">
+        <span class="location-icon">🏘️</span>
+        <div class="location-info">
+          <strong>Primary Catchment</strong>
+          <p>Damansara Heights · Bangsar · Mont Kiara · Bukit Tunku</p>
+        </div>
+      </div>
+
+      <div class="location-item">
+        <span class="location-icon">🌐</span>
+        <div class="location-info">
+          <strong>Website</strong>
+          <p>thecourts.com.my</p>
+        </div>
+      </div>
+
+      <div class="location-item">
+        <span class="location-icon">📞</span>
+        <div class="location-info">
+          <strong>Commercial Enquiries</strong>
+          <p>Reach out via the website contact form or through Momentum — findyourmomentum.co</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-placeholder">
+      <span class="map-emoji">🗺️</span>
+      <p>Bukit Kiara, Kuala Lumpur</p>
+      <p style="font-size: 11px; margin-top: 4px; opacity: 0.6;">KLGCC Resort</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Let's Build Something<br>Together 🤝</h2>
+    <p>Whether you're exploring a court naming rights, a private brand activation, a loyalty integration, or a signature event — we'd love to talk.</p>
+    <div class="cta-buttons">
+      <a href="https://thecourts.com.my/contact-us/" class="btn-primary">Get in Touch →</a>
+      <a href="https://thecourts.com.my/bookings/" class="btn-ghost">Book a Visit</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">The Courts<span> ✦</span> KLGCC</div>
+    <div class="footer-links">
+      <a href="https://thecourts.com.my/pickle-social-club/">Pickleball</a>
+      <a href="https://thecourts.com.my/padelground/">Padel</a>
+      <a href="https://thecourts.com.my/the-flow/">Wellness</a>
+      <a href="https://thecourts.com.my/noa-food-beverage/">F&B</a>
+      <a href="https://thecourts.com.my/contact-us/">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

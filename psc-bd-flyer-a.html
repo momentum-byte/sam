@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pickle Social Club — Leave Behind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FDFAF6;
+    --charcoal: #1C1C1A;
+    --slate: #3A3A37;
+    --muted: #7A7870;
+    --border: #E2DDD6;
+    --accent-gold: #C4A96B;
+    --accent-green: #4A6741;
+    --accent-green-light: #EEF2EC;
+    --page-w: 794px;
+    --page-h: 1123px;
+  }
+
+  body {
+    background: #E8E4DE;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .page {
+    width: var(--page-w);
+    min-height: var(--page-h);
+    background: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* TOP BAND */
+  .top-band {
+    background: var(--charcoal);
+    padding: 28px 48px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-lockup {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .brand-sub {
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--accent-gold);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .location-tag {
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(247,243,238,0.5);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    padding: 52px 48px 44px;
+    border-bottom: 0.5px solid var(--border);
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 18px;
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--charcoal);
+    max-width: 520px;
+    margin-bottom: 22px;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent-green);
+  }
+
+  .hero-body {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 440px;
+  }
+
+  .hero-accent {
+    position: absolute;
+    right: 48px;
+    top: 52px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stat-pill {
+    background: var(--accent-green-light);
+    border: 0.5px solid #C8D9C5;
+    border-radius: 40px;
+    padding: 12px 20px;
+    text-align: center;
+  }
+
+  .stat-pill .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--accent-green);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-pill .label {
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #5A7A57;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* THE DIVIDER LINE WITH TEXT */
+  .section-label {
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--cream);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .section-label span {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .section-label .line {
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .pillar {
+    padding: 28px 28px 26px;
+    border-right: 0.5px solid var(--border);
+    position: relative;
+  }
+
+  .pillar:last-child { border-right: none; }
+
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--accent-gold);
+    letter-spacing: 0.14em;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .pillar-body {
+    font-size: 11.5px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .pillar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--slate);
+    background: var(--cream);
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+    padding: 4px 8px;
+  }
+
+  /* EXPERIENCES GRID */
+  .experiences {
+    padding: 28px 48px 28px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .exp-card {
+    background: var(--cream);
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+    padding: 16px 16px 14px;
+  }
+
+  .exp-card .exp-cat {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .exp-card .exp-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.25;
+    margin-bottom: 5px;
+  }
+
+  .exp-card .exp-desc {
+    font-size: 10.5px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* WHY PSC — HORIZONTAL STRIP */
+  .why-strip {
+    background: var(--charcoal);
+    padding: 28px 48px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 36px;
+    align-items: start;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .why-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--accent-gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+
+  .why-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .why-point {}
+
+  .why-point .wp-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 5px;
+    letter-spacing: 0.04em;
+  }
+
+  .why-point .wp-body {
+    font-size: 10.5px;
+    font-weight: 300;
+    color: rgba(247,243,238,0.5);
+    line-height: 1.6;
+  }
+
+  /* ADD-ONS ROW */
+  .addons {
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 0.5px solid var(--border);
+    background: var(--warm-white);
+  }
+
+  .addons-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .addon-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .addon-pill {
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--slate);
+    border: 0.5px solid var(--border);
+    border-radius: 30px;
+    padding: 5px 12px;
+    background: var(--cream);
+  }
+
+  /* FOOTER / CTA */
+  .footer {
+    padding: 26px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .cta-block {}
+
+  .cta-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 5px;
+    font-style: italic;
+  }
+
+  .cta-sub {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .contact-block {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .contact-line {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .contact-line strong {
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+
+  .contact-website {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-top: 4px;
+  }
+
+  /* BOTTOM RULE LINE */
+  .bottom-rule {
+    height: 4px;
+    background: var(--charcoal);
+    position: relative;
+  }
+
+  .bottom-rule::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--accent-gold);
+  }
+
+  /* DECORATIVE CORNER */
+  .deco-corner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .deco-corner svg {
+    display: block;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOP BAND -->
+  <div class="top-band">
+    <div class="brand-lockup">
+      <div class="brand-name">Pickle Social Club</div>
+      <div class="brand-sub">Hosted Social Experiences</div>
+    </div>
+    <div class="location-tag">
+      The Courts @ KLGCC<br>Bukit Kiara, Kuala Lumpur
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Where companies bond. Brands activate. People gather.</div>
+    <div class="hero-headline">
+      The easiest premium<br>social experience to<br><em>say yes to.</em>
+    </div>
+    <div class="hero-body">
+      No athletic experience needed. No complicated setup. Just hosted energy, curated social play, and the kind of interaction people actually remember.
+    </div>
+
+    <div class="hero-accent">
+      <div class="stat-pill">
+        <span class="num">3</span>
+        <span class="label">Commercial Pillars</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num">90+</span>
+        <span class="label">Min. Hosted Formats</span>
+      </div>
+      <div class="stat-pill">
+        <span class="num">10–100</span>
+        <span class="label">Guests Per Event</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PILLAR LABEL -->
+  <div class="section-label">
+    <span>What we offer</span>
+    <div class="line"></div>
+    <span>Three ways to experience PSC</span>
+  </div>
+
+  <!-- PILLARS -->
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-num">01 /</span>
+      <div class="pillar-title">Corporate &amp;<br>Team Building</div>
+      <div class="pillar-body">A more memorable alternative to team dinners and offsites. Beginner-safe, fully hosted, and genuinely energising — weekday formats designed for real bonding.</div>
+      <div class="pillar-tags">
+        <span class="tag">HR &amp; People</span>
+        <span class="tag">Leadership</span>
+        <span class="tag">Onboarding</span>
+        <span class="tag">Off-peak slots</span>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <span class="pillar-num">02 /</span>
+      <div class="pillar-title">Brand Activation &amp;<br>Partnerships</div>
+      <div class="pillar-body">A culturally relevant social venue for launches, creator activations, and brand experiences. Shareable energy, content-ready moments, built-in community.</div>
+      <div class="pillar-tags">
+        <span class="tag">Brand Teams</span>
+        <span class="tag">Agencies</span>
+        <span class="tag">Creators</span>
+        <span class="tag">Lifestyle Brands</span>
+      </div>
+    </div>
+
+    <div class="pillar">
+      <span class="pillar-num">03 /</span>
+      <div class="pillar-title">Private &amp;<br>Social Events</div>
+      <div class="pillar-body">Celebrations that go beyond dinner. Birthday packages, social nights, and curated group experiences — effortless to plan, impossible to forget.</div>
+      <div class="pillar-tags">
+        <span class="tag">Birthdays</span>
+        <span class="tag">Friend Groups</span>
+        <span class="tag">Couples</span>
+        <span class="tag">Social Clubs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCES LABEL -->
+  <div class="section-label">
+    <span>Signature experiences</span>
+    <div class="line"></div>
+  </div>
+
+  <!-- EXPERIENCES -->
+  <div class="experiences">
+    <div class="exp-grid">
+
+      <div class="exp-card">
+        <span class="exp-cat">Corporate</span>
+        <div class="exp-name">Corporate Rally Social</div>
+        <div class="exp-desc">2-hour hosted social play. Rotations, music, team moments. Beats another dinner — every time.</div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-cat">Corporate</span>
+        <div class="exp-name">New Hire Social Pack</div>
+        <div class="exp-desc">Instant icebreakers, instant smiles. The onboarding experience that actually sticks.</div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-cat">Community</span>
+        <div class="exp-name">Founder Fridays</div>
+        <div class="exp-desc">Play first. Deals later. A recurring evening mixer for founders, operators, and connectors.</div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-cat">Brand</span>
+        <div class="exp-name">Product Launch Social</div>
+        <div class="exp-desc">Hands-on demos, social play, branded moments. The launch people will actually post about.</div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-cat">Community</span>
+        <div class="exp-name">Sunset Social Club</div>
+        <div class="exp-desc">Golden-hour vibes, hosted mingling, open play. PSC's weekly community lifestyle moment.</div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-cat">Private</span>
+        <div class="exp-name">Birthday Socials &amp; Pickle &amp; Prosecco</div>
+        <div class="exp-desc">No skills, all cheers. Package-based celebrations. Your easiest, most memorable birthday yet.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHY PSC -->
+  <div class="why-strip">
+    <div class="why-heading">Why PSC</div>
+    <div class="why-points">
+      <div class="why-point">
+        <div class="wp-title">Fully hosted</div>
+        <div class="wp-body">We run the energy — music, hosts, rotations, timing. You just show up. We handle the rest.</div>
+      </div>
+      <div class="why-point">
+        <div class="wp-title">Beginner-friendly by design</div>
+        <div class="wp-body">Zero athletic experience needed. Designed so everyone feels comfortable from the first minute.</div>
+      </div>
+      <div class="why-point">
+        <div class="wp-title">Premium venue, community soul</div>
+        <div class="wp-body">The Courts @ KLGCC. Covered courts, social lounge, curated atmosphere — built for gathering.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD-ONS -->
+  <div class="addons">
+    <div class="addons-label">Enhancements available</div>
+    <div class="addon-pills">
+      <span class="addon-pill">F&amp;B packages</span>
+      <span class="addon-pill">Photography &amp; content</span>
+      <span class="addon-pill">Trophies &amp; awards</span>
+      <span class="addon-pill">Branded courts</span>
+      <span class="addon-pill">Wellness &amp; recovery</span>
+      <span class="addon-pill">DJs &amp; music</span>
+      <span class="addon-pill">Creator integration</span>
+      <span class="addon-pill">Custom merch</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="cta-block">
+      <div class="cta-headline">Ready to bring your team (or brand, or birthday) to The Courts?</div>
+      <div class="cta-sub">Reply with a headcount and preferred date — we'll send a tailored proposal within 24 hours.<br>No obligations. No complicated setup. Just one easy conversation.</div>
+    </div>
+    <div class="contact-block">
+      <div class="contact-line"><strong>Pickle Social Club</strong></div>
+      <div class="contact-line">The Courts @ KLGCC, Bukit Kiara</div>
+      <div class="contact-line">events@picklesocialclub.co</div>
+      <div class="contact-line">+601 4818 4818</div>
+    </div>
+  </div>
+
+  <!-- BOTTOM RULE -->
+  <div class="bottom-rule"></div>
+
+</div>
+
+</body>
+</html>
