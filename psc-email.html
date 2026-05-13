@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pickle Social Club — Corporate Experiences</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0D0D0B;
+    --green: #1A3A0F;
+    --green-mid: #2D6A18;
+    --lime: #B8D44A;
+    --lime-dark: #96B032;
+    --cream: #F2EDE4;
+    --cream-dark: #E5DDD0;
+    --white: #FAFAF7;
+    --muted: #7A7A6E;
+    --warm-grey: #C8C4BC;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION 1: COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  /* Texture overlay */
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(ellipse at 80% 20%, rgba(184,212,74,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(26,58,15,0.4) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .cover-top {
+    padding: 32px 28px 0;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .logo-block {}
+
+  .logo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--lime);
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    color: rgba(242,237,228,0.45);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .cover-badge {
+    background: rgba(184,212,74,0.1);
+    border: 1px solid rgba(184,212,74,0.25);
+    border-radius: 2px;
+    padding: 5px 10px;
+    font-size: 9px;
+    color: var(--lime);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .cover-hero {
+    padding: 48px 28px 0;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+  }
+
+  .cover-eyebrow {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--lime);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cover-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(184,212,74,0.3);
+  }
+
+  .cover-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .cover-headline .accent {
+    font-style: italic;
+    color: var(--lime);
+  }
+
+  .cover-sub {
+    font-size: 13px;
+    color: rgba(242,237,228,0.55);
+    margin-top: 20px;
+    line-height: 1.7;
+    max-width: 320px;
+  }
+
+  /* Big stat block */
+  .cover-stat-block {
+    margin-top: 48px;
+    padding: 24px 28px;
+    background: rgba(184,212,74,0.06);
+    border-top: 1px solid rgba(184,212,74,0.15);
+    border-bottom: 1px solid rgba(184,212,74,0.15);
+    position: relative;
+    z-index: 2;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 0;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 0 16px 0 0;
+  }
+
+  .stat-item:not(:last-child) {
+    border-right: 1px solid rgba(242,237,228,0.1);
+    margin-right: 16px;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--lime);
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .stat-label {
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(242,237,228,0.4);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* FOMO bar */
+  .fomo-bar {
+    padding: 20px 28px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .fomo-text {
+    font-size: 12px;
+    color: rgba(242,237,228,0.5);
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 2px solid var(--lime);
+    padding-left: 14px;
+  }
+
+  .fomo-text strong {
+    color: var(--cream);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    padding: 20px 28px 36px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .scroll-hint span {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(242,237,228,0.3);
+  }
+
+  .scroll-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(242,237,228,0.1);
+  }
+
+  /* ── SECTION 2: THE PROBLEM ── */
+  .problem-section {
+    background: var(--cream);
+    color: var(--black);
+    padding: 52px 28px 48px;
+  }
+
+  .section-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--cream-dark);
+  }
+
+  .problem-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  .problem-headline em {
+    font-style: italic;
+    color: var(--green-mid);
+  }
+
+  .problem-body {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.75;
+  }
+
+  .problem-body p + p {
+    margin-top: 14px;
+  }
+
+  /* ── SECTION 3: THREE OFFERINGS ── */
+  .offerings-section {
+    background: var(--black);
+    padding: 52px 0 0;
+  }
+
+  .offerings-header {
+    padding: 0 28px 36px;
+  }
+
+  .offerings-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .offerings-headline em {
+    font-style: italic;
+    color: var(--lime);
+  }
+
+  .offering-card {
+    margin: 0 28px 20px;
+    border: 1px solid rgba(242,237,228,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .offering-card-header {
+    padding: 22px 22px 18px;
+    border-bottom: 1px solid rgba(242,237,228,0.06);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .offering-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: rgba(184,212,74,0.15);
+    flex-shrink: 0;
+    margin-top: -6px;
+  }
+
+  .offering-title-block { flex: 1; }
+
+  .offering-tag {
+    font-size: 8.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--lime);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .offering-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    line-height: 1.15;
+    color: var(--white);
+  }
+
+  .offering-body {
+    padding: 18px 22px 22px;
+  }
+
+  .offering-desc {
+    font-size: 12.5px;
+    color: rgba(242,237,228,0.55);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .offering-hook {
+    font-size: 12px;
+    color: var(--lime);
+    font-style: italic;
+    border-left: 2px solid rgba(184,212,74,0.3);
+    padding-left: 12px;
+    line-height: 1.6;
+  }
+
+  .offering-details {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .detail-pill {
+    background: rgba(184,212,74,0.08);
+    border: 1px solid rgba(184,212,74,0.15);
+    border-radius: 2px;
+    padding: 4px 10px;
+    font-size: 10px;
+    color: rgba(242,237,228,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* Courts context strip */
+  .courts-strip {
+    margin: 4px 28px 28px;
+    background: rgba(26,58,15,0.4);
+    border: 1px solid rgba(184,212,74,0.12);
+    border-radius: 4px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .courts-strip-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .courts-strip-text {
+    font-size: 11.5px;
+    color: rgba(242,237,228,0.6);
+    line-height: 1.65;
+  }
+
+  .courts-strip-text strong {
+    color: var(--lime);
+    font-weight: 500;
+  }
+
+  /* ── SECTION 4: FOMO LOGO WALL ── */
+  .logos-section {
+    background: var(--green);
+    padding: 48px 28px;
+  }
+
+  .logos-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .logos-sub {
+    font-size: 12px;
+    color: rgba(242,237,228,0.5);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .logos-sub strong {
+    color: var(--lime);
+    font-weight: 500;
+  }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .logo-pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: rgba(242,237,228,0.75);
+    letter-spacing: 0.03em;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .logo-pill.highlight {
+    background: rgba(184,212,74,0.1);
+    border-color: rgba(184,212,74,0.2);
+    color: var(--lime);
+  }
+
+  .logos-more {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(242,237,228,0.3);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  /* Trend callout */
+  .trend-block {
+    margin-top: 28px;
+    padding: 20px 18px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+    border-left: 3px solid var(--lime);
+  }
+
+  .trend-label {
+    font-size: 8.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--lime);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .trend-text {
+    font-size: 12px;
+    color: rgba(242,237,228,0.65);
+    line-height: 1.7;
+  }
+
+  .trend-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── SECTION 5: CTA / FOOTER ── */
+  .cta-section {
+    background: var(--lime);
+    padding: 44px 28px 40px;
+  }
+
+  .cta-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(13,13,11,0.5);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .cta-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.05;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .cta-headline em {
+    font-style: italic;
+  }
+
+  .cta-body {
+    font-size: 13px;
+    color: rgba(13,13,11,0.65);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .cta-contact {
+    background: var(--black);
+    border-radius: 4px;
+    padding: 20px 20px;
+    margin-bottom: 16px;
+  }
+
+  .cta-contact-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .cta-contact-role {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--lime);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .cta-contact-email {
+    font-size: 13px;
+    color: rgba(242,237,228,0.7);
+    letter-spacing: 0.02em;
+  }
+
+  .cta-contact-ask {
+    font-size: 12px;
+    color: rgba(242,237,228,0.4);
+    margin-top: 10px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .cta-footer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .cta-footer-line {
+    font-size: 11px;
+    color: rgba(13,13,11,0.5);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cta-footer-line svg {
+    width: 12px;
+    height: 12px;
+    color: rgba(13,13,11,0.4);
+    flex-shrink: 0;
+  }
+
+  /* Media mentions */
+  .media-strip {
+    background: var(--black);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .media-strip-label {
+    font-size: 8.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(242,237,228,0.25);
+    flex-shrink: 0;
+  }
+
+  .media-item {
+    font-size: 9.5px;
+    color: rgba(242,237,228,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  .media-dot {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(242,237,228,0.2);
+    flex-shrink: 0;
+  }
+
+  @media print {
+    body { max-width: 100%; }
+    .cover { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ -->
+<!-- SECTION 1: COVER                  -->
+<!-- ══════════════════════════════════ -->
+<section class="cover">
+
+  <div class="cover-top">
+    <div class="logo-block">
+      <div class="logo-name">Pickle Social Club</div>
+      <div class="logo-sub">The Courts @ KLGCC · Bukit Kiara, KL</div>
+    </div>
+    <div class="cover-badge">
+      As seen in<br>
+      <strong style="color:#fff;font-size:11px;">Tatler Asia</strong>
+    </div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="cover-eyebrow">Corporate Experiences</div>
+    <h1 class="cover-headline">
+      Your team<br>
+      deserves<br>
+      better than<br>
+      <span class="accent">another dinner.</span>
+    </h1>
+    <p class="cover-sub">The team event people actually look forward to — and talk about on Monday morning.</p>
+  </div>
+
+  <div class="cover-stat-block">
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">100+</span>
+        <div class="stat-label">Companies<br>already playing</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">8</span>
+        <div class="stat-label">Premium<br>courts</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">0</span>
+        <div class="stat-label">Experience<br>needed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fomo-bar">
+    <p class="fomo-text">
+      <strong>BMW, Volvo, Proton, Cathay Pacific</strong> — when brands need a venue that matches their standard, they come to PSC.
+    </p>
+  </div>
+
+  <div class="scroll-hint">
+    <span>See what we offer</span>
+    <div class="scroll-line"></div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════ -->
+<!-- SECTION 2: THE PROBLEM            -->
+<!-- ══════════════════════════════════ -->
+<section class="problem-section">
+
+  <div class="section-label">Why companies come to us</div>
+
+  <h2 class="problem-headline">
+    Dinners are forgettable.<br>
+    <em>This isn't.</em>
+  </h2>
+
+  <div class="problem-body">
+    <p>Hybrid work has made team connection harder than ever. People sit in the same Zoom calls for months without ever really knowing each other. The usual fix — a team dinner, a workshop, an offsite — checks a box but doesn't actually move the needle.</p>
+    <p>Pickleball does something different. It creates natural interaction, shared adrenaline, and genuine laughter — between people who've never spoken beyond a Slack message. No experience needed. No fitness level required. Everyone plays. Everyone connects.</p>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════ -->
+<!-- SECTION 3: THREE OFFERINGS        -->
+<!-- ══════════════════════════════════ -->
+<section class="offerings-section">
+
+  <div class="offerings-header">
+    <div class="section-label" style="color:rgba(242,237,228,0.3);">What we offer</div>
+    <h2 class="offerings-headline">
+      Three ways to<br>
+      <em>bring your team in.</em>
+    </h2>
+  </div>
+
+  <!-- OFFERING 1 -->
+  <div class="offering-card">
+    <div class="offering-card-header">
+      <div class="offering-title-block">
+        <div class="offering-tag">Entry · Most Accessible</div>
+        <div class="offering-title">Social Play</div>
+      </div>
+      <div class="offering-num">01</div>
+    </div>
+    <div class="offering-body">
+      <p class="offering-desc">A court block with an intro coaching session — we handle the setup, you bring the team. Low pressure, genuinely fun, zero experience needed.</p>
+      <p class="offering-hook">"The easiest yes — show up, we'll handle the rest."</p>
+      <div class="offering-details">
+        <span class="detail-pill">Up to 20 pax</span>
+        <span class="detail-pill">Weekday friendly</span>
+        <span class="detail-pill">Intro coaching included</span>
+        <span class="detail-pill">Equipment provided</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFERING 2 -->
+  <div class="offering-card">
+    <div class="offering-card-header">
+      <div class="offering-title-block">
+        <div class="offering-tag">Most Popular · Full Experience</div>
+        <div class="offering-title">Curated Day</div>
+      </div>
+      <div class="offering-num">02</div>
+    </div>
+    <div class="offering-body">
+      <p class="offering-desc">PSC runs everything end-to-end — coaching, team formats, tournament play, F&B. You show up, we deliver the experience.</p>
+      <p class="offering-hook">"Zero planning burden. Maximum team impact."</p>
+      <div class="offering-details">
+        <span class="detail-pill">20–50 pax</span>
+        <span class="detail-pill">PSC-run end to end</span>
+        <span class="detail-pill">Coached sessions</span>
+        <span class="detail-pill">Tournament format</span>
+        <span class="detail-pill">F&B included</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFERING 3 -->
+  <div class="offering-card">
+    <div class="offering-card-header">
+      <div class="offering-title-block">
+        <div class="offering-tag">Flagship · Full Activation</div>
+        <div class="offering-title">Full Activation</div>
+      </div>
+      <div class="offering-num">03</div>
+    </div>
+    <div class="offering-body">
+      <p class="offering-desc">A fully branded activation built around your company — custom tournament format, emcee, photography, F&B, branded collateral. For 50–120 pax who deserve a marquee event.</p>
+      <p class="offering-hook">"The event that becomes the company's yearly tradition."</p>
+      <div class="offering-details">
+        <span class="detail-pill">50–120 pax</span>
+        <span class="detail-pill">Fully branded</span>
+        <span class="detail-pill">Emcee & MC</span>
+        <span class="detail-pill">Photography</span>
+        <span class="detail-pill">Custom F&B</span>
+        <span class="detail-pill">Bespoke format</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Courts ecosystem strip -->
+  <div class="courts-strip">
+    <div class="courts-strip-icon">✦</div>
+    <div class="courts-strip-text">
+      Located within <strong>The Courts @ KLGCC, Bukit Kiara</strong> — for larger activations, we can extend your day with fitness, wellness, and dining through our venue partners. One venue. One day. Everything handled.
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════ -->
+<!-- SECTION 4: FOMO LOGO WALL         -->
+<!-- ══════════════════════════════════ -->
+<section class="logos-section">
+
+  <div class="section-label" style="color:rgba(242,237,228,0.3); margin-bottom:20px;">
+    <span>Social proof</span>
+    <div style="flex:1;height:1px;background:rgba(242,237,228,0.08);"></div>
+  </div>
+
+  <h2 class="logos-headline">Brands that have<br>activated with us.</h2>
+  <p class="logos-sub">Global brands don't activate just anywhere. <strong>They choose venues that match their identity.</strong> PSC is where Malaysia's most recognisable names choose to show up.</p>
+
+  <!-- Tier 1: Automotive + Airline - most unexpected, most impressive -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+    <div class="logo-pill highlight" style="font-size:12px;padding:13px 14px;font-weight:500;">BMW</div>
+    <div class="logo-pill highlight" style="font-size:12px;padding:13px 14px;font-weight:500;">Volvo</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+    <div class="logo-pill highlight" style="font-size:12px;padding:13px 14px;font-weight:500;">Proton</div>
+    <div class="logo-pill highlight" style="font-size:12px;padding:13px 14px;font-weight:500;">Cathay Pacific</div>
+  </div>
+
+  <!-- Tier 2: Global consumer brands -->
+  <div class="logo-grid" style="margin-bottom:8px;">
+    <div class="logo-pill">Adidas</div>
+    <div class="logo-pill">OPPO</div>
+    <div class="logo-pill">Skechers</div>
+    <div class="logo-pill">Montigo</div>
+  </div>
+
+  <!-- Tier 3: Media + Telco + Finance -->
+  <div class="logo-grid">
+    <div class="logo-pill">GRAZIA Malaysia</div>
+    <div class="logo-pill">CelcomDigi</div>
+    <div class="logo-pill">Alliance Bank</div>
+    <div class="logo-pill">Pestle & Mortar</div>
+  </div>
+
+  <!-- Collaboration callout -->
+  <div style="margin-top:12px;background:rgba(184,212,74,0.06);border:1px solid rgba(184,212,74,0.15);border-radius:3px;padding:12px 16px;display:flex;align-items:flex-start;gap:10px;">
+    <span style="color:var(--lime);font-size:14px;flex-shrink:0;margin-top:1px;">✦</span>
+    <div>
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.18em;color:var(--lime);font-weight:500;margin-bottom:4px;">Collaboration Highlight</div>
+      <div style="font-size:11.5px;color:rgba(242,237,228,0.6);line-height:1.6;"><strong style="color:var(--cream);font-weight:500;">Pestle & Mortar Clothing</strong> co-created the <em>"Off The Court"</em> fashion capsule with PSC — a true brand partnership, not just a logo placement.</div>
+    </div>
+  </div>
+
+  <p class="logos-more" style="margin-top:16px;">+ 100 corporate teams and counting</p>
+
+  <div class="trend-block">
+    <div class="trend-label">Why now</div>
+    <p class="trend-text">
+      <strong>Employee engagement is the defining HR challenge of 2025–2026.</strong> Malaysia's leading HR teams are shifting from team dinners and workshops to active social experiences — and pickleball is at the centre of that shift.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════ -->
+<!-- SECTION 5: CTA                    -->
+<!-- ══════════════════════════════════ -->
+<section class="cta-section">
+
+  <div class="cta-label">Let's make it happen</div>
+  <h2 class="cta-headline">
+    Tell us about<br>
+    your team.<br>
+    <em>We'll do the rest.</em>
+  </h2>
+  <p class="cta-body">Every experience is built around your team size, goals, and budget. No fixed packages, no guesswork — just reply to this email and we'll put together something that fits.</p>
+
+  <div class="cta-contact">
+    <div class="cta-contact-name">Avian Monique</div>
+    <div class="cta-contact-role">Corporate Experience · Pickle Social Club</div>
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:var(--lime);font-weight:500;width:72px;flex-shrink:0;">Email</span>
+        <span style="font-size:12.5px;color:rgba(242,237,228,0.7);">avian@picklesocialclub.my</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:var(--lime);font-weight:500;width:72px;flex-shrink:0;">WhatsApp</span>
+        <span style="font-size:12.5px;color:rgba(242,237,228,0.7);">+6010 238 8642</span>
+      </div>
+    </div>
+    <div class="cta-contact-ask">Drop us a message and we'll come back to you within 24 hours with something built around your team.</div>
+  </div>
+
+  <div class="cta-footer-details">
+    <div class="cta-footer-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      The Courts @ KLGCC, Bukit Kiara, Kuala Lumpur
+    </div>
+    <div class="cta-footer-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 0v20M2 12h20"/></svg>
+      picklesocialclub.co
+    </div>
+  </div>
+
+</section>
+
+<!-- Media strip -->
+<div class="media-strip">
+  <span class="media-strip-label">Featured in</span>
+  <div class="media-dot"></div>
+  <span class="media-item">Tatler Asia</span>
+  <div class="media-dot"></div>
+  <span class="media-item">BFM 89.9</span>
+  <div class="media-dot"></div>
+  <span class="media-item">Vulcan Post</span>
+  <div class="media-dot"></div>
+  <span class="media-item">Firstclasse</span>
+</div>
+
+</body>
+</html>
