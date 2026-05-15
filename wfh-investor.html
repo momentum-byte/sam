@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sime Darby &mdash; Investor &amp; Network Map | The Courts</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d5a3d;
+    --green-light: #e8f0eb;
+    --green-mid: #4a7c5f;
+    --gold: #b8974a;
+    --gold-light: #f5edd8;
+    --red: #c0392b;
+    --red-light: #fdf0ef;
+    --grey: #6b7280;
+    --grey-light: #f4f4f2;
+    --white: #fdfcf9;
+    --text: #1a1a1a;
+    --border: #ddd8d0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .header { background: var(--green); color: white; padding: 40px 24px 36px; }
+  .header-inner { max-width: 1100px; margin: 0 auto; }
+  .header-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 10px;
+  }
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 400; line-height: 1.2; margin-bottom: 8px;
+  }
+  .header-sub { color: rgba(255,255,255,0.65); font-size: 13px; }
+  .header-meta {
+    margin-top: 20px; display: flex; flex-wrap: wrap;
+    gap: 12px 32px; font-size: 12px; color: rgba(255,255,255,0.5);
+  }
+  .header-meta span strong { color: rgba(255,255,255,0.85); }
+
+  /* ── NAV ── */
+  .nav {
+    background: white; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; padding: 0 16px; white-space: nowrap;
+  }
+  .nav a {
+    display: inline-block; padding: 13px 14px; font-size: 12px; font-weight: 500;
+    color: var(--grey); text-decoration: none;
+    border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+  }
+  .nav a:hover { color: var(--green); border-bottom-color: var(--green); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 40px 0 36px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(18px, 3vw, 22px);
+    font-weight: 400; color: var(--green); margin-bottom: 6px;
+  }
+  .section-desc { font-size: 13px; color: var(--grey); margin-bottom: 24px; max-width: 680px; }
+
+  /* ── PRIORITY CARDS ── */
+  .priority-grid { display: flex; flex-direction: column; gap: 12px; }
+  .priority-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px 18px; transition: box-shadow 0.2s;
+  }
+  .priority-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .priority-card.tier-1 { border-left: 4px solid var(--green); }
+  .priority-card.tier-2 { border-left: 4px solid var(--gold); }
+  .priority-card.tier-3 { border-left: 4px solid #94a3b8; }
+
+  /* Mobile: stacked */
+  .pc-header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+  .pc-num {
+    font-family: 'DM Serif Display', serif; font-size: 24px;
+    color: var(--border); line-height: 1; flex-shrink: 0; padding-top: 2px;
+  }
+  .pc-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .pc-title { font-size: 12px; color: var(--grey); line-height: 1.4; }
+  .pc-body { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .pc-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--grey); margin-bottom: 3px;
+  }
+  .pc-why { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+  .pc-how { font-size: 12px; color: var(--grey); line-height: 1.5; }
+
+  /* Desktop: side-by-side columns */
+  @media (min-width: 700px) {
+    .pc-body { grid-template-columns: 1fr 160px; }
+  }
+
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-gold  { background: var(--gold-light);  color: #7a5e1a; }
+  .badge-grey  { background: #f1f5f9; color: #64748b; }
+
+  /* ── TABLES ── */
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--grey-light); }
+  th {
+    text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--grey);
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafaf8; }
+  .tag {
+    display: inline-block; padding: 2px 7px; border-radius: 4px;
+    font-size: 10px; font-weight: 500; white-space: nowrap;
+  }
+  .tag-pnb  { background: #e8f0eb; color: var(--green); }
+  .tag-epf  { background: #e0f2fe; color: #0369a1; }
+  .tag-exec { background: #fef3c7; color: #92400e; }
+  .tag-ind  { background: #f3f4f6; color: #374151; }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    border-radius: 8px; padding: 14px 18px; margin: 16px 0;
+    display: flex; gap: 12px; align-items: flex-start; font-size: 13px;
+  }
+  .callout-green { background: var(--green-light); border-left: 3px solid var(--green); }
+  .callout-gold  { background: var(--gold-light);  border-left: 3px solid var(--gold); }
+  .callout-red   { background: var(--red-light);   border-left: 3px solid var(--red); }
+  .callout-icon  { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+  .callout-text strong { display: block; margin-bottom: 4px; font-size: 13px; }
+  .callout-text p { color: #374151; line-height: 1.5; }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 640px) { .two-col { grid-template-columns: 1fr 1fr; } }
+  .card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+  .card-title { font-weight: 600; font-size: 13px; margin-bottom: 10px; color: var(--green); }
+  .card ul { padding-left: 16px; }
+  .card li { font-size: 13px; margin-bottom: 6px; line-height: 1.4; }
+
+  /* ── MGMT GRID ── */
+  .mgmt-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 640px) { .mgmt-grid { grid-template-columns: 1fr 1fr; } }
+  .mgmt-card { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: white; }
+  .mgmt-name { font-weight: 600; font-size: 13.5px; margin-bottom: 2px; }
+  .mgmt-role { font-size: 12px; color: var(--grey); margin-bottom: 8px; line-height: 1.4; }
+  .mgmt-note { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+  .mgmt-star { font-size: 12px; font-weight: 600; margin-top: 8px; color: var(--green-mid); }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--grey-light); padding: 20px 24px; font-size: 11px; color: var(--grey); border-top: 1px solid var(--border); }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+
+  /* ── PRINT ── */
+  @media print {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    .nav { display: none; }
+    .section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-label">&#x1F512; The Courts at KLGCC &mdash; Confidential</div>
+    <h1>Sime Darby Network Map<br>Investor &amp; Partner Research</h1>
+    <div class="header-sub">Compiled from Perplexity research &middot; Source: Official Sime Darby Berhad website &amp; The Edge Malaysia</div>
+    <div class="header-meta">
+      <span><strong>&#x1F4C5; Data as of</strong>&nbsp;May 2026</span>
+      <span><strong>&#x1F3AF; Purpose</strong>&nbsp;Investor candidate identification &amp; warm outreach</span>
+      <span><strong>&#x1F464; Prepared for</strong>&nbsp;Sam / Momentum</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-inner">
+    <a href="#priority">&#x1F3C6; Priority</a>
+    <a href="#sdb-board">&#x1F4CB; SDB Board</a>
+    <a href="#sdp-board">&#x1F3D7;&#xFE0F; SDP Board</a>
+    <a href="#mgmt">&#x1F465; Management</a>
+    <a href="#investment-arms">&#x1F4B0; Investment Arms</a>
+    <a href="#flags">&#x26A0;&#xFE0F; Flags</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PRIORITY TARGETS -->
+  <div class="section" id="priority">
+    <div class="section-title">&#x1F3C6; Priority Targets for Outreach</div>
+    <div class="section-desc">Ranked by strategic relevance to The Courts &mdash; based on investment influence, proximity to KLGCC/Bukit Kiara assets, and warm introduction potential.</div>
+
+    <div class="priority-grid">
+
+      <div class="priority-card tier-1">
+        <div class="pc-header">
+          <div class="pc-num">1</div>
+          <div>
+            <div class="badge badge-green">&#x1F7E2; Highest Priority</div>
+            <div class="pc-name">Tan Sri Abdul Wahid Omar</div>
+            <div class="pc-title">Group Chairman, PNB &middot; Chairman, Sime Darby Property Berhad &middot; Board, Sunway Berhad</div>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-label">&#x1F4A1; Why he matters</div>
+            <div class="pc-why">Single most powerful node in the Sime Darby&ndash;PNB ecosystem. Controls PNB&rsquo;s strategic investment capital. As Sime Darby Property Chairman, he has direct oversight of the KLGCC land asset. PNB is also anchor investor in the Logos Industrial Development Fund. His Sunway Berhad board seat creates a cross-group lifestyle/property connection.</div>
+          </div>
+          <div>
+            <div class="pc-label">&#x1F4F2; How to reach</div>
+            <div class="pc-how">LinkedIn &middot; Sunway Berhad connection (cross-board) &middot; PNB corporate channel</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-card tier-1">
+        <div class="pc-header">
+          <div class="pc-num">2</div>
+          <div>
+            <div class="badge badge-green">&#x1F7E2; High Priority</div>
+            <div class="pc-name">Datuk Seri Azmir Merican</div>
+            <div class="pc-title">Group Managing Director &amp; CEO, Sime Darby Property Berhad</div>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-label">&#x1F4A1; Why he matters</div>
+            <div class="pc-why">The operational decision-maker for all Sime Darby Property strategic partnerships. Leading the company&rsquo;s transformation into a full real estate &amp; investment management business. Any formal operator partnership or investor conversation at SDP level requires his sign-off.</div>
+          </div>
+          <div>
+            <div class="pc-label">&#x1F4F2; How to reach</div>
+            <div class="pc-how">LinkedIn &middot; Sime Darby Property corporate comms &middot; Land lease relationship (existing touchpoint)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-card tier-1">
+        <div class="pc-header">
+          <div class="pc-num">3</div>
+          <div>
+            <div class="badge badge-green">&#x1F7E2; High Priority</div>
+            <div class="pc-name">Dr Tan Kok Heng</div>
+            <div class="pc-title">CEO, Sime Darby Real Estate Management &middot; Head of Property Investment</div>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-label">&#x1F4A1; Why he matters</div>
+            <div class="pc-why">Most likely the person whose team directly manages the KLGCC/Bukit Kiara land portfolio. Oversees recurring income properties. The Courts lease would fall under his remit. Most direct operational path to understanding the lease and co-investment possibilities.</div>
+          </div>
+          <div>
+            <div class="pc-label">&#x1F4F2; How to reach</div>
+            <div class="pc-how">Sime Darby Property corporate directory &middot; Via Azmir Merican&rsquo;s office</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-card tier-2">
+        <div class="pc-header">
+          <div class="pc-num">4</div>
+          <div>
+            <div class="badge badge-gold">&#x1F7E1; Medium Priority</div>
+            <div class="pc-name">Aurelia Lee</div>
+            <div class="pc-title">COO, Investment &amp; Asset Management, Sime Darby Property</div>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-label">&#x1F4A1; Why she matters</div>
+            <div class="pc-why">Directly responsible for the recurring income division &mdash; where a leased asset like KLGCC sits operationally. Useful if the angle is around formalising a deeper asset partnership rather than a pure equity investor conversation.</div>
+          </div>
+          <div>
+            <div class="pc-label">&#x1F4F2; How to reach</div>
+            <div class="pc-how">Sime Darby Property corporate directory</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-card tier-2">
+        <div class="pc-header">
+          <div class="pc-num">5</div>
+          <div>
+            <div class="badge badge-gold">&#x1F7E1; Medium Priority</div>
+            <div class="pc-name">Dato&rsquo; Lawrence Lee Cheow Hock</div>
+            <div class="pc-title">Non-Independent Non-Executive Director, Sime Darby Berhad (PNB Nominee)</div>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-label">&#x1F4A1; Why he matters</div>
+            <div class="pc-why">PNB&rsquo;s representative on the Sime Darby Berhad board. Direct path into PNB&rsquo;s decision-making network. Could champion an investment or make warm introductions to the right people within PNB and Sime Darby Property.</div>
+          </div>
+          <div>
+            <div class="pc-label">&#x1F4F2; How to reach</div>
+            <div class="pc-how">LinkedIn &middot; PNB corporate network &middot; Malaysian corporate circles</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-card tier-2">
+        <div class="pc-header">
+          <div class="pc-num">6</div>
+          <div>
+            <div class="badge badge-gold">&#x1F7E1; Medium Priority</div>
+            <div class="pc-name">Tengku Dato&rsquo; Sri Azmil Zahruddin Raja Abdul Aziz</div>
+            <div class="pc-title">Independent NED, Sime Darby Berhad &middot; Director at CelcomDigi, CIMB Group, CIMB Bank, CIMB Thai Bank</div>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-label">&#x1F4A1; Why he matters</div>
+            <div class="pc-why">Multi-board independent director with deep banking and telco connections. CIMB Group affiliation opens doors to private wealth and co-investment structures. <strong>Lowest conflict-of-interest risk</strong> among senior names &mdash; independent NED at the parent company only, no operational role at SDP.</div>
+          </div>
+          <div>
+            <div class="pc-label">&#x1F4F2; How to reach</div>
+            <div class="pc-how">LinkedIn &middot; CIMB Group network</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-card tier-3">
+        <div class="pc-header">
+          <div class="pc-num">7</div>
+          <div>
+            <div class="badge badge-grey">&#x26AA; Monitor</div>
+            <div class="pc-name">Prof. Datuk Ts. Ir. Dr. Siti Hamisah Tapsir</div>
+            <div class="pc-title">Independent NED, Sime Darby Berhad &middot; CEO UCSI Group &middot; Vice Chancellor, UCSI University</div>
+          </div>
+        </div>
+        <div class="pc-body">
+          <div>
+            <div class="pc-label">&#x1F4A1; Why she&rsquo;s notable</div>
+            <div class="pc-why">Interesting overlap &mdash; Jesslyn (The Courts intern) is from UCSI University. UCSI Group could be a future corporate wellness or event partnership target. Lower priority for investor purposes but worth noting for longer-term partnership outreach.</div>
+          </div>
+          <div>
+            <div class="pc-label">&#x1F4F2; How to reach</div>
+            <div class="pc-how">UCSI University channel &middot; LinkedIn</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SDB BOARD -->
+  <div class="section" id="sdb-board">
+    <div class="section-title">&#x1F4CB; Sime Darby Berhad &mdash; Full Board of Directors</div>
+    <div class="section-desc">Source: Official Sime Darby Berhad website, verified May 7, 2026. 13 directors total (12 voting + 1 alternate).</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Role</th><th>Type</th><th>Notable Affiliations</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dato&rsquo; Abdul Rahman Ahmad</strong></td>
+            <td>Non-Independent Non-Executive Chairman</td>
+            <td><span class="tag tag-ind">Non-Exec</span></td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Thayaparan Sangarapillai</strong></td>
+            <td>Senior Independent Non-Executive Director</td>
+            <td><span class="tag tag-ind">Independent</span></td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Tan Sri Ahmad Badri Mohd Zahir</strong></td>
+            <td>Non-Independent Non-Executive Director</td>
+            <td><span class="tag tag-epf">EPF Nominee</span></td>
+            <td>EPF representative; recuses from EPF&ndash;Sime conflicts</td>
+          </tr>
+          <tr>
+            <td><strong>Tan Sri Muhammad Shahrul Ikram Yaakob</strong></td>
+            <td>Independent Non-Executive Director</td>
+            <td><span class="tag tag-ind">Independent</span></td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Moy Pui Yee</strong></td>
+            <td>Independent Non-Executive Director</td>
+            <td><span class="tag tag-ind">Independent</span></td>
+            <td>Partner, Rahmat Lim &amp; Partners (legal)</td>
+          </tr>
+          <tr>
+            <td><strong>Dato&rsquo; Lawrence Lee Cheow Hock</strong></td>
+            <td>Non-Independent Non-Executive Director</td>
+            <td><span class="tag tag-pnb">PNB Nominee</span></td>
+            <td>Permodalan Nasional Berhad representative</td>
+          </tr>
+          <tr>
+            <td><strong>Dato&rsquo; Dr Nirmala Menon</strong></td>
+            <td>Independent Non-Executive Director</td>
+            <td><span class="tag tag-ind">Independent</span></td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Scott William Cameron</strong></td>
+            <td>Independent Non-Executive Director</td>
+            <td><span class="tag tag-ind">Independent</span></td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Tengku Dato&rsquo; Sri Azmil Zahruddin Raja Abdul Aziz</strong></td>
+            <td>Independent Non-Executive Director</td>
+            <td><span class="tag tag-ind">Independent</span></td>
+            <td>CelcomDigi, CIMB Group, CIMB Bank, CIMB Thai Bank</td>
+          </tr>
+          <tr>
+            <td><strong>Professor Datuk Ts. Ir. Dr. Siti Hamisah Tapsir</strong></td>
+            <td>Independent Non-Executive Director</td>
+            <td><span class="tag tag-ind">Independent</span></td>
+            <td>CEO UCSI Group, VC UCSI University</td>
+          </tr>
+          <tr>
+            <td><strong>Dato&rsquo; Jeffri Salim Davidson</strong></td>
+            <td>Group Chief Executive Officer</td>
+            <td><span class="tag tag-exec">Executive Director</span></td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Hanizan Hood</strong></td>
+            <td>Non-Independent Non-Executive Director</td>
+            <td><span class="tag tag-pnb">PNB Nominee</span></td>
+            <td>Permodalan Nasional Berhad representative</td>
+          </tr>
+          <tr>
+            <td><strong>Hafiz Imran Ahmad Rashidi</strong></td>
+            <td>Alternate Director to Hanizan Hood</td>
+            <td><span class="tag tag-pnb">PNB Nominee</span></td>
+            <td>&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SDP BOARD -->
+  <div class="section" id="sdp-board">
+    <div class="section-title">&#x1F3D7;&#xFE0F; Sime Darby Property Berhad &mdash; Board of Directors</div>
+    <div class="section-desc">Board restructured May&ndash;June 2025 for the pure-play demerger. Source: The Edge Malaysia, Sime Darby Property AGM Notice (April 2026).</div>
+
+    <div class="callout callout-gold">
+      <div class="callout-icon">&#x26A0;&#xFE0F;</div>
+      <div class="callout-text">
+        <strong>Demerger Note</strong>
+        <p>Sime Darby Property underwent a board restructuring in 2025 as part of its transition to a pure-play property company. Datuk Jaganath Derek Steven Sabapathy retired September 30, 2025 &mdash; replacement unconfirmed. Verify the full current lineup via the 2026 AGM Notice at simedarbyproperty.com.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Role</th><th>Background / Relevance</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tan Sri Abdul Wahid Omar</strong></td>
+            <td>Chairman</td>
+            <td>PNB Group Chairman. Former Bursa Malaysia Chairman (2020&ndash;2024). Also on Sunway Berhad board. <strong>&#x1F3AF; Top priority contact.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Datuk Seri Amrin Awaluddin</strong></td>
+            <td>Managing Director</td>
+            <td>Former Media Prima Group MD. Leading transformation into real estate investment &amp; asset management company.</td>
+          </tr>
+          <tr>
+            <td><strong>Datuk Tong Poh Keow</strong></td>
+            <td>Executive Director &amp; CFO</td>
+            <td>Previously Sime Darby Berhad Group CFO. Oversees financial strategy.</td>
+          </tr>
+          <tr>
+            <td><strong>Datuk Rohana Tan Sri Mahmood</strong></td>
+            <td>Director</td><td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Tengku Datuk Seri Ahmad Shah Alhaj</strong></td>
+            <td>Director</td>
+            <td>Royal family connection.</td>
+          </tr>
+          <tr>
+            <td><strong>Datuk Johan Arin</strong></td>
+            <td>Director</td><td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Datuk Dr Mohd Daud Bakar</strong></td>
+            <td>Director</td><td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Datuk Seri Ahmad Johan Mohammad Raslan</strong></td>
+            <td>Director</td><td>&mdash;</td>
+          </tr>
+          <tr>
+            <td><strong>Datin Nor Azah Mohamed Razali</strong></td>
+            <td>Director</td><td>&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SENIOR MANAGEMENT -->
+  <div class="section" id="mgmt">
+    <div class="section-title">&#x1F465; Sime Darby Property &mdash; Senior Management</div>
+    <div class="section-desc">C-suite and divisional leads most relevant to KLGCC asset oversight and partnership discussions.</div>
+
+    <div class="mgmt-grid">
+      <div class="mgmt-card" style="border-color:var(--green);border-width:2px;">
+        <div class="mgmt-name">Datuk Seri Azmir Merican</div>
+        <div class="mgmt-role">Group Managing Director &amp; CEO</div>
+        <div class="mgmt-note">Leading transformation into full real estate / investment &amp; asset management company. Oversight of all townships, industrial, and recurring income assets. Ultimate decision-maker for strategic partnerships.</div>
+        <div class="mgmt-star">&#x2B50; Priority contact for any formal partnership conversation</div>
+      </div>
+      <div class="mgmt-card" style="border-color:var(--green);border-width:2px;">
+        <div class="mgmt-name">Dr Tan Kok Heng</div>
+        <div class="mgmt-role">CEO, Sime Darby Real Estate Management &middot; Head of Property Investment</div>
+        <div class="mgmt-note">Oversees Sime Darby Property&rsquo;s investment portfolio and recurring income assets. KLGCC/Bukit Kiara land most likely falls under his remit. Most direct operational path to understanding the lease and co-investment possibilities.</div>
+        <div class="mgmt-star">&#x2B50; Most likely person managing KLGCC asset directly</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-name">Datuk Wan Hashimi Albakri</div>
+        <div class="mgmt-role">COO / Chief Transformation Officer</div>
+        <div class="mgmt-note">Corporate planning, strategy, and transformation initiatives. Relevant for conversations around strategic direction and new operating models.</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-name">Aurelia Lee</div>
+        <div class="mgmt-role">COO, Investment and Asset Management</div>
+        <div class="mgmt-note">Directly responsible for the recurring income division &mdash; where KLGCC lease income would sit. Relevant if the angle is formalising a deeper asset-level partnership or lease restructuring.</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-name">Melissa Tan Swee Peng</div>
+        <div class="mgmt-role">COO, Operations Support (eff. Jan 2025)</div>
+        <div class="mgmt-note">Corporate planning, sustainability, special projects, and performance management. May be relevant for operational or sustainability-linked partnership discussions.</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-name">Mohd Razif Mohd Yusof</div>
+        <div class="mgmt-role">Head (role unspecified)</div>
+        <div class="mgmt-note">Mentioned at the Urban Biodiversity Conference 2025 in relation to Bukit Kiara. May be directly involved in the Bukit Kiara / KLGCC development corridor. Worth identifying exact role before reaching out.</div>
+        <div class="mgmt-star">&#x1F4CD; Bukit Kiara connection &mdash; verify role first</div>
+      </div>
+      <div class="mgmt-card">
+        <div class="mgmt-name">Shu Lai</div>
+        <div class="mgmt-role">Chief Marketing and Sales Officer</div>
+        <div class="mgmt-note">Marketing and sales leadership. Less relevant for investor conversations but potentially useful for co-marketing or placemaking partnership discussions longer term.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVESTMENT ARMS -->
+  <div class="section" id="investment-arms">
+    <div class="section-title">&#x1F4B0; Investment Arms &amp; Related Entities</div>
+    <div class="section-desc">Sime Darby does not have a standalone corporate venture capital arm. Investment activity runs through JVs, direct property investment, and GLIC co-investment structures.</div>
+
+    <div class="callout callout-green">
+      <div class="callout-icon">&#x2B50;</div>
+      <div class="callout-text">
+        <strong>Logos&ndash;Sime Darby Industrial Development Fund &mdash; Highly Relevant</strong>
+        <p>A 51:49 JV between Sime Darby Property and Logos (subsidiary of ESR Group, HK-listed). Fund size up to USD&nbsp;250M (first close: USD&nbsp;114M). Anchor investors: PNB + KWAP. Focus: sustainable logistics/industrial assets. Key contact: <strong>David Aboud</strong>, Head of Malaysia, Logos. Confirms Sime Darby Property&rsquo;s co-investment model with institutional partners and opens a route into the ESR Group / KWAP network.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">&#x1F3E2; Sime Darby Real Estate Management</div>
+        <ul>
+          <li>Manages Sime Darby Property&rsquo;s investment portfolio</li>
+          <li>CEO: Dr Tan Kok Heng (also Head of Property Investment)</li>
+          <li>Oversees recurring income properties &mdash; KLGCC lease sits here</li>
+          <li>Direct contact point for any asset-level conversation</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">&#x1F3DB;&#xFE0F; GLIC Network Summary</div>
+        <ul>
+          <li><strong>PNB</strong> &mdash; Major Sime Darby shareholder; Nominees on SDB board: Lawrence Lee + Hanizan Hood; Chairman at SDP: Tan Sri Abdul Wahid Omar</li>
+          <li><strong>EPF</strong> &mdash; Nominee on SDB board: Tan Sri Ahmad Badri Mohd Zahir</li>
+          <li><strong>KWAP</strong> &mdash; Anchor investor in Logos&ndash;SDP Industrial Fund (no direct board seat)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAGS -->
+  <div class="section" id="flags">
+    <div class="section-title">&#x26A0;&#xFE0F; Flags &amp; Verification Required</div>
+    <div class="section-desc">Items from the Perplexity research that need independent verification before acting on.</div>
+
+    <div class="callout callout-red" style="margin-bottom:20px;">
+      <div class="callout-icon">&#x1F6A8;</div>
+      <div class="callout-text">
+        <strong>No specific Sime Darby executive is publicly named as responsible for KLGCC / Bukit Kiara.</strong>
+        <p>This is the most important gap. Recommended path: contact Sime Darby Property&rsquo;s Investor Relations or Property Investment department directly and request an introduction to the executive overseeing the Bukit Kiara land portfolio. Dr Tan Kok Heng is the best-educated guess based on org structure.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Information</th><th>Flag Reason</th><th>Recommended Action</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sime Darby Property board post-Sept 2025</td>
+            <td>Datuk Jaganath retired Sept 30, 2025 &mdash; replacement not confirmed</td>
+            <td>Check Sime Darby Property AGM 2026 documents (already published)</td>
+          </tr>
+          <tr>
+            <td>Dr Tan Kok Heng&rsquo;s current title</td>
+            <td>Title sourced from 2017 announcement &mdash; may have changed</td>
+            <td>Contact Sime Darby Property directly to confirm</td>
+          </tr>
+          <tr>
+            <td>KLGCC leaseholder / responsible executive</td>
+            <td>Not publicly disclosed</td>
+            <td>Contact Sime Darby Property Investment &amp; Asset Management dept</td>
+          </tr>
+          <tr>
+            <td>Mohd Razif Mohd Yusof&rsquo;s exact role</td>
+            <td>Only mentioned at Urban Biodiversity Conference &mdash; role unspecified</td>
+            <td>Verify via Sime Darby Property corporate directory</td>
+          </tr>
+          <tr>
+            <td>Any 2017&ndash;2018 management data</td>
+            <td>Outdated &mdash; do not use for outreach</td>
+            <td>Disregard (Quek Cham Hong, Mohammad Fairuz Mohd Radi &mdash; likely left)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:28px;">
+      <div class="section-title" style="font-size:17px;margin-bottom:12px;">&#x1F4CB; Suggested Next Steps</div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">&#x26A1; Immediate (This Week)</div>
+          <ul>
+            <li>Map these names against your personal network &mdash; do you know anyone connected to Tan Sri Abdul Wahid Omar, Azmir Merican, or the CIMB/Tengku Azmil circle?</li>
+            <li>Check the Sime Darby Property 2026 AGM Notice (already published) to confirm the full current Property board</li>
+            <li>LinkedIn search each priority target and note any mutual connections</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-title">&#x1F4C5; Near-Term (Within 30 Days)</div>
+          <ul>
+            <li>Brief Mark on this list &mdash; he may have direct connections into the PNB / Sime Darby Property network given his background</li>
+            <li>Contact Sime Darby Property Investor Relations to identify who manages the KLGCC land portfolio</li>
+            <li>Prepare a one-pager on The Courts focused on the asset value uplift story &mdash; ready to share with warm introductions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    &#x1F512; Confidential &mdash; prepared for Sam / Momentum &nbsp;&middot;&nbsp; The Courts at KLGCC, Bukit Kiara, Kuala Lumpur &nbsp;&middot;&nbsp; Research sourced from Perplexity AI using official Sime Darby Berhad website (May 7, 2026), The Edge Malaysia, and Sime Darby Property AGM Notice (April 2026). Verify all information before outreach.
+  </div>
+</div>
+
+</body>
+</html>
