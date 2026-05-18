@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Courts — Loyalty Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: auto; overflow-x: hidden; overflow-y: auto; font-family: 'DM Sans', sans-serif; background: #f2efe8; }
+
+  .slide { display: block; width: 100%; min-height: 100vh; position: relative; border-bottom: 2px solid rgba(0,0,0,0.06); margin-bottom: 48px; }
+  .slide:last-child { margin-bottom: 0; }
+
+  /* no nav */
+
+  /* ============================
+     SLIDE 1 — THE BIG IDEA
+     ============================ */
+  .s1 {
+    background: #f2efe8;
+    display: flex; flex-direction: column;
+  }
+  .s1-top {
+    flex: 1; min-height: 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .s1-left {
+    padding: clamp(32px, 4vw, 64px) clamp(28px, 4vw, 60px);
+    display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .s1-left::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    background: linear-gradient(180deg, #c9a84c, transparent);
+  }
+  .slide-num {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 0.9vw, 13px); letter-spacing: 0.25em; text-transform: uppercase;
+    color: #c9a84c; margin-bottom: clamp(16px, 2vh, 32px);
+  }
+  .s1 h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.92;
+    color: #0a0a0a;
+    letter-spacing: 0.02em;
+    margin-bottom: clamp(16px, 2vh, 32px);
+  }
+  .s1 h1 .gold { color: #c9a84c; }
+  .s1-tagline {
+    font-size: clamp(12px, 1.2vw, 17px); color: rgba(0,0,0,0.5);
+    line-height: 1.7; max-width: 440px;
+    border-left: 2px solid rgba(201,168,76,0.5);
+    padding-left: 16px;
+  }
+  .s1-right {
+    padding: clamp(32px, 4vw, 64px) clamp(28px, 4vw, 60px);
+    display: flex; flex-direction: column; justify-content: center; gap: clamp(12px, 1.5vh, 24px);
+  }
+  .pillar {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 3px; padding: clamp(14px, 1.8vh, 28px) clamp(16px, 1.5vw, 28px);
+    background: rgba(255,255,255,0.6);
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .pillar:hover { border-color: rgba(201,168,76,0.6); }
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 64px); color: rgba(201,168,76,0.12);
+    position: absolute; right: 16px; top: 8px; line-height: 1;
+  }
+  .pillar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(8px, 0.8vw, 11px); letter-spacing: 0.2em; text-transform: uppercase;
+    color: #c9a84c; margin-bottom: 6px;
+  }
+  .pillar h3 {
+    font-size: clamp(14px, 1.4vw, 20px); font-weight: 600; color: #0a0a0a; margin-bottom: 5px;
+  }
+  .pillar p { font-size: clamp(11px, 1.05vw, 14px); color: rgba(0,0,0,0.5); line-height: 1.6; }
+  .s1-bottom {
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: clamp(14px, 1.8vh, 24px) clamp(28px, 4vw, 60px);
+    display: flex; gap: 0; align-items: center;
+  }
+  .stat-item {
+    flex: 1; padding: 0 clamp(16px, 2vw, 32px); border-right: 1px solid rgba(0,0,0,0.08);
+    display: flex; align-items: center; gap: clamp(8px, 1vw, 16px);
+  }
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; }
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 3vw, 42px); color: #c9a84c; line-height: 1;
+    flex-shrink: 0;
+  }
+  .stat-desc { font-size: clamp(10px, 0.95vw, 13px); color: rgba(0,0,0,0.4); line-height: 1.5; }
+  .stat-desc strong { color: #0a0a0a; display: block; font-size: clamp(11px, 1vw, 14px); margin-bottom: 2px; }
+
+  /* ============================
+     SLIDE 2 — HOW IT WORKS
+     ============================ */
+  .s2 {
+    background: #f2efe8;
+    display: flex; flex-direction: column;
+  }
+  .s2-header {
+    padding: clamp(20px, 3vh, 40px) clamp(28px, 4vw, 60px) clamp(16px, 2.5vh, 32px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .s2-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    color: #0a0a0a; letter-spacing: 0.02em; line-height: 1;
+  }
+  .s2-header h2 span { color: #c9a84c; }
+  .s2-header-right { text-align: right; }
+  .earn-rule {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px; color: #2d6a4f; line-height: 1;
+  }
+  .earn-rule-label { font-size: clamp(9px, 0.9vw, 12px); color: rgba(0,0,0,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+  .s2-body {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    flex: 1;
+  }
+  .s2-left {
+    padding: clamp(20px, 2.5vh, 32px) clamp(24px, 3.5vw, 48px);
+    border-right: 1px solid rgba(0,0,0,0.08);
+    display: flex; flex-direction: column; gap: clamp(8px, 1.2vh, 16px);
+  }
+  .lifecycle-row {
+    display: flex; gap: 0; flex: 1;
+  }
+  .lc {
+    flex: 1;
+    padding: clamp(10px, 1.5vh, 20px) clamp(10px, 1.2vw, 18px);
+    border-radius: 2px;
+    position: relative;
+  }
+  .lc + .lc { margin-left: 3px; }
+  .lc-1 { background: rgba(201,168,76,0.12); border-top: 2px solid #c9a84c; }
+  .lc-2 { background: rgba(45,106,79,0.1); border-top: 2px solid #2d6a4f; }
+  .lc-3 { background: rgba(30,64,175,0.08); border-top: 2px solid #1e40af; }
+  .lc-4 { background: rgba(251,146,60,0.1); border-top: 2px solid #fb923c; }
+  .lc-stage {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(7px, 0.7vw, 10px); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .lc-1 .lc-stage { color: #92620a; }
+  .lc-2 .lc-stage { color: #2d6a4f; }
+  .lc-3 .lc-stage { color: #1e40af; }
+  .lc-4 .lc-stage { color: #c2410c; }
+  .lc h4 { font-size: clamp(11px, 1.1vw, 15px); font-weight: 600; color: #0a0a0a; margin-bottom: 5px; }
+  .lc ul { list-style: none; }
+  .lc ul li {
+    font-size: clamp(10px, 0.95vw, 13px); color: rgba(0,0,0,0.55);
+    padding: 2px 0; line-height: 1.4;
+    padding-left: 12px; position: relative;
+  }
+  .lc ul li::before { content: '–'; position: absolute; left: 0; color: rgba(0,0,0,0.25); }
+
+  .s2-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(8px, 0.75vw, 11px); letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(0,0,0,0.3); margin-bottom: 8px;
+  }
+
+  .s2-right {
+    padding: clamp(20px, 2.5vh, 32px) clamp(20px, 2.5vw, 36px);
+    display: flex; flex-direction: column; gap: clamp(8px, 1.2vh, 16px);
+  }
+  .tier-rows { display: flex; flex-direction: column; gap: 5px; }
+  .tier-row {
+    display: flex; align-items: center; gap: clamp(8px, 1vw, 14px);
+    padding: clamp(7px, 1vh, 12px) clamp(10px, 1vw, 16px); background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(0,0,0,0.08); border-radius: 2px;
+    transition: border-color 0.2s;
+  }
+  .tier-row:hover { border-color: rgba(201,168,76,0.5); }
+  .tier-dot-lg {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .tier-pts {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1vw, 13px); color: #2d6a4f; min-width: 64px; font-weight: 500;
+  }
+  .tier-name { font-size: clamp(11px, 1.05vw, 14px); font-weight: 500; color: #0a0a0a; flex: 1; }
+  .tier-example { font-size: clamp(10px, 0.9vw, 12px); color: rgba(0,0,0,0.4); }
+
+  .persona-strip {
+    display: flex; gap: 8px;
+  }
+  .persona-pill {
+    flex: 1; padding: clamp(8px, 1.2vh, 14px) clamp(8px, 1vw, 14px);
+    border-radius: 2px; text-align: center;
+  }
+  .pa { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); }
+  .pb { background: rgba(45,106,79,0.1); border: 1px solid rgba(45,106,79,0.25); }
+  .pc { background: rgba(30,64,175,0.08); border: 1px solid rgba(30,64,175,0.2); }
+  .persona-pill .p-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 2.2vw, 32px); line-height: 1; margin-bottom: 3px;
+  }
+  .pa .p-letter { color: #92620a; }
+  .pb .p-letter { color: #2d6a4f; }
+  .pc .p-letter { color: #1e40af; }
+  .persona-pill .p-name { font-size: clamp(11px, 1.05vw, 14px); font-weight: 600; color: #0a0a0a; margin-bottom: 2px; }
+  .persona-pill .p-freq { font-size: clamp(9px, 0.85vw, 11px); color: rgba(0,0,0,0.4); margin-bottom: 6px; }
+  .persona-pill .p-goal { font-size: clamp(9px, 0.85vw, 11px); color: rgba(0,0,0,0.55); line-height: 1.4; }
+
+  .s2-footer {
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: clamp(10px, 1.5vh, 16px) clamp(28px, 4vw, 60px);
+    display: flex; gap: 0;
+  }
+  .s2-footer-item {
+    flex: 1; padding: 0 clamp(12px, 1.5vw, 24px); border-right: 1px solid rgba(0,0,0,0.08);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .s2-footer-item:first-child { padding-left: 0; }
+  .s2-footer-item:last-child { border-right: none; }
+  .s2-footer-icon { font-size: clamp(14px, 1.5vw, 20px); flex-shrink: 0; }
+  .s2-footer-text { font-size: clamp(10px, 0.95vw, 13px); color: rgba(0,0,0,0.45); line-height: 1.5; }
+  .s2-footer-text strong { color: #0a0a0a; display: block; margin-bottom: 1px; }
+
+  /* ============================
+     SLIDE 3 — THE PLAN
+     ============================ */
+  .s3 {
+    background: #f2efe8;
+    color: #0a0a0a;
+    display: flex; flex-direction: column;
+  }
+  .s3-header {
+    padding: clamp(20px, 3vh, 52px) clamp(28px, 4vw, 60px) clamp(16px, 2.5vh, 36px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .s3-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    color: #0a0a0a; letter-spacing: 0.02em; line-height: 1;
+  }
+  .s3-header h2 span { color: #2d6a4f; }
+  .s3-header-badge {
+    background: #0a0a0a; color: #c9a84c;
+    padding: clamp(8px, 1vh, 12px) clamp(14px, 1.5vw, 24px); border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 0.9vw, 13px); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  .s3-body {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    flex: 1;
+  }
+  .phase-col {
+    padding: clamp(20px, 2.5vh, 36px) clamp(20px, 2.5vw, 36px);
+    border-right: 1px solid rgba(0,0,0,0.08);
+    display: flex; flex-direction: column;
+  }
+  .phase-col:last-child { border-right: none; }
+  .phase-num-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 8vw, 120px); line-height: 0.85;
+    margin-bottom: clamp(10px, 1.5vh, 20px);
+  }
+  .ph1 .phase-num-big { color: #c9a84c; }
+  .ph2 .phase-num-big { color: #2d6a4f; }
+  .ph3 .phase-num-big { color: #1e40af; }
+  .phase-col h3 { font-size: clamp(16px, 1.8vw, 26px); font-weight: 700; margin-bottom: 4px; color: #0a0a0a; }
+  .phase-col .phase-date {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 0.85vw, 12px); color: #6b7280; margin-bottom: clamp(12px, 2vh, 24px); letter-spacing: 0.05em;
+  }
+  .phase-col ul { list-style: none; flex: 1; }
+  .phase-col ul li {
+    font-size: clamp(10px, 1vw, 13px); color: #374151;
+    padding: clamp(5px, 0.8vh, 9px) 0; border-bottom: 1px solid rgba(0,0,0,0.07);
+    display: flex; gap: 8px; align-items: flex-start; line-height: 1.5;
+  }
+  .phase-col ul li:last-child { border-bottom: none; }
+  .phase-col ul li .li-marker {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 0.85vw, 11px); color: #9ca3af; flex-shrink: 0; margin-top: 1px;
+  }
+  .ph1 ul li .li-marker { color: #c9a84c; }
+  .ph2 ul li .li-marker { color: #2d6a4f; }
+  .ph3 ul li .li-marker { color: #1e40af; }
+  .phase-kpi {
+    margin-top: clamp(10px, 1.5vh, 20px); padding: clamp(10px, 1.2vh, 16px) clamp(12px, 1.2vw, 18px);
+    border-radius: 2px;
+  }
+  .ph1 .phase-kpi { background: rgba(201,168,76,0.12); }
+  .ph2 .phase-kpi { background: rgba(45,106,79,0.1); }
+  .ph3 .phase-kpi { background: rgba(30,64,175,0.08); }
+  .phase-kpi .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(8px, 0.8vw, 11px); letter-spacing: 0.15em; text-transform: uppercase;
+    color: #6b7280; margin-bottom: 4px;
+  }
+  .phase-kpi .kpi-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 3vw, 40px); line-height: 1;
+  }
+  .ph1 .phase-kpi .kpi-val { color: #c9a84c; }
+  .ph2 .phase-kpi .kpi-val { color: #2d6a4f; }
+  .ph3 .phase-kpi .kpi-val { color: #1e40af; }
+  .phase-kpi .kpi-desc { font-size: clamp(9px, 0.85vw, 11px); color: #6b7280; margin-top: 3px; }
+
+  .s3-footer {
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: clamp(12px, 1.8vh, 20px) clamp(28px, 4vw, 60px);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .s3-footer-left { font-size: clamp(10px, 0.95vw, 13px); color: #6b7280; }
+  .s3-footer-left strong { color: #0a0a0a; }
+  .growth-mini {
+    display: flex; gap: 6px; align-items: flex-end;
+  }
+  .growth-bar-mini {
+    width: 24px; border-radius: 2px 2px 0 0;
+    background: #2d6a4f; position: relative;
+  }
+  .growth-bar-mini .gm-label {
+    position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; color: #6b7280; white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+  }
+  .growth-bar-mini.highlight { background: #c9a84c; }
+  .s3-footer-right {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(9px, 0.85vw, 12px); color: #6b7280; text-align: right;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+  <!-- SECTION 1 -->
+  <div class="slide s1">
+    <div class="s1-top">
+      <div class="s1-left">
+        <div class="slide-num">01 / 03 — The Concept</div>
+        <h1>The<br><span class="gold">Courts</span><br>Loyalty<br>Program</h1>
+        <p class="s1-tagline">One membership. Seven tenants. A marketing engine that turns visits into data, data into campaigns, and campaigns into a community.</p>
+      </div>
+      <div class="s1-right">
+        <div class="pillar">
+          <div class="pillar-num">1</div>
+          <div class="pillar-label">The Play</div>
+          <h3>A Shared Ecosystem</h3>
+          <p>One card works across all 7 tenants. Members earn everywhere — PSC, NOA, TRIBE, Flow Studio, 176 Avenue, Padelground, Tanamerah. The Courts owns the full picture. Tenants benefit from each other's traffic.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">2</div>
+          <div class="pillar-label">The Engine</div>
+          <h3>A Marketing Machine</h3>
+          <p>Points drive visits, not cashback. The programme tells us who's coming, who's gone cold, and where to cross-sell. Every quarter, The Courts uses this intelligence to run campaigns no single tenant could do alone.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">3</div>
+          <div class="pillar-label">The Approach</div>
+          <h3>Launch Fast, Scale Smart</h3>
+          <p>Start with the basics done well. Get members earning, get tenants seeing redemptions in Week 1. Advanced automation and tier upgrades follow once we've proven the model with real data.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s1-bottom">
+      <div class="stat-item">
+        <div class="stat-val">7</div>
+        <div class="stat-desc"><strong>Tenants</strong>One programme, one member card across the entire Courts ecosystem</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">200</div>
+        <div class="stat-desc"><strong>Welcome Points</strong>Gifted on sign-up so members redeem something on Day 1</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">1:1</div>
+        <div class="stat-desc"><strong>Earn Rate</strong>RM1 spent = 1 point, across all tenants, always</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">1,500</div>
+        <div class="stat-desc"><strong>Members by Dec</strong>Year-end target — launch base of 150 in June</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="slide s2">
+    <div class="s2-header">
+      <div>
+        <div class="slide-num" style="color:#c9a84c; font-family:'DM Mono',monospace; font-size:clamp(9px,0.9vw,13px); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:12px;">02 / 03 — How It Works</div>
+        <h2>Member <span>Lifecycle</span><br>& Rewards</h2>
+      </div>
+      <div class="s2-header-right">
+        <div class="earn-rule">RM1 = 1pt</div>
+        <div class="earn-rule-label">Flat earn rate · All tenants · Always</div>
+      </div>
+    </div>
+    <div class="s2-body">
+      <div class="s2-left">
+        <div class="s2-section-label">Member Lifecycle — 4 Stages</div>
+        <div class="lifecycle-row">
+          <div class="lc lc-1">
+            <div class="lc-stage">Welcome</div>
+            <h4>First 30 Days</h4>
+            <ul>
+              <li>200-pt boost gifted</li>
+              <li>First redemption Week 1</li>
+              <li>Birthday data captured</li>
+              <li>Habit formed early</li>
+            </ul>
+          </div>
+          <div class="lc lc-2">
+            <div class="lc-stage">Develop</div>
+            <h4>Month 1–3</h4>
+            <ul>
+              <li>Cross-tenant nudges</li>
+              <li>Tier progress comms</li>
+              <li>Spend-and-get promos</li>
+              <li>2+ tenants per month</li>
+            </ul>
+          </div>
+          <div class="lc lc-3">
+            <div class="lc-stage">Prevent</div>
+            <h4>Going Quiet</h4>
+            <ul>
+              <li>3-week inactivity alert</li>
+              <li>Surprise offer pushed</li>
+              <li>Points expiry nudge</li>
+              <li>Last-tenant voucher</li>
+            </ul>
+          </div>
+          <div class="lc lc-4">
+            <div class="lc-stage">Reactivate</div>
+            <h4>Cold Members</h4>
+            <ul>
+              <li>6-week cold trigger</li>
+              <li>Bonus points offer</li>
+              <li>Event invite (Drive & Dink)</li>
+              <li>Data retained always</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="s2-section-label" style="margin-top:20px;">Who Are Our Members?</div>
+        <div class="persona-strip">
+          <div class="persona-pill pa">
+            <div class="p-letter">A</div>
+            <div class="p-name">Hardcore</div>
+            <div class="p-freq">3× / week · 20%</div>
+            <div class="p-goal">Reward fast. Make them ambassadors.</div>
+          </div>
+          <div class="persona-pill pb">
+            <div class="p-letter">B</div>
+            <div class="p-name">Social</div>
+            <div class="p-freq">1× / week · 40%</div>
+            <div class="p-goal">Cross-sell to 1 new tenant per quarter.</div>
+          </div>
+          <div class="persona-pill pc">
+            <div class="p-letter">C</div>
+            <div class="p-name">Fair-Weather</div>
+            <div class="p-freq">1× / month · 40%</div>
+            <div class="p-goal">Capture data. Bring back via campaigns.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s2-right">
+        <div class="s2-section-label">5-Tier Rewards Catalogue</div>
+        <div class="tier-rows">
+          <div class="tier-row">
+            <div class="tier-dot-lg" style="background:#f59e0b"></div>
+            <div class="tier-pts">0 pts</div>
+            <div class="tier-name">🎂 Birthday Drink</div>
+            <div class="tier-example">Tanamerah — The Courts funded</div>
+          </div>
+          <div class="tier-row">
+            <div class="tier-dot-lg" style="background:#10b981"></div>
+            <div class="tier-pts">200 pts</div>
+            <div class="tier-name">Tier 1 — Quick Win</div>
+            <div class="tier-example">PSC RM5 off · Free espresso</div>
+          </div>
+          <div class="tier-row">
+            <div class="tier-dot-lg" style="background:#3b82f6"></div>
+            <div class="tier-pts">500 pts</div>
+            <div class="tier-name">Tier 2 — Cross-Tenant</div>
+            <div class="tier-example">NOA RM5 off · TRIBE class</div>
+          </div>
+          <div class="tier-row">
+            <div class="tier-dot-lg" style="background:#8b5cf6"></div>
+            <div class="tier-pts">800 pts</div>
+            <div class="tier-name">Tier 3 — Mid Reward</div>
+            <div class="tier-example">PSC RM10 · 176 Avenue treatment</div>
+          </div>
+          <div class="tier-row">
+            <div class="tier-dot-lg" style="background:#f97316"></div>
+            <div class="tier-pts">1,500 pts</div>
+            <div class="tier-name">Tier 4 — High Value</div>
+            <div class="tier-example">Padelground · Flow Studio pack</div>
+          </div>
+          <div class="tier-row">
+            <div class="tier-dot-lg" style="background:#ef4444"></div>
+            <div class="tier-pts">2,000 pts</div>
+            <div class="tier-name">Tier 5 — Aspirational</div>
+            <div class="tier-example">Multi-tenant premium experience</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; padding:16px 18px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:2px;">
+          <div class="s2-section-label" style="margin-bottom:8px;">The Voucher Principle</div>
+          <p style="font-size:clamp(10px,0.95vw,13px); color:rgba(0,0,0,0.55); line-height:1.6;">All vouchers are <strong style="color:#0a0a0a;">conditional</strong> — not open cash. Disguised as value offers, they drive higher spend. <strong style="color:#92620a;">The Courts defines the yumminess. Tenants define what they push.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="s2-footer">
+      <div class="s2-footer-item">
+        <div class="s2-footer-icon">🏅</div>
+        <div class="s2-footer-text"><strong>Welcome Boost</strong>200 pts gifted on Day 1 — first redemption within Week 1</div>
+      </div>
+      <div class="s2-footer-item">
+        <div class="s2-footer-icon">📊</div>
+        <div class="s2-footer-text"><strong>Quarterly Reports</strong>Cross-tenant spend data shared with The Courts — not between tenants</div>
+      </div>
+      <div class="s2-footer-item">
+        <div class="s2-footer-icon">⏱️</div>
+        <div class="s2-footer-text"><strong>Points Expiry</strong>12 months from first earn — creates urgency without being punitive</div>
+      </div>
+      <div class="s2-footer-item">
+        <div class="s2-footer-icon">🎯</div>
+        <div class="s2-footer-text"><strong>Data Stays at The Courts</strong>Tenants get portfolio-level insights, not each other's data</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="slide s3">
+    <div class="s3-header">
+      <div>
+        <div class="slide-num" style="color:#2d6a4f; font-family:'DM Mono',monospace; font-size:clamp(9px,0.9vw,13px); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:12px;">03 / 03 — The Plan</div>
+        <h2>90-Day <span>Rollout</span><br>& Growth Targets</h2>
+      </div>
+      <div class="s3-header-badge">Launch: 1 June 2026</div>
+    </div>
+
+    <div class="s3-body">
+      <div class="phase-col ph1">
+        <div class="phase-num-big">01</div>
+        <h3>Setup</h3>
+        <div class="phase-date">18 May – 31 May 2026</div>
+        <ul>
+          <li><span class="li-marker">—</span>Finalise agreements with all 7 tenants</li>
+          <li><span class="li-marker">—</span>Collect monthly voucher commitments from each tenant</li>
+          <li><span class="li-marker">—</span>Calibrate points values per voucher</li>
+          <li><span class="li-marker">—</span>POS hardware confirmed and integrated</li>
+          <li><span class="li-marker">—</span>Member app / card UI mock-ups complete</li>
+          <li><span class="li-marker">—</span>Staff onboarding training — PSC, NOA, TRIBE, Flow Studio</li>
+          <li><span class="li-marker">—</span>Internal beta test and bug fix</li>
+          <li><span class="li-marker">—</span>T&C document signed and locked</li>
+        </ul>
+        <div class="phase-kpi">
+          <div class="kpi-label">Setup Goal</div>
+          <div class="kpi-val">100%</div>
+          <div class="kpi-desc">All 7 tenants live and ready by 31 May</div>
+        </div>
+      </div>
+
+      <div class="phase-col ph2">
+        <div class="phase-num-big">02</div>
+        <h3>Launch</h3>
+        <div class="phase-date">1 Jun – 31 Jul 2026</div>
+        <ul>
+          <li><span class="li-marker">—</span>Official launch — 1 June 2026</li>
+          <li><span class="li-marker">—</span>200-pt welcome boost gifted to all sign-ups</li>
+          <li><span class="li-marker">—</span>Marketing push across all tenant channels + social</li>
+          <li><span class="li-marker">—</span>Drive & Dink (20 Jun) used as on-ground activation</li>
+          <li><span class="li-marker">—</span>First redemptions tracked — target: 60% redeem in 30 days</li>
+          <li><span class="li-marker">—</span>Cross-tenant visits monitored weekly</li>
+          <li><span class="li-marker">—</span>Tier 1 & 2 voucher uptake by tenant reported</li>
+          <li><span class="li-marker">—</span>Birthday data collection begins</li>
+        </ul>
+        <div class="phase-kpi">
+          <div class="kpi-label">Member Target</div>
+          <div class="kpi-val">350</div>
+          <div class="kpi-desc">150 in June + 200 in July = 350 cumulative</div>
+        </div>
+      </div>
+
+      <div class="phase-col ph3">
+        <div class="phase-num-big">03</div>
+        <h3>Validate</h3>
+        <div class="phase-date">1 Aug – 31 Aug 2026</div>
+        <ul>
+          <li><span class="li-marker">—</span>+250 new members in August</li>
+          <li><span class="li-marker">—</span>First reactivation campaign fired at cold members</li>
+          <li><span class="li-marker">—</span>Quarterly report #1 — cross-tenant data to The Courts</li>
+          <li><span class="li-marker">—</span>Review and adjust voucher catalogue based on uptake</li>
+          <li><span class="li-marker">—</span>Present results to all 7 tenants with proof of cross-sell</li>
+          <li><span class="li-marker">—</span>Confirm Q4 voucher commitments from tenants</li>
+          <li><span class="li-marker">—</span>Begin planning Tier 4 & 5 premium rewards</li>
+          <li><span class="li-marker">—</span>Set Sep–Dec growth plan toward 1,500 members</li>
+        </ul>
+        <div class="phase-kpi">
+          <div class="kpi-label">90-Day Member Target</div>
+          <div class="kpi-val">600</div>
+          <div class="kpi-desc">Cumulative by end Aug · On track for 1,500 by Dec</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s3-footer">
+      <div class="s3-footer-left">
+        Growth trajectory: <strong>150 → 350 → 600 → 850 → 1,100 → 1,300 → 1,500</strong>
+      </div>
+      <div class="growth-mini" style="padding-bottom:18px;">
+        <div class="growth-bar-mini" style="height:20px;"><div class="gm-label">Jun</div></div>
+        <div class="growth-bar-mini" style="height:28px;"><div class="gm-label">Jul</div></div>
+        <div class="growth-bar-mini highlight" style="height:38px;"><div class="gm-label">Aug</div></div>
+        <div class="growth-bar-mini highlight" style="height:48px;"><div class="gm-label">Sep</div></div>
+        <div class="growth-bar-mini highlight" style="height:58px;"><div class="gm-label">Oct</div></div>
+        <div class="growth-bar-mini" style="height:48px; background:#2d6a4f;"><div class="gm-label">Nov</div></div>
+        <div class="growth-bar-mini" style="height:48px; background:#2d6a4f;"><div class="gm-label">Dec</div></div>
+      </div>
+      <div class="s3-footer-right">
+        The Courts Loyalty Program<br>
+        Confidential · May 2026
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
