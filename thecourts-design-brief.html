@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Courts — Loyalty Programme Design Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f2efe8;
+    --black: #0a0a0a;
+    --gold: #c9a84c;
+    --gold-pale: rgba(201,168,76,0.12);
+    --green: #2d6a4f;
+    --green-pale: rgba(45,106,79,0.1);
+    --blue: #1e40af;
+    --blue-pale: rgba(30,64,175,0.08);
+    --grey: #6b7280;
+    --border: rgba(0,0,0,0.08);
+    --white: rgba(255,255,255,0.7);
+  }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(242,239,232,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    padding: 0 40px;
+    height: 52px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--black);
+  }
+  .nav-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--grey); text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--gold);
+    background: var(--gold-pale);
+    padding: 4px 12px; border-radius: 20px;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 60px 60px 56px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 80% 30%, rgba(201,168,76,0.07), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 900; line-height: 0.95;
+    color: var(--black); margin-bottom: 32px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub {
+    font-size: 17px; color: rgba(0,0,0,0.5);
+    max-width: 560px; line-height: 1.7; margin-bottom: 48px;
+  }
+  .hero-stats {
+    display: flex; gap: 0; flex-wrap: wrap;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-top: 32px;
+  }
+  .hero-stat {
+    padding-right: 40px; margin-right: 40px;
+    border-right: 1px solid rgba(0,0,0,0.08);
+  }
+  .hero-stat:last-child { border-right: none; margin-right: 0; }
+  .hero-stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700; color: var(--black);
+    line-height: 1;
+  }
+  .hero-stat-val span { color: var(--gold); }
+  .hero-stat-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(0,0,0,0.4); margin-top: 4px;
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 60px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px; display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700; line-height: 1.1;
+    color: var(--black); margin-bottom: 14px;
+  }
+  .section-lead {
+    font-size: 16px; color: var(--grey);
+    max-width: 600px; line-height: 1.75; margin-bottom: 48px;
+  }
+
+  /* BRIEF INTRO */
+  .brief-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .brief-card {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px; padding: 32px 28px;
+    position: relative; overflow: hidden;
+  }
+  .brief-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .brief-card.gold-bar::before { background: var(--gold); }
+  .brief-card.green-bar::before { background: var(--green); }
+  .brief-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px; font-weight: 900;
+    color: rgba(201,168,76,0.1);
+    position: absolute; top: 12px; right: 16px; line-height: 1;
+  }
+  .brief-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; color: var(--black);
+    margin-bottom: 10px;
+  }
+  .brief-card p { font-size: 14px; color: var(--grey); line-height: 1.7; }
+
+  /* DESIGN SPECS TABLE */
+  .specs-table { width: 100%; border-collapse: collapse; }
+  .specs-table thead tr { background: var(--black); }
+  .specs-table th {
+    padding: 14px 20px; text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); font-weight: 500;
+  }
+  .specs-table td {
+    padding: 14px 20px;
+    font-size: 13px; color: var(--black);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: top;
+  }
+  .specs-table tbody tr { background: rgba(255,255,255,0.65); }
+  .specs-table tbody tr:hover { background: rgba(255,255,255,0.9); }
+  .priority-dot {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .dot-gold { background: var(--gold); }
+  .dot-green { background: var(--green); }
+  .dot-blue { background: var(--blue); }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 20px;
+    font-size: 11px; font-weight: 500; margin: 2px 2px 2px 0;
+  }
+  .tag-gold { background: var(--gold-pale); color: #92620a; border: 1px solid rgba(201,168,76,0.3); }
+  .tag-green { background: var(--green-pale); color: var(--green); border: 1px solid rgba(45,106,79,0.2); }
+  .tag-blue { background: var(--blue-pale); color: var(--blue); border: 1px solid rgba(30,64,175,0.15); }
+  .note { font-size: 12px; color: var(--grey); margin-top: 4px; font-style: italic; }
+
+  /* PLACEMENT ZONES */
+  .zones-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .zone-card {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px; padding: 28px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .zone-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .zone-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  }
+  .zone-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; flex-shrink: 0;
+  }
+  .zone-icon-gold { background: var(--gold-pale); }
+  .zone-icon-green { background: var(--green-pale); }
+  .zone-icon-blue { background: var(--blue-pale); }
+  .zone-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700; color: var(--black);
+  }
+  .zone-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--grey); margin-bottom: 14px;
+  }
+  .zone-items { list-style: none; }
+  .zone-items li {
+    font-size: 13px; color: rgba(0,0,0,0.65);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex; align-items: flex-start; gap: 8px; line-height: 1.45;
+  }
+  .zone-items li:last-child { border-bottom: none; }
+  .zone-items li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-size: 11px; margin-top: 1px; }
+  .zone-badge {
+    display: inline-block; margin-top: 14px;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px; font-weight: 600;
+  }
+  .zone-badge-gold { background: var(--gold-pale); color: #92620a; }
+  .zone-badge-green { background: var(--green-pale); color: var(--green); }
+  .zone-badge-blue { background: var(--blue-pale); color: var(--blue); }
+
+  /* VISUAL DIRECTION */
+  .visual-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .visual-card {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 4px; padding: 32px 28px;
+  }
+  .visual-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: var(--black);
+    margin-bottom: 16px;
+  }
+  .colour-row {
+    display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .swatch {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .swatch-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .swatch-label { font-size: 10px; color: var(--grey); font-family: 'DM Mono', monospace; }
+  .font-row { margin-bottom: 12px; }
+  .font-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; color: var(--black); line-height: 1;
+  }
+  .font-body { font-size: 14px; color: var(--grey); margin-top: 4px; }
+  .font-mono-sample {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-top: 8px;
+  }
+  .tone-row {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .tone-tag {
+    padding: 5px 14px; border-radius: 20px; font-size: 12px;
+    background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1);
+    color: var(--black);
+  }
+
+  /* ONLINE CROSSOVER */
+  .crossover-table { width: 100%; border-collapse: collapse; }
+  .crossover-table th {
+    padding: 12px 20px; text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); background: var(--black); font-weight: 500;
+  }
+  .crossover-table td {
+    padding: 13px 20px; font-size: 13px; color: var(--black);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.65);
+  }
+  .crossover-table td:first-child { font-weight: 500; }
+  .arrow-cell { color: var(--gold); font-size: 16px; }
+
+  /* PRIORITY EXECUTION */
+  .execution-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+  }
+  .execution-list { list-style: none; }
+  .execution-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .execution-item:last-child { border-bottom: none; }
+  .exec-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 900; color: rgba(201,168,76,0.3);
+    line-height: 1; flex-shrink: 0; width: 32px;
+  }
+  .exec-title {
+    font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 3px;
+  }
+  .exec-desc { font-size: 13px; color: var(--grey); line-height: 1.5; }
+  .qr-reminder {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px; padding: 24px 28px;
+  }
+  .qr-reminder h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 12px;
+  }
+  .qr-reminder ul { list-style: none; }
+  .qr-reminder ul li {
+    font-size: 14px; color: rgba(0,0,0,0.7);
+    padding: 8px 0; border-bottom: 1px solid rgba(201,168,76,0.15);
+    display: flex; gap: 10px;
+  }
+  .qr-reminder ul li:last-child { border-bottom: none; }
+  .qr-reminder ul li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+
+  /* QUESTIONS SECTION */
+  .questions-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .question-card {
+    background: var(--black); border-radius: 4px; padding: 28px 24px;
+  }
+  .question-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; color: rgba(255,255,255,0.9);
+    margin-bottom: 12px; font-weight: 700;
+  }
+  .question-card p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .question-card.cream-card {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .question-card.cream-card h4 { color: var(--black); }
+  .question-card.cream-card p { color: var(--grey); }
+
+  /* FOOTER */
+  footer {
+    padding: 36px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  footer .f-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; color: var(--gold);
+  }
+  footer .f-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: rgba(0,0,0,0.3);
+    letter-spacing: 0.1em; text-align: right;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    nav .nav-links { display: none; }
+    .hero { padding: 60px 24px 48px; min-height: auto; }
+    section { padding: 56px 24px; }
+    .brief-grid, .visual-grid, .execution-grid,
+    .questions-grid { grid-template-columns: 1fr; }
+    .zones-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 28px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    footer .f-meta { text-align: center; }
+  }
+  @media (max-width: 600px) {
+    .zones-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+    .hero-stat { padding-right: 20px; margin-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">The Courts &times; Loyalty Programme</div>
+  <ul class="nav-links">
+    <li><a href="#brief">Brief</a></li>
+    <li><a href="#pieces">Design pieces</a></li>
+    <li><a href="#zones">Placement zones</a></li>
+    <li><a href="#visual">Visual direction</a></li>
+    <li><a href="#execution">Execution order</a></li>
+    <li><a href="#questions">Questions</a></li>
+  </ul>
+  <div class="nav-time">10-min brief &middot; May 2026</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div style="position:relative;z-index:1">
+    <p class="hero-label">On-ground design brief &mdash; for Dillion</p>
+    <h1>Design that<br>drives <em>sign-ups</em></h1>
+    <p class="hero-sub">Every piece of design for the loyalty programme has one job: make someone sign up, understand the programme fast, or feel like they&rsquo;re missing out if they&rsquo;re not already a member.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span>7</span></div>
+        <div class="hero-stat-label">Tenants to cover</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span>6</span> zones</div>
+        <div class="hero-stat-label">Placement areas</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span>1:1</span></div>
+        <div class="hero-stat-label">Print &rarr; digital</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">QR <span>everywhere</span></div>
+        <div class="hero-stat-label">Non-negotiable</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BRIEF -->
+<section id="brief">
+  <span class="section-eyebrow">The brief</span>
+  <h2 class="section-title">What we&rsquo;re building &amp; why</h2>
+  <p class="section-lead">The Courts Loyalty Programme launches 1 June 2026. Members earn points across all 7 tenants and redeem rewards across the ecosystem. The on-ground design is the physical marketing engine that drives sign-ups and makes the programme feel real.</p>
+  <div class="brief-grid">
+    <div class="brief-card gold-bar">
+      <div class="brief-card-num">1</div>
+      <h3>🎯 The programme in one line</h3>
+      <p>RM1 spent at any tenant = 1 point. 200 points gifted on sign-up so members can redeem something immediately. 5 reward tiers from a free espresso to premium multi-tenant experiences. QR code to join on every piece.</p>
+    </div>
+    <div class="brief-card green-bar">
+      <div class="brief-card-num">2</div>
+      <h3>📣 What the design must communicate</h3>
+      <p>Three things only: (1) There&rsquo;s a loyalty programme here. (2) Sign up and get 200 points free right now. (3) Here&rsquo;s where to scan. Everything else is secondary. If a piece tries to say more than three things, it says nothing.</p>
+    </div>
+    <div class="brief-card gold-bar">
+      <div class="brief-card-num">3</div>
+      <h3>⚡ The welcome boost is the headline</h3>
+      <p>&ldquo;200 points. Yours today. Free.&rdquo; That&rsquo;s the hero message on most pieces. It maps to Tier 1 rewards immediately &mdash; a free espresso at Tanamerah, RM5 off a PSC court session. The member feels like they won on Day 1.</p>
+    </div>
+    <div class="brief-card green-bar">
+      <div class="brief-card-num">4</div>
+      <h3>📱 Everything gets a digital twin</h3>
+      <p>Design print first. Then each file gets adapted for Instagram Story (9:16) and feed post (1:1). Same visual language, different crop. This means design decisions made in print must hold up digitally too &mdash; no tiny text, no overloaded layouts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN PIECES -->
+<section id="pieces">
+  <span class="section-eyebrow">Design pieces</span>
+  <h2 class="section-title">Full list of deliverables</h2>
+  <p class="section-lead">Every piece, its format, where it lives, and what it needs to do. Priority 1 pieces launch on 1 June. Priority 2 and 3 follow within two weeks.</p>
+  <table class="specs-table">
+    <thead>
+      <tr>
+        <th>Piece</th>
+        <th>Format / size</th>
+        <th>Placement</th>
+        <th>Key message</th>
+        <th>Priority</th>
+        <th>Digital twin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>📺 <strong>LED standee &mdash; entrance</strong><br><span class="note">Primary awareness piece &mdash; replaces static hero poster</span></td>
+        <td>9:16 vertical digital &middot; 1080&times;1920px<br><span class="note">Loop content &mdash; also printable as large-format fallback</span></td>
+        <td>🚪 Main entrance LED standee. Can also print as A0/A1 if LED not available for common area</td>
+        <td>Rotating loop: &ldquo;200 points. Free. Today.&rdquo; &rarr; tier rewards &rarr; 7 tenant logos &rarr; QR to sign up. Designed 9:16 first, print version is a crop of the same file.</td>
+        <td><span class="priority-dot"><span class="dot dot-gold"></span> Priority 1</span></td>
+        <td><span class="tag tag-gold">IG story</span><span class="tag tag-gold">IG feed post</span></td>
+      </tr>
+      <tr>
+        <td>🪧 <strong>Counter tent card</strong><br><span class="note">✅ Confirmed &mdash; 7 unique versions, one per tenant</span></td>
+        <td>A5 &middot; landscape &middot; double-sided<br><span class="note">Front: earn here. Back: redeem here.</span></td>
+        <td>🏪 Every tenant reception desk</td>
+        <td>Front: &ldquo;Earn points here today.&rdquo; Back: earn rate + that tenant&rsquo;s specific voucher + QR</td>
+        <td><span class="priority-dot"><span class="dot dot-gold"></span> Priority 1</span></td>
+        <td><span class="tag tag-gold">IG story</span></td>
+      </tr>
+      <tr>
+        <td>🏆 <strong>Tier catalogue wall poster</strong><br><span class="note">✅ Confirmed</span></td>
+        <td>A2 or A3 &middot; portrait<br><span class="note">Wall-mounted at reception</span></td>
+        <td>📍 All tenant reception / waiting areas</td>
+        <td>Visual tier ladder: 200 &rarr; 500 &rarr; 800 &rarr; 1,500 &rarr; 2,000 pts. What you unlock at each.</td>
+        <td><span class="priority-dot"><span class="dot dot-gold"></span> Priority 1</span></td>
+        <td><span class="tag tag-gold">IG carousel</span><span class="note" style="display:block;margin-top:4px">1 tier per slide</span></td>
+      </tr>
+      <tr>
+        <td>🎾 <strong>Court-side A-frame &mdash; PSC</strong><br><span class="note">✅ Confirmed &mdash; placed at the court divider</span></td>
+        <td>A-frame &middot; 600&times;900mm<br><span class="note">Double-sided</span></td>
+        <td>🏓 PSC court divider &mdash; visible during play and from spectator area</td>
+        <td>&ldquo;Play more. Earn more. Book your next court with points.&rdquo; + QR</td>
+        <td><span class="priority-dot"><span class="dot dot-gold"></span> Priority 1</span></td>
+        <td><span class="tag tag-green">IG story</span></td>
+      </tr>
+      <tr>
+        <td>🍽️ <strong>Table talker / tent card</strong></td>
+        <td>A6 &middot; landscape &middot; double-sided<br><span class="note">Sits on tables</span></td>
+        <td>🍹 NOA (all tables) &amp; ☕ Tanamerah (all tables)</td>
+        <td>&ldquo;Free espresso waiting for you at 200 points. You&rsquo;re closer than you think.&rdquo; + QR</td>
+        <td><span class="priority-dot"><span class="dot dot-green"></span> Priority 2</span></td>
+        <td><span class="tag tag-green">IG story</span></td>
+      </tr>
+      <tr>
+        <td>📋 <strong>Menu insert</strong></td>
+        <td>Half-page &middot; A5<br><span class="note">Inserted into existing menu</span></td>
+        <td>🍹 NOA menu</td>
+        <td>Loyalty panel: earn rate, NOA voucher (RM5 off min RM50), QR. Feels premium, not an afterthought.</td>
+        <td><span class="priority-dot"><span class="dot dot-green"></span> Priority 2</span></td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td>☕ <strong>Coaster card</strong></td>
+        <td>90&times;90mm &middot; double-sided<br><span class="note">Card stock, sits under glasses</span></td>
+        <td>☕ Tanamerah Coffee counter &amp; tables</td>
+        <td>One-liner + QR. &ldquo;Sip. Earn. Repeat.&rdquo; Very low cost, very high frequency touchpoint.</td>
+        <td><span class="priority-dot"><span class="dot dot-green"></span> Priority 2</span></td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td>🚿 <strong>Changing room poster</strong></td>
+        <td>A3 &middot; portrait<br><span class="note">Inside changing room</span></td>
+        <td>🏸 PSC changing room</td>
+        <td>Slightly longer copy &mdash; 5 bullet explainer of programme. Captive audience here.</td>
+        <td><span class="priority-dot"><span class="dot dot-green"></span> Priority 2</span></td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td>🪞 <strong>Mirror cling / sticker</strong></td>
+        <td>A6 oval or rectangle<br><span class="note">Applied to mirror surface</span></td>
+        <td>🧘 The Flow Studio &amp; 💅 176 Avenue changing rooms</td>
+        <td>&ldquo;You just earned points. Check your balance.&rdquo; + QR. Eye-level. Premium feel.</td>
+        <td><span class="priority-dot"><span class="dot dot-blue"></span> Priority 3</span></td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td>📅 <strong>Class schedule strip</strong></td>
+        <td>Footer strip on existing schedule board<br><span class="note">Approx 297&times;60mm</span></td>
+        <td>💪 TRIBE class schedule board</td>
+        <td>&ldquo;Members earn points on every booking.&rdquo; + QR. Minimal. Doesn&rsquo;t compete with schedule.</td>
+        <td><span class="priority-dot"><span class="dot dot-blue"></span> Priority 3</span></td>
+        <td>&mdash;</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- PLACEMENT ZONES -->
+<section id="zones">
+  <span class="section-eyebrow">Placement zones</span>
+  <h2 class="section-title">Where each piece lives</h2>
+  <p class="section-lead">Six zones across the site. Think of each zone as a different moment in the member&rsquo;s journey &mdash; from first impression at the entrance to the quiet moment in a changing room.</p>
+  <div class="zones-grid">
+
+    <div class="zone-card">
+      <div class="zone-header">
+        <div class="zone-icon zone-icon-gold">🚪</div>
+        <div>
+          <div class="zone-title">Main Entrance</div>
+          <div class="zone-cat">Zone 1 &middot; Highest awareness</div>
+        </div>
+      </div>
+      <ul class="zone-items">
+        <li>📺 LED standee (9:16) &mdash; primary piece, rotates welcome boost / tiers / QR loop</li>
+        <li>🖨️ Printed large-format fallback (A0/A1) from same 9:16 file if LED not available in common area</li>
+        <li>🏷️ Hanging banners &mdash; 7 tenant logos connected under one programme</li>
+        <li>📍 Floor decal &mdash; QR + arrow pointing to sign-up point</li>
+      </ul>
+      <span class="zone-badge zone-badge-gold">Priority 1</span>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header">
+        <div class="zone-icon zone-icon-gold">🏓</div>
+        <div>
+          <div class="zone-title">PSC &mdash; Pickle Social Club</div>
+          <div class="zone-cat">Zone 2 &middot; Highest footfall</div>
+        </div>
+      </div>
+      <ul class="zone-items">
+        <li>🎾 Court-side A-frame &mdash; placed at the court divider, visible during play &amp; from waiting area</li>
+        <li>🪧 Counter card A5 &mdash; PSC-specific voucher (RM5 off court booking)</li>
+        <li>🚿 Changing room A3 poster &mdash; longer 5-point programme explainer (captive audience)</li>
+        <li>🏷️ Net banner strip &mdash; subtle brand presence on court (optional)</li>
+      </ul>
+      <span class="zone-badge zone-badge-gold">Priority 1</span>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header">
+        <div class="zone-icon zone-icon-green">🍹</div>
+        <div>
+          <div class="zone-title">NOA &mdash; Bar &amp; Dining</div>
+          <div class="zone-cat">Zone 3 &middot; High dwell time</div>
+        </div>
+      </div>
+      <ul class="zone-items">
+        <li>🍽️ Table talker A6 on every table &mdash; QR + RM5 off RM50 min spend</li>
+        <li>📋 Menu insert half-page A5 &mdash; integrated into NOA menu, premium feel</li>
+        <li>🪧 Counter card A5 at reception &mdash; NOA-specific voucher highlighted</li>
+      </ul>
+      <span class="zone-badge zone-badge-green">Priority 2</span>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header">
+        <div class="zone-icon zone-icon-green">☕</div>
+        <div>
+          <div class="zone-title">Tanamerah Coffee</div>
+          <div class="zone-cat">Zone 4 &middot; Daily touchpoint</div>
+        </div>
+      </div>
+      <ul class="zone-items">
+        <li>🫶 Table tent card &mdash; free espresso at 200pts angle, QR to sign up</li>
+        <li>🥤 Coaster card &mdash; &ldquo;Sip. Earn. Repeat.&rdquo; under every glass</li>
+        <li>🪧 Counter card A5 &mdash; Tanamerah-specific voucher highlighted</li>
+      </ul>
+      <span class="zone-badge zone-badge-green">Priority 2</span>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header">
+        <div class="zone-icon zone-icon-green">💪</div>
+        <div>
+          <div class="zone-title">TRIBE &amp; The Flow Studio</div>
+          <div class="zone-cat">Zone 5 &middot; Appointment-based</div>
+        </div>
+      </div>
+      <ul class="zone-items">
+        <li>🏆 Waiting area A3 poster &mdash; tier catalogue, tenant voucher highlighted</li>
+        <li>🪧 Counter card A5 &mdash; class voucher (TRIBE) / pack discount (Flow)</li>
+        <li>📅 Class schedule strip footer &mdash; TRIBE board only</li>
+        <li>🪞 Mirror cling &mdash; The Flow Studio changing room</li>
+      </ul>
+      <span class="zone-badge zone-badge-green">Priority 2&ndash;3</span>
+    </div>
+
+    <div class="zone-card">
+      <div class="zone-header">
+        <div class="zone-icon zone-icon-blue">💅</div>
+        <div>
+          <div class="zone-title">176 Avenue &amp; Padelground</div>
+          <div class="zone-cat">Zone 6 &middot; Complete the ecosystem</div>
+        </div>
+      </div>
+      <ul class="zone-items">
+        <li>🪧 Counter card A5 &mdash; 176 treatment discount / Padelground RM10 off court</li>
+        <li>🏆 Waiting area A3 poster &mdash; tier catalogue</li>
+        <li>🪞 Mirror cling &mdash; 176 Avenue changing room</li>
+        <li>🎾 Court-side A-frame &mdash; Padelground court entrance</li>
+      </ul>
+      <span class="zone-badge zone-badge-blue">Priority 3</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- VISUAL DIRECTION -->
+<section id="visual">
+  <span class="section-eyebrow">Visual direction</span>
+  <h2 class="section-title">How it should look &amp; feel</h2>
+  <p class="section-lead">Aligned with The Courts&rsquo; brand identity from their existing content direction. Premium but warm. Editorial. Not a gym flyer. Not corporate. Closer to Soho House than a membership card rack.</p>
+  <div class="visual-grid">
+    <div class="visual-card">
+      <h3>Colour palette</h3>
+      <div class="colour-row">
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#f2efe8;"></div>
+          <div class="swatch-label">Cream</div>
+          <div class="swatch-label">#f2efe8</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#0a0a0a;"></div>
+          <div class="swatch-label">Black</div>
+          <div class="swatch-label">#0a0a0a</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#c9a84c;"></div>
+          <div class="swatch-label">Gold</div>
+          <div class="swatch-label">#c9a84c</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#2d6a4f;"></div>
+          <div class="swatch-label">Forest</div>
+          <div class="swatch-label">#2d6a4f</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-circle" style="background:#6b7280;"></div>
+          <div class="swatch-label">Grey</div>
+          <div class="swatch-label">#6b7280</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--grey);line-height:1.6;">Cream is the base. Black and gold do the heavy lifting. Forest green for accents and earn mechanics. No bright colours, no gradients.</p>
+    </div>
+
+    <div class="visual-card">
+      <h3>Typography</h3>
+      <div class="font-row">
+        <div class="font-display">Playfair Display</div>
+        <div class="font-body">Headlines, hero text, tier names &mdash; bold serif, editorial weight</div>
+      </div>
+      <div class="font-row" style="margin-top:16px;">
+        <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:400;color:var(--black);">DM Sans &mdash; Body copy, descriptions</div>
+        <div class="font-body">Clean, warm sans-serif for all body text and labels</div>
+      </div>
+      <div class="font-mono-sample">DM MONO &mdash; LABELS &middot; CODES &middot; DATA</div>
+      <div class="font-body" style="margin-top:4px;">Monospace for point values, earn rates, QR callouts</div>
+    </div>
+
+    <div class="visual-card">
+      <h3>Tone &amp; mood</h3>
+      <div class="tone-row" style="margin-bottom:16px;">
+        <span class="tone-tag">Premium</span>
+        <span class="tone-tag">Warm</span>
+        <span class="tone-tag">Inviting</span>
+        <span class="tone-tag">Community</span>
+        <span class="tone-tag">Confident</span>
+        <span class="tone-tag">Not salesy</span>
+      </div>
+      <p style="font-size:13px;color:var(--grey);line-height:1.65;">Think Soho House meets Nuanu Bali. The loyalty programme is not a discount scheme &mdash; it&rsquo;s access to a lifestyle ecosystem. The design should feel like a privilege, not a promotion. References: The Courts&rsquo; own content direction, clean wellness brand aesthetics.</p>
+    </div>
+
+    <div class="visual-card">
+      <h3>Photography &amp; imagery direction</h3>
+      <ul style="list-style:none;">
+        <li style="font-size:13px;color:rgba(0,0,0,0.7);padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.06);display:flex;gap:10px;">
+          <span style="color:var(--gold);flex-shrink:0;">&#10003;</span>
+          Real candid shots from The Courts &mdash; no stock photography
+        </li>
+        <li style="font-size:13px;color:rgba(0,0,0,0.7);padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.06);display:flex;gap:10px;">
+          <span style="color:var(--gold);flex-shrink:0;">&#10003;</span>
+          Natural light, movement in real moments, warm interiors
+        </li>
+        <li style="font-size:13px;color:rgba(0,0,0,0.7);padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.06);display:flex;gap:10px;">
+          <span style="color:var(--gold);flex-shrink:0;">&#10003;</span>
+          Shadows, texture, environmental storytelling
+        </li>
+        <li style="font-size:13px;color:rgba(0,0,0,0.7);padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.06);display:flex;gap:10px;">
+          <span style="color:var(--gold);flex-shrink:0;">&#10007;</span>
+          No heavy graphic treatments, no neon overlays, no stock smiles
+        </li>
+        <li style="font-size:13px;color:rgba(0,0,0,0.7);padding:8px 0;display:flex;gap:10px;">
+          <span style="color:var(--gold);flex-shrink:0;">&#10007;</span>
+          Avoid over-designed loyalty programme clich&eacute;s (stars, coins, flashy badges)
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ONLINE CROSSOVER -->
+<section>
+  <span class="section-eyebrow">Online crossover</span>
+  <h2 class="section-title">Print &rarr; digital, built in from the start</h2>
+  <p class="section-lead">Every print piece has a digital twin. Design the print version first, then adapt the same file &mdash; same visual system, different crop and format. This avoids two separate design rounds and keeps the brand consistent online and on-ground.</p>
+  <table class="crossover-table">
+    <thead>
+      <tr>
+        <th>Print piece</th>
+        <th></th>
+        <th>Digital version</th>
+        <th>Format</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>📺 LED standee content</td>
+        <td class="arrow-cell">&rarr;</td>
+        <td>Instagram Story + feed post</td>
+        <td><span class="tag tag-gold">1080&times;1920</span><span class="tag tag-gold">1080&times;1350</span></td>
+        <td>Designed 9:16 first &mdash; same file, different crop for feed</td>
+      </tr>
+      <tr>
+        <td>Tier catalogue wall poster</td>
+        <td class="arrow-cell">&rarr;</td>
+        <td>Instagram carousel</td>
+        <td><span class="tag tag-gold">1080&times;1080 each</span></td>
+        <td>1 tier per slide, swipeable</td>
+      </tr>
+      <tr>
+        <td>Counter tent card (front)</td>
+        <td class="arrow-cell">&rarr;</td>
+        <td>Instagram Story with link sticker</td>
+        <td><span class="tag tag-green">1080&times;1920</span></td>
+        <td>Tenant-tagged, QR links to sign-up</td>
+      </tr>
+      <tr>
+        <td>Table talker / tent card</td>
+        <td class="arrow-cell">&rarr;</td>
+        <td>Instagram Story &mdash; NOA &amp; Tanamerah</td>
+        <td><span class="tag tag-green">1080&times;1920</span></td>
+        <td>Reshared from The Courts account</td>
+      </tr>
+      <tr>
+        <td>Court-side A-frame</td>
+        <td class="arrow-cell">&rarr;</td>
+        <td>Reel / short video overlay text</td>
+        <td><span class="tag tag-green">9:16 vertical</span></td>
+        <td>Court footage + earn message overlay</td>
+      </tr>
+      <tr>
+        <td>⚡ Welcome boost messaging</td>
+        <td class="arrow-cell">&rarr;</td>
+        <td>Launch day IG feed + Story</td>
+        <td><span class="tag tag-gold">1080&times;1350</span><span class="tag tag-gold">1080&times;1920</span></td>
+        <td>&ldquo;200 points. Free. Today.&rdquo; hero message</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- EXECUTION ORDER -->
+<section id="execution">
+  <span class="section-eyebrow">Execution order</span>
+  <h2 class="section-title">What to build first</h2>
+  <p class="section-lead">If budget or time is tight, this is the sequence. Priority 1 pieces must be done before 1 June launch. Priority 2 within the first two weeks of June. Priority 3 by end of June.</p>
+  <div class="execution-grid">
+    <ul class="execution-list">
+      <div class="execution-item">
+        <div class="exec-num">1</div>
+        <div>
+          <div class="exec-title">🪧 Counter tent cards &mdash; all 7 tenants</div>
+          <div class="exec-desc">7 unique versions, A5 landscape double-sided. Highest conversion piece. Where the transaction happens. Needs to be live on Day 1 at every desk.</div>
+        </div>
+      </div>
+      <div class="execution-item">
+        <div class="exec-num">2</div>
+        <div>
+          <div class="exec-title">📺 LED standee content &mdash; entrance</div>
+          <div class="exec-desc">9:16 digital format, designed to loop on the LED standee at entrance. Same file exports as A0/A1 print fallback for the common area. The brand moment everyone walks past.</div>
+        </div>
+      </div>
+      <div class="execution-item">
+        <div class="exec-num">3</div>
+        <div>
+          <div class="exec-title">🏆 Tier catalogue wall poster</div>
+          <div class="exec-desc">A2/A3, highly visual. Answers &ldquo;what do I get?&rdquo; Works as the Instagram carousel too &mdash; earns double duty across print and digital.</div>
+        </div>
+      </div>
+      <div class="execution-item">
+        <div class="exec-num">4</div>
+        <div>
+          <div class="exec-title">🎾 PSC court divider A-frame</div>
+          <div class="exec-desc">Placed at the court divider &mdash; visible during play and from the spectator/waiting area. Highest volume venue, best acquisition point.</div>
+        </div>
+      </div>
+      <div class="execution-item">
+        <div class="exec-num">5</div>
+        <div>
+          <div class="exec-title">🍹 NOA &amp; ☕ Tanamerah table talkers</div>
+          <div class="exec-desc">High dwell time. People are sitting, eating, waiting. Best environment for slightly longer engagement with the programme mechanics.</div>
+        </div>
+      </div>
+      <div class="execution-item">
+        <div class="exec-num">6</div>
+        <div>
+          <div class="exec-title">🪞 Everything else</div>
+          <div class="exec-desc">Mirror clings, schedule strips, coaster cards, Padelground A-frame, 176 Avenue poster. All high-quality but lower urgency for launch day.</div>
+        </div>
+      </div>
+    </ul>
+
+    <div class="qr-reminder">
+      <h3>Non-negotiables for every piece</h3>
+      <ul>
+        <li>QR code on every single piece &mdash; large enough to scan without picking it up. Test it from 50cm away.</li>
+        <li>Sign-up URL printed below every QR code as backup text</li>
+        <li>200-pt welcome boost called out wherever there is space</li>
+        <li>RM1 = 1 point earn rate stated on any piece longer than A6</li>
+        <li>All 7 tenant logos somewhere on the hero poster and tier catalogue &mdash; shows the scope of the programme</li>
+        <li>Design print-first but export digital twins from the same file, same session</li>
+        <li>Supply print-ready files as PDF/X-1a and separate digital files as PNG/JPG at 72dpi</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONS FOR DILLION -->
+<section id="questions">
+  <span class="section-eyebrow">For Dillion</span>
+  <h2 class="section-title">Questions to answer in this session</h2>
+  <p class="section-lead">These are the decisions we need to make together today before any design work starts.</p>
+  <div class="questions-grid">
+    <div class="question-card">
+      <h4>1 🎨 &mdash; Do you have The Courts brand assets?</h4>
+      <p>Logo files (SVG or high-res PNG), any existing brand guidelines or colour codes, existing marketing materials to reference. We need to make sure the loyalty programme design sits within the same visual world as everything else they&rsquo;ve already produced.</p>
+    </div>
+    <div class="question-card cream-card">
+      <h4>2 🖨️ &mdash; Print vendor &mdash; do you have a contact?</h4>
+      <p>We need a printer who can handle large format (A0), standard (A5/A6), and specialty (coaster cards, mirror clings, A-frames). If not, we need to find one this week so files are ready to go before launch.</p>
+    </div>
+    <div class="question-card cream-card">
+      <h4>3 🪧 &mdash; Counter tent cards &mdash; one master or 7 unique?</h4>
+      <p>My recommendation: one master layout, 7 colour-coded or tenant-named versions with the specific voucher swapped in. The hero message stays the same, the earn mechanic stays the same, only the specific redemption offer changes per tenant.</p>
+    </div>
+    <div class="question-card">
+      <h4>4 📸 &mdash; Photography &mdash; what do we have?</h4>
+      <p>The interns&rsquo; content brief calls for real candid shots, no stock. What photography assets does The Courts already have? If we&rsquo;re short, do we plan a quick shoot before launch, or do we need to work with what exists now?</p>
+    </div>
+    <div class="question-card">
+      <h4>5 ⏰ &mdash; Timeline &mdash; what&rsquo;s realistic?</h4>
+      <p>Launch is 1 June. Priority 1 pieces need to be at the printer at least 5 working days before that. That means final files by 23 May at the latest for launch-day pieces. What&rsquo;s your capacity between now and then?</p>
+    </div>
+    <div class="question-card cream-card">
+      <h4>6 📱 &mdash; Digital twin workflow</h4>
+      <p>For each print piece, we need a 9:16 Story version and a 1:1 feed version. Are you designing in a tool that makes this easy to re-export (Figma, Illustrator, Canva)? And who handles the social posting &mdash; the interns or you?</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-brand">The Courts Loyalty Programme</div>
+  <div class="f-meta">
+    Design brief for Dillion &middot; May 2026<br>
+    Confidential &middot; The Courts @ KLGCC, Bukit Kiara
+  </div>
+</footer>
+
+</body>
+</html>
