@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSC — Brand Partnership Deck 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1a4a3a;--gmid:#2d6b55;--glight:#4a9478;
+  --lime:#c8f03a;--cream:#f5f0e8;--warm:#faf8f4;
+  --charcoal:#1c1c1c;--mid:#4a4a4a;--soft:#8a8a8a;--border:#e0d9cc;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--warm);color:var(--charcoal);font-family:"DM Sans",sans-serif;font-size:15px;line-height:1.6;}
+
+/* HERO */
+.hero{background:var(--green);padding:80px 64px 72px;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-100px;right:-100px;width:480px;height:480px;border:70px solid rgba(200,240,58,0.07);border-radius:50%;}
+.hero-label{font-size:10px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--lime);margin-bottom:20px;}
+.hero h1{font-family:"Bebas Neue",sans-serif;font-size:78px;line-height:0.92;color:#fff;max-width:720px;}
+.hero h1 span{color:var(--lime);}
+.hero-sub{margin-top:22px;font-size:14px;color:rgba(245,240,232,0.6);max-width:520px;font-weight:300;line-height:1.7;}
+.hero-stats{display:flex;gap:40px;margin-top:48px;padding-top:36px;border-top:1px solid rgba(255,255,255,0.1);flex-wrap:wrap;}
+.stat-num{font-family:"Bebas Neue",sans-serif;font-size:40px;color:var(--lime);line-height:1;}
+.stat-label{font-size:11px;color:rgba(245,240,232,0.45);margin-top:4px;}
+
+/* SECTIONS */
+.section{padding:68px 64px;}
+.section-alt{background:var(--cream);}
+.section-dark{background:var(--green);}
+.s-tag{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--glight);margin-bottom:8px;}
+.section-dark .s-tag{color:var(--lime);}
+.s-title{font-family:"DM Serif Display",serif;font-size:36px;line-height:1.12;margin-bottom:10px;color:var(--charcoal);}
+.section-dark .s-title{color:#fff;}
+.s-intro{color:var(--mid);max-width:640px;font-weight:300;margin-bottom:44px;font-size:14px;}
+.section-dark .s-intro{color:rgba(245,240,232,0.6);}
+
+/* LAYOUT */
+.layout-wrap{background:#f0ede4;border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-bottom:44px;}
+.layout-hdr{background:var(--charcoal);color:#fff;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;}
+.layout-hdr h3{font-family:"DM Serif Display",serif;font-size:19px;}
+.layout-hdr p{font-size:11px;color:rgba(255,255,255,0.35);font-weight:300;}
+.layout-img{padding:28px;display:flex;justify-content:center;}
+.layout-img img{width:100%;max-width:880px;border-radius:6px;}
+
+/* ZONES */
+.zones-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.zone-card{border-radius:14px;padding:24px;border:1px solid var(--border);background:var(--warm);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.zone-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;}
+.zc-out::before{background:#f0a500;}
+.zc-cov::before{background:var(--green);}
+.zc-spec::before{background:var(--lime);}
+.zc-ent::before{background:#3a9ad9;}
+.zc-act::before{background:#e8453c;}
+.zc-cor::before{background:var(--gmid);}
+.z-tag{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px;}
+.zc-out .z-tag{color:#c47d00;}
+.zc-cov .z-tag{color:var(--green);}
+.zc-spec .z-tag{color:var(--gmid);}
+.zc-ent .z-tag{color:#2a7ab0;}
+.zc-act .z-tag{color:#c0372e;}
+.zc-cor .z-tag{color:var(--gmid);}
+.zone-card h4{font-family:"DM Serif Display",serif;font-size:18px;margin-bottom:8px;color:var(--charcoal);}
+.zone-card p{font-size:12.5px;color:var(--mid);font-weight:300;line-height:1.6;margin-bottom:12px;flex:1;}
+.z-price{font-family:"Bebas Neue",sans-serif;font-size:22px;color:var(--green);border-top:1px solid var(--border);padding-top:10px;margin-top:auto;}
+.z-price span{font-family:"DM Sans",sans-serif;font-size:11px;color:var(--soft);font-weight:400;}
+
+/* SPECS */
+.specs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.spec-card{border:1px solid var(--border);border-radius:14px;padding:24px;background:var(--warm);}
+.spec-card h4{font-family:"DM Serif Display",serif;font-size:17px;margin-bottom:14px;color:var(--charcoal);}
+.spec-table{width:100%;border-collapse:collapse;font-size:13px;}
+.spec-table td{padding:7px 0;border-bottom:1px solid var(--border);color:var(--mid);}
+.spec-table td:first-child{font-weight:500;color:var(--charcoal);width:50%;}
+.spec-table tr:last-child td{border-bottom:none;}
+.spec-hl{background:#eef7f3;border-left:3px solid var(--green);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:12px;font-size:12.5px;color:var(--gmid);line-height:1.55;}
+
+/* S3 AUDIENCE — fixed layout */
+.audience-top{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:28px;}
+.data-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;text-align:center;}
+.data-num{font-family:"Bebas Neue",sans-serif;font-size:50px;color:var(--lime);line-height:1;}
+.data-label{font-size:12px;color:rgba(245,240,232,0.5);margin-top:6px;letter-spacing:0.5px;}
+.data-sub{font-size:11px;color:rgba(245,240,232,0.3);margin-top:4px;font-weight:300;}
+.audience-bottom{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.age-panel{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;}
+.age-panel h4{font-family:"DM Serif Display",serif;font-size:18px;color:#fff;margin-bottom:20px;}
+.age-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.age-lbl{width:64px;color:rgba(245,240,232,0.6);font-size:12.5px;flex-shrink:0;}
+.age-bw{flex:1;background:rgba(255,255,255,0.06);border-radius:4px;height:9px;}
+.age-b{height:9px;border-radius:4px;background:var(--lime);}
+.age-pct{width:38px;text-align:right;color:#fff;font-weight:600;font-size:12.5px;flex-shrink:0;}
+.insight-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:28px;display:flex;flex-direction:column;gap:16px;}
+.insight-card h4{font-family:"DM Serif Display",serif;font-size:18px;color:#fff;}
+.insight-card p{font-size:13px;color:rgba(245,240,232,0.6);font-weight:300;line-height:1.7;}
+.loyalty-box{background:rgba(200,240,58,0.07);border:1px solid rgba(200,240,58,0.15);border-radius:10px;padding:18px 20px;}
+.loyalty-box h5{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:8px;}
+.loyalty-box p{font-size:12.5px;color:rgba(245,240,232,0.55);line-height:1.65;font-weight:300;}
+
+/* S4 RATE CARD */
+.rate-section{border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.rate-hdr-row{display:grid;grid-template-columns:2.2fr 1fr 1.4fr;background:var(--charcoal);}
+.rate-hdr-cell{padding:12px 22px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.rate-cat{background:var(--charcoal);color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:9px 22px;font-weight:700;border-top:1px solid rgba(255,255,255,0.05);}
+.rate-row{display:grid;grid-template-columns:2.2fr 1fr 1.4fr;padding:15px 22px;border-bottom:1px solid var(--border);background:var(--warm);align-items:start;}
+.rate-row:last-child{border-bottom:none;}
+.rate-row:nth-child(even){background:#faf8f4;}
+.rr-name{font-weight:500;color:var(--charcoal);font-size:13.5px;line-height:1.4;}
+.rr-name small{display:block;font-size:11.5px;color:var(--soft);font-weight:300;margin-top:3px;line-height:1.5;}
+.rr-price{font-family:"Bebas Neue",sans-serif;font-size:20px;color:var(--green);}
+.rr-price small{font-family:"DM Sans",sans-serif;font-size:11px;color:var(--soft);font-weight:300;display:block;margin-top:1px;}
+.rr-note{font-size:12px;color:var(--mid);font-weight:300;padding-left:14px;border-left:2px solid var(--border);line-height:1.55;}
+.badge{display:inline-block;background:var(--lime);color:var(--green);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+.min-note{margin-top:20px;padding:14px 20px;background:#fff8ec;border-left:4px solid #f0a500;border-radius:0 8px 8px 0;font-size:13px;color:#7a5000;line-height:1.6;}
+
+/* S5 TIERS */
+.tiers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);}
+.tier-card{padding:30px 18px;background:rgba(255,255,255,0.04);border-right:1px solid rgba(255,255,255,0.07);position:relative;display:flex;flex-direction:column;}
+.tier-card:last-child{border-right:none;}
+.tier-featured{background:rgba(200,240,58,0.08);border:1px solid rgba(200,240,58,0.2);padding-top:44px;}
+.tier-featured::before{content:"BEST VALUE";position:absolute;top:0;left:0;right:0;background:var(--lime);color:var(--green);font-size:9px;font-weight:700;letter-spacing:2px;text-align:center;padding:7px;}
+.tier-flagship{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);padding-top:44px;}
+.tier-flagship::before{content:"ECOSYSTEM PARTNER";position:absolute;top:0;left:0;right:0;background:#fff;color:var(--charcoal);font-size:8px;font-weight:700;letter-spacing:2px;text-align:center;padding:7px;}
+.t-mo{font-family:"Bebas Neue",sans-serif;font-size:48px;color:var(--lime);line-height:1;}
+.t-mo span{font-family:"DM Sans",sans-serif;font-size:11px;color:rgba(245,240,232,0.4);text-transform:uppercase;font-weight:300;}
+.t-sub{font-size:10px;color:rgba(245,240,232,0.4);margin:2px 0 12px;font-weight:300;}
+.t-amt{font-family:"Bebas Neue",sans-serif;font-size:32px;color:#fff;line-height:1;}
+.tier-flagship .t-amt{color:var(--lime);}
+.t-per{font-size:10.5px;color:rgba(245,240,232,0.4);font-weight:300;margin-bottom:4px;}
+.t-save{display:inline-block;background:rgba(200,240,58,0.1);color:var(--lime);font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:16px;border:1px solid rgba(200,240,58,0.15);}
+.t-save-none{background:transparent;color:rgba(245,240,232,0.22);border-color:rgba(255,255,255,0.06);}
+.t-divider{width:100%;height:1px;background:rgba(255,255,255,0.07);margin:14px 0;}
+.t-features{list-style:none;flex:1;}
+.t-features li{font-size:11.5px;color:rgba(245,240,232,0.6);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:7px;align-items:flex-start;}
+.t-features li:last-child{border-bottom:none;}
+.t-features li.hi{color:rgba(245,240,232,0.9);font-weight:500;}
+.t-features li.dim{color:rgba(245,240,232,0.3);}
+.ck{color:var(--lime);flex-shrink:0;font-size:12px;margin-top:1px;}
+.ds{color:rgba(245,240,232,0.18);flex-shrink:0;font-size:12px;margin-top:1px;}
+.t-cost-note{margin-top:12px;padding:10px 12px;background:rgba(0,0,0,0.15);border-radius:8px;font-size:11px;color:rgba(245,240,232,0.4);line-height:1.5;}
+
+/* S6 FLAGSHIP */
+.flagship-wrap{background:#2a2a2a;border-radius:16px;padding:44px;}
+.flagship-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;gap:32px;flex-wrap:wrap;}
+.flagship-header .fh-text h3{font-family:"DM Serif Display",serif;font-size:30px;color:#fff;line-height:1.1;margin-bottom:12px;}
+.flagship-header .fh-text p{font-size:13px;color:rgba(255,255,255,0.5);font-weight:300;line-height:1.75;max-width:500px;}
+.flagship-price-tag{flex-shrink:0;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:24px 28px;text-align:center;min-width:180px;}
+.fp-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px;}
+.fp-num{font-family:"Bebas Neue",sans-serif;font-size:48px;color:#e8e8e8;line-height:1;}
+.fp-per{font-size:11px;color:rgba(255,255,255,0.35);font-weight:300;margin-top:4px;}
+.flagship-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.fg-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:20px;}
+.fg-card h5{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px;}
+.fg-card ul{list-style:none;}
+.fg-card ul li{font-size:12.5px;color:rgba(255,255,255,0.6);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;gap:8px;line-height:1.4;}
+.fg-card ul li:last-child{border-bottom:none;}
+.fg-card ul li::before{content:"→";color:rgba(255,255,255,0.3);flex-shrink:0;font-size:11px;}
+.flagship-note{margin-top:20px;padding:16px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;font-size:12.5px;color:rgba(255,255,255,0.4);line-height:1.65;}
+
+/* S7 DELIVERABLES TABLE — dark, readable */
+.pkg-wrap{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);}
+.pkg-table{width:100%;border-collapse:collapse;font-size:13px;}
+.pkg-table thead tr{background:#111;}
+.pkg-table th{padding:14px 18px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,0.5);}
+.pkg-table th.c{text-align:center;}
+.pkg-table td{padding:13px 18px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.55);}
+.pkg-table td.fn{font-weight:500;color:rgba(255,255,255,0.85);}
+.pkg-table td.c{text-align:center;}
+.pkg-table tr:nth-child(even) td{background:rgba(255,255,255,0.02);}
+.pkg-table .sr td{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:9px 18px;border-bottom:none;}
+.pkg-table .tr td{background:rgba(200,240,58,0.1);color:rgba(255,255,255,0.9);font-weight:600;font-size:14px;border-bottom:none;padding:16px 18px;}
+.pkg-table .tr td.amt{font-family:"Bebas Neue",sans-serif;font-size:20px;color:#d4f73a;text-align:center;}
+.pkg-table .tr2 td{background:rgba(0,0,0,0.25);color:rgba(255,255,255,0.3);font-size:11px;border-bottom:none;padding:11px 18px;}
+.pkg-table .tr2 td.amt{font-family:"Bebas Neue",sans-serif;font-size:15px;color:rgba(200,240,58,0.7);text-align:center;}
+.hg{color:#a8e832;font-weight:600;}
+.tick{color:#7dc520;}
+.cross{color:rgba(255,255,255,0.15);}
+
+/* CTA */
+.cta{background:var(--lime);padding:64px;text-align:center;}
+.cta h2{font-family:"Bebas Neue",sans-serif;font-size:54px;color:var(--green);margin-bottom:12px;}
+.cta p{color:rgba(26,74,58,0.65);max-width:480px;margin:0 auto 32px;font-size:14px;font-weight:300;}
+.cta-btn{display:inline-block;background:var(--green);color:#fff;padding:15px 40px;border-radius:4px;font-weight:600;letter-spacing:1px;font-size:12px;text-transform:uppercase;text-decoration:none;margin:0 6px;}
+.cta-btn.out{background:transparent;border:2px solid var(--green);color:var(--green);}
+.footnote{padding:28px 64px;background:#111;color:rgba(255,255,255,0.3);font-size:11px;line-height:1.9;}
+.footnote strong{color:rgba(255,255,255,0.5);}
+.info-box{margin-top:20px;padding:18px 22px;background:#eef7f3;border-left:4px solid var(--green);border-radius:0 8px 8px 0;font-size:13px;color:var(--gmid);line-height:1.65;}
+.info-box strong{color:var(--green);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Brand Partnership Deck · 2026</div>
+  <h1>Where<br>Premium<br><span>Brands Play</span></h1>
+  <p class="hero-sub">Pickle Social Club – The Courts @ KLGCC, Bukit Kiara<br>Malaysia's most prestigious pickleball destination. 8 courts. A premium affluent community that brands cannot reach anywhere else.</p>
+  <div class="hero-stats">
+    <div><div class="stat-num">8</div><div class="stat-label">Premium Courts</div></div>
+    <div><div class="stat-num">51K+</div><div class="stat-label">Registered Players</div></div>
+    <div><div class="stat-num">18.2K</div><div class="stat-label">Instagram Followers</div></div>
+    <div><div class="stat-num">70%+</div><div class="stat-label">Daily Court Utilisation</div></div>
+    <div><div class="stat-num">AB</div><div class="stat-label">Premium Affluent Audience</div></div>
+    <div><div class="stat-num">KLGCC</div><div class="stat-label">KL's Most Prestigious Address</div></div>
+  </div>
+</div>
+
+<!-- S1: VENUE -->
+<div class="section section-alt">
+  <div class="s-tag">Section 01</div>
+  <div class="s-title">Venue & Placement Zones</div>
+  <p class="s-intro">PSC occupies a purpose-built facility at KLGCC — KL's most aspirational country club address. 8 courts across two zones, two spectator viewing areas, a pro shop and reception entry point, a dedicated event booth space, and direct adjacency to NOA, TRIBE, Padelground, and 176 Avenue.</p>
+  <div class="layout-wrap">
+    <div class="layout-hdr">
+      <div><h3>Floor Plan — Pickle Social Club</h3><p>The Courts @ KLGCC, Bukit Kiara · Kuala Lumpur</p></div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.35);text-align:right;line-height:1.8;">Courts 1–4 · Outdoor &nbsp;|&nbsp; Courts 5–8 · Covered<br>Viewing Areas · Reception / Pro Shop · Event Booth</div>
+    </div>
+    <div class="layout-img"><img src="data:image/png;base64,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" alt="PSC Venue Layout"></div>
+  </div>
+  <div class="zones-grid">
+    <div class="zone-card zc-out">
+      <div class="z-tag">Outdoor Zone</div>
+      <h4>Courts 1–4</h4>
+      <p>4 outdoor hard courts. Maximum natural light and photographic visibility. Branded divider panels, net wraps, and fence banners line these courts and appear in every content piece produced on site.</p>
+      <div class="z-price">RM 5,000 <span>/ court / month</span></div>
+    </div>
+    <div class="zone-card zc-cov">
+      <div class="z-tag">Covered Zone · Premium</div>
+      <h4>Courts 5–8</h4>
+      <p>4 covered courts hosting all evening sessions, tournaments, and private coaching. Highest spectator dwell time. Primary zone for event photography, video production, and tournament play.</p>
+      <div class="z-price">RM 8,000 <span>/ court / month</span></div>
+    </div>
+    <div class="zone-card zc-spec">
+      <div class="z-tag">Spectator Zones</div>
+      <h4>Indoor + Outdoor Viewing</h4>
+      <p>Both viewing areas seat spectators directly overlooking the courts. Stationary, engaged audience with extended dwell time — brand panels here command sustained visual exposure at eye level throughout sessions.</p>
+      <div class="z-price">RM 3,000 <span>/ zone / month</span></div>
+    </div>
+    <div class="zone-card zc-ent">
+      <div class="z-tag">100% Reach · Entry Point</div>
+      <h4>Reception / Pro Shop / Mezzanine</h4>
+      <p>Every single visitor passes through this zone. The mezzanine container wall is 480cm × 300cm — the largest single brand canvas on site, visible from courts and the NOA lifestyle corridor.</p>
+      <div class="z-price">RM 4,000 <span>/ month</span></div>
+    </div>
+    <div class="zone-card zc-act">
+      <div class="z-tag">Activation Zone</div>
+      <h4>Event / Booth Space</h4>
+      <p>Dedicated activation area for product sampling, launches, and brand-to-consumer experiences. Bookable standalone or combined with court naming for a full-venue brand takeover day.</p>
+      <div class="z-price">RM 2,500 <span>/ day</span></div>
+    </div>
+    <div class="zone-card zc-cor">
+      <div class="z-tag">Lifestyle Corridor</div>
+      <h4>PSC ↔ NOA / TRIBE</h4>
+      <p>The social passage connecting PSC to NOA bar and TRIBE fitness. Post-game crowd: energised, social, and at peak spending mood. Flag poles and fence banners line this high-traffic walkway.</p>
+      <div class="z-price">RM 2,000 <span>/ month</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- S2: SPECS -->
+<div class="section">
+  <div class="s-tag">Section 02</div>
+  <div class="s-title">Branded Surface Specifications</div>
+  <p class="s-intro">Exact dimensions of every brandable surface at PSC. All surfaces subject to PSC design approval. Production costs are at the brand's expense; PSC manages installation.</p>
+  <!-- COURT DIVIDER DIAGRAM -->
+  <div style="background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin-bottom:20px;">
+    <h4 style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:6px;color:var(--charcoal);">Court Divider Panel Map — Internal Shared Walls Only</h4>
+    <p style="font-size:12.5px;color:var(--soft);margin-bottom:20px;font-weight:300;">Divider panels sit only in the gaps <em>between</em> courts — not on the outer perimeter. Each shared wall between two adjacent courts has 6 individual branded panels (147cm × 89cm each). Outer perimeter fence is a separate product (fence banners).</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+
+      <!-- OUTDOOR COURTS 1–4 -->
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+          <div style="width:14px;height:14px;background:#f0a500;border-radius:3px;flex-shrink:0;"></div>
+          <span style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#c47d00;">Outdoor Courts 1–4 · Open Air · Natural Light</span>
+        </div>
+        <svg width="100%" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+
+          <!-- Sky/open air indicator -->
+          <rect x="0" y="0" width="360" height="360" fill="#fffdf5" rx="8"/>
+          <!-- Sun icon top right -->
+          <circle cx="338" cy="22" r="8" fill="#f0a500" opacity="0.3"/>
+          <line x1="338" y1="8"  x2="338" y2="4"  stroke="#f0a500" stroke-width="1.5" opacity="0.4"/>
+          <line x1="338" y1="36" x2="338" y2="40" stroke="#f0a500" stroke-width="1.5" opacity="0.4"/>
+          <line x1="324" y1="22" x2="320" y2="22" stroke="#f0a500" stroke-width="1.5" opacity="0.4"/>
+          <line x1="352" y1="22" x2="356" y2="22" stroke="#f0a500" stroke-width="1.5" opacity="0.4"/>
+          <line x1="328" y1="12" x2="325" y2="9"  stroke="#f0a500" stroke-width="1.5" opacity="0.4"/>
+          <line x1="348" y1="32" x2="351" y2="35" stroke="#f0a500" stroke-width="1.5" opacity="0.4"/>
+
+          <!-- Court 1 top-left -->
+          <rect x="20"  y="24"  width="145" height="145" rx="4" fill="#fff8e8" stroke="#f0a500" stroke-width="1.5"/>
+          <!-- Court 2 top-right -->
+          <rect x="195" y="24"  width="145" height="145" rx="4" fill="#fff8e8" stroke="#f0a500" stroke-width="1.5"/>
+          <!-- Court 3 bottom-left -->
+          <rect x="20"  y="199" width="145" height="145" rx="4" fill="#fff8e8" stroke="#f0a500" stroke-width="1.5"/>
+          <!-- Court 4 bottom-right -->
+          <rect x="195" y="199" width="145" height="145" rx="4" fill="#fff8e8" stroke="#f0a500" stroke-width="1.5"/>
+
+          <!-- Court numbers -->
+          <text x="92"  y="104" text-anchor="middle" fill="#c47d00" font-size="44" font-family="Bebas Neue" opacity="0.18">1</text>
+          <text x="267" y="104" text-anchor="middle" fill="#c47d00" font-size="44" font-family="Bebas Neue" opacity="0.18">2</text>
+          <text x="92"  y="279" text-anchor="middle" fill="#c47d00" font-size="44" font-family="Bebas Neue" opacity="0.18">3</text>
+          <text x="267" y="279" text-anchor="middle" fill="#c47d00" font-size="44" font-family="Bebas Neue" opacity="0.18">4</text>
+
+          <!-- Court labels -->
+          <text x="92"  y="120" text-anchor="middle" fill="#c47d00" font-size="9" font-family="DM Sans" opacity="0.5">OUTDOOR</text>
+          <text x="267" y="120" text-anchor="middle" fill="#c47d00" font-size="9" font-family="DM Sans" opacity="0.5">OUTDOOR</text>
+          <text x="92"  y="295" text-anchor="middle" fill="#c47d00" font-size="9" font-family="DM Sans" opacity="0.5">OUTDOOR</text>
+          <text x="267" y="295" text-anchor="middle" fill="#c47d00" font-size="9" font-family="DM Sans" opacity="0.5">OUTDOOR</text>
+
+          <!-- Net lines (faint) -->
+          <line x1="20"  y1="96"  x2="165" y2="96"  stroke="#f0a500" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.3"/>
+          <line x1="195" y1="96"  x2="340" y2="96"  stroke="#f0a500" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.3"/>
+          <line x1="20"  y1="271" x2="165" y2="271" stroke="#f0a500" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.3"/>
+          <line x1="195" y1="271" x2="340" y2="271" stroke="#f0a500" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.3"/>
+
+          <!-- Internal gap highlights -->
+          <rect x="166" y="24"  width="28" height="145" fill="rgba(200,240,58,0.1)"/>
+          <rect x="166" y="199" width="28" height="145" fill="rgba(200,240,58,0.1)"/>
+          <rect x="20"  y="170" width="145" height="28" fill="rgba(200,240,58,0.1)"/>
+          <rect x="195" y="170" width="145" height="28" fill="rgba(200,240,58,0.1)"/>
+
+          <!-- VERTICAL WALL: Courts 1|2 (top row) — 6 panels -->
+          <rect x="168" y="27"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="51"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="75"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="99"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="123" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="147" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="180" cy="37"  r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="61"  r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="85"  r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="109" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="133" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="157" r="2.5" fill="var(--green)"/>
+          <!-- Wall label -->
+          <rect x="152" y="6" width="56" height="14" rx="3" fill="#1a4a3a" opacity="0.8"/>
+          <text x="180" y="17" text-anchor="middle" fill="#c8f03a" font-size="8" font-family="DM Sans" font-weight="700">1 | 2  (6 panels)</text>
+
+          <!-- VERTICAL WALL: Courts 3|4 (bottom row) — 6 panels -->
+          <rect x="168" y="202" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="226" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="250" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="274" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="298" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="322" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="180" cy="212" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="236" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="260" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="284" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="308" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="332" r="2.5" fill="var(--green)"/>
+          <rect x="152" y="342" width="56" height="14" rx="3" fill="#1a4a3a" opacity="0.8"/>
+          <text x="180" y="353" text-anchor="middle" fill="#c8f03a" font-size="8" font-family="DM Sans" font-weight="700">3 | 4  (6 panels)</text>
+
+          <!-- HORIZONTAL WALL: Courts 1|3 (left col) — 6 panels -->
+          <rect x="22"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="46"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="70"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="94"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="118" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="142" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="32"  cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="56"  cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="80"  cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="104" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="128" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="152" cy="184" r="2.5" fill="var(--green)"/>
+          <rect x="2" y="169" width="14" height="30" rx="3" fill="#1a4a3a" opacity="0.8"/>
+          <text x="9" y="188" text-anchor="middle" fill="#c8f03a" font-size="7" font-family="DM Sans" font-weight="700" transform="rotate(-90,9,184)">1|3</text>
+
+          <!-- HORIZONTAL WALL: Courts 2|4 (right col) — 6 panels -->
+          <rect x="197" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="221" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="245" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="269" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="293" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="317" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="207" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="231" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="255" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="279" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="303" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="327" cy="184" r="2.5" fill="var(--green)"/>
+          <rect x="344" y="169" width="14" height="30" rx="3" fill="#1a4a3a" opacity="0.8"/>
+          <text x="351" y="188" text-anchor="middle" fill="#c8f03a" font-size="7" font-family="DM Sans" font-weight="700" transform="rotate(90,351,184)">2|4</text>
+
+        </svg>
+      </div>
+
+      <!-- COVERED COURTS 5–8 -->
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+          <div style="width:14px;height:14px;background:var(--green);border-radius:3px;flex-shrink:0;"></div>
+          <span style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);">Covered Courts 5–8 · Roof · Premium</span>
+        </div>
+        <svg width="100%" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+
+          <!-- Covered/indoor background -->
+          <rect x="0" y="0" width="360" height="360" fill="#f0f7f4" rx="8"/>
+          <!-- Roof indicator lines at top -->
+          <rect x="0" y="0" width="360" height="10" fill="#1a4a3a" rx="2" opacity="0.15"/>
+          <line x1="0"   y1="6" x2="360" y2="6" stroke="#1a4a3a" stroke-width="1" opacity="0.2"/>
+          <!-- Roof support lines (indoor ceiling feel) -->
+          <line x1="60"  y1="0" x2="60"  y2="24" stroke="#1a4a3a" stroke-width="1" opacity="0.1"/>
+          <line x1="120" y1="0" x2="120" y2="24" stroke="#1a4a3a" stroke-width="1" opacity="0.1"/>
+          <line x1="180" y1="0" x2="180" y2="24" stroke="#1a4a3a" stroke-width="1" opacity="0.1"/>
+          <line x1="240" y1="0" x2="240" y2="24" stroke="#1a4a3a" stroke-width="1" opacity="0.1"/>
+          <line x1="300" y1="0" x2="300" y2="24" stroke="#1a4a3a" stroke-width="1" opacity="0.1"/>
+          <!-- Indoor label -->
+          <text x="338" y="20" text-anchor="end" fill="#1a4a3a" font-size="8" font-family="DM Sans" opacity="0.3" letter-spacing="1">COVERED</text>
+
+          <!-- Court 5 top-left -->
+          <rect x="20"  y="24"  width="145" height="145" rx="4" fill="#dff0e8" stroke="#1a4a3a" stroke-width="1.5"/>
+          <!-- Court 6 top-right -->
+          <rect x="195" y="24"  width="145" height="145" rx="4" fill="#dff0e8" stroke="#1a4a3a" stroke-width="1.5"/>
+          <!-- Court 7 bottom-left -->
+          <rect x="20"  y="199" width="145" height="145" rx="4" fill="#dff0e8" stroke="#1a4a3a" stroke-width="1.5"/>
+          <!-- Court 8 bottom-right -->
+          <rect x="195" y="199" width="145" height="145" rx="4" fill="#dff0e8" stroke="#1a4a3a" stroke-width="1.5"/>
+
+          <!-- Court numbers -->
+          <text x="92"  y="104" text-anchor="middle" fill="#1a4a3a" font-size="44" font-family="Bebas Neue" opacity="0.2">5</text>
+          <text x="267" y="104" text-anchor="middle" fill="#1a4a3a" font-size="44" font-family="Bebas Neue" opacity="0.2">6</text>
+          <text x="92"  y="279" text-anchor="middle" fill="#1a4a3a" font-size="44" font-family="Bebas Neue" opacity="0.2">7</text>
+          <text x="267" y="279" text-anchor="middle" fill="#1a4a3a" font-size="44" font-family="Bebas Neue" opacity="0.2">8</text>
+
+          <!-- Court labels -->
+          <text x="92"  y="120" text-anchor="middle" fill="#1a4a3a" font-size="9" font-family="DM Sans" opacity="0.4">COVERED</text>
+          <text x="267" y="120" text-anchor="middle" fill="#1a4a3a" font-size="9" font-family="DM Sans" opacity="0.4">COVERED</text>
+          <text x="92"  y="295" text-anchor="middle" fill="#1a4a3a" font-size="9" font-family="DM Sans" opacity="0.4">COVERED</text>
+          <text x="267" y="295" text-anchor="middle" fill="#1a4a3a" font-size="9" font-family="DM Sans" opacity="0.4">COVERED</text>
+
+          <!-- Net lines (faint green tint) -->
+          <line x1="20"  y1="96"  x2="165" y2="96"  stroke="#1a4a3a" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.2"/>
+          <line x1="195" y1="96"  x2="340" y2="96"  stroke="#1a4a3a" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.2"/>
+          <line x1="20"  y1="271" x2="165" y2="271" stroke="#1a4a3a" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.2"/>
+          <line x1="195" y1="271" x2="340" y2="271" stroke="#1a4a3a" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.2"/>
+
+          <!-- Internal gap highlights -->
+          <rect x="166" y="24"  width="28" height="145" fill="rgba(200,240,58,0.12)"/>
+          <rect x="166" y="199" width="28" height="145" fill="rgba(200,240,58,0.12)"/>
+          <rect x="20"  y="170" width="145" height="28" fill="rgba(200,240,58,0.12)"/>
+          <rect x="195" y="170" width="145" height="28" fill="rgba(200,240,58,0.12)"/>
+
+          <!-- VERTICAL WALL: Courts 5|6 (top row) -->
+          <rect x="168" y="27"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="51"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="75"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="99"  width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="123" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="147" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="180" cy="37"  r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="61"  r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="85"  r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="109" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="133" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="157" r="2.5" fill="var(--green)"/>
+          <rect x="152" y="6" width="56" height="14" rx="3" fill="#1a4a3a" opacity="0.85"/>
+          <text x="180" y="17" text-anchor="middle" fill="#c8f03a" font-size="8" font-family="DM Sans" font-weight="700">5 | 6  (6 panels)</text>
+
+          <!-- VERTICAL WALL: Courts 7|8 (bottom row) -->
+          <rect x="168" y="202" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="226" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="250" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="274" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="168" y="298" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="168" y="322" width="24" height="21" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="180" cy="212" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="236" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="260" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="284" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="308" r="2.5" fill="var(--green)"/>
+          <circle cx="180" cy="332" r="2.5" fill="var(--green)"/>
+          <rect x="152" y="342" width="56" height="14" rx="3" fill="#1a4a3a" opacity="0.85"/>
+          <text x="180" y="353" text-anchor="middle" fill="#c8f03a" font-size="8" font-family="DM Sans" font-weight="700">7 | 8  (6 panels)</text>
+
+          <!-- HORIZONTAL WALL: Courts 5|7 (left col) -->
+          <rect x="22"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="46"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="70"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="94"  y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="118" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="142" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="32"  cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="56"  cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="80"  cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="104" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="128" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="152" cy="184" r="2.5" fill="var(--green)"/>
+          <rect x="2" y="169" width="14" height="30" rx="3" fill="#1a4a3a" opacity="0.85"/>
+          <text x="9" y="188" text-anchor="middle" fill="#c8f03a" font-size="7" font-family="DM Sans" font-weight="700" transform="rotate(-90,9,184)">5|7</text>
+
+          <!-- HORIZONTAL WALL: Courts 6|8 (right col) -->
+          <rect x="197" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="221" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="245" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="269" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <rect x="293" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.95"/>
+          <rect x="317" y="173" width="21" height="22" rx="2" fill="#c8f03a" opacity="0.88"/>
+          <circle cx="207" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="231" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="255" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="279" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="303" cy="184" r="2.5" fill="var(--green)"/>
+          <circle cx="327" cy="184" r="2.5" fill="var(--green)"/>
+          <rect x="344" y="169" width="14" height="30" rx="3" fill="#1a4a3a" opacity="0.85"/>
+          <text x="351" y="188" text-anchor="middle" fill="#c8f03a" font-size="7" font-family="DM Sans" font-weight="700" transform="rotate(90,351,184)">6|8</text>
+
+        </svg>
+      </div>
+    </div>
+
+    <!-- Buying guide -->
+    <div style="margin-top:24px;background:#f8f5ef;border-radius:12px;padding:22px 26px;border:1px solid var(--border);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gmid);margin-bottom:16px;">How Court Naming Translates to Panel Allocation</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+
+        <!-- Corner court -->
+        <div style="padding:18px 20px;background:#fff;border-right:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#c47d00;margin-bottom:8px;">Corner Court</div>
+          <div style="font-size:12px;color:var(--soft);margin-bottom:10px;font-weight:300;">e.g. Courts 1, 2, 3, 4, 5, 6, 7, 8</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--charcoal);line-height:1;margin-bottom:4px;">12 panels</div>
+          <div style="font-size:12px;color:var(--mid);font-weight:300;line-height:1.6;">2 shared internal walls bordering the court × 6 panels each. The brand appears on both the vertical and horizontal shared wall adjacent to that corner court.</div>
+        </div>
+
+        <!-- What each panel delivers -->
+        <div style="padding:18px 20px;background:#fff;border-right:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gmid);margin-bottom:8px;">What Each Panel Delivers</div>
+          <div style="font-size:12px;color:var(--soft);margin-bottom:10px;font-weight:300;">Per branded panel (147cm × 89cm)</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>Eye-level brand presence from adjacent courts</li>
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>Captured in every court photo and video reel</li>
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>1.31 sqm printable face — clear at distance</li>
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>17 hours daily exposure (7am–midnight)</li>
+          </ul>
+        </div>
+
+        <!-- Minimum commitment -->
+        <div style="padding:18px 20px;background:#fff;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gmid);margin-bottom:8px;">Good to Know</div>
+          <div style="font-size:12px;color:var(--soft);margin-bottom:10px;font-weight:300;">Before you commit</div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>Minimum 3-month engagement on all court naming</li>
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>Panel production at brand's cost; PSC installs</li>
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>All designs subject to PSC approval</li>
+            <li style="font-size:12px;color:var(--mid);padding:5px 0;display:flex;gap:8px;"><span style="color:var(--glight);flex-shrink:0;">→</span>Category exclusivity available from 6-month tier</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="display:flex;gap:24px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);">
+        <svg width="18" height="14"><rect width="18" height="14" fill="#c8f03a" rx="2" opacity="0.9"/></svg>
+        Branded divider panel — 147cm × 89cm
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);">
+        <svg width="18" height="14"><rect width="18" height="14" fill="#fff8e8" stroke="#f0a500" stroke-width="1.5" rx="2"/></svg>
+        Outdoor court (open air · natural light)
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);">
+        <svg width="18" height="14"><rect width="18" height="14" fill="#dff0e8" stroke="#1a4a3a" stroke-width="1.5" rx="2"/></svg>
+        Covered court (roof · evening sessions · tournaments)
+      </div>
+    </div>
+  </div>
+
+  <!-- NET & FENCE BANNER DIAGRAM -->
+  <div style="background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin-bottom:20px;">
+    <h4 style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:6px;color:var(--charcoal);">Nets & Fence Banners</h4>
+    <p style="font-size:12.5px;color:var(--soft);margin-bottom:20px;font-weight:300;">The net is the most photographed element on any court. Every player photo and action reel captures it. Fence banners create large-format hero panels visible from spectator areas and the lifestyle corridor.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+      <!-- NET -->
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gmid);margin-bottom:12px;">Net — 662cm × 82cm</div>
+        <svg width="100%" viewBox="0 0 340 150" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+          <!-- Court surface -->
+          <rect x="0" y="65" width="340" height="85" fill="#d4eae4" rx="0"/>
+          <!-- Court lines -->
+          <line x1="0" y1="107" x2="340" y2="107" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <line x1="170" y1="65" x2="170" y2="150" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <rect x="70" y="65" width="200" height="85" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+          <!-- Net posts -->
+          <rect x="20" y="32" width="6" height="75" fill="#555" rx="2"/>
+          <rect x="314" y="32" width="6" height="75" fill="#555" rx="2"/>
+          <!-- Full net top band — plain, not brandable in centre -->
+          <rect x="20" y="40" width="300" height="26" fill="#e8e0d0" rx="1" opacity="0.6"/>
+          <!-- LEFT brand panel (side only) -->
+          <rect x="20" y="40" width="55" height="26" fill="#c8f03a" rx="1" opacity="0.95"/>
+          <text x="47" y="57" text-anchor="middle" fill="var(--green)" font-size="8" font-family="DM Sans" font-weight="700">BRAND</text>
+          <!-- RIGHT brand panel (side only) -->
+          <rect x="265" y="40" width="55" height="26" fill="#c8f03a" rx="1" opacity="0.95"/>
+          <text x="292" y="57" text-anchor="middle" fill="var(--green)" font-size="8" font-family="DM Sans" font-weight="700">BRAND</text>
+          <!-- Centre — no branding label -->
+          <text x="170" y="57" text-anchor="middle" fill="#bbb" font-size="8" font-family="DM Sans">— centre: no placement —</text>
+          <!-- Net mesh body -->
+          <rect x="20" y="66" width="300" height="36" fill="none" stroke="#999" stroke-width="0.5"/>
+          <line x1="20" y1="75" x2="320" y2="75" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="20" y1="84" x2="320" y2="84" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="20" y1="93" x2="320" y2="93" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="55"  y1="66" x2="55"  y2="102" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="90"  y1="66" x2="90"  y2="102" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="125" y1="66" x2="125" y2="102" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="170" y1="66" x2="170" y2="102" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="215" y1="66" x2="215" y2="102" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="250" y1="66" x2="250" y2="102" stroke="#bbb" stroke-width="0.5"/>
+          <line x1="285" y1="66" x2="285" y2="102" stroke="#bbb" stroke-width="0.5"/>
+          <!-- Callout arrows for brand zones -->
+          <line x1="47"  y1="36" x2="47"  y2="22" stroke="#c8f03a" stroke-width="1.5"/>
+          <circle cx="47" cy="20" r="3" fill="#c8f03a"/>
+          <text x="47"  y="16" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans">Left side</text>
+          <line x1="292" y1="36" x2="292" y2="22" stroke="#c8f03a" stroke-width="1.5"/>
+          <circle cx="292" cy="20" r="3" fill="#c8f03a"/>
+          <text x="292" y="16" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans">Right side</text>
+          <!-- Total width dim -->
+          <line x1="20" y1="138" x2="320" y2="138" stroke="#aaa" stroke-width="1"/>
+          <line x1="20" y1="134" x2="20" y2="142" stroke="#aaa" stroke-width="1"/>
+          <line x1="320" y1="134" x2="320" y2="142" stroke="#aaa" stroke-width="1"/>
+          <text x="170" y="148" text-anchor="middle" fill="#888" font-size="9" font-family="DM Sans">662cm total width</text>
+          <!-- Height dim -->
+          <line x1="6" y1="40" x2="6" y2="66" stroke="#aaa" stroke-width="1"/>
+          <line x1="2" y1="40" x2="10" y2="40" stroke="#aaa" stroke-width="1"/>
+          <line x1="2" y1="66" x2="10" y2="66" stroke="#aaa" stroke-width="1"/>
+          <text x="4" y="56" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans" transform="rotate(-90,4,56)">82cm</text>
+        </svg>
+        <p style="font-size:11.5px;color:var(--soft);margin-top:8px;line-height:1.5;font-weight:300;">Brand placement is on the two side panels of the net only (left + right ends, lime zones). Centre strip has no placement. 8 nets available — 1 per court. Every photo and video of play captures the net sides.</p>
+      </div>
+      <!-- FENCE BANNER -->
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gmid);margin-bottom:12px;">Fence Banner — 258cm × 251cm</div>
+        <svg width="100%" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+          <!-- Fence mesh background -->
+          <rect x="20" y="10" width="220" height="190" fill="#f0ede4" stroke="#ccc" stroke-width="1" rx="3"/>
+          <!-- Mesh grid -->
+          <g stroke="#ddd" stroke-width="0.5" opacity="0.7">
+            <line x1="20" y1="30" x2="240" y2="30"/><line x1="20" y1="50" x2="240" y2="50"/>
+            <line x1="20" y1="70" x2="240" y2="70"/><line x1="20" y1="90" x2="240" y2="90"/>
+            <line x1="20" y1="110" x2="240" y2="110"/><line x1="20" y1="130" x2="240" y2="130"/>
+            <line x1="20" y1="150" x2="240" y2="150"/><line x1="20" y1="170" x2="240" y2="170"/>
+            <line x1="40" y1="10" x2="40" y2="200"/><line x1="60" y1="10" x2="60" y2="200"/>
+            <line x1="80" y1="10" x2="80" y2="200"/><line x1="100" y1="10" x2="100" y2="200"/>
+            <line x1="120" y1="10" x2="120" y2="200"/><line x1="140" y1="10" x2="140" y2="200"/>
+            <line x1="160" y1="10" x2="160" y2="200"/><line x1="180" y1="10" x2="180" y2="200"/>
+            <line x1="200" y1="10" x2="200" y2="200"/><line x1="220" y1="10" x2="220" y2="200"/>
+          </g>
+          <!-- Brand overlay -->
+          <rect x="20" y="10" width="220" height="190" fill="#1a4a3a" rx="3" opacity="0.88"/>
+          <!-- Brand content mock -->
+          <rect x="40" y="30" width="180" height="60" fill="rgba(200,240,58,0.15)" rx="4"/>
+          <text x="130" y="55" text-anchor="middle" fill="#c8f03a" font-size="13" font-family="Bebas Neue" letter-spacing="2">BRAND NAME</text>
+          <text x="130" y="76" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="DM Sans">tagline or campaign message here</text>
+          <!-- Logo placeholder circle -->
+          <circle cx="130" cy="130" r="30" fill="rgba(200,240,58,0.1)" stroke="rgba(200,240,58,0.3)" stroke-width="1.5"/>
+          <text x="130" y="134" text-anchor="middle" fill="rgba(200,240,58,0.4)" font-size="9" font-family="DM Sans">LOGO</text>
+          <!-- Dim lines -->
+          <line x1="20" y1="208" x2="240" y2="208" stroke="#aaa" stroke-width="1"/>
+          <line x1="20" y1="204" x2="20" y2="212" stroke="#aaa" stroke-width="1"/>
+          <line x1="240" y1="204" x2="240" y2="212" stroke="#aaa" stroke-width="1"/>
+          <text x="130" y="216" text-anchor="middle" fill="#888" font-size="9" font-family="DM Sans">258cm</text>
+          <line x1="8" y1="10" x2="8" y2="200" stroke="#aaa" stroke-width="1"/>
+          <line x1="4" y1="10" x2="12" y2="10" stroke="#aaa" stroke-width="1"/>
+          <line x1="4" y1="200" x2="12" y2="200" stroke="#aaa" stroke-width="1"/>
+          <text x="8" y="105" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans" transform="rotate(-90,8,105)">251cm</text>
+        </svg>
+        <p style="font-size:11.5px;color:var(--soft);margin-top:8px;line-height:1.5;font-weight:300;">Near-square panel (~2.5m × 2.5m). Visible from spectator seating and the social corridor between PSC and NOA. Double-sided option available.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEZZANINE + FLAG POLES DIAGRAM -->
+  <div style="background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:28px 32px;">
+    <h4 style="font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:6px;color:var(--charcoal);">Mezzanine, Flag Poles & Pillar Buntings</h4>
+    <p style="font-size:12.5px;color:var(--soft);margin-bottom:20px;font-weight:300;">The mezzanine container wall is PSC's largest single brand canvas. Flag poles mark the venue entry. Pillar buntings create a branded corridor effect in the covered zone. All highlighted in lime below.</p>
+    <svg width="100%" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+      <!-- Ground -->
+      <rect x="0" y="180" width="640" height="40" fill="#e8e4dc" rx="0"/>
+      <!-- Sky/background -->
+      <rect x="0" y="0" width="640" height="180" fill="#f5f0e8" rx="0"/>
+
+      <!-- ENTRY APPROACH (left side) -->
+      <text x="30" y="14" fill="#aaa" font-size="9" font-family="DM Sans" letter-spacing="1">ENTRY APPROACH</text>
+      <!-- Flag pole 1 -->
+      <rect x="20" y="60" width="6" height="120" fill="#666" rx="1"/>
+      <rect x="14" y="174" width="18" height="6" fill="#888" rx="1"/>
+      <rect x="26" y="60" width="40" height="70" fill="#c8f03a" rx="2"/>
+      <text x="46" y="90" text-anchor="middle" fill="var(--green)" font-size="7" font-family="DM Sans" font-weight="700">BRAND</text>
+      <circle cx="23" cy="60" r="3" fill="#c8f03a"/>
+      <!-- Flag pole 2 -->
+      <rect x="80" y="70" width="6" height="110" fill="#666" rx="1"/>
+      <rect x="74" y="174" width="18" height="6" fill="#888" rx="1"/>
+      <rect x="86" y="70" width="40" height="70" fill="#c8f03a" rx="2" opacity="0.85"/>
+      <text x="106" y="100" text-anchor="middle" fill="var(--green)" font-size="7" font-family="DM Sans" font-weight="700">BRAND</text>
+      <circle cx="83" cy="70" r="3" fill="#c8f03a"/>
+      <!-- Flag pole 3 -->
+      <rect x="140" y="65" width="6" height="115" fill="#666" rx="1"/>
+      <rect x="134" y="174" width="18" height="6" fill="#888" rx="1"/>
+      <rect x="146" y="65" width="40" height="70" fill="#c8f03a" rx="2" opacity="0.8"/>
+      <text x="166" y="95" text-anchor="middle" fill="var(--green)" font-size="7" font-family="DM Sans" font-weight="700">BRAND</text>
+      <circle cx="143" cy="65" r="3" fill="#c8f03a"/>
+      <text x="83" y="198" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans">3 × Flag Poles Outdoor</text>
+      <text x="83" y="210" text-anchor="middle" fill="#aaa" font-size="8" font-family="DM Sans">600mm × 2440mm each</text>
+
+      <!-- MEZZANINE CONTAINER (centre) -->
+      <text x="360" y="14" text-anchor="middle" fill="#aaa" font-size="9" font-family="DM Sans" letter-spacing="1">MEZZANINE CONTAINER — ENTRY FACE</text>
+      <!-- Upper mezzanine deck -->
+      <rect x="218" y="38" width="284" height="50" fill="#3a3a3a" rx="3"/>
+      <rect x="218" y="38" width="284" height="8" fill="#555" rx="2"/>
+      <!-- String lights -->
+      <line x1="218" y1="40" x2="502" y2="40" stroke="rgba(255,220,100,0.5)" stroke-width="1"/>
+      <circle cx="250" cy="41" r="2" fill="rgba(255,220,100,0.7)"/>
+      <circle cx="290" cy="43" r="2" fill="rgba(255,220,100,0.7)"/>
+      <circle cx="330" cy="40" r="2" fill="rgba(255,220,100,0.7)"/>
+      <circle cx="370" cy="42" r="2" fill="rgba(255,220,100,0.7)"/>
+      <circle cx="410" cy="41" r="2" fill="rgba(255,220,100,0.7)"/>
+      <circle cx="450" cy="43" r="2" fill="rgba(255,220,100,0.7)"/>
+      <circle cx="488" cy="40" r="2" fill="rgba(255,220,100,0.7)"/>
+      <!-- Container wall -->
+      <rect x="218" y="88" width="284" height="90" fill="#2a2a2a" rx="0"/>
+      <!-- Window cutout -->
+      <rect x="226" y="96" width="50" height="60" fill="#444" rx="2"/>
+      <!-- Brandable zone (lime highlight) -->
+      <rect x="282" y="88" width="214" height="90" fill="#c8f03a" rx="0" opacity="0.9"/>
+      <text x="389" y="128" text-anchor="middle" fill="var(--green)" font-size="11" font-family="Bebas Neue" letter-spacing="2">BRAND NAME / CAMPAIGN</text>
+      <text x="389" y="144" text-anchor="middle" fill="rgba(26,74,58,0.6)" font-size="8" font-family="DM Sans">480cm usable width × 300cm height · 14.4 sqm</text>
+      <!-- Ground -->
+      <rect x="218" y="178" width="284" height="4" fill="#555"/>
+      <!-- Dim arrows -->
+      <line x1="282" y1="82" x2="496" y2="82" stroke="#aaa" stroke-width="1"/>
+      <line x1="282" y1="78" x2="282" y2="86" stroke="#aaa" stroke-width="1"/>
+      <line x1="496" y1="78" x2="496" y2="86" stroke="#aaa" stroke-width="1"/>
+      <text x="389" y="79" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans">480cm (usable)</text>
+      <text x="360" y="198" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans">Largest single brand surface on site · Visible from courts, corridor &amp; NOA</text>
+
+      <!-- PILLAR BUNTINGS (right) -->
+      <text x="575" y="14" text-anchor="middle" fill="#aaa" font-size="9" font-family="DM Sans" letter-spacing="1">INDOOR PILLARS</text>
+      <!-- Roof of covered zone -->
+      <rect x="520" y="30" width="110" height="8" fill="#888" rx="2"/>
+      <!-- Pillar 1 -->
+      <rect x="530" y="38" width="8" height="140" fill="#777" rx="1"/>
+      <rect x="534" y="40" width="24" height="80" fill="#c8f03a" rx="2"/>
+      <text x="546" y="78" text-anchor="middle" fill="var(--green)" font-size="7" font-family="DM Sans" font-weight="700" transform="rotate(-90,546,78)">BRAND</text>
+      <circle cx="534" cy="40" r="3" fill="#c8f03a"/>
+      <!-- Pillar 2 -->
+      <rect x="574" y="38" width="8" height="140" fill="#777" rx="1"/>
+      <rect x="578" y="40" width="24" height="80" fill="#c8f03a" rx="2" opacity="0.85"/>
+      <text x="590" y="78" text-anchor="middle" fill="var(--green)" font-size="7" font-family="DM Sans" font-weight="700" transform="rotate(-90,590,78)">BRAND</text>
+      <circle cx="578" cy="40" r="3" fill="#c8f03a"/>
+      <!-- Pillar 3 -->
+      <rect x="618" y="38" width="8" height="140" fill="#777" rx="1"/>
+      <rect x="622" y="40" width="24" height="80" fill="#c8f03a" rx="2" opacity="0.8"/>
+      <text x="634" y="78" text-anchor="middle" fill="var(--green)" font-size="7" font-family="DM Sans" font-weight="700" transform="rotate(-90,634,78)">BRAND</text>
+      <circle cx="622" cy="40" r="3" fill="#c8f03a"/>
+      <text x="575" y="198" text-anchor="middle" fill="#888" font-size="8" font-family="DM Sans">3 × Pillar Buntings Indoor</text>
+      <text x="575" y="210" text-anchor="middle" fill="#aaa" font-size="8" font-family="DM Sans">2ft × 8ft each · Covered zone</text>
+    </svg>
+    <div style="display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);">
+        <svg width="14" height="14"><rect width="14" height="14" fill="#c8f03a" rx="2"/></svg>
+        Brandable surface (lime = available placement zone)
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);">
+        <svg width="14" height="14"><circle cx="7" cy="7" r="4" fill="#c8f03a"/></svg>
+        Attachment / mounting point
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- S3: AUDIENCE — FIXED LAYOUT -->
+<div class="section section-dark">
+  <div class="s-tag">Section 03</div>
+  <div class="s-title">Audience & Platform Data</div>
+  <p class="s-intro">PSC operates on the Playbypoint booking platform — a verified first-party CRM of 51,040 registered players across Malaysia's most active pickleball community. Every number below represents a real, bookable person at KLGCC.</p>
+
+  <div class="audience-top">
+    <div class="data-card">
+      <div class="data-num">51,040</div>
+      <div class="data-label">Registered Players</div>
+      <div class="data-sub">Verified first-party CRM</div>
+    </div>
+    <div class="data-card">
+      <div class="data-num">3,000+</div>
+      <div class="data-label">Monthly Court Bookings</div>
+      <div class="data-sub">Active transactions per month</div>
+    </div>
+    <div class="data-card">
+      <div class="data-num">18.2K</div>
+      <div class="data-label">Instagram Followers</div>
+      <div class="data-sub">Engaged lifestyle community</div>
+    </div>
+  </div>
+
+  <div class="audience-bottom">
+    <div class="age-panel">
+      <h4>Audience Profile</h4>
+      <div class="age-row"><div class="age-lbl">25–35</div><div class="age-bw"><div class="age-b" style="width:88%;"></div></div><div class="age-pct">44%</div></div>
+      <div class="age-row"><div class="age-lbl">35–45</div><div class="age-bw"><div class="age-b" style="width:58%;"></div></div><div class="age-pct">29%</div></div>
+      <div class="age-row"><div class="age-lbl">18–25</div><div class="age-bw"><div class="age-b" style="width:24%;"></div></div><div class="age-pct">12%</div></div>
+      <div class="age-row"><div class="age-lbl">45–55</div><div class="age-bw"><div class="age-b" style="width:20%;"></div></div><div class="age-pct">10%</div></div>
+      <div class="age-row"><div class="age-lbl">55–65</div><div class="age-bw"><div class="age-b" style="width:6%;background:rgba(200,240,58,0.5);"></div></div><div class="age-pct">3%</div></div>
+      <div class="age-row"><div class="age-lbl">65+</div><div class="age-bw"><div class="age-b" style="width:4%;background:rgba(200,240,58,0.35);"></div></div><div class="age-pct">2%</div></div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.08);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-bottom:10px;">Gender Split</div>
+        <div class="age-row"><div class="age-lbl">Female</div><div class="age-bw"><div class="age-b" style="width:53%;background:rgba(200,240,58,0.55);"></div></div><div class="age-pct">53%</div></div>
+        <div class="age-row"><div class="age-lbl">Male</div><div class="age-bw"><div class="age-b" style="width:47%;background:rgba(200,240,58,0.4);"></div></div><div class="age-pct">47%</div></div>
+      </div>
+    </div>
+    <div class="insight-card">
+      <h4>Why This Audience is Rare</h4>
+      <p>The KLGCC address self-selects. Players here are professionals, business owners, and executives from the Bukit Kiara, Mont Kiara, Hartamas, and Damansara belt. They pay premium court fees willingly, visit multiple times a week, and actively share their sessions on social media.</p>
+      <p>The core 25–45 demographic (73% of audience) represents KL's highest-spending, most brand-responsive cohort. For financial products, premium automotive, wellness, and lifestyle brands — this is the audience that cannot be efficiently reached through mass media.</p>
+      <div class="loyalty-box">
+        <h5>Loyalty Programme · June 2026</h5>
+        <p>PSC's loyalty programme (Binfinite platform) launches this month targeting 1,500 active members by year-end. Partnership brands on 9–12 month tiers gain integration into the programme — unlocking points, co-branded rewards, and deeper audience attribution.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S4: RATE CARD -->
+<div class="section section-alt">
+  <div class="s-tag">Section 04</div>
+  <div class="s-title">Brand Placement Rate Card</div>
+  <p class="s-intro">Commercial rates for brand placement across PSC's physical, digital, and event inventory. All rates exclude SST (8%) and production costs. Minimum engagement is 3 months for all monthly placement products.</p>
+
+  <div class="rate-section">
+    <div class="rate-hdr-row">
+      <div class="rate-hdr-cell">Placement / Package</div>
+      <div class="rate-hdr-cell">Rate</div>
+      <div class="rate-hdr-cell">What's included</div>
+    </div>
+
+    <div class="rate-cat">Court Naming — Monthly (minimum 3 months)</div>
+    <div class="rate-row">
+      <div class="rr-name">Outdoor Court Naming · Courts 1–4<small>2 branded divider panels + net wrap + court naming rights + social content tagging</small></div>
+      <div class="rr-price">RM 5,000<small>/ court / month</small></div>
+      <div class="rr-note">2 divider panels (147×89cm each) on left and right barriers. 17hrs daily brand presence. Appears in all content filmed on that court.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Covered Court Naming · Courts 5–8 <span class="badge">premium</span><small>2 branded divider panels + net wrap + court naming rights + event priority</small></div>
+      <div class="rr-price">RM 8,000<small>/ court / month</small></div>
+      <div class="rr-note">All evening sessions, tournaments, and coaching. Primary zone for event photography and video production. Highest dwell time.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">All 8 Courts — Full Venue Court Package<small>16 branded divider panels across all courts + all nets + full naming rights</small></div>
+      <div class="rr-price">RM 40,000<small>/ month</small></div>
+      <div class="rr-note">Complete court naming and branding across all outdoor and covered zones. Category exclusivity standard. ~20% saving vs individual rates.</div>
+    </div>
+
+    <div class="rate-cat">Specific Branded Surfaces — Monthly (minimum 3 months)</div>
+    <div class="rate-row">
+      <div class="rr-name">Mezzanine Container Wall<small>480cm × 300cm — 14.4 sqm, largest single surface on site</small></div>
+      <div class="rr-price">RM 4,000<small>/ month</small></div>
+      <div class="rr-note">Visible from courts, social corridor, and NOA. Best for campaign launches and brand awareness plays.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Spectator Viewing Area<small>Indoor or outdoor viewing zone; stationary audience during live play</small></div>
+      <div class="rr-price">RM 3,000<small>/ zone / month</small></div>
+      <div class="rr-note">Captive, stationary audience throughout sessions. Eye-level brand panels from seating positions.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Net Branding<small>662cm × 82cm per court — most photographed element on site</small></div>
+      <div class="rr-price">RM 1,200<small>/ court / month</small></div>
+      <div class="rr-note">Featured in every court reel, player photo, and event livestream. Available as standalone or add-on.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Fence Banner (single side)<small>258cm × 251cm hero panel visible from courts and corridor</small></div>
+      <div class="rr-price">RM 1,500<small>/ panel / month</small></div>
+      <div class="rr-note">Double-sided available at +20% premium. Prominent from both court-side and social walkway.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Flag Poles — Entry + Corridor<small>600mm × 2440mm · 3 outdoor + 3 indoor units</small></div>
+      <div class="rr-price">RM 2,000<small>/ set / month</small></div>
+      <div class="rr-note">Brand presence from venue approach. Outdoor set visible from NOA/TRIBE corridor foot traffic.</div>
+    </div>
+
+    <div class="rate-cat">Space Rental — Events & Activations (no minimum)</div>
+    <div class="rate-row">
+      <div class="rr-name">Entire PSC — Full Day Brand Activation<small>All 8 courts + full venue branding rights for the day</small></div>
+      <div class="rr-price">RM 7,000<small>/ day</small></div>
+      <div class="rr-note">Exclusive use of full venue. Combine with event programming for maximum community impact.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">PSC ↔ NOA / TRIBE Corridor<small>Lifestyle passage — post-game social crowd activation</small></div>
+      <div class="rr-price">RM 3,500<small>/ day</small></div>
+      <div class="rr-note">Post-game crowd at peak spending mood. Best for F&amp;B, lifestyle, and fintech sampling activations.</div>
+    </div>
+
+    <div class="rate-cat">Digital Channels — Monthly (minimum 3 months)</div>
+    <div class="rate-row">
+      <div class="rr-name">In-App Banner — Playbypoint<small>Top of home screen; seen by 51K registered users at every booking session</small></div>
+      <div class="rr-price">RM 2,500<small>/ month</small></div>
+      <div class="rr-note">Click-through to brand landing page. Every session booking passes this placement.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Booking Confirmation Email Footer<small>Reaches active bookers at the moment of highest intent</small></div>
+      <div class="rr-price">RM 2,000<small>/ month</small></div>
+      <div class="rr-note">Supporting CTA text + link. Transaction email open rates significantly above marketing averages.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Club-Wide Announcement Blast<small>App + web + email + push notification to full 51K database</small></div>
+      <div class="rr-price">RM 1,500<small>/ blast</small></div>
+      <div class="rr-note">One-time campaign push. Full database reach. Suitable for launches, promos, and special offers.</div>
+    </div>
+
+    <div class="rate-cat">Events & Sponsorships</div>
+    <div class="rate-row">
+      <div class="rr-name">Presenting Sponsorship — Branded Event<small>"[Brand] Presents [Event Name]" — Drive & Dink format or similar</small></div>
+      <div class="rr-price">RM 15,000–25,000<small>/ event</small></div>
+      <div class="rr-note">Full venue naming rights for the day, MC mentions, on-court branding, and social content coverage.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Signature Branded Open Tournament<small>Multi-day tournament — full naming rights + player activation</small></div>
+      <div class="rr-price">RM 40,000–60,000<small>/ tournament</small></div>
+      <div class="rr-note">100+ registered players. Multi-day media coverage. Proven tournament format with proven brand results.</div>
+    </div>
+    <div class="rate-row">
+      <div class="rr-name">Junior Programme — Little Picklers™ <span class="badge">new</span><small>Season sponsorship · Season 1: July–September 2026</small></div>
+      <div class="rr-price">RM 15,000–25,000<small>/ season</small></div>
+      <div class="rr-note">12-week youth programme. High-income parent demographic. CSR value. Category naming rights for the season.</div>
+    </div>
+  </div>
+
+  <div class="min-note">
+    <strong>Minimum engagement for all monthly placement products is 3 months.</strong> This ensures meaningful brand integration for the community, adequate time to measure impact, and protection of brand identity on court — for both partners.
+  </div>
+</div>
+
+<!-- S5: PARTNERSHIP TIERS — repriced, justified -->
+<div class="section section-dark">
+  <div class="s-tag">Section 05</div>
+  <div class="s-title">Monthly Partnership Tiers</div>
+  <p class="s-intro">Structured packages for brands seeking sustained presence. All tiers are minimum 3 months. Longer commitments unlock deeper integration, exclusivity, community session access, and event co-branding. What you see below is what you get — nothing over-promised.</p>
+
+  <div class="tiers-grid">
+    <!-- 3 months -->
+    <div class="tier-card">
+      <div class="t-mo">3 <span>MO</span></div>
+      <div class="t-sub">Entry · Brand Presence</div>
+      <div class="t-amt">RM 36,000</div>
+      <div class="t-per">total · RM 12,000/mo</div>
+      <div class="t-save t-save-none">Minimum engagement</div>
+      <div class="t-divider"></div>
+      <ul class="t-features">
+        <li class="hi"><span class="ck">✓</span> 1 outdoor court (2 divider panels)</li>
+        <li><span class="ck">✓</span> Net branding on named court</li>
+        <li><span class="ck">✓</span> Court naming rights (3 months)</li>
+        <li><span class="ck">✓</span> 3 × PSC Instagram posts</li>
+        <li><span class="ck">✓</span> 1 × club announcement blast</li>
+        <li><span class="ck">✓</span> Website partner listing</li>
+        <li class="dim"><span class="ds">–</span> Community open play</li>
+        <li class="dim"><span class="ds">–</span> In-app / email digital</li>
+        <li class="dim"><span class="ds">–</span> Category exclusivity</li>
+      </ul>
+      <div class="t-cost-note">Brand cost est.: RM 1,500–2,500 production (2 panels + net wrap)</div>
+    </div>
+    <!-- 6 months -->
+    <div class="tier-card tier-featured">
+      <div class="t-mo">6 <span>MO</span></div>
+      <div class="t-sub">Active Partner</div>
+      <div class="t-amt">RM 60,000</div>
+      <div class="t-per">total · RM 10,000/mo</div>
+      <div class="t-save">Save RM 12,000 · 17% off</div>
+      <ul class="t-features">
+        <li class="hi"><span class="ck">✓</span> 1 covered court (2 divider panels)</li>
+        <li><span class="ck">✓</span> Net branding on named court</li>
+        <li><span class="ck">✓</span> Court naming rights (6 months)</li>
+        <li><span class="ck">✓</span> 6 × PSC Instagram posts</li>
+        <li><span class="ck">✓</span> In-app banner (2 months)</li>
+        <li><span class="ck">✓</span> 2 × club announcement blasts</li>
+        <li class="hi"><span class="ck">✓</span> 1 community open play session/mo</li>
+        <li><span class="ck">✓</span> 1 × co-branded event</li>
+        <li><span class="ck">✓</span> Soft category exclusivity</li>
+      </ul>
+      <div class="t-cost-note">Incl. 6 hosted open play sessions (RM ~2,700 cost to PSC)</div>
+    </div>
+    <!-- 9 months -->
+    <div class="tier-card">
+      <div class="t-mo">9 <span>MO</span></div>
+      <div class="t-sub">Strategic Partner</div>
+      <div class="t-amt">RM 81,000</div>
+      <div class="t-per">total · RM 9,000/mo</div>
+      <div class="t-save">Save RM 27,000 · 25% off</div>
+      <div class="t-divider"></div>
+      <ul class="t-features">
+        <li class="hi"><span class="ck">✓</span> 2 courts: 1 outdoor + 1 covered</li>
+        <li><span class="ck">✓</span> 4 divider panels + 2 nets</li>
+        <li><span class="ck">✓</span> 9 × PSC Instagram posts</li>
+        <li><span class="ck">✓</span> In-app banner (3 months)</li>
+        <li><span class="ck">✓</span> 1 Viewing Area branded</li>
+        <li><span class="ck">✓</span> 3 × club announcement blasts</li>
+        <li class="hi"><span class="ck">✓</span> 2 community open play sessions/mo</li>
+        <li><span class="ck">✓</span> 2 × co-branded events</li>
+        <li class="hi"><span class="ck">✓</span> Full category exclusivity</li>
+      </ul>
+      <div class="t-cost-note">Incl. 18 hosted sessions (RM ~8,100 cost to PSC)</div>
+    </div>
+    <!-- 12 months -->
+    <div class="tier-card">
+      <div class="t-mo">12 <span>MO</span></div>
+      <div class="t-sub">Title Partner</div>
+      <div class="t-amt">RM 120,000</div>
+      <div class="t-per">total · RM 10,000/mo</div>
+      <div class="t-save">Save RM 24,000 · 17% off</div>
+      <div class="t-divider"></div>
+      <ul class="t-features">
+        <li class="hi"><span class="ck">✓</span> 2 covered courts (4 divider panels)</li>
+        <li><span class="ck">✓</span> 2 nets + mezzanine wall</li>
+        <li><span class="ck">✓</span> 12 × PSC Instagram posts</li>
+        <li class="hi"><span class="ck">✓</span> In-app + email (6 months each)</li>
+        <li><span class="ck">✓</span> Both Viewing Areas branded</li>
+        <li><span class="ck">✓</span> 4 × club announcement blasts</li>
+        <li class="hi"><span class="ck">✓</span> 2 community open play sessions/mo</li>
+        <li><span class="ck">✓</span> 3 × co-branded events</li>
+        <li class="hi"><span class="ck">✓</span> Full category exclusivity</li>
+      </ul>
+      <div class="t-cost-note">Incl. 24 hosted sessions (RM ~10,800 cost to PSC)</div>
+    </div>
+  </div>
+  <div style="margin-top:24px;padding:22px 28px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:12px;display:flex;align-items:flex-start;gap:20px;">
+    <div style="flex-shrink:0;width:40px;height:40px;background:var(--lime);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-top:2px;">🏦</div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--lime);margin-bottom:6px;">Proven by a Leading Malaysian Bank</div>
+      <p style="font-size:13px;color:rgba(245,240,232,0.75);line-height:1.65;font-weight:300;">One of Malaysia's leading banks has already partnered with PSC under a bespoke ecosystem model — covering full venue branding, digital channels, dedicated cardholder sessions, and a Signature Branded Open Tournament as the campaign centrepiece. That partnership blueprint is available to qualifying brands. See Section 06 for full details.</p>
+    </div>
+  </div>
+  <p style="margin-top:16px;font-size:11.5px;color:rgba(245,240,232,0.35);line-height:1.7;">Community open play sessions: 2-hour hosted session with a court coordinator. Branded as "[Brand] Open Play at PSC." Included sessions run during off-peak slots. All tiers exclude SST (8%) and material production costs.</p>
+</div>
+
+<!-- S6: ECOSYSTEM DEAL — toned down -->
+<div class="section">
+  <div class="s-tag">Section 06</div>
+  <div class="s-title">The Ecosystem Partnership</div>
+  <p class="s-intro">For brands that want more than visibility — a fully integrated commercial platform built around PSC's community, database, and digital infrastructure. A brand mechanic that drives measurable acquisition, not just awareness.</p>
+
+  <div class="flagship-wrap">
+    <div class="flagship-header">
+      <div class="fh-text">
+        <h3>How the Ecosystem<br>Partnership Works</h3>
+        <p>The most effective brand partnerships at PSC go beyond court banners. By tying an exclusive member benefit — such as early court access, dedicated sessions, or a loyalty reward — to a brand registration or card sign-up, the brand creates a genuine incentive to acquire. PSC provides the audience, the platform, and the activation environment.</p>
+        <p style="margin-top:10px;">This structure works for any brand with a sign-up or acquisition mechanic: banks and fintech, insurance, automotive, premium F&amp;B, and wellness brands with loyalty products are the clearest fit.</p>
+      </div>
+      <div class="flagship-price-tag">
+        <div class="fp-label">Starting from</div>
+        <div class="fp-num">RM 180K</div>
+        <div class="fp-per">3-month engagement · custom scoped</div>
+      </div>
+    </div>
+    <div class="flagship-grid">
+      <div class="fg-card">
+        <h5>Physical Presence</h5>
+        <ul>
+          <li>Full venue court naming + all divider panels</li>
+          <li>Mezzanine wall (480cm × 300cm)</li>
+          <li>Both viewing areas branded</li>
+          <li>Net branding across all 8 courts</li>
+          <li>Flag poles + fence banners venue-wide</li>
+          <li>Branded backdrop at reception</li>
+        </ul>
+      </div>
+      <div class="fg-card">
+        <h5>Digital & Community</h5>
+        <ul>
+          <li>In-app banner — full campaign period</li>
+          <li>Booking confirmation email footer</li>
+          <li>Club-wide announcement blasts</li>
+          <li>Dedicated session access for brand users</li>
+          <li>18.2K Instagram content integration</li>
+          <li>Loyalty programme co-branding</li>
+        </ul>
+      </div>
+      <div class="fg-card">
+        <h5>Activation & Events</h5>
+        <ul>
+          <li>Exclusive member benefit mechanic</li>
+          <li>Signature Branded Open Tournament</li>
+          <li>Dedicated brand cardholder sessions</li>
+          <li>Multiple co-branded lifestyle events</li>
+          <li>Joint PR and content production</li>
+          <li>Full category exclusivity — no competitors</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flagship-note">This partnership model has been validated with a major Malaysian bank in 2025 — covering physical branding, digital channels, a dedicated cardholder session programme, and a Signature Branded Open Tournament as the campaign centrepiece. The 2026 version adds PSC's loyalty programme as a new co-branding layer.</div>
+  </div>
+</div>
+
+<!-- S7: DELIVERABLES TABLE — dark, properly readable -->
+<div class="section section-dark">
+  <div class="s-tag">Section 07</div>
+  <div class="s-title">Full Deliverables by Tier</div>
+  <p class="s-intro">A concise breakdown of every included deliverable across the four standard partnership durations.</p>
+
+  <div class="pkg-wrap">
+    <table class="pkg-table">
+      <thead><tr>
+        <th style="width:36%;">Deliverable</th>
+        <th class="c">3 Mo<br><span style="font-size:9px;color:rgba(255,255,255,0.25);font-weight:400;">RM 36K</span></th>
+        <th class="c">6 Mo<br><span style="font-size:9px;color:rgba(255,255,255,0.25);font-weight:400;">RM 60K</span></th>
+        <th class="c">9 Mo<br><span style="font-size:9px;color:rgba(255,255,255,0.25);font-weight:400;">RM 81K</span></th>
+        <th class="c">12 Mo<br><span style="font-size:9px;color:rgba(255,255,255,0.25);font-weight:400;">RM 120K</span></th>
+      </tr></thead>
+      <tbody>
+        <tr class="sr"><td colspan="5">Physical Branding</td></tr>
+        <tr><td class="fn">Named courts</td><td class="c">1 outdoor</td><td class="c hg">1 covered</td><td class="c hg">1 out + 1 cov</td><td class="c hg">2 covered</td></tr>
+        <tr><td class="fn">Court divider panels (147×89cm)</td><td class="c">2 panels</td><td class="c">2 panels</td><td class="c hg">4 panels</td><td class="c hg">4 panels</td></tr>
+        <tr><td class="fn">Net branding</td><td class="c">1 net</td><td class="c">1 net</td><td class="c hg">2 nets</td><td class="c hg">2 nets</td></tr>
+        <tr><td class="fn">Mezzanine container wall</td><td class="c"><span class="cross">–</span></td><td class="c"><span class="cross">–</span></td><td class="c"><span class="cross">–</span></td><td class="c hg"><span class="tick">✓</span></td></tr>
+        <tr><td class="fn">Spectator / Viewing Area</td><td class="c"><span class="cross">–</span></td><td class="c"><span class="cross">–</span></td><td class="c hg">1 zone</td><td class="c hg">Both zones</td></tr>
+        <tr class="sr"><td colspan="5">Digital</td></tr>
+        <tr><td class="fn">PSC Instagram branded posts</td><td class="c">3 posts</td><td class="c hg">6 posts</td><td class="c hg">9 posts</td><td class="c hg">12 posts</td></tr>
+        <tr><td class="fn">In-app banner (Playbypoint)</td><td class="c"><span class="cross">–</span></td><td class="c hg">2 months</td><td class="c hg">3 months</td><td class="c hg">6 months</td></tr>
+        <tr><td class="fn">Booking confirmation email</td><td class="c"><span class="cross">–</span></td><td class="c"><span class="cross">–</span></td><td class="c"><span class="cross">–</span></td><td class="c hg">6 months</td></tr>
+        <tr><td class="fn">Club-wide announcement blasts</td><td class="c">1×</td><td class="c">2×</td><td class="c hg">3×</td><td class="c hg">4×</td></tr>
+        <tr class="sr"><td colspan="5">Community & Events</td></tr>
+        <tr><td class="fn">Branded open play sessions (hosted, 2hrs)</td><td class="c"><span class="cross">–</span></td><td class="c hg">1× / month</td><td class="c hg">2× / month</td><td class="c hg">2× / month</td></tr>
+        <tr><td class="fn">Co-branded lifestyle events</td><td class="c"><span class="cross">–</span></td><td class="c hg">1 event</td><td class="c hg">2 events</td><td class="c hg">3 events</td></tr>
+        <tr><td class="fn">Category exclusivity</td><td class="c"><span class="cross">–</span></td><td class="c">Soft</td><td class="c hg">Full</td><td class="c hg">Full</td></tr>
+        <tr><td class="fn">Quarterly brand impact report</td><td class="c"><span class="cross">–</span></td><td class="c"><span class="cross">–</span></td><td class="c"><span class="tick">✓</span></td><td class="c"><span class="tick">✓</span></td></tr>
+        <tr class="tr"><td>Total Investment</td><td class="amt">RM 36,000</td><td class="amt">RM 60,000</td><td class="amt">RM 81,000</td><td class="amt">RM 120,000</td></tr>
+        <tr class="tr2"><td>Effective monthly rate</td><td class="amt">RM 12,000</td><td class="amt">RM 10,000</td><td class="amt">RM 9,000</td><td class="amt">RM 10,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Let's Build Something Together</h2>
+  <p>Partnership slots are limited by court and category. The right brand gets first-mover advantage at KL's most prestigious pickleball venue.</p>
+  <a href="mailto:hello@picklesocialclub.co" class="cta-btn">Enquire Now</a>
+  <a href="#" class="cta-btn out">Download This Deck</a>
+</div>
+
+<div class="footnote">
+  <strong>Notes & Terms</strong><br>
+  All rates in Malaysian Ringgit (RM), excluding SST (8%) unless stated. Rates are indicative and subject to final commercial proposal and management approval. Minimum engagement for all monthly placement products is 3 months. Court divider panel counts: 2 panels per named court (left and right barriers). Total venue inventory: 12 branded divider panels across all 8 courts. Category exclusivity scope confirmed at signing. Production and installation of all branded materials at brand's cost; PSC approves all designs and manages installation scheduling. Community open play sessions are 2-hour hosted sessions during off-peak court hours; branded as "[Brand] Open Play at PSC." Ecosystem Partnership is fully bespoke and scoped individually. Data sourced from Playbypoint platform, June 2026. Momentum (Thud Thud Sdn. Bhd.) is the authorised commercial representative for PSC brand partnerships.
+</div>
+</body>
+</html>
