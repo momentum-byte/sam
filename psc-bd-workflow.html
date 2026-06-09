@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSC — BD Team Workflows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --purple-50: #EEEDFE;
+  --purple-300: #AFA9EC;
+  --purple-600: #534AB7;
+  --purple-800: #3C3489;
+  --teal-50: #E1F5EE;
+  --teal-300: #5DCAA5;
+  --teal-600: #0F6E56;
+  --teal-800: #085041;
+  --amber-50: #FAEEDA;
+  --amber-300: #EF9F27;
+  --amber-600: #854F0B;
+  --amber-800: #633806;
+  --coral-50: #FAECE7;
+  --coral-300: #F0997B;
+  --coral-600: #993C1D;
+  --coral-800: #712B13;
+  --pink-50: #FBEAF0;
+  --pink-300: #ED93B1;
+  --pink-800: #72243E;
+  --blue-50: #E6F1FB;
+  --blue-300: #85B7EB;
+  --blue-800: #0C447C;
+  --gray-50: #F1EFE8;
+  --gray-200: #E8E6E0;
+  --gray-400: #888780;
+  --gray-600: #5F5E5A;
+  --gray-800: #444441;
+  --border: #D8D6CE;
+  --border-light: #EDEBE6;
+  --text: #2C2C2A;
+  --text-muted: #5F5E5A;
+  --text-faint: #888780;
+  --bg: #FAF9F6;
+  --bg-secondary: #F3F1EC;
+  --white: #FFFFFF;
+  --red-50: #FDEAEA;
+  --red-600: #D97A7A;
+  --red-800: #6B1414;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ─── TOP NAV ─── */
+.top-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 24px;
+}
+
+.top-nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  gap: 16px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-badge {
+  background: var(--text);
+  color: var(--bg);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+.nav-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 400;
+  display: none;
+}
+
+@media (min-width: 480px) { .nav-label { display: block; } }
+
+.nav-tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.nav-tab {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-faint);
+  background: transparent;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.nav-tab:hover { background: var(--bg-secondary); color: var(--text); }
+.nav-tab.active { background: var(--text); color: var(--white); }
+
+/* ─── PAGE HEADER ─── */
+.page-header {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px 32px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.page-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+
+.page-title {
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.page-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 600px;
+}
+
+/* ─── SECTIONS ─── */
+.section {
+  display: none;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 36px 24px 80px;
+}
+
+.section.active { display: block; }
+
+.section-header {
+  margin-bottom: 28px;
+}
+
+.section-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.section-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ─── INBOUND & OUTBOUND: FLOW DIAGRAM ─── */
+.flow-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px 28px 40px;
+  overflow-x: auto;
+}
+
+/* ─── INBOUND SPECIFIC ─── */
+.flow-wrap { max-width: 680px; margin: 0 auto; }
+
+.start-pill { display: flex; justify-content: center; margin-bottom: 10px; }
+.start-pill span {
+  background: var(--gray-50);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 40px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-800);
+}
+
+.end-pill { display: flex; justify-content: center; margin-top: 8px; }
+.end-pill span {
+  background: var(--teal-50);
+  border: 1.5px solid var(--teal-300);
+  border-radius: 999px;
+  padding: 8px 40px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--teal-800);
+}
+
+.dead-pill { display: flex; justify-content: center; margin-top: 6px; }
+.dead-pill span {
+  background: var(--gray-50);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 20px;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.arrow { display: flex; justify-content: center; margin: 5px 0; }
+.arrow svg { display: block; }
+
+.phase-block {
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 16px 18px 20px;
+  margin-bottom: 6px;
+  background: var(--white);
+}
+
+.phase-lbl {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--text-faint);
+  margin-bottom: 12px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.step {
+  border-radius: 9px;
+  padding: 12px 18px;
+  width: 100%;
+}
+
+.step-t { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.step-s { font-size: 12px; font-weight: 400; }
+
+.s-purple { background: var(--purple-50); border: 1.5px solid var(--purple-600); }
+.s-purple .step-t { color: var(--purple-800); }
+.s-purple .step-s { color: var(--purple-600); }
+
+.s-teal { background: var(--teal-50); border: 1.5px solid var(--teal-600); }
+.s-teal .step-t { color: var(--teal-800); }
+.s-teal .step-s { color: var(--teal-600); }
+
+.s-coral { background: var(--coral-50); border: 1.5px solid var(--coral-600); }
+.s-coral .step-t { color: var(--coral-800); }
+.s-coral .step-s { color: var(--coral-600); }
+
+.s-amber { background: var(--amber-50); border: 1.5px solid var(--amber-600); }
+.s-amber .step-t { color: var(--amber-800); }
+.s-amber .step-s { color: var(--amber-600); }
+
+.s-green { background: #E8F5E2; border: 1.5px solid #7BBF68; }
+.s-green .step-t { color: #2A5C18; }
+.s-green .step-s { color: #3A7822; }
+
+.s-grey { background: var(--gray-50); border: 1.5px solid var(--border); }
+.s-grey .step-t { color: var(--gray-800); }
+.s-grey .step-s { color: var(--gray-600); }
+
+.s-red { background: var(--red-50); border: 1.5px solid var(--red-600); }
+.s-red .step-t { color: var(--red-800); }
+.s-red .step-s { color: #9E2C2C; }
+
+.branch-row { display: flex; gap: 12px; margin-top: 6px; }
+.branch-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.branch-col .step { width: 100%; }
+
+.btag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+.btag-yes { background: #D4EDE4; color: var(--teal-800); }
+.btag-no  { background: var(--red-50); color: var(--red-800); }
+.btag-reply { background: #D4EDE4; color: var(--teal-800); }
+.btag-wait  { background: var(--amber-50); color: var(--amber-800); }
+
+.diamond-wrap { display: flex; justify-content: center; margin: 4px 0; }
+
+.flow-note {
+  background: #F5F3FF;
+  border: 1px solid #C8C4F0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #5A5499;
+}
+
+.or-sep {
+  display: flex;
+  align-items: center;
+  color: var(--border);
+  font-size: 20px;
+  font-weight: 300;
+  padding: 0 4px;
+}
+
+/* ─── OUTBOUND: SVG CHART ─── */
+.outbound-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px 28px 40px;
+  overflow-x: auto;
+}
+
+.outbound-legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ─── PRIVATE EVENTS: SWIMLANE ─── */
+.events-wrap {
+  overflow-x: auto;
+}
+
+.swim-diagram {
+  min-width: 860px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.swim-header {
+  padding: 18px 20px 14px;
+  border-bottom: 2px solid var(--border);
+  background: var(--white);
+}
+
+.swim-header-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.lane-headers {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--border);
+}
+
+.phase-spacer {
+  width: 80px;
+  min-width: 80px;
+  background: var(--bg-secondary);
+  border-right: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-faint);
+  padding: 10px 5px;
+  text-align: center;
+}
+
+.lane-header-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  flex: 1;
+}
+
+.lane-header-cell {
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.lane-header-cell:last-child { border-right: none; }
+
+.phase-row-swim {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.phase-row-swim:last-child { border-bottom: none; }
+
+.phase-label-cell {
+  width: 80px;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+  border-right: 2px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.phase-num-sm {
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.65;
+  margin-bottom: 3px;
+  font-family: 'DM Mono', monospace;
+}
+
+.swim-lanes-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  flex: 1;
+}
+
+.swim-lane {
+  padding: 10px 7px;
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.swim-lane:last-child { border-right: none; }
+
+.swim-box {
+  width: 100%;
+  border-radius: 6px;
+  padding: 7px 8px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.swim-bt { font-weight: 600; font-size: 11px; margin-bottom: 2px; }
+.swim-bs { font-size: 10px; opacity: 0.75; }
+
+.swim-dn {
+  color: var(--text-faint);
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* swim box colours */
+.c-ev { background: var(--purple-50); color: var(--purple-800); border: 0.5px solid var(--purple-300); }
+.c-mg { background: var(--pink-50); color: var(--pink-800); border: 0.5px solid var(--pink-300); }
+.c-fi { background: var(--coral-50); color: var(--coral-800); border: 0.5px solid var(--coral-300); }
+.c-op { background: var(--teal-50); color: var(--teal-800); border: 0.5px solid var(--teal-300); }
+.c-cl { background: var(--amber-50); color: var(--amber-800); border: 0.5px solid var(--amber-300); }
+.c-xt { background: var(--blue-50); color: var(--blue-800); border: 0.5px solid var(--blue-300); }
+.c-warn { background: #FFF8E6; color: var(--amber-600); border: 1px dashed var(--amber-300); }
+.c-tip { background: var(--bg-secondary); color: var(--text-muted); border: 1px dashed var(--border); }
+
+/* phase label colours */
+.ph1 .phase-label-cell { color: var(--purple-800); border-right-color: var(--purple-600); }
+.ph2 .phase-label-cell { color: var(--pink-800); border-right-color: #D4537E; }
+.ph3 .phase-label-cell { color: var(--teal-800); border-right-color: #1D9E75; }
+.ph4 .phase-label-cell { color: var(--blue-800); border-right-color: #378ADD; }
+.ph5 .phase-label-cell { color: var(--amber-800); border-right-color: #BA7517; }
+.ph6 .phase-label-cell { color: var(--gray-800); border-right-color: var(--gray-400); }
+
+.swim-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+.swim-lg-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.swim-lg-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ─── FOOTER ─── */
+.page-footer {
+  border-top: 1px solid var(--border);
+  padding: 16px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .page-header { padding: 28px 16px 24px; }
+  .section { padding: 24px 16px 60px; }
+  .flow-card, .outbound-wrap { padding: 20px 14px 28px; }
+  .top-nav { padding: 0 16px; }
+  .nav-tab { font-size: 11px; padding: 6px 9px; }
+  .branch-row { flex-direction: column; gap: 8px; }
+  .branch-col { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="top-nav-inner">
+    <div class="nav-brand">
+      <div class="nav-badge">PSC</div>
+      <span class="nav-label">BD Team Workflows</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showSection('inbound', this)">Inbound</button>
+      <button class="nav-tab" onclick="showSection('outbound', this)">Outbound</button>
+      <button class="nav-tab" onclick="showSection('events', this)">Private Events</button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">Pickle Social Club &middot; Business Development</div>
+  <h1 class="page-title">BD Team Workflows</h1>
+  <p class="page-sub">End-to-end process documentation for managing inbound partnerships, outbound outreach, and private event inquiries.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 1: INBOUND
+═══════════════════════════════════════════════ -->
+<section class="section active" id="inbound">
+  <div class="section-header">
+    <div class="section-eyebrow">Workflow 1 of 3</div>
+    <div class="section-title">BD Inbound Workflow</div>
+    <div class="section-sub">End-to-end process from inquiry received to deal confirmed.</div>
+  </div>
+
+  <div class="flow-card">
+    <div class="flow-wrap">
+
+      <!-- START -->
+      <div class="start-pill"><span>Start</span></div>
+      <div class="arrow"><svg width="18" height="26" viewBox="0 0 18 26"><line x1="9" y1="0" x2="9" y2="18" stroke="#aaa" stroke-width="1.5"/><polyline points="4,14 9,22 14,14" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+
+      <!-- PHASE 1 -->
+      <div class="phase-block">
+        <div class="phase-lbl">Phase 1 &mdash; Inquiry received</div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div class="step s-purple" style="flex:1">
+            <div class="step-t">Email inquiry</div>
+            <div class="step-s">Received at hello@picklesocialclub.co or events@picklesocialclub.co</div>
+          </div>
+          <div class="or-sep">or</div>
+          <div class="step s-purple" style="flex:1">
+            <div class="step-t">Brand partnership form</div>
+            <div class="step-s">Submitted via PSC website &mdash; auto-routes to hello@picklesocialclub.co</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow"><svg width="18" height="26" viewBox="0 0 18 26"><line x1="9" y1="0" x2="9" y2="18" stroke="#aaa" stroke-width="1.5"/><polyline points="4,14 9,22 14,14" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase-block">
+        <div class="phase-lbl">Phase 2 &mdash; Review &amp; qualify</div>
+        <div class="step s-teal">
+          <div class="step-t">BD team reviews the inquiry</div>
+          <div class="step-s">Assess fit, potential value, and partnership viability</div>
+        </div>
+        <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="diamond-wrap">
+          <svg width="150" height="56" viewBox="0 0 150 56">
+            <polygon points="75,4 144,28 75,52 6,28" fill="#FEF3E0" stroke="#E0A83A" stroke-width="1.5"/>
+            <text x="75" y="32" text-anchor="middle" font-size="12" font-weight="600" fill="#6B4200" font-family="DM Sans,sans-serif">Good fit?</text>
+          </svg>
+        </div>
+        <div class="branch-row">
+          <div class="branch-col">
+            <div class="btag btag-yes">Yes &mdash; good fit</div>
+            <div class="step s-teal">
+              <div class="step-t">Forward to BD inbox</div>
+              <div class="step-s">Forward to bd@picklesocialclub.co to action</div>
+            </div>
+          </div>
+          <div class="branch-col">
+            <div class="btag btag-no">Not a fit</div>
+            <div class="step s-red">
+              <div class="step-t">Reply to decline</div>
+              <div class="step-s">Politely inform them we won't be proceeding after internal review</div>
+            </div>
+            <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <div class="step s-grey">
+              <div class="step-t">Archive lead</div>
+              <div class="step-s">Log and archive for future reference</div>
+            </div>
+            <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <div class="dead-pill"><span>End &mdash; no further action</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow"><svg width="18" height="26" viewBox="0 0 18 26"><line x1="9" y1="0" x2="9" y2="18" stroke="#aaa" stroke-width="1.5"/><polyline points="4,14 9,22 14,14" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+
+      <!-- PHASE 3 -->
+      <div class="phase-block">
+        <div class="phase-lbl">Phase 3 &mdash; BD outreach</div>
+        <div class="step s-coral">
+          <div class="step-t">Internal discussion</div>
+          <div class="step-s">BD team discusses the opportunity and aligns on approach</div>
+        </div>
+        <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="step s-coral">
+          <div class="step-t">Revert to client / brand</div>
+          <div class="step-s">Kickstart the conversation and explore the partnership opportunity</div>
+        </div>
+        <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="diamond-wrap">
+          <svg width="150" height="56" viewBox="0 0 150 56">
+            <polygon points="75,4 144,28 75,52 6,28" fill="#FEF3E0" stroke="#E0A83A" stroke-width="1.5"/>
+            <text x="75" y="32" text-anchor="middle" font-size="12" font-weight="600" fill="#6B4200" font-family="DM Sans,sans-serif">Client replies?</text>
+          </svg>
+        </div>
+        <div class="branch-row">
+          <div class="branch-col">
+            <div class="btag btag-reply">Yes &mdash; replied</div>
+            <div class="step s-coral">
+              <div class="step-t">Continue conversation</div>
+              <div class="step-s">Discuss further to build a clearer picture of the partnership</div>
+            </div>
+          </div>
+          <div class="branch-col">
+            <div class="btag btag-wait">No reply yet</div>
+            <div class="step s-amber">
+              <div class="step-t">Send follow-up</div>
+              <div class="step-s">Follow up within a few business days if no response received</div>
+            </div>
+            <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <div class="step s-grey">
+              <div class="step-t">Still no response</div>
+              <div class="step-s">Close out the lead &mdash; no further follow-up</div>
+            </div>
+            <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            <div class="dead-pill"><span>End &mdash; lead closed</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arrow"><svg width="18" height="26" viewBox="0 0 18 26"><line x1="9" y1="0" x2="9" y2="18" stroke="#aaa" stroke-width="1.5"/><polyline points="4,14 9,22 14,14" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+
+      <!-- PHASE 4 -->
+      <div class="phase-block">
+        <div class="phase-lbl">Phase 4 &mdash; Proposal &amp; negotiation</div>
+        <div class="step s-coral">
+          <div class="step-t">Send proposal</div>
+          <div class="step-s">BD team prepares and sends the partnership proposal to the client</div>
+        </div>
+        <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="step s-coral">
+          <div class="step-t">Client reviews &amp; responds</div>
+          <div class="step-s">Client may come back with questions, feedback, or requests to negotiate</div>
+        </div>
+        <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="step s-coral">
+          <div class="step-t">Discuss &amp; find middle ground</div>
+          <div class="step-s">BD team works through negotiations until both parties are aligned</div>
+        </div>
+        <div class="flow-note">
+          &#x1F4CB;&nbsp; Throughout this phase, management (Mark &amp; Dorcas) are kept in the loop on a weekly basis on all active leads and moving parts.
+        </div>
+      </div>
+
+      <div class="arrow"><svg width="18" height="26" viewBox="0 0 18 26"><line x1="9" y1="0" x2="9" y2="18" stroke="#aaa" stroke-width="1.5"/><polyline points="4,14 9,22 14,14" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+
+      <!-- PHASE 5 -->
+      <div class="phase-block">
+        <div class="phase-lbl">Phase 5 &mdash; Approval &amp; sign-off</div>
+        <div class="step s-amber">
+          <div class="step-t">Final management approval</div>
+          <div class="step-s">Mark &amp; Dorcas give final sign-off to confirm and close the deal</div>
+        </div>
+        <div class="arrow"><svg width="18" height="22" viewBox="0 0 18 22"><line x1="9" y1="0" x2="9" y2="14" stroke="#aaa" stroke-width="1.5"/><polyline points="4,10 9,18 14,10" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="step s-green">
+          <div class="step-t">Client signs partnership offer letter</div>
+          <div class="step-s">Partnership is finalised and officially confirmed</div>
+        </div>
+      </div>
+
+      <div class="arrow"><svg width="18" height="26" viewBox="0 0 18 26"><line x1="9" y1="0" x2="9" y2="18" stroke="#aaa" stroke-width="1.5"/><polyline points="4,14 9,22 14,14" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div class="end-pill"><span>Deal confirmed &#x2713;</span></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 2: OUTBOUND
+═══════════════════════════════════════════════ -->
+<section class="section" id="outbound">
+  <div class="section-header">
+    <div class="section-eyebrow">Workflow 2 of 3</div>
+    <div class="section-title">Outbound Outreach Workflow</div>
+    <div class="section-sub">Business development team &mdash; current state process map. Response check: daily.</div>
+  </div>
+
+  <div class="outbound-wrap">
+    <div class="outbound-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#EEEDFE;border:1px solid #534AB7"></div>Prep &amp; organise</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E1F5EE;border:1px solid #0F6E56"></div>Outreach &amp; nurture</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#FAEEDA;border:1px solid #854F0B"></div>Monitoring</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#FAECE7;border:1px solid #993C1D"></div>No reply path</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#F1EFE8;border:1px solid #5F5E5A"></div>Admin / close</div>
+    </div>
+
+    <svg width="100%" viewBox="0 0 780 1340" xmlns="http://www.w3.org/2000/svg" style="display:block;min-width:400px">
+      <defs>
+        <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Phase 1 -->
+      <rect x="20" y="16" width="740" height="174" rx="10" fill="none" stroke="#d8d6ce" stroke-width="0.8" stroke-dasharray="5 3"/>
+      <text x="36" y="34" font-size="11" font-style="italic" fill="#888780" font-family="DM Sans,sans-serif" dominant-baseline="central">Phase 1 &mdash; Prep</text>
+
+      <rect x="290" y="44" width="200" height="38" rx="19" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+      <text x="390" y="63" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#444441" font-family="DM Sans,sans-serif">Start</text>
+
+      <line x1="390" y1="82" x2="390" y2="108" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <rect x="60" y="108" width="660" height="66" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+      <text x="390" y="128" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#3C3489" font-family="DM Sans,sans-serif">Extract contacts</text>
+      <text x="390" y="148" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#534AB7" font-family="DM Sans,sans-serif">Website, emails from different channels, offline inquiries (referrals / WhatsApp)</text>
+
+      <line x1="390" y1="174" x2="390" y2="204" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <!-- Phase 2 -->
+      <rect x="20" y="204" width="740" height="210" rx="10" fill="none" stroke="#d8d6ce" stroke-width="0.8" stroke-dasharray="5 3"/>
+      <text x="36" y="222" font-size="11" font-style="italic" fill="#888780" font-family="DM Sans,sans-serif" dominant-baseline="central">Phase 2 &mdash; Organise</text>
+
+      <rect x="80" y="232" width="620" height="82" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+      <text x="390" y="255" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#3C3489" font-family="DM Sans,sans-serif">Build spreadsheet tracker</text>
+      <text x="390" y="275" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#534AB7" font-family="DM Sans,sans-serif">Name, company, email, outreach status, follow-up date, responses</text>
+      <text x="390" y="293" text-anchor="middle" dominant-baseline="central" font-size="11" font-style="italic" fill="#7F77DD" font-family="DM Sans,sans-serif">Google Sheets / CRM</text>
+
+      <line x1="390" y1="314" x2="390" y2="342" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <rect x="155" y="342" width="470" height="54" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+      <text x="390" y="362" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#3C3489" font-family="DM Sans,sans-serif">Prioritise &amp; categorise leads</text>
+      <text x="390" y="382" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#534AB7" font-family="DM Sans,sans-serif">By potential value and source type</text>
+
+      <line x1="390" y1="396" x2="390" y2="426" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <!-- Phase 3 -->
+      <rect x="20" y="426" width="740" height="194" rx="10" fill="none" stroke="#d8d6ce" stroke-width="0.8" stroke-dasharray="5 3"/>
+      <text x="36" y="444" font-size="11" font-style="italic" fill="#888780" font-family="DM Sans,sans-serif" dominant-baseline="central">Phase 3 &mdash; Outreach</text>
+
+      <rect x="110" y="454" width="560" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+      <text x="390" y="474" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#085041" font-family="DM Sans,sans-serif">Send personalised outreach email</text>
+      <text x="390" y="494" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">Introduce PSC services and value</text>
+
+      <line x1="390" y1="508" x2="390" y2="538" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <rect x="130" y="538" width="520" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+      <text x="390" y="558" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#085041" font-family="DM Sans,sans-serif">Log outreach date in tracker</text>
+      <text x="390" y="578" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">Schedule follow-up reminder</text>
+
+      <line x1="390" y1="592" x2="390" y2="632" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <!-- Phase 4 -->
+      <rect x="20" y="632" width="740" height="672" rx="10" fill="none" stroke="#d8d6ce" stroke-width="0.8" stroke-dasharray="5 3"/>
+      <text x="36" y="650" font-size="11" font-style="italic" fill="#888780" font-family="DM Sans,sans-serif" dominant-baseline="central">Phase 4 &mdash; Response handling</text>
+
+      <rect x="195" y="662" width="390" height="68" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+      <text x="390" y="684" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#633806" font-family="DM Sans,sans-serif">Monitor for response</text>
+      <text x="390" y="704" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#854F0B" font-family="DM Sans,sans-serif">Checked daily &mdash; update deal stage and document any feedback</text>
+
+      <line x1="390" y1="730" x2="390" y2="758" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <rect x="220" y="758" width="340" height="44" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+      <text x="390" y="780" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#633806" font-family="DM Sans,sans-serif">Response received?</text>
+
+      <!-- Branch labels -->
+      <text x="104" y="816" text-anchor="middle" font-size="11" fill="#888780" font-family="DM Sans,sans-serif">No reply</text>
+      <line x1="220" y1="780" x2="104" y2="780" stroke="#888780" stroke-width="1"/>
+      <line x1="104" y1="780" x2="104" y2="830" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <text x="390" y="816" text-anchor="middle" font-size="11" fill="#888780" font-family="DM Sans,sans-serif">Yes &mdash; positive</text>
+      <line x1="390" y1="802" x2="390" y2="830" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <text x="672" y="816" text-anchor="middle" font-size="11" fill="#888780" font-family="DM Sans,sans-serif">Bounced</text>
+      <line x1="560" y1="780" x2="672" y2="780" stroke="#888780" stroke-width="1"/>
+      <line x1="672" y1="780" x2="672" y2="830" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <!-- Row 1 branches -->
+      <rect x="44" y="830" width="120" height="82" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+      <text x="104" y="852" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#712B13" font-family="DM Sans,sans-serif">Send follow-up</text>
+      <text x="104" y="870" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D" font-family="DM Sans,sans-serif">Follow-up 1 then</text>
+      <text x="104" y="886" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D" font-family="DM Sans,sans-serif">follow-up 2 if still</text>
+      <text x="104" y="902" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D" font-family="DM Sans,sans-serif">no reply</text>
+
+      <rect x="300" y="830" width="180" height="82" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+      <text x="390" y="852" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#085041" font-family="DM Sans,sans-serif">Move to &quot;in contact&quot;</text>
+      <text x="390" y="870" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">Update deal stage,</text>
+      <text x="390" y="886" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">log conversation</text>
+      <text x="390" y="902" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">in tracker</text>
+
+      <rect x="612" y="830" width="120" height="82" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+      <text x="672" y="852" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#444441" font-family="DM Sans,sans-serif">Log in tracker</text>
+      <text x="672" y="870" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F5E5A" font-family="DM Sans,sans-serif">Mark bounced,</text>
+      <text x="672" y="886" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F5E5A" font-family="DM Sans,sans-serif">verify email &amp;</text>
+      <text x="672" y="902" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F5E5A" font-family="DM Sans,sans-serif">retry or remove</text>
+
+      <line x1="104" y1="912" x2="104" y2="952" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+      <line x1="390" y1="912" x2="390" y2="952" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <!-- Row 2 branches -->
+      <rect x="44" y="952" width="120" height="82" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+      <text x="104" y="974" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#712B13" font-family="DM Sans,sans-serif">No response</text>
+      <text x="104" y="992" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D" font-family="DM Sans,sans-serif">after follow-up 2</text>
+      <text x="104" y="1008" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D" font-family="DM Sans,sans-serif">&rarr; mark inactive</text>
+      <text x="104" y="1024" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#993C1D" font-family="DM Sans,sans-serif">in tracker</text>
+
+      <rect x="290" y="952" width="200" height="82" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+      <text x="390" y="974" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#085041" font-family="DM Sans,sans-serif">Nurture relationship</text>
+      <text x="390" y="992" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">Ongoing check-ins,</text>
+      <text x="390" y="1008" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">share PSC updates</text>
+      <text x="390" y="1024" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">and developments</text>
+
+      <line x1="104" y1="1034" x2="104" y2="1074" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+      <line x1="390" y1="1034" x2="390" y2="1074" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <!-- Row 3 branches -->
+      <rect x="44" y="1074" width="120" height="68" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+      <text x="104" y="1096" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#444441" font-family="DM Sans,sans-serif">Close case</text>
+      <text x="104" y="1114" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F5E5A" font-family="DM Sans,sans-serif">No reply after all</text>
+      <text x="104" y="1130" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F5E5A" font-family="DM Sans,sans-serif">follow-ups &rarr; move on</text>
+
+      <rect x="200" y="1074" width="380" height="68" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+      <text x="390" y="1096" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#085041" font-family="DM Sans,sans-serif">Secure outcome</text>
+      <text x="390" y="1114" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">Ongoing convo, in-person meeting,</text>
+      <text x="390" y="1130" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#0F6E56" font-family="DM Sans,sans-serif">booking, referral, and etc.</text>
+
+      <line x1="390" y1="1142" x2="390" y2="1172" stroke="#888780" stroke-width="1" marker-end="url(#arr2)"/>
+
+      <rect x="155" y="1172" width="470" height="96" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+      <text x="390" y="1196" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#444441" font-family="DM Sans,sans-serif">Update tracker &amp; records</text>
+      <text x="390" y="1216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F5E5A" font-family="DM Sans,sans-serif">Close loop, note outcomes,</text>
+      <text x="390" y="1234" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5F5E5A" font-family="DM Sans,sans-serif">measure campaign effectiveness</text>
+      <text x="390" y="1252" text-anchor="middle" dominant-baseline="central" font-size="11" font-style="italic" fill="#888780" font-family="DM Sans,sans-serif">&#x21BB; feed insights into next outreach batch</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 3: PRIVATE EVENTS
+═══════════════════════════════════════════════ -->
+<section class="section" id="events">
+  <div class="section-header">
+    <div class="section-eyebrow">Workflow 3 of 3</div>
+    <div class="section-title">Private Events Workflow</div>
+    <div class="section-sub">End-to-end from first contact through to post-event closeout. Scroll horizontally to see all swimlanes.</div>
+  </div>
+
+  <div class="events-wrap">
+    <div class="swim-diagram">
+
+      <div class="swim-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+          <div style="font-size:15px;font-weight:600;color:var(--text)">PSC Private Events &mdash; Current Workflow</div>
+          <div style="font-size:10px;font-weight:500;padding:3px 10px;border-radius:12px;background:#EEEDFE;color:#3C3489;border:0.5px solid #AFA9EC;">As-Is / Current State</div>
+        </div>
+        <div class="swim-header-sub">This diagram reflects how private event inquiries are currently handled end-to-end, from first contact through to post-event closeout. It is intended to give all departments visibility of the existing process and to surface gaps for discussion.</div>
+      </div>
+
+      <!-- Lane headers -->
+      <div class="lane-headers">
+        <div class="phase-spacer">Phase</div>
+        <div class="lane-header-grid">
+          <div class="lane-header-cell" style="color:#3C3489">Events team</div>
+          <div class="lane-header-cell" style="color:#72243E">Management</div>
+          <div class="lane-header-cell" style="color:#712B13">Finance</div>
+          <div class="lane-header-cell" style="color:#085041">Operations / FOH</div>
+          <div class="lane-header-cell" style="color:#633806">Client</div>
+          <div class="lane-header-cell" style="color:#0C447C">External<br><span style="font-size:10px;font-weight:400">The Courts / RELA</span></div>
+        </div>
+      </div>
+
+      <!-- PHASE 1: INQUIRY -->
+      <div class="phase-row-swim ph1">
+        <div class="phase-label-cell"><span class="phase-num-sm">Phase 1</span>Inquiry</div>
+        <div class="swim-lanes-grid">
+          <div class="swim-lane">
+            <div class="swim-box c-ev"><div class="swim-bt">Receive inquiry</div><div class="swim-bs">Via email, WhatsApp, website form or referral</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Log in master sheet</div><div class="swim-bs">Status set to &ldquo;Pending&rdquo; &mdash; events team splits workload</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Send initial reply</div><div class="swim-bs">Ask for date, pax, event type, branding needs</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Site recce (if needed)</div><div class="swim-bs">Tour courts, show branding spots, explore tenant collabs</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-warn"><div class="swim-bt">No reply?</div><div class="swim-bs">Follow up after ~1 week. Max 2&ndash;3 nudges. Mark &ldquo;No Reply&rdquo; &amp; close if no response.</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-mg"><div class="swim-bt">Refers lead</div><div class="swim-bs">Mark or Dorcas passes inquiry to events team</div></div>
+          </div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane">
+            <div class="swim-box c-cl"><div class="swim-bt">Submits inquiry</div><div class="swim-bs">Via any channel</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-cl"><div class="swim-bt">Responds to questions</div><div class="swim-bs">Shares event requirements</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-cl"><div class="swim-bt">Attends site recce</div><div class="swim-bs">If requested</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-xt"><div class="swim-bt">The Courts / Jocelyn</div><div class="swim-bs">Forwards or shares inquiry with events team</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 2: BOOKING -->
+      <div class="phase-row-swim ph2">
+        <div class="phase-label-cell"><span class="phase-num-sm">Phase 2</span>Booking</div>
+        <div class="swim-lanes-grid">
+          <div class="swim-lane">
+            <div class="swim-box c-ev"><div class="swim-bt">Propose programme</div><div class="swim-bs">Draft itinerary; consult Wai Li if technical or sport-related</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Draft &amp; send quotation</div><div class="swim-bs">Event flow, court hours, all charges &mdash; PDF or email / WA</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Soft block court</div><div class="swim-bs">In PlayByPoint once date is shared</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Hard block court</div><div class="swim-bs">Once quotation is signed off by client</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-mg"><div class="swim-bt">Align on rates</div><div class="swim-bs">Discuss pricing or goodwill discounts before quotation is sent</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-mg"><div class="swim-bt">Approves quotation direction</div><div class="swim-bs">Signs off on any special pricing decisions</div></div>
+          </div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane">
+            <div class="swim-box c-cl"><div class="swim-bt">Reviews programme</div><div class="swim-bs">Requests revisions if needed</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-cl"><div class="swim-bt">Signs off quotation</div><div class="swim-bs">PDF for corporates; email / WA confirmation acceptable otherwise</div></div>
+          </div>
+          <div class="swim-lane"></div>
+        </div>
+      </div>
+
+      <!-- PHASE 3: PAYMENT -->
+      <div class="phase-row-swim ph3">
+        <div class="phase-label-cell"><span class="phase-num-sm">Phase 3</span>Payment</div>
+        <div class="swim-lanes-grid">
+          <div class="swim-lane">
+            <div class="swim-box c-ev"><div class="swim-bt">Collect client details</div><div class="swim-bs">Name, IC / Co. Reg, TIN, billing address</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Request invoice</div><div class="swim-bs">Tag Finance in [PSC] Invoice Issuance chat</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Forward invoice to client</div><div class="swim-bs">Full payment preferred; deposit accepted if needed</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Confirm payment received</div><div class="swim-bs">Update PlayByPoint &ldquo;[Paid]&rdquo;, send booking confirmation, post in Advance Booking chat</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-warn"><div class="swim-bt">Outstanding balance?</div><div class="swim-bs">Chase client if deposit was paid &mdash; follow up until fully settled</div></div>
+          </div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane">
+            <div class="swim-box c-fi"><div class="swim-bt">Generate invoice</div><div class="swim-bs">Upon request from events team</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-fi"><div class="swim-bt">Send invoice to events team</div><div class="swim-bs">For forwarding to client</div></div>
+          </div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane">
+            <div class="swim-box c-cl"><div class="swim-bt">Makes payment</div><div class="swim-bs">Full or deposit &mdash; timeline varies for corporates</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-cl"><div class="swim-bt">Sends proof of transaction</div><div class="swim-bs">Payment slip forwarded to events team</div></div>
+          </div>
+          <div class="swim-lane"></div>
+        </div>
+      </div>
+
+      <!-- PHASE 4: PREPARATION -->
+      <div class="phase-row-swim ph4">
+        <div class="phase-label-cell"><span class="phase-num-sm">Phase 4</span>Event prep</div>
+        <div class="swim-lanes-grid">
+          <div class="swim-lane">
+            <div class="swim-box c-ev"><div class="swim-bt">Secure manpower early</div><div class="swim-bs">Confirm coaches, facilitators, TDs &amp; referees once event is near-certain</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Confirm branding setup</div><div class="swim-bs">Align on items, permitted spots, timing &amp; access with client</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Notify if 40+ pax</div><div class="swim-bs">Inform Chye Ewe for RELA; pre-align client on additional cost</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Send booking form</div><div class="swim-bs">To FOH &amp; HQ group chat &mdash; 3 to 5 days before event</div></div>
+          </div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane">
+            <div class="swim-box c-op"><div class="swim-bt">Prepare equipment</div><div class="swim-bs">Tables, speakers, mics &mdash; charge &amp; stage all items</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-op"><div class="swim-bt">Print materials</div><div class="swim-bs">Scoreboards &amp; scoresheets if tournament fees charged</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-op"><div class="swim-bt">Overnight access</div><div class="swim-bs">Guard manages gate &amp; lights for branding crew if pre-7am or post-12am</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-cl"><div class="swim-bt">Confirms branding items</div><div class="swim-bs">Buntings, backdrops, display materials</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-xt"><div class="swim-bt">RELA arranged</div><div class="swim-bs">Via Chye Ewe if 40+ pax event</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 5: EVENT DAY -->
+      <div class="phase-row-swim ph5">
+        <div class="phase-label-cell"><span class="phase-num-sm">Phase 5</span>Event day</div>
+        <div class="swim-lanes-grid">
+          <div class="swim-lane">
+            <div class="swim-box c-ev"><div class="swim-bt">PIC on-site</div><div class="swim-bs">Lead execution &amp; assist client &mdash; arrange cover if PIC unavailable</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Coordinate all teams</div><div class="swim-bs">Ensure smooth operations throughout</div></div>
+          </div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane">
+            <div class="swim-box c-op"><div class="swim-bt">FOH on shift</div><div class="swim-bs">Execute setup; front desk aware of &ldquo;[Paid]&rdquo; status in PlayByPoint</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-cl"><div class="swim-bt">Runs event</div><div class="swim-bs">Supported by events team &amp; FOH throughout</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-xt"><div class="swim-bt">RELA on-site</div><div class="swim-bs">Traffic control if 40+ pax</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 6: POST EVENT -->
+      <div class="phase-row-swim ph6">
+        <div class="phase-label-cell"><span class="phase-num-sm">Phase 6</span>Post event</div>
+        <div class="swim-lanes-grid">
+          <div class="swim-lane">
+            <div class="swim-box c-ev"><div class="swim-bt">Chase outstanding balance</div><div class="swim-bs">Follow up if any add-on charges or deposit balance remains</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Update master sheet</div><div class="swim-bs">Mark event as fully closed once all payments settled</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-tip"><div class="swim-bt">Collect client feedback</div><div class="swim-bs">Recommended &mdash; not yet practised; useful for continuous improvement</div></div>
+            <div class="swim-dn">&#x2193;</div>
+            <div class="swim-box c-ev"><div class="swim-bt">Update management</div><div class="swim-bs">Loop in Mark / Dorcas on outcome if lead came via them</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-mg"><div class="swim-bt">Informed of outcome</div><div class="swim-bs">Notified by events team if lead was a management referral</div></div>
+          </div>
+          <div class="swim-lane">
+            <div class="swim-box c-fi"><div class="swim-bt">Issue receipt</div><div class="swim-bs">Once full payment confirmed &mdash; close booking in Finance records</div></div>
+          </div>
+          <div class="swim-lane"></div>
+          <div class="swim-lane">
+            <div class="swim-box c-cl"><div class="swim-bt">Settles outstanding balance</div><div class="swim-bs">If any remaining charges &mdash; timeline varies for corporates</div></div>
+          </div>
+          <div class="swim-lane"></div>
+        </div>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="swim-legend">
+        <div style="font-size:10px;font-weight:600;color:var(--text-muted);margin-right:4px">Legend:</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:#EEEDFE;border:0.5px solid #AFA9EC"></div>Events team</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:#FBEAF0;border:0.5px solid #ED93B1"></div>Management</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:#FAECE7;border:0.5px solid #F0997B"></div>Finance</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:#E1F5EE;border:0.5px solid #5DCAA5"></div>Operations / FOH</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:#FAEEDA;border:0.5px solid #EF9F27"></div>Client</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:#E6F1FB;border:0.5px solid #85B7EB"></div>External</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:#FFF8E6;border:1px dashed #EF9F27"></div>Watch point / follow-up needed</div>
+        <div class="swim-lg-item"><div class="swim-lg-dot" style="background:var(--bg-secondary);border:1px dashed var(--border)"></div>Recommended &mdash; not yet in practice</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <span class="footer-text">Pickle Social Club &mdash; Business Development</span>
+  <span class="footer-text">Internal use only &middot; Current state</span>
+</div>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  // scroll to top of content
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
