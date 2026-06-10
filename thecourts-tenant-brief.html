@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Courts Loyalty Programme — Tenant Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-pale: #FBF5E6;
+    --gold-mid: #E8D5A3;
+    --black: #111111;
+    --grey-dark: #3A3A3A;
+    --grey-mid: #888888;
+    --grey-light: #F4F4F2;
+    --border: #E4E4E4;
+    --green: #2D6A4F;
+    --green-pale: #EAF5EE;
+    --blue-pale: #EFF6FF;
+    --blue: #1D4ED8;
+    --white: #FFFFFF;
+  }
+
+  html { font-family: 'Inter', sans-serif; background: #EDECEA; color: var(--black); -webkit-font-smoothing: antialiased; }
+  body { max-width: 900px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  .doc-label {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 28px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .doc-label-left { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+  .doc-label-right { font-size: 11px; color: var(--grey-mid); }
+
+  .slide { background: var(--white); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 20px; overflow: hidden; }
+
+  .slide-header {
+    padding: 22px 32px 18px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+  }
+  .slide-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .slide-header h2 { font-size: clamp(18px, 2.6vw, 24px); font-weight: 800; line-height: 1.25; color: var(--black); }
+  .slide-header h2 em { font-style: normal; color: var(--gold); }
+  .slide-num { font-size: 11px; font-weight: 700; color: #CCCCCC; white-space: nowrap; padding-top: 2px; flex-shrink: 0; }
+
+  .slide-body { padding: 0 0 28px; display: flex; flex-direction: column; }
+  .s-section { padding: 20px 32px; }
+  .s-section + .s-section { border-top: 1px solid var(--border); }
+  .s-section.gap { display: flex; flex-direction: column; gap: 14px; }
+
+  /* ══ IDENTITY BLOCK ══ */
+  .identity-block {
+    background: var(--black); padding: 28px 32px 24px;
+    position: relative; overflow: hidden;
+  }
+  .identity-block::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), rgba(201,168,76,0.2));
+  }
+  .identity-eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(201,168,76,0.6); margin-bottom: 8px;
+  }
+  .identity-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 27px); font-weight: 900; color: var(--white);
+    line-height: 1.15; margin-bottom: 5px;
+  }
+  .identity-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(13px, 1.8vw, 16px); font-weight: 700;
+    color: var(--gold); margin-bottom: 18px;
+  }
+  .identity-divider { width: 36px; height: 1px; background: rgba(201,168,76,0.35); margin-bottom: 16px; }
+  .identity-punches {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px;
+  }
+  .id-punch {
+    font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.55;
+  }
+  .id-punch strong { color: var(--white); font-weight: 700; }
+
+  /* ══ HERO REWARD ══ */
+  .hero-reward {
+    background: var(--grey-light); border-radius: 10px; padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .hero-reward-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .hero-rewards-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .h-pill {
+    display: flex; align-items: center; gap: 5px;
+    background: var(--white); border: 1px solid var(--gold-mid);
+    border-radius: 30px; padding: 5px 12px;
+    font-size: 12px; font-weight: 700; color: #7A5010; white-space: nowrap;
+  }
+  .h-pill-icon { font-size: 12px; }
+  .hero-cta-block { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .scan-box {
+    background: var(--black); border-radius: 8px; width: 52px; height: 52px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .scan-box-inner { width: 36px; height: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .qr-tl { background: var(--white); border-radius: 3px 0 0 0; }
+  .qr-tr { background: var(--gold); border-radius: 0 3px 0 0; }
+  .qr-bl { background: var(--gold); border-radius: 0 0 0 3px; }
+  .qr-br { background: var(--white); border-radius: 0 0 3px 0; }
+  .cta-main { font-size: 13px; font-weight: 800; color: var(--black); line-height: 1.2; }
+  .cta-sub { font-size: 11px; color: var(--grey-mid); margin-top: 2px; }
+  .hero-reward-bottom {
+    font-size: 12px; color: var(--grey-mid); padding-top: 8px; border-top: 1px solid var(--border);
+  }
+  .hero-reward-bottom strong { color: var(--black); }
+
+  /* ══ SCAN JOURNEY ══ */
+  .scan-journey {
+    display: flex; align-items: stretch;
+    background: var(--gold-pale); border: 1px solid var(--gold-mid); border-radius: 10px; overflow: hidden;
+  }
+  .sj-step {
+    flex: 1; padding: 10px 10px; text-align: center; border-right: 1px solid var(--gold-mid);
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .sj-step:last-child { border-right: none; }
+  .sj-icon { font-size: 14px; }
+  .sj-label { font-size: 12px; font-weight: 800; color: var(--black); }
+  .sj-desc { font-size: 10px; color: #7A5010; line-height: 1.3; }
+
+  /* ══ STATS ══ */
+  .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .stat-block { padding: 14px 16px; border-right: 1px solid var(--border); }
+  .stat-block:last-child { border-right: none; }
+  .stat-num { font-size: 25px; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+  .stat-label strong { display: block; font-size: 11.5px; font-weight: 700; color: var(--black); margin-bottom: 1px; }
+  .stat-label span { font-size: 11px; color: var(--grey-mid); line-height: 1.35; display: block; }
+
+  /* ══ BEFORE / AFTER ══ */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .info-box { border-radius: 10px; padding: 15px 18px; }
+  .info-box.neutral { background: var(--grey-light); }
+  .info-box.gold { background: var(--gold-pale); border: 1px solid var(--gold-mid); }
+  .info-box h4 { font-size: 11.5px; font-weight: 800; color: var(--black); margin-bottom: 9px; letter-spacing: 0.01em; }
+  .info-box ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .info-box ul li { font-size: 12.5px; color: var(--grey-dark); line-height: 1.45; padding-left: 13px; position: relative; }
+  .info-box ul li::before { content: '—'; position: absolute; left: 0; color: var(--grey-mid); }
+
+  /* ══ REVENUE TAKEAWAY ══ */
+  .rev-takeaway {
+    background: var(--black); border-radius: 10px; padding: 16px 20px;
+    display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center;
+  }
+  .rev-left { display: flex; flex-direction: column; gap: 7px; }
+  .rev-tagline { display: flex; flex-wrap: wrap; gap: 6px; }
+  .rev-tag-pill {
+    background: rgba(201,168,76,0.18); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); font-size: 11.5px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+  }
+  .rev-body { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.65; }
+  .rev-body strong { color: var(--white); font-weight: 700; }
+  .rev-caveat { font-size: 10.5px; color: rgba(255,255,255,0.28); font-style: italic; }
+  .rev-right {
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 8px; padding: 12px 15px; text-align: center; flex-shrink: 0; white-space: nowrap;
+  }
+  .rev-num { font-size: 24px; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 3px; }
+  .rev-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.4; }
+
+  /* ══ SLIDE 2 ══ */
+  .benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+  .b-card { background: var(--grey-light); border-radius: 10px; padding: 15px; }
+  .b-card-icon { font-size: 17px; margin-bottom: 6px; }
+  .b-card h4 { font-size: 12.5px; font-weight: 800; color: var(--black); margin-bottom: 5px; line-height: 1.3; }
+  .b-card p { font-size: 12.5px; color: var(--black); font-weight: 700; line-height: 1.5; }
+  .b-card .example {
+    font-size: 11.5px; color: var(--grey-mid); margin-top: 7px; line-height: 1.5;
+    padding-top: 7px; border-top: 1px solid var(--border);
+  }
+  .b-card .example::before { content: '↳ '; color: var(--gold); font-weight: 700; }
+
+  .control-strip { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .control-header {
+    background: var(--grey-light); padding: 10px 17px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-mid);
+    display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+  }
+  .ch-main { color: var(--black); }
+  .ch-sub { color: var(--green); font-weight: 600; letter-spacing: 0; text-transform: none; font-size: 12px; }
+  .control-body { padding: 12px 17px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 14px; }
+  .control-item { font-size: 12px; color: var(--grey-dark); line-height: 1.45; padding-left: 14px; position: relative; }
+  .control-item::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; top: 1px; }
+  .control-footer {
+    padding: 8px 17px; background: var(--gold-pale); border-top: 1px solid var(--gold-mid);
+    font-size: 12px; color: #7A5010; font-weight: 700;
+  }
+
+  .data-row { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+  .data-card { border-radius: 10px; padding: 14px 16px; }
+  .data-card.green { background: var(--green-pale); }
+  .data-card.blue { background: var(--blue-pale); }
+  .data-card h4 { font-size: 12px; font-weight: 800; margin-bottom: 8px; }
+  .data-card.green h4 { color: var(--green); }
+  .data-card.blue h4 { color: var(--blue); }
+  .data-card ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .data-card ul li { font-size: 12px; color: var(--grey-dark); line-height: 1.45; padding-left: 13px; position: relative; }
+  .data-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--grey-mid); }
+
+  /* ══ SLIDE 3 ══ */
+  .mechanic-note {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--grey-light); border-radius: 8px; padding: 9px 15px;
+  }
+  .m-chip-sm {
+    background: var(--gold); color: var(--black); font-size: 12px; font-weight: 800;
+    padding: 4px 10px; border-radius: 5px; white-space: nowrap; flex-shrink: 0;
+  }
+  .m-text-sm { font-size: 12px; color: var(--grey-dark); line-height: 1.45; }
+
+  .rewards-label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--grey-mid); margin-bottom: 8px; }
+  .rewards-strip { display: flex; gap: 7px; flex-wrap: wrap; }
+  .reward-pill {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--gold-pale); border: 1px solid var(--gold-mid);
+    border-radius: 30px; padding: 6px 13px;
+    font-size: 12.5px; font-weight: 700; color: #7A5010; white-space: nowrap;
+  }
+  .reward-pill .pill-icon { font-size: 13px; }
+
+  .journey-title { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-mid); margin-bottom: 9px; }
+  .journey { display: flex; }
+  .j-step {
+    flex: 1; padding: 12px 10px; border-radius: 8px; background: var(--grey-light);
+    margin-right: 9px; position: relative; display: flex; flex-direction: column; gap: 3px;
+  }
+  .j-step:last-child { margin-right: 0; }
+  .j-step::after {
+    content: '→'; position: absolute; right: -11px; top: 50%; transform: translateY(-50%);
+    font-size: 13px; color: var(--gold); font-weight: 800; z-index: 1;
+  }
+  .j-step:last-child::after { display: none; }
+  .j-step.hi { background: var(--black); border: 1.5px solid rgba(201,168,76,0.5); }
+  .j-step.hi .j-title { color: var(--white); }
+  .j-step.hi .j-desc { color: rgba(255,255,255,0.5); }
+  .j-icon { font-size: 14px; }
+  .j-title { font-size: 11.5px; font-weight: 700; color: var(--black); }
+  .j-desc { font-size: 10.5px; color: var(--grey-mid); line-height: 1.35; }
+
+  .timeline-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+  .phase { border: 1px solid var(--border); border-radius: 10px; padding: 15px; position: relative; overflow: hidden; }
+  .phase::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .ph1::before { background: var(--gold); }
+  .ph2::before { background: #3B82F6; }
+  .ph3::before { background: var(--green); }
+  .phase-when { font-size: 10.5px; font-weight: 700; color: var(--grey-mid); margin-bottom: 4px; }
+  .phase h4 { font-size: 13px; font-weight: 800; color: var(--black); margin-bottom: 9px; }
+  .phase ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .phase ul li { font-size: 12px; color: var(--grey-dark); line-height: 1.45; padding-left: 13px; position: relative; }
+  .phase ul li::before { content: '—'; position: absolute; left: 0; color: var(--grey-mid); }
+  .phase-badge {
+    display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+  }
+  .ph1 .phase-badge { background: var(--gold-pale); color: #92620A; }
+  .ph2 .phase-badge { background: #EFF6FF; color: #1D4ED8; }
+  .ph3 .phase-badge { background: var(--green-pale); color: var(--green); }
+
+  .checklist-wrap { background: var(--grey-light); border-radius: 10px; padding: 16px 18px; }
+  .checklist-wrap h4 { font-size: 13px; font-weight: 800; color: var(--black); margin-bottom: 12px; }
+  .checklist { display: flex; flex-direction: column; gap: 9px; }
+  .cl-item { display: flex; align-items: flex-start; gap: 10px; }
+  .cl-num {
+    width: 20px; height: 20px; flex-shrink: 0; background: var(--gold); border-radius: 50%;
+    font-size: 11px; font-weight: 800; color: var(--black); display: flex; align-items: center; justify-content: center;
+  }
+  .cl-item p { font-size: 13px; color: var(--grey-dark); line-height: 1.55; }
+  .cl-item p strong { font-weight: 700; color: var(--black); }
+
+  .next-phase { border: 1px dashed var(--border); border-radius: 10px; padding: 14px 17px; }
+  .next-phase-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey-mid); margin-bottom: 9px; }
+  .asset-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
+  .asset-item { background: var(--grey-light); border-radius: 7px; padding: 9px 11px; display: flex; align-items: center; gap: 8px; }
+  .asset-icon { font-size: 14px; flex-shrink: 0; }
+  .asset-text { font-size: 11.5px; color: var(--grey-dark); line-height: 1.4; }
+  .asset-text strong { font-weight: 700; color: var(--black); display: block; }
+  .asset-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 7px; border-radius: 10px; margin-top: 2px; }
+  .badge-ph1 { background: var(--gold-pale); color: #92620A; }
+  .badge-ph2 { background: var(--blue-pale); color: var(--blue); }
+
+  .close-bar {
+    background: var(--black); border-radius: 10px; padding: 16px 22px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  .close-bar p { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.55; max-width: 560px; }
+  .close-bar p strong { color: var(--white); font-weight: 700; }
+  .close-cta { font-size: 12px; font-weight: 700; color: var(--gold); white-space: nowrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 660px) {
+    body { padding: 14px 12px 56px; }
+    .slide-header { padding: 16px 16px 13px; flex-direction: column; gap: 4px; }
+    .s-section { padding: 14px 16px; }
+    .identity-block { padding: 22px 18px 20px; }
+    .identity-punches { grid-template-columns: 1fr; gap: 7px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat-block:nth-child(2) { border-right: none; }
+    .stat-block:nth-child(3) { border-top: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .stat-block:nth-child(4) { border-top: 1px solid var(--border); }
+    .two-col { grid-template-columns: 1fr; }
+    .rev-takeaway { grid-template-columns: 1fr; }
+    .rev-right { text-align: left; white-space: normal; }
+    .hero-reward-top { flex-direction: column; }
+    .benefit-grid { grid-template-columns: 1fr 1fr; }
+    .control-body { grid-template-columns: 1fr 1fr; }
+    .data-row { grid-template-columns: 1fr; }
+    .timeline-row { grid-template-columns: 1fr; }
+    .journey { flex-direction: column; }
+    .j-step { margin-right: 0; margin-bottom: 7px; }
+    .j-step::after { content: '↓'; position: static; transform: none; display: block; text-align: center; margin-top: 4px; }
+    .close-bar { flex-direction: column; }
+    .scan-journey { flex-direction: column; }
+    .sj-step { border-right: none; border-bottom: 1px solid var(--gold-mid); width: 100%; }
+    .sj-step:last-child { border-bottom: none; }
+    .asset-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 400px) {
+    .benefit-grid { grid-template-columns: 1fr; }
+    .control-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-label">
+  <div class="doc-label-left">The Courts @ KLGCC &mdash; Tenant Brief</div>
+  <div class="doc-label-right">Loyalty Programme &middot; June 2026 &middot; Confidential</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 1
+═══════════════════════════════════════ -->
+<div class="slide">
+
+  <div class="identity-block">
+    <div class="identity-eyebrow">Introducing</div>
+    <div class="identity-name">The Courts Loyalty Programme</div>
+    <div class="identity-tagline">One Membership. Seven Experiences.</div>
+    <div class="identity-divider"></div>
+    <div class="identity-punches">
+      <div class="id-punch">The Courts is more than a venue.<br><strong>It is a shared ecosystem.</strong></div>
+      <div class="id-punch"><strong>Play. Train. Dine. Recover. Connect.</strong><br>All under one roof.</div>
+      <div class="id-punch"><strong>Every spend earns points.</strong><br>Every visit unlocks discovery.</div>
+      <div class="id-punch">One membership.<br><strong>Seven experiences. Every tenant wins.</strong></div>
+    </div>
+  </div>
+
+  <div class="slide-header">
+    <div>
+      <div class="slide-tag">01 &mdash; Why We&rsquo;re Launching This</div>
+      <h2>Thousands visit The Courts every month.<br>Most have not discovered <em>every experience yet.</em></h2>
+    </div>
+    <div class="slide-num">1 / 3</div>
+  </div>
+
+  <div class="slide-body">
+
+    <div class="s-section gap">
+      <div class="hero-reward">
+        <div class="hero-reward-top">
+          <div class="hero-rewards-list">
+            <div class="h-pill"><span class="h-pill-icon">&#9749;</span> Free Coffee</div>
+            <div class="h-pill"><span class="h-pill-icon">&#127955;</span> Court Credit</div>
+            <div class="h-pill"><span class="h-pill-icon">&#127947;</span> Studio Class</div>
+            <div class="h-pill"><span class="h-pill-icon">&#129514;</span> Recovery Session</div>
+            <div class="h-pill"><span class="h-pill-icon">&#10024;</span> Beauty Treatment</div>
+            <div class="h-pill"><span class="h-pill-icon">&#127860;</span> Dining Voucher</div>
+          </div>
+          <div class="hero-cta-block">
+            <div class="scan-box">
+              <div class="scan-box-inner">
+                <div class="qr-tl"></div><div class="qr-tr"></div>
+                <div class="qr-bl"></div><div class="qr-br"></div>
+              </div>
+            </div>
+            <div>
+              <div class="cta-main">Join The Courts Loyalty</div>
+              <div class="cta-sub">Scan to join &rarr; Earn from your first visit</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-reward-bottom">
+          <strong>One Membership. Seven Experiences.</strong> Spend anywhere at The Courts &mdash; earn points, unlock rewards, discover more.
+        </div>
+      </div>
+
+      <div class="scan-journey">
+        <div class="sj-step">
+          <div class="sj-icon">&#128247;</div>
+          <div class="sj-label">Scan</div>
+          <div class="sj-desc">Any tenant POS</div>
+        </div>
+        <div class="sj-step">
+          <div class="sj-icon">&#11088;</div>
+          <div class="sj-label">Earn</div>
+          <div class="sj-desc">Points instantly</div>
+        </div>
+        <div class="sj-step">
+          <div class="sj-icon">&#127873;</div>
+          <div class="sj-label">Redeem</div>
+          <div class="sj-desc">Across all 7 tenants</div>
+        </div>
+        <div class="sj-step">
+          <div class="sj-icon">&#128257;</div>
+          <div class="sj-label">Discover More</div>
+          <div class="sj-desc">Loop repeats every visit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="stats-bar">
+        <div class="stat-block">
+          <div class="stat-num">25K</div>
+          <div class="stat-label"><strong>Est. monthly footfall</strong><span>Full ecosystem</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">7</div>
+          <div class="stat-label"><strong>Tenants, one programme</strong><span>Sports, F&amp;B, fitness, wellness, beauty</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">RM1</div>
+          <div class="stat-label"><strong>= 1 point earned</strong><span>Spend anywhere. Redeem anywhere.</span></div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">1,500</div>
+          <div class="stat-label"><strong>Members by December</strong><span>All discoverable to every tenant</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="two-col">
+        <div class="info-box neutral">
+          <h4>Today &mdash; without the programme</h4>
+          <ul>
+            <li>Player leaves after pickleball.</li>
+            <li>Caf&eacute; regular never tries the studio.</li>
+            <li>Every tenant markets alone.</li>
+            <li>No shared customer visibility.</li>
+          </ul>
+        </div>
+        <div class="info-box gold">
+          <h4>With One Membership. Seven Experiences.</h4>
+          <ul>
+            <li>Rewards drive cross-tenant discovery.</li>
+            <li>More reasons to visit another outlet.</li>
+            <li>Shared ecosystem reach and campaigns.</li>
+            <li>Clear reporting and insights for every tenant.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="rev-takeaway">
+        <div class="rev-left">
+          <div class="rev-tagline">
+            <span class="rev-tag-pill">More visits</span>
+            <span class="rev-tag-pill">More spend</span>
+            <span class="rev-tag-pill">Cross-tenant discovery</span>
+          </div>
+          <p class="rev-body">Members may redeem elsewhere. That is the point. A larger shared ecosystem creates more opportunities for every tenant. <strong>If 1,500 members each make one extra RM40 visit, that is RM60,000 in incremental ecosystem revenue.</strong></p>
+          <p class="rev-caveat">For illustration only &mdash; actual results depend on participation and redemption rates.</p>
+        </div>
+        <div class="rev-right">
+          <div class="rev-num">RM60K</div>
+          <div class="rev-label">illustrative<br>incremental<br>revenue</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 2
+═══════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <div>
+      <div class="slide-tag">02 &mdash; How Your Business Benefits</div>
+      <h2>New customers. Higher spend. Repeat visits.<br><em>You control the offer.</em></h2>
+    </div>
+    <div class="slide-num">2 / 3</div>
+  </div>
+  <div class="slide-body">
+    <div class="s-section gap">
+
+      <div class="benefit-grid">
+        <div class="b-card">
+          <div class="b-card-icon">🚪</div>
+          <h4>Win customers you&rsquo;d never reach alone</h4>
+          <p>Tap into traffic already visiting The Courts.</p>
+          <div class="example">A TRIBE member discovers 176 Avenue for the first time.</div>
+        </div>
+        <div class="b-card">
+          <div class="b-card-icon">🔄</div>
+          <h4>Turn one-time visitors into regulars</h4>
+          <p>The next reward is always within reach.</p>
+          <div class="example">Post-game player grabs coffee, books recovery the week after.</div>
+        </div>
+        <div class="b-card">
+          <div class="b-card-icon">📊</div>
+          <h4>Lift spend per visit, not just footfall</h4>
+          <p>Conditional vouchers push customers to spend more.</p>
+          <div class="example">RM38 diner stretches to RM55 to unlock a RM5 voucher.</div>
+        </div>
+        <div class="b-card">
+          <div class="b-card-icon">📣</div>
+          <h4>An extra marketing channel</h4>
+          <p>Reach members through The Courts ecosystem &mdash; on top of your own channels.</p>
+          <div class="example">Flow Studio fills off-peak slots targeting members who have never visited.</div>
+        </div>
+        <div class="b-card">
+          <div class="b-card-icon">🤝</div>
+          <h4>The ecosystem works both ways</h4>
+          <p>Your customers may redeem elsewhere &mdash; and other tenants&rsquo; customers get nudged to you.</p>
+          <div class="example">Padelground regulars discover The Flow Studio for recovery.</div>
+        </div>
+        <div class="b-card">
+          <div class="b-card-icon">🗓️</div>
+          <h4>Real data, every quarter</h4>
+          <p>Sign-ups, redemptions, cross-tenant movement, spend trends.</p>
+          <div class="example">30% of redeemers came from PSC. Build a post-game bundle campaign.</div>
+        </div>
+      </div>
+
+      <div class="control-strip">
+        <div class="control-header">
+          <span class="ch-main">🎛&nbsp; Your vouchers, your rules</span>
+          <span class="ch-sub">&mdash; you decide what to offer and how it works.</span>
+        </div>
+        <div class="control-body">
+          <div class="control-item">Set a minimum spend threshold</div>
+          <div class="control-item">First-time customers only</div>
+          <div class="control-item">Restrict to specific services</div>
+          <div class="control-item">Cap monthly redemption quantity</div>
+          <div class="control-item">Off-peak or weekday windows</div>
+          <div class="control-item">Bundle with another product</div>
+          <div class="control-item">Member-only upgrades</div>
+          <div class="control-item">Seasonal or time-limited offers</div>
+          <div class="control-item">Change or swap each quarter</div>
+        </div>
+        <div class="control-footer">You control the offer. You control the economics.</div>
+      </div>
+
+      <div class="data-row">
+        <div class="data-card green">
+          <h4>📋 What you&rsquo;ll receive every quarter</h4>
+          <ul>
+            <li>Sign-ups attributed to your outlet</li>
+            <li>Voucher redemption rate by tier</li>
+            <li>Cross-tenant movement &mdash; who came from where</li>
+            <li>Repeat visit frequency for redeemers</li>
+            <li>Cold &amp; lapsed member signals</li>
+            <li>Average spend trends among members</li>
+          </ul>
+        </div>
+        <div class="data-card blue">
+          <h4>&#128274; How data is handled</h4>
+          <ul>
+            <li>Managed by The Courts, PDPA-compliant</li>
+            <li>Tenants do <strong>not</strong> share customer data</li>
+            <li>Aggregated insights only &mdash; not personal data</li>
+            <li>The Courts manages all member campaigns</li>
+            <li>Customer privacy protected at all times</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 3
+═══════════════════════════════════════ -->
+<div class="slide">
+  <div class="slide-header">
+    <div>
+      <div class="slide-tag">03 &mdash; How It Works &amp; What We Need From You</div>
+      <h2>Three things this month. <em>Live by August.</em></h2>
+    </div>
+    <div class="slide-num">3 / 3</div>
+  </div>
+  <div class="slide-body">
+    <div class="s-section gap">
+
+      <div>
+        <div class="rewards-label">Rewards members can unlock &mdash; One Membership. Seven Experiences.</div>
+        <div class="rewards-strip">
+          <div class="reward-pill"><span class="pill-icon">&#9749;</span> Free Coffee</div>
+          <div class="reward-pill"><span class="pill-icon">&#127955;</span> Court Credit</div>
+          <div class="reward-pill"><span class="pill-icon">&#127947;</span> Studio Class</div>
+          <div class="reward-pill"><span class="pill-icon">&#129514;</span> Recovery Session</div>
+          <div class="reward-pill"><span class="pill-icon">&#10024;</span> Beauty Treatment</div>
+          <div class="reward-pill"><span class="pill-icon">&#127860;</span> Dining Voucher</div>
+          <div class="reward-pill"><span class="pill-icon">&#127881;</span> Birthday Reward</div>
+        </div>
+      </div>
+
+      <div class="mechanic-note">
+        <div class="m-chip-sm">RM1 = 1 pt</div>
+        <div class="m-text-sm">Earned at any tenant, any visit. Scanned at your POS &mdash; nothing changes in your operation.</div>
+      </div>
+
+      <div>
+        <div class="journey-title">How a customer moves through the ecosystem</div>
+        <div class="journey">
+          <div class="j-step">
+            <div class="j-icon">🏓</div>
+            <div class="j-title">Visits any tenant</div>
+            <div class="j-desc">Play. Dine. Train.</div>
+          </div>
+          <div class="j-step">
+            <div class="j-icon">&#11088;</div>
+            <div class="j-title">Earns points</div>
+            <div class="j-desc">Added instantly.</div>
+          </div>
+          <div class="j-step">
+            <div class="j-icon">&#127873;</div>
+            <div class="j-title">Unlocks reward</div>
+            <div class="j-desc">Your offer appears.</div>
+          </div>
+          <div class="j-step">
+            <div class="j-icon">&#128694;</div>
+            <div class="j-title">Visits your outlet</div>
+            <div class="j-desc">Driven by rewards.</div>
+          </div>
+          <div class="j-step hi">
+            <div class="j-icon">&#128257;</div>
+            <div class="j-title">Earns again. Comes back.</div>
+            <div class="j-desc">Loop repeats.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="phase ph1">
+          <div class="phase-when">June 2026</div>
+          <h4>Setup &amp; Buy-In</h4>
+          <ul>
+            <li>Confirm 1&ndash;2 voucher offers</li>
+            <li>Sign participation agreement</li>
+            <li>Staff POS training (&lt;30 min)</li>
+            <li>System tested and ready</li>
+          </ul>
+          <div class="phase-badge">Action required now</div>
+        </div>
+        <div class="phase ph2">
+          <div class="phase-when">1 July 2026</div>
+          <h4>Beta Launch</h4>
+          <ul>
+            <li>Soft launch begins</li>
+            <li>First members sign up and earn</li>
+            <li>Early redemptions start</li>
+            <li>Feedback collected; adjustments made</li>
+          </ul>
+          <div class="phase-badge">Beta &mdash; 1 Jul</div>
+        </div>
+        <div class="phase ph3">
+          <div class="phase-when">1 August 2026</div>
+          <h4>Official Launch</h4>
+          <ul>
+            <li>Full marketing push begins</li>
+            <li>Social media and email campaigns live</li>
+            <li>Target: 600 members by end August</li>
+            <li>First quarterly report issued</li>
+          </ul>
+          <div class="phase-badge">Public &mdash; 1 Aug</div>
+        </div>
+      </div>
+
+      <div class="checklist-wrap">
+        <h4>What we need from you in June &mdash; 3 things only</h4>
+        <div class="checklist">
+          <div class="cl-item">
+            <div class="cl-num">1</div>
+            <p><strong>Confirm your voucher offer(s).</strong> Choose 1&ndash;2 rewards that work for your margins. You set the terms. We advise on what fits your ticket size.</p>
+          </div>
+          <div class="cl-item">
+            <div class="cl-num">2</div>
+            <p><strong>Sign the participation agreement.</strong> Short document. Programme mechanics, voucher commitments, data handling. No surprises.</p>
+          </div>
+          <div class="cl-item">
+            <div class="cl-num">3</div>
+            <p><strong>30-minute staff onboarding.</strong> POS and redemption flow. That is the full operational ask. The Courts handles everything else.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next-phase">
+        <div class="next-phase-label">Programme Touchpoints &mdash; Physical &amp; Digital</div>
+        <div class="asset-grid">
+          <div class="asset-item">
+            <div class="asset-icon">&#128247;</div>
+            <div class="asset-text">
+              <strong>LED Standee &amp; PSC Court Divider</strong>
+              Earn + Scan at point of play
+              <span class="asset-badge badge-ph1">Phase 1</span>
+            </div>
+          </div>
+          <div class="asset-item">
+            <div class="asset-icon">&#128196;</div>
+            <div class="asset-text">
+              <strong>A5 Reception Cards &amp; NOA Table Standee</strong>
+              Rewards prompt at reception and dining
+              <span class="asset-badge badge-ph1">Phase 1</span>
+            </div>
+          </div>
+          <div class="asset-item">
+            <div class="asset-icon">&#128241;</div>
+            <div class="asset-text">
+              <strong>Digital Member Card &amp; Push Notifications</strong>
+              Personalised rewards and campaigns
+              <span class="asset-badge badge-ph2">Phase 2</span>
+            </div>
+          </div>
+          <div class="asset-item">
+            <div class="asset-icon">&#128202;</div>
+            <div class="asset-text">
+              <strong>Tenant Dashboard &amp; Quarterly Reports</strong>
+              Your data, cross-tenant movement, insights
+              <span class="asset-badge badge-ph2">Phase 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="close-bar">
+        <p><strong>The Courts brings the platform, the audience, the campaigns, and the reporting.</strong> You bring the offer that makes sense for your business. That&rsquo;s the whole deal.</p>
+        <div class="close-cta">Questions? Let&rsquo;s talk &#8594;</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
