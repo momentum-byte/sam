@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOL Playbook – Youth Infrastructure Operating System</title>
+<style>
+
+/* ============================================================
+   DESIGN TOKENS — Photography-first, museum-gallery system
+============================================================ */
+
+:root {
+  --display: "Sohne", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --text: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "Menlo", monospace;
+
+  --ink: #14140f;
+  --ink-soft: #48453d;
+  --ink-faint: #8a8673;
+
+  --surface: #fafaf8;
+  --surface-detail: #f0ede6;
+
+  --accent: #eb4034;
+  --accent-soft: #f5e6e3;
+
+  --border: #e0dcd4;
+}
+
+@supports (font-variation-settings: "wght" 400) {
+  :root {
+    --display: "Sohne", -apple-system, BlinkMacSystemFont, sans-serif;
+    --text: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+/* ============================================================
+   FUNDAMENTALS
+============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--text);
+  color: var(--ink);
+  background: #ffffff;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+============================================================ */
+
+h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 40px 0;
+}
+
+h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  margin: 0 0 14px 0;
+  color: var(--ink);
+}
+
+p {
+  margin: 0 0 20px 0;
+  color: var(--ink-soft);
+}
+
+p:last-child { margin-bottom: 0; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.15s;
+}
+
+a:hover { opacity: 0.75; }
+
+/* ============================================================
+   CONTAINER & GRID
+============================================================ */
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+@media (max-width: 1024px) {
+  .wrap { max-width: 960px; padding: 0 40px; }
+}
+
+@media (max-width: 768px) {
+  .wrap { max-width: 100%; padding: 0 28px; }
+}
+
+/* ============================================================
+   GRID: 3-column, 2-column, 1-column responsive
+============================================================ */
+
+.grid {
+  display: grid;
+  gap: 48px;
+  margin: 0;
+}
+
+.grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 1024px) {
+  .grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; gap: 40px; }
+  .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   COMPONENTS: NAV
+============================================================ */
+
+nav {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  font-size: 14px;
+}
+
+nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.nav-logo span { margin-left: 12px; }
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border: none;
+  letter-spacing: 0.02em;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+}
+
+/* ============================================================
+   SECTIONS
+============================================================ */
+
+section {
+  padding: 120px 0;
+}
+
+section.tight { padding: 80px 0; }
+section.hero-section { padding: 0; }
+
+.section-alt { background: var(--surface); }
+
+.kicker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 160px 0 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -240px;
+  top: -240px;
+  width: 560px;
+  height: 560px;
+  border: 88px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0.14;
+}
+
+.hero h1 { max-width: 880px; margin-bottom: 32px; }
+
+.hero .kicker { margin-bottom: 24px; }
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--ink-soft);
+  max-width: 620px;
+  line-height: 1.6;
+  margin-bottom: 64px;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+}
+
+.hero-meta-item .label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+}
+
+.hero-meta-item .value {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: var(--ink);
+}
+
+/* ============================================================
+   PHOTO SYSTEM
+============================================================ */
+
+.photo-tile {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -28px rgba(20, 20, 15, 0.35);
+  background: var(--ink);
+}
+
+.photo-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+
+.photo-tile.square img { aspect-ratio: 1/1; }
+.photo-tile.tall img { aspect-ratio: 3/4; }
+
+.photo-caption {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   STAT/PULLQUOTE
+============================================================ */
+
+.stat {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0 0 16px 0;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   CALLOUT / HIGHLIGHT
+============================================================ */
+
+.callout {
+  background: var(--surface-detail);
+  border-left: 4px solid var(--accent);
+  padding: 32px 40px;
+  border-radius: 8px;
+  margin: 40px 0;
+}
+
+.callout h3 { margin-bottom: 12px; }
+.callout p { margin-bottom: 0; color: var(--ink-soft); }
+
+/* ============================================================
+   TIMELINE / PHASED
+============================================================ */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin: 60px 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding-top: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -32px;
+  width: 2px;
+  height: 32px;
+  background: var(--border);
+}
+
+.timeline-item:first-child::before { display: none; }
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-item h3 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.timeline-item p {
+  font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+  .timeline-item::before { display: none; }
+}
+
+@media (max-width: 768px) {
+  .timeline { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   TABLE: METRICS & FRAMEWORK
+============================================================ */
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 40px 0;
+  font-size: 14px;
+}
+
+.metrics-table th {
+  border-bottom: 2px solid var(--border);
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 700;
+  background: var(--surface);
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.metrics-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 12px;
+  color: var(--ink-soft);
+}
+
+.metrics-table tr:last-child td { border-bottom: none; }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+footer {
+  background: var(--ink);
+  color: #ffffff;
+  padding: 80px 0 60px;
+  font-size: 14px;
+}
+
+footer .wrap {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 60px;
+}
+
+.foot-logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.foot-logo span { color: var(--accent); }
+
+.foot-meta {
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   UTILITY
+============================================================ */
+
+.accent { color: var(--accent); }
+
+.full-width {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+}
+
+.space-48 { margin-bottom: 48px; }
+.space-64 { margin-bottom: 64px; }
+
+/* ============================================================
+   RESPONSIVE: MOBILE
+============================================================ */
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+
+  section { padding: 80px 0; }
+  section.tight { padding: 60px 0; }
+
+  .hero { padding: 120px 0 80px; min-height: auto; }
+  .hero::after { right: -160px; top: -160px; width: 400px; height: 400px; border-width: 60px; }
+
+  .hero-meta { gap: 40px; flex-direction: column; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+
+<nav>
+  <div class="wrap">
+    <div class="nav-logo">
+      <span>GOL</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#decision-architecture">Architecture</a></li>
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#why">Why Now</a></li>
+      <li><a href="#model">Model</a></li>
+      <li><a href="#implementation">Implementation</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#measurement">Measurement</a></li>
+      <li><a href="#governance">Governance</a></li>
+      <li><a href="#investment">Investment</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO / EXECUTIVE SUMMARY
+============================================================ -->
+
+<section class="hero hero-section">
+  <div class="wrap">
+    <div class="kicker">Youth Infrastructure Operating System</div>
+    <h1>GOL: A replicable court-based infrastructure system for youth mobility across Malaysia's PPR communities.</h1>
+    <div class="hero-subtitle">
+      GOL operates through networked court nodes. Each node combines sport-based engagement, coach-led trust networks, and integrated digital tracking to create transparent pathways from court participation into education and employment outcomes.
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">Atomic Unit</div>
+        <div class="value">Court Node</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Cost Per Node</div>
+        <div class="value">RM 83–110K/year</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Youth Per Node</div>
+        <div class="value">40–60/year</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Scale Vision</div>
+        <div class="value">3 → 10 → 50+ nodes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     I. EXECUTIVE SUMMARY (ONE-PAGE)
+============================================================ -->
+
+<section id="exec-summary">
+  <div class="wrap">
+    <h2>The GOL Court Node: System Definition</h2>
+    <p style="font-size: 1.1rem; color: var(--ink); margin-bottom: 40px;">
+      GOL is a youth infrastructure system operating through networked court nodes. Each node is a complete, self-contained system designed for replication—the atomic unit of GOL's operating model.
+    </p>
+
+    <div class="grid cols-2">
+      <div>
+        <h3>Three Operating Layers</h3>
+        <p><strong>Layer 1 – Court Infrastructure:</strong> PPR courts as high-frequency engagement environments. 3–4 structured sessions per week, 40–60 active youth per node, embedded participation data capture.</p>
+        <p style="margin-top: 16px;"><strong>Layer 2 – Human Trust Network:</strong> Coaches and ex-players as behavioral anchors and aspiration bridges. They build retention, enforce consistency, and enable belief in pathways.</p>
+        <p style="margin-top: 16px;"><strong>Layer 3 – Digital + Mobility System:</strong> Integrated CRM tracking participation and skill progression. Weekend learning modules deliver digital competencies. Education and employment routes through partner schools and corporates.</p>
+      </div>
+      <div>
+        <h3>The Infrastructure Gap</h3>
+        <p>Malaysia's 1,100+ PPR communities (2.5M residents) have physical sports infrastructure but lack the integrated operating system connecting asset activation to youth mobility. Existing efforts are fragmented, siloed, unmeasured.</p>
+        <p style="margin-top: 16px;"><strong>The gap is not facilities—it is the missing infrastructure layer.</strong> GOL converts underutilised government assets into functioning engagement and pathway nodes operating through these three integrated layers.</p>
+        <p style="margin-top: 24px; background: var(--surface-detail); padding: 16px; border-radius: 8px; border-left: 3px solid var(--accent);"><strong>Unit economics:</strong> RM 83–110K per node/year | 40–60 youth/year | RM 1,660–2,200 per youth | Phase 1: 3 nodes | Phase 2: 8–10 nodes | National vision: 50–100+ nodes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     II. DECISION ARCHITECTURE: Governance, Risk, & Scaling Gates
+============================================================ -->
+
+<section id="decision-architecture">
+  <div class="wrap">
+    <h2>Decision Architecture: How GOL is De-Risked, Governed, and Scaled</h2>
+    <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 60px;">
+      This section defines the institutional framework that allows major stakeholders (funders, government, partners) to approve, monitor, and scale GOL with confidence.
+    </p>
+
+    <!-- ============================================================
+         PART 1: GOVERNANCE CLARITY
+    ============================================================ -->
+
+    <h3 style="margin-bottom: 40px;">1. Governance Clarity: Who Decides, Who Executes, Who Owns Risk</h3>
+
+    <p style="margin-bottom: 40px; color: var(--ink-soft);">
+      GOL operates as a three-layer institutional structure. Clear separation of governance from operations eliminates founder dependency and creates independent accountability.
+    </p>
+
+    <div class="grid cols-3">
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Layer 1: CLBG Foundation</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 16px;"><strong>Role:</strong> Strategic governance, fiduciary duty, compliance.</p>
+        <p style="font-size: 0.95rem; margin-bottom: 16px;"><strong>Decision authority:</strong> Board approves strategy, budgets, partnerships, expansion phases, risk management policies.</p>
+        <p style="font-size: 0.95rem; margin-bottom: 0;"><strong>Owns:</strong> Compliance risk, reputational risk, financial transparency.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Layer 2: Momentum (Operating Entity)</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 16px;"><strong>Role:</strong> Day-to-day execution, delivery, partnership management.</p>
+        <p style="font-size: 0.95rem; margin-bottom: 16px;"><strong>Decision authority:</strong> Executive team manages site operations, coach hiring, program delivery, partner engagement within CLBG-approved budget and strategy.</p>
+        <p style="font-size: 0.95rem; margin-bottom: 0;"><strong>Owns:</strong> Delivery risk, participant outcomes, operational efficiency.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Layer 3: Partner Ecosystem</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 16px;"><strong>Role:</strong> Co-funding, participant referral, capability contribution, outcome measurement.</p>
+        <p style="font-size: 0.95rem; margin-bottom: 16px;"><strong>Decision authority:</strong> Partners approve activations within MOUs; escalate blockers to central coordination.</p>
+        <p style="font-size: 0.95rem; margin-bottom: 0;"><strong>Owns:</strong> Participant recruitment, facility access, employer linkage.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Decision Matrix: Accountability by Function</h3>
+
+    <table class="metrics-table" style="font-size: 0.95rem;">
+      <tr>
+        <th>Function</th>
+        <th>CLBG Board</th>
+        <th>Momentum CEO</th>
+        <th>Partner Agencies</th>
+      </tr>
+      <tr>
+        <td><strong>Strategy & Expansion</strong></td>
+        <td>Approves phases, gates</td>
+        <td>Executes roadmap</td>
+        <td>Align via MOU</td>
+      </tr>
+      <tr>
+        <td><strong>Coach Selection & Training</strong></td>
+        <td>Approves standards</td>
+        <td>Recruits, certifies, manages</td>
+        <td>Refer candidates</td>
+      </tr>
+      <tr>
+        <td><strong>Participant Recruitment</strong></td>
+        <td>Monitors targets</td>
+        <td>Manages site recruitment</td>
+        <td><strong>Schools refer; corporates provide incentives</strong></td>
+      </tr>
+      <tr>
+        <td><strong>M&E & Reporting</strong></td>
+        <td>Reviews data; approves public reports</td>
+        <td>Collects, validates, submits</td>
+        <td>Provide co-outcome data</td>
+      </tr>
+      <tr>
+        <td><strong>Risk Management</strong></td>
+        <td>Oversight, policy, escalation</td>
+        <td>Day-to-day mitigation, incident reporting</td>
+        <td>Escalate safeguarding concerns</td>
+      </tr>
+      <tr>
+        <td><strong>Funder Reporting</strong></td>
+        <td>Approves content, signs off</td>
+        <td>Prepares reports, data</td>
+        <td>Provide outcome verification</td>
+      </tr>
+      <tr>
+        <td><strong>Financial Accountability</strong></td>
+        <td>Audit approval, budgets, compliance</td>
+        <td>Execution, reconciliation</td>
+        <td>Verify co-funding delivery</td>
+      </tr>
+    </table>
+
+    <!-- ============================================================
+         PART 2: RISK CONTAINMENT SYSTEM
+    ============================================================ -->
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">2. Risk Containment System: Identification, Monitoring, Response</h3>
+
+    <p style="margin-bottom: 40px; color: var(--ink-soft);">
+      GOL identifies five critical risks that could undermine Phase 1 proof or Phase 2 scaling. For each, we specify detection mechanisms and escalation protocols.
+    </p>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Risk 1: Coach Capability / Safeguarding Failure</h3>
+      <p><strong>Definition:</strong> Coach lacks competency, engagement, or behaves inappropriately with youth.</p>
+      <p style="margin-top: 16px;"><strong>Early Detection:</strong> Monthly site visits by central Programs team; quarterly 360 feedback from youth; incident reporting log; annual safeguarding audit.</p>
+      <p style="margin-top: 12px;"><strong>Response Protocol:</strong> Yellow flag (performance gap) → coaching plan. Red flag (safeguarding concern) → immediate suspension + investigation + mandatory reporting. Escalate to CLBG Board within 48 hours.</p>
+      <p style="margin-top: 12px;"><strong>Containment:</strong> Replacement coach on standby; volunteer coach pipeline; no single-site dependency.</p>
+    </div>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Risk 2: Participant Retention Failure</h3>
+      <p><strong>Definition:</strong> <12-week retention drops below 50% target; program engagement insufficient.</p>
+      <p style="margin-top: 16px;"><strong>Early Detection:</strong> Weekly attendance tracking (automated alert if 2+ sessions missed); monthly retention dashboards per site; mid-program pulse survey (week 6).</p>
+      <p style="margin-top: 12px;"><strong>Response Protocol:</strong> Drop below 55% → immediate diagnostic (why are youth leaving?). Below 50% → site-level intervention (program redesign, schedule adjustment, incentive adjustment). If persists beyond week 8 → escalate to central team for pivot.</p>
+      <p style="margin-top: 12px;"><strong>Containment:</strong> Flexible cohort structure allows mid-program enrollment; alternative activity options; parental engagement protocols.</p>
+    </div>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Risk 3: Partnership Coordination Failure</h3>
+      <p><strong>Definition:</strong> Schools, government, or corporates withdraw support or fail to deliver promised resources (referrals, space, co-funding).</p>
+      <p style="margin-top: 16px;"><strong>Early Detection:</strong> Quarterly partnership MOU reviews; monthly tracking of referral commitments; government co-funding drawdown monitoring.</p>
+      <p style="margin-top: 12px;"><strong>Response Protocol:</strong> Early warning → escalation call with partner leadership. Unresolved within 30 days → CLBG Board intervention. Replacement partner identified in parallel.</p>
+      <p style="margin-top: 12px;"><strong>Containment:</strong> Multiple school/corporate partners per area; government co-funding diversified across agencies; 12-month facility agreements (not month-to-month).</p>
+    </div>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Risk 4: M&E Data Integrity / Attribution Failure</h3>
+      <p><strong>Definition:</strong> Data collection is incomplete, inaccurate, or cannot demonstrate causal link between GOL participation and outcomes.</p>
+      <p style="margin-top: 16px;"><strong>Early Detection:</strong> Monthly data quality audits (completeness, consistency checks); quarterly external validation sampling (third-party spot checks).</p>
+      <p style="margin-top: 12px;"><strong>Response Protocol:</strong> Data gap identified → immediate correction protocol. Systematic quality issue → investigation of collection process + retraining. If external evaluation finds attribution weak → adjust claims in reporting; invest in comparison group design for Phase 2.</p>
+      <p style="margin-top: 12px;"><strong>Containment:</strong> Simplified, verifiable metrics (attendance, completion, employment verification via employer). Real-time data system (not retrospective). Third-party evaluation at Phase 1 conclusion.</p>
+    </div>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Risk 5: Funding Sustainability / Runway Failure</h3>
+      <p><strong>Definition:</strong> Funding dries up; non-grant revenue insufficient to bridge; organization unable to fund Phase 2.</p>
+      <p style="margin-top: 16px;"><strong>Early Detection:</strong> Monthly cash flow forecasting; quarterly review of funder commitment status; tracking of activation/sponsorship revenue pipeline.</p>
+      <p style="margin-top: 12px;"><strong>Response Protocol:</strong> Q2 signal of shortfall → CLBG Board activates funder conversations + cost restructuring. If Phase 2 funding not secured by Month 20 → pause Phase 2 planning; focus on Phase 1 sustainability. No site shutdowns mid-cohort; existing participants supported through completion.</p>
+      <p style="margin-top: 12px;"><strong>Containment:</strong> Diversified funder base (3+ anchor partners). Government co-funding locked via MOU. Activation revenue (modest but real). 6-month operational reserve target.</p>
+    </div>
+
+    <!-- ============================================================
+         PART 3: PHASE GATE SYSTEM
+    ============================================================ -->
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">3. Phase Gate System: Go / No-Go Criteria for Scaling</h3>
+
+    <p style="margin-bottom: 40px; color: var(--ink-soft);">
+      Scaling to Phase 2 is NOT automatic. GOL will proceed only when measurable, verifiable conditions are met. This ensures capital efficiency and prevents premature expansion.
+    </p>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Phase 1 → Phase 2 Gate (Month 24)</h3>
+      <p style="margin-bottom: 20px;"><strong>Minimum Criteria (all must be met):</strong></p>
+
+      <table class="metrics-table" style="font-size: 0.9rem;">
+        <tr>
+          <th>Criterion</th>
+          <th>Target</th>
+          <th>Verified By</th>
+          <th>Go / Block Decision</th>
+        </tr>
+        <tr>
+          <td><strong>Participant Retention (12 weeks)</strong></td>
+          <td>≥60% (across all 3 sites)</td>
+          <td>Attendance records + completion checklist (internal); spot-checked by external eval</td>
+          <td>Below 60% = Block Phase 2 until root cause fixed + re-tested on new cohort</td>
+        </tr>
+        <tr>
+          <td><strong>Digital Skills Completion</strong></td>
+          <td>≥70% complete modules; ≥60% demonstrate competency</td>
+          <td>Skill assessment records + portfolio review (coach + central team)</td>
+          <td>Below 70% completion = redesign modules + extend Phase 1 by 12 months</td>
+        </tr>
+        <tr>
+          <td><strong>Education Linkage</strong></td>
+          <td>≥40% of participants re-engaged with school or vocational pathway</td>
+          <td>School confirmation + vocational body enrollment (3rd party verification)</td>
+          <td>Below 40% = investigate school partnership quality; strengthen linkage before Phase 2</td>
+        </tr>
+        <tr>
+          <td><strong>Coach Certification</strong></td>
+          <td>100% of coaches pass 40-hour training + safeguarding audit</td>
+          <td>Training completion certificates + background check records</td>
+          <td>Any coach fails audit = immediate replacement; no scaling with non-certified staff</td>
+        </tr>
+        <tr>
+          <td><strong>Safeguarding Compliance</strong></td>
+          <td>Zero substantiated safeguarding incidents; 100% policy compliance</td>
+          <td>Independent safeguarding audit by external firm</td>
+          <td>Any unresolved incident = Block scaling; remediation required</td>
+        </tr>
+        <tr>
+          <td><strong>Partnership MOUs Signed</strong></td>
+          <td>≥3 school partnerships + ≥2 corporate partners + government co-funding MOU</td>
+          <td>Signed MOUs on file; partnership engagement data</td>
+          <td>Partnerships unverified = cannot scale; Phase 2 requires confirmed ecosystem</td>
+        </tr>
+        <tr>
+          <td><strong>Non-Grant Revenue</strong></td>
+          <td>≥20% of Phase 1 costs covered by activations, sponsorship, government co-funding</td>
+          <td>Financial records + partner invoices</td>
+          <td>Below 20% = extend Phase 1 to build revenue base; no Phase 2 until sustainable</td>
+        </tr>
+        <tr>
+          <td><strong>M&E System Maturity</strong></td>
+          <td>Quarterly impact reports delivered on time; 3rd party audit completed; no major data gaps</td>
+          <td>Report submissions + external eval findings</td>
+          <td>Material data gaps = require corrective action plan before Phase 2 approval</td>
+        </tr>
+        <tr>
+          <td><strong>External Evaluation Complete</strong></td>
+          <td>Third-party evaluator submits findings; no critical design flaws identified</td>
+          <td>Evaluation report published + Board reviewed</td>
+          <td>Critical flaws = remediate + re-evaluate. No Phase 2 until design validated</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Phase 2 → Phase 3 Gate (Month 48)</h3>
+      <p style="margin-bottom: 12px;">
+        <strong>Additional criteria beyond Phase 1 gates:</strong> Expanded retention data (8–10 sites), demonstrated cost-per-court efficiency, scaled coach training pipeline, government co-funding secured for Phase 3, replication to non-Klang-Valley sites proven.
+      </p>
+    </div>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Who Validates and Decides</h3>
+      <p><strong>CLBG Board:</strong> Makes final go/no-go decision based on data presented by Momentum CEO + external evaluator.</p>
+      <p style="margin-top: 12px;"><strong>External Evaluator:</strong> Provides independent assessment of Phase 1 outcomes + design validation.</p>
+      <p style="margin-top: 12px;"><strong>Funder Group:</strong> Consulted on Phase 2 decision; unanimous approval required from 2+ anchor funders to proceed.</p>
+      <p style="margin-top: 12px;"><strong>Transparency:</strong> Gate decision + rationale published to all stakeholders (government, partners, public). If blocked, barriers and remediation plan published.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     III. THE INFRASTRUCTURE & CONTEXT
+============================================================ -->
+
+<section id="problem" class="section-alt">
+  <div class="wrap">
+    <div class="kicker">(Foundation – The Problem & Infrastructure Gap)</div>
+    <h2>Malaysia's Youth Infrastructure & Data Pathway Gap</h2>
+    <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 48px;">
+      The challenge is not sports facilities. It is the absence of an integrated infrastructure system that routes youth from asset-based engagement through structured data tracking into education and employment pathways.
+    </p>
+
+    <div class="grid cols-3">
+      <div>
+        <div class="stat">2.5M</div>
+        <div class="stat-label">PPR Residents</div>
+        <p>Public housing communities across Malaysia, concentrated in major metros (KL, Selangor, Johor, Penang).</p>
+      </div>
+      <div>
+        <div class="stat">~45%</div>
+        <div class="stat-label">Youth Population (12–25)</div>
+        <p>Disproportionately young demographic in PPR communities; estimated 1.1M+ youth in eligible age range.</p>
+      </div>
+      <div>
+        <div class="stat">18.3%</div>
+        <div class="stat-label">Youth Unemployment (2024)</div>
+        <p>Official rate; higher in PPR communities due to skills gaps and opportunity deserts.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 24px;">Core Infrastructure & Capability Deficits</h3>
+
+    <div class="grid cols-2">
+      <div class="callout">
+        <h3>Physical Infrastructure</h3>
+        <p>1,100+ PPR communities contain futsal courts, badminton courts, or multipurpose sports facilities. Most are neglected, unmaintained, or locked to community use. Asset utilization is <15% of capacity. No systematic programming or community activation.</p>
+      </div>
+      <div class="callout">
+        <h3>Digital Skills Access</h3>
+        <p>Digital literacy rates in PPR communities lag urban averages. No structured pathway from school to employable digital competencies (content creation, basic programming, data literacy). Youth rely on unmonitored social media consumption for skill development.</p>
+      </div>
+      <div class="callout">
+        <h3>Mentorship & Leadership Pipeline</h3>
+        <p>Youth in PPRs lack access to role models, mentorship, and leadership development. NGO coverage is sporadic. No transparent pathway from community participation to formal leadership roles or employment.</p>
+      </div>
+      <div class="callout">
+        <h3>Education-to-Employment Linkage</h3>
+        <p>Fragmentation between schools, vocational training, corporates, and youth programs. No coordinated system connecting youth development activities to formal education progression or job placement.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 24px;">Why Existing Models Fall Short</h3>
+    <p style="margin-bottom: 40px;">Current NGO and government initiatives suffer from structural limitations:</p>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Gap</th>
+        <th>Manifestation</th>
+        <th>GOL's Approach</th>
+      </tr>
+      <tr>
+        <td><strong>Fragmentation</strong></td>
+        <td>Sport programs, digital skills training, education support operate in silos with no coordinated pathway.</td>
+        <td>Integrated model: sport as entry point, digital skills embedded, education/employment linkage systematic.</td>
+      </tr>
+      <tr>
+        <td><strong>Lack of Scale Systems</strong></td>
+        <td>Successful pilots rarely replicate; programs depend on charismatic individual leaders, not institutional systems.</td>
+        <td>Replicable operational model, coach training, centralized systems (M&E, recruitment, partnerships), site-level autonomy.</td>
+      </tr>
+      <tr>
+        <td><strong>Weak Accountability</strong></td>
+        <td>Impact claims unverified; participant data sparse; donors lack transparency on outcomes.</td>
+        <td>Structured M&E system with participant-level data, quarterly reporting, third-party audit capability.</td>
+      </tr>
+      <tr>
+        <td><strong>Limited Partnership Depth</strong></td>
+        <td>Programs run parallel to schools, corporates, government—not embedded within institutional partnerships.</td>
+        <td>Deep integration: schools refer, corporates hire, government co-funds, MOU-based governance.</td>
+      </tr>
+      <tr>
+        <td><strong>Sustainability Risk</strong></td>
+        <td>Programs dependent on NGO grants; exit funding creates service collapse.</td>
+        <td>Diversified revenue (activations, sponsorship, government partnership funding, foundation support).</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================
+     IV. STRATEGIC TIMING & POLICY ALIGNMENT
+============================================================ -->
+
+<section id="why">
+  <div class="wrap">
+    <div class="kicker">(Context – Why Now)</div>
+    <h2>Strategic Imperative: Why This Model, At This Moment</h2>
+
+    <div class="grid cols-2">
+      <div>
+        <h3>Policy Alignment</h3>
+        <p><strong>Malaysia's 12th Plan (2021–2025)</strong> prioritizes digital transformation and inclusive growth. <strong>Ministry of Youth & Sports</strong> is accelerating grassroots sport investment. <strong>KPKT & DBKL</strong> have renew infrastructure initiatives. <strong>Urban regeneration agenda</strong> targets PPR communities for integrated public health and economic development.</p>
+        <p style="margin-top: 20px;">GOL directly aligns with all three vectors—sport + digital + community regeneration.</p>
+      </div>
+      <div>
+        <h3>Demographic Opportunity</h3>
+        <p>Malaysia's youth population (age 15–40) is at peak density. Post-COVID, youth unemployment is rising (18%+). Schools are intensifying digital curriculum, creating demand for out-of-school reinforcement. Youth are digitally native but lack applied skills for employment.</p>
+        <p style="margin-top: 20px;">The window for intervention is immediate and closing; delayed action locks entire cohorts out of employment pathways.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 60px;">
+      <h3>Catalytic Infrastructure Layer</h3>
+      <p>Sport infrastructure already exists at scale in every PPR. No capital deployment needed for court construction. GOL operates as the activation and partnership layer—high-leverage on existing assets. This is fundamentally different from a "build new facilities" model and vastly more capital-efficient.</p>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 24px;">Why Sport Is the Optimal Entry Point</h3>
+    <p style="margin-bottom: 40px;">Extensive research confirms sport as a vehicle for youth development outcomes:</p>
+
+    <div class="grid cols-2">
+      <div>
+        <p><strong>Engagement:</strong> Sport is intrinsically motivating for youth; participation rates are 2–3x higher than classroom-based programs in low-motivation cohorts.</p>
+        <p style="margin-top: 20px;"><strong>Trust building:</strong> Coaches are trusted figures; coach-led skill transfer (social, behavioral, digital) is more credible than classroom instruction in low-trust communities.</p>
+      </div>
+      <div>
+        <p><strong>Behavioral change:</strong> Sport creates daily routine, discipline, peer accountability—foundational to any downstream skill development.</p>
+        <p style="margin-top: 20px;"><strong>Identity shift:</strong> Participation in organized sport reframes self-perception from "at-risk" to "athlete" or "community leader"—powerful lever for aspirational thinking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     V. THEORY OF CHANGE
+============================================================ -->
+
+<section id="model" class="section-alt">
+  <div class="wrap">
+    <div class="kicker">(Design – System Theory of Change & Data Flow)</div>
+    <h2>Theory of Change: Court Node → Participation Data → Mobility Pathways</h2>
+
+    <h3 style="margin-bottom: 40px;">Court Node as Data Generation Infrastructure</h3>
+
+    <p style="margin-bottom: 40px; color: var(--ink-soft);">
+      GOL's theory of change centers on the court node as a data generation and trajectory-informing layer. Each node generates structured participation, behavioral, and outcome data that enables real-time program optimization and evidence-based youth mobility decisions.
+    </p>
+
+    <div style="background: var(--surface-detail); padding: 48px; border-radius: 12px; margin-bottom: 60px;">
+      <div style="font-family: var(--mono); font-size: 13px; line-height: 1.8; color: var(--ink);">
+        <p style="margin-bottom: 20px;"><strong>DATA INPUTS</strong><br>
+        Court access + coach observation capacity + digital tracking infrastructure + school/employer referral networks</p>
+
+        <p style="margin-bottom: 20px;"><strong>ENGAGEMENT ACTIVITIES</strong><br>
+        Structured court sessions (3–4x/week) + coach-led behavioral guidance + embedded digital skill modules + pathway routing conversations</p>
+
+        <p style="margin-bottom: 20px;"><strong>DATA GENERATION (OUTPUTS)</strong><br>
+        Participation tracking (attendance, consistency) → Behavioral signals (engagement quality, peer dynamics, resilience indicators) → Skill completion data (digital proficiency) → Pathway data (education/employment linkage)</p>
+
+        <p style="margin-bottom: 20px;"><strong>OUTCOME VALIDATION (6–12 months)</strong><br>
+        Digital skills certified + social-emotional development verified + education/employment pathway initiated</p>
+
+        <p style="margin: 0;"><strong>IMPACT TRACKING (18+ months)</strong><br>
+        Education progression confirmed + employment placement verified + community leadership evidence + cost per positive outcome calculated</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 40px;">The Input-to-Impact Chain
+
+    <div class="grid cols-3">
+      <div>
+        <h3>Sport Programming</h3>
+        <p>Structured futsal, badminton, or multipurpose court sport 3–4x/week. Coaches are trained community facilitators (often former athletes). Focus: routine, discipline, peer accountability, social skills (teamwork, conflict resolution, resilience).</p>
+      </div>
+      <div>
+        <h3>Digital Skills Module</h3>
+        <p>Embedded alongside sport: content creation (social media literacy, basic video), digital tools (Google Workspace, Microsoft Office), basic coding concepts. Tracked through completion and demonstrated competency. Accredited where possible.</p>
+      </div>
+      <div>
+        <h3>Leadership & Career Pathways</h3>
+        <p>Peer mentoring, community leadership roles (volunteer coach, program assistant), formal career guidance. Linkage to schools for academic support, corporates for internships, vocational bodies for certification.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 24px;">Key Behavioral Assumptions (Evidence-Backed)</h3>
+
+    <p style="margin-bottom: 40px;">
+      <strong>Assumption 1:</strong> Youth in PPRs who engage in structured sport will develop foundational behavioral competencies (discipline, teamwork, persistence) that transfer to other domains.
+      <br>
+      <em>Evidence:</em> Extensive literature (including UK Sport studies, World Bank evaluations) confirms sport as a vehicle for social-emotional development.
+    </p>
+
+    <p style="margin-bottom: 40px;">
+      <strong>Assumption 2:</strong> Digital skills embedded within a trusted sport context will achieve higher adoption and retention than standalone digital training.
+      <br>
+      <em>Evidence:</em> Blended learning models show 20–35% higher persistence when skills are contextualized within motivating activities.
+    </p>
+
+    <p>
+      <strong>Assumption 3:</strong> Youth with demonstrated sport engagement + digital competency + school linkage will transition to formal education or employment at higher rates than unengaged cohorts.
+      <br>
+      <em>Evidence:</em> U.S. longitudinal studies (including National Longitudinal Youth Survey data) show sport participation correlates with 15–20% higher employment rates and wage premiums.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     V. OPERATING MODEL & IMPLEMENTATION ARCHITECTURE
+============================================================ -->
+
+<section id="implementation">
+  <div class="wrap">
+    <div class="kicker">(Operations – Infrastructure Operating Layer)</div>
+    <h2>Operating Model: Scalable, Replicable, Partnership-Driven Court Node System</h2>
+
+    <h3 style="margin-bottom: 40px;">Organizational Structure</h3>
+
+    <div class="grid cols-3">
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="margin-bottom: 16px;">Central Coordination (Headquarters)</h3>
+        <p><strong>Executive Director + Head of Programs + Head of Partnerships + Head of M&E + Finance Manager</strong></p>
+        <p style="margin-top: 16px; color: var(--ink);">Responsibilities: Strategic planning, funding, coach training, M&E systems, partnership governance, policy engagement.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="margin-bottom: 16px;">Site-Level Teams</h3>
+        <p><strong>Court Coordinator + Lead Coach(es) + Program Assistant + Volunteer Coaches</strong></p>
+        <p style="margin-top: 16px; color: var(--ink);">Responsibilities: Day-to-day program delivery, participant recruitment & retention, school/community partnerships, data collection, safeguarding compliance.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="margin-bottom: 16px;">Operational Partners</h3>
+        <p><strong>Schools, government agencies (KPKT, DBKL), corporates, NGOs, sport bodies</strong></p>
+        <p style="margin-top: 16px; color: var(--ink);">Responsibilities: Participant referral, space/resource provision, employment placement, program co-funding.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Program Architecture</h3>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Component</th>
+        <th>Frequency</th>
+        <th>Duration</th>
+        <th>Outcomes</th>
+      </tr>
+      <tr>
+        <td><strong>Sport Programming</strong></td>
+        <td>3–4 sessions/week per court</td>
+        <td>90 mins/session</td>
+        <td>Participation, retention, social-emotional skills, peer networks</td>
+      </tr>
+      <tr>
+        <td><strong>Digital Skills Module</strong></td>
+        <td>1–2 sessions/week (embedded or standalone)</td>
+        <td>8–12 weeks (modular)</td>
+        <td>Digital literacy, tool proficiency, portfolio creation</td>
+      </tr>
+      <tr>
+        <td><strong>Leadership Track</strong></td>
+        <td>Volunteer roles + monthly workshops</td>
+        <td>Ongoing (6+ months)</td>
+        <td>Peer mentoring, facilitation skills, resume-building</td>
+      </tr>
+      <tr>
+        <td><strong>Career Pathways</strong></td>
+        <td>Individual + group (quarterly)</td>
+        <td>6–12 months</td>
+        <td>Career awareness, school re-engagement, internship/job placement</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">The GOL Court Node: Atomic Unit of the Infrastructure System</h3>
+
+    <p style="margin-bottom: 40px; color: var(--ink-soft);">
+      The GOL court node is the foundational operating unit. Each node is a complete, self-contained system designed to be replicated across Malaysia. A court node is not a venue—it is an integrated infrastructure system combining engagement, human bridging, data tracking, and mobility routing.
+    </p>
+
+    <div class="grid cols-2" style="margin-bottom: 60px;">
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Layer 1: Physical Engagement Node</h3>
+        <p style="font-size: 0.95rem;"><strong>3–4 structured sport sessions per week.</strong> Courts function as high-frequency engagement environments. Every session generates participation data: attendance, engagement quality, peer interaction patterns, behavioural signals.</p>
+        <p style="font-size: 0.95rem; margin-top: 16px;"><strong>Data function:</strong> Participation and retention tracking; baseline for all downstream outcomes.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Layer 2: Human Bridge Layer</h3>
+        <p style="font-size: 0.95rem;"><strong>Ex-players and coaches as trusted anchors.</strong> Coaches function as behavioural stabilizers and aspiration bridges—they model participation, enforce standards, build trust, and enable belief in mobility pathways.</p>
+        <p style="font-size: 0.95rem; margin-top: 16px;"><strong>Data function:</strong> Coach observation of social-emotional development; peer feedback networks.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Layer 3: Data & Digital Layer</h3>
+        <p style="font-size: 0.95rem;"><strong>Embedded CRM and digital skills delivery.</strong> Real-time tracking of participant progress. Digital skill modules integrated into weekend sessions. Youth create portfolios, build tool proficiency, generate evidence of capability.</p>
+        <p style="font-size: 0.95rem; margin-top: 16px;"><strong>Data function:</strong> Skill completion tracking, digital competency assessment, program optimization.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Layer 4: Mobility Routing Layer</h3>
+        <p style="font-size: 0.95rem;"><strong>Education and employment pathway routing.</strong> School partnership coordination. Internship and job placement linkage. Structured pathways from court-based participation into tertiary education or employment.</p>
+        <p style="font-size: 0.95rem; margin-top: 16px;"><strong>Data function:</strong> Education re-engagement tracking, employment placement documentation.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-bottom: 40px;">
+      <h3>Court Node Unit Economics</h3>
+      <p>Each court node serves 40–60 active youth per year. Annual operating cost per node: RM 83–110K (including central allocation). This fixed unit cost enables predictable, replicable scaling across 50–100+ court nodes nationally.</p>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Coach Role & Training</h3>
+
+    <p style="margin-bottom: 24px;">
+      Coaches are the operational cornerstone of each court node. GOL trains community-based facilitators (often from PPR communities or ex-athletes) to operate as engagement coordinators, behavioural anchors, and mobility pathway guides.
+    </p>
+
+    <div class="callout">
+      <h3>Coach Competency Framework</h3>
+      <p><strong>Sport delivery:</strong> Futsal/badminton coaching (technical + tactical). <strong>Youth facilitation:</strong> Positive behavior management, peer conflict resolution. <strong>Digital basics:</strong> Familiarity with tools; ability to guide youth exploration. <strong>Safeguarding:</strong> Child protection protocols, mandatory reporting, boundary-setting.</p>
+      <p style="margin-top: 16px;"><strong>Training structure:</strong> 40-hour initial certification (2 weeks), 16-hour annual refresher, ongoing peer learning.</p>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Safeguarding & Duty of Care</h3>
+
+    <p style="margin-bottom: 24px;">
+      GOL operates with institutional-grade child protection systems:
+    </p>
+
+    <ul style="margin-left: 20px; color: var(--ink-soft); margin-bottom: 40px;">
+      <li style="margin-bottom: 12px;">Mandatory background checks for all staff and coaches</li>
+      <li style="margin-bottom: 12px;">Written child safeguarding policy and training for all personnel</li>
+      <li style="margin-bottom: 12px;">Clear reporting pathways for safeguarding concerns (escalation to central team + relevant authorities)</li>
+      <li style="margin-bottom: 12px;">Parental consent and ongoing communication protocols</li>
+      <li style="margin-bottom: 12px;">Secure data handling for participant information (PDPA compliant)</li>
+      <li style="margin-bottom: 12px;">Regular audits and third-party safeguarding review</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     VI. PILOT → SCALE ROADMAP
+============================================================ -->
+
+<section id="roadmap" class="section-alt">
+  <div class="wrap">
+    <div class="kicker">(Planning – Court Node Expansion & Scale Logic)</div>
+    <h2>Expansion Roadmap: From Single Node Proof to National Network</h2>
+
+    <h3 style="margin-bottom: 48px;">Phase Structure</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <h3>Phase 1: Pilot</h3>
+        <div class="stat-label">Months 1–12</div>
+        <p>3 PPR courts (Klang Valley). Full program stack, end-to-end operational model, baseline data collection.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <h3>Phase 2: Consolidation</h3>
+        <div class="stat-label">Months 13–24</div>
+        <p>Scale to 8–10 courts (Klang Valley + Selangor). Systems hardening, coach training pipeline, M&E refinement.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <h3>Phase 3: National</h3>
+        <div class="stat-label">Months 25–48</div>
+        <p>Expand to 30–50 courts across key states (KL, Selangor, Johor, Penang, Kedah). Government partnership scaling.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <h3>Phase 4: Regional</h3>
+        <div class="stat-label">Month 49+</div>
+        <p>Licensing/adaptation model for SEA (Singapore, Thailand, Indonesia). Knowledge transfer, partnership licensing.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Detailed Phase 1: Court Node System Proof & Success Metrics</h3>
+
+    <div class="callout">
+      <h3>Court Node System Operationalization</h3>
+      <p>Establish fully functioning court node systems at 3 sites with integrated engagement, human bridging, data tracking, and mobility routing layers. Demonstrate that the replicable court node architecture is operationally sound and generates clean data across all four layers.</p>
+    </div>
+
+    <div class="callout">
+      <h3>Participation & Data Generation Proof</h3>
+      <p><strong>Enrollment:</strong> Recruit 150–200 youth across 3 court nodes. <strong>Engagement consistency:</strong> 60%+ retention through 12-week cohorts (core engagement data). <strong>Digital skills pipeline:</strong> 70%+ complete digital modules; competency demonstrated. <strong>Mobility data:</strong> 40%+ documented education/employment pathway engagement.</p>
+    </div>
+
+    <div class="callout">
+      <h3>Human Bridge Layer Validation</h3>
+      <p>Establish formal partnerships with 3 anchor schools, 1–2 corporates, local government (DBKL/KPKT), and sport bodies. Validate that coach-led trust bridges and ex-player mentorship enable reliable participant progression.</p>
+    </div>
+
+    <div class="callout">
+      <h3>Data Infrastructure & Measurement System</h3>
+      <p>Deploy fully functional court node CRM and tracking system (privacy-first). Collect baseline and outcome measurement across all four layers. Generate publicly-shareable impact dashboard accessible to funders and government partners.</p>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 24px;">Scaling Triggers: Phase 1 → Phase 2</h3>
+
+    <p style="margin-bottom: 40px;">
+      GOL will proceed to Phase 2 only when the following conditions are met:
+    </p>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Criterion</th>
+        <th>Target</th>
+      </tr>
+      <tr>
+        <td><strong>Participant Retention (12 weeks)</strong></td>
+        <td>60%+ (baseline established)</td>
+      </tr>
+      <tr>
+        <td><strong>Digital Skills Completion</strong></td>
+        <td>70%+ of participants complete modules</td>
+      </tr>
+      <tr>
+        <td><strong>Coach Certification</strong></td>
+        <td>100% of coaches pass initial training + safeguarding audit</td>
+      </tr>
+      <tr>
+        <td><strong>Partnership MOUs</strong></td>
+        <td>3+ formal school partnerships + 2+ corporate partners signed</td>
+      </tr>
+      <tr>
+        <td><strong>Financial Sustainability</strong></td>
+        <td>30%+ of Phase 2 costs covered through activations + sponsorship (non-grant revenue)</td>
+      </tr>
+      <tr>
+        <td><strong>M&E System Maturity</strong></td>
+        <td>Quarterly impact reporting + third-party data audit completed</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Phase 2–4 Expansion Economics (High-Level)</h3>
+
+    <p style="margin-bottom: 40px;">
+      Cost structure is fixed to a "cost per court" model, enabling rapid replication:
+    </p>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Phase</th>
+        <th>Courts</th>
+        <th>Youth Served (est.)</th>
+        <th>Annual Cost per Court</th>
+        <th>Total Annual Requirement</th>
+      </tr>
+      <tr>
+        <td>Phase 1 (Pilot)</td>
+        <td>3</td>
+        <td>150–200</td>
+        <td>RM 80–100K</td>
+        <td>RM 240–300K</td>
+      </tr>
+      <tr>
+        <td>Phase 2 (Consolidation)</td>
+        <td>8–10</td>
+        <td>400–500</td>
+        <td>RM 75–90K (scale efficiency)</td>
+        <td>RM 600–900K</td>
+      </tr>
+      <tr>
+        <td>Phase 3 (National)</td>
+        <td>30–50</td>
+        <td>1,500–2,500</td>
+        <td>RM 70–85K (centralized systems)</td>
+        <td>RM 2.1–4.25M</td>
+      </tr>
+      <tr>
+        <td>Phase 4 (Regional)</td>
+        <td>60–100+</td>
+        <td>3,000–5,000+</td>
+        <td>RM 65–80K (licensing model)</td>
+        <td>RM 3.9–8M</td>
+      </tr>
+    </table>
+
+    <p style="margin-top: 40px; color: var(--ink-soft);">
+      <em>Note: Costs include coaching staff, digital equipment, program delivery, M&E infrastructure, and headquarters support. Capital costs (court renovation/activation) are one-time and shared with partner agencies. Costs are indicative and subject to location-based variations.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     VII. MEASUREMENT & IMPACT FRAMEWORK
+============================================================ -->
+
+<section id="measurement">
+  <div class="wrap">
+    <div class="kicker">(Evidence – Measurement & Impact)</div>
+    <h2>Measurement & Evaluation: Credible, Transparent, Auditable</h2>
+
+    <h3 style="margin-bottom: 40px;">Data Infrastructure as System Layer</h3>
+
+    <p style="margin-bottom: 40px; color: var(--ink-soft);">
+      GOL's measurement system is not post-hoc evaluation. It is an embedded infrastructure layer that generates real-time participation, behavioral, and outcome data. This data enables program optimization, informs youth mobility decisions, and provides transparency to funders, partners, and government stakeholders. Every metric is collected at point-of-service by coaches and coordinators.
+    </p>
+
+    <h3 style="margin-bottom: 40px;">Measurement Framework</h3>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Category</th>
+        <th>Metric</th>
+        <th>Collection Method</th>
+        <th>Frequency</th>
+      </tr>
+      <tr>
+        <td rowspan="3"><strong>Participation</strong></td>
+        <td>Youth enrolled (baseline)</td>
+        <td>Registration form + parental consent</td>
+        <td>Per cohort</td>
+      </tr>
+      <tr>
+        <td>Attendance (sessions completed)</td>
+        <td>Coach attendance log</td>
+        <td>Per session</td>
+      </tr>
+      <tr>
+        <td>Retention (completion of 12-week program)</td>
+        <td>Completion checklist</td>
+        <td>Per cohort</td>
+      </tr>
+      <tr>
+        <td rowspan="3"><strong>Digital Skills</strong></td>
+        <td>Module completion rate</td>
+        <td>Skill module checklist + coach assessment</td>
+        <td>Per module</td>
+      </tr>
+      <tr>
+        <td>Demonstrated competency (portfolio/assessment)</td>
+        <td>Portfolio review + basic skills test</td>
+        <td>Post-module</td>
+      </tr>
+      <tr>
+        <td>Tool proficiency (Google Workspace, etc.)</td>
+        <td>Practical demonstration or short assessment</td>
+        <td>Per module</td>
+      </tr>
+      <tr>
+        <td rowspan="3"><strong>Social-Emotional</strong></td>
+        <td>Peer feedback (360-style assessment)</td>
+        <td>Simple peer survey (pre/post)</td>
+        <td>Start + end of cohort</td>
+      </tr>
+      <tr>
+        <td>Leadership participation (volunteer roles)</td>
+        <td>Volunteer assignment tracking</td>
+        <td>Ongoing</td>
+      </tr>
+      <tr>
+        <td>Coach assessment (teamwork, resilience, etc.)</td>
+        <td>Structured coach observation form</td>
+        <td>Mid-program + final</td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>Education Linkage</strong></td>
+        <td>School re-engagement (for out-of-school youth)</td>
+        <td>Follow-up survey + school confirmation</td>
+        <td>6 months post-program</td>
+      </tr>
+      <tr>
+        <td>Vocational pathway entry (certification, training)</td>
+        <td>Enrollment confirmation from training body</td>
+        <td>12 months post-program</td>
+      </tr>
+      <tr>
+        <td><strong>Employment</strong></td>
+        <td>Employment placement (internship, part-time, full-time)</td>
+        <td>Employer confirmation + participant survey</td>
+        <td>6 + 12 months post-program</td>
+      </tr>
+      <tr>
+        <td><strong>Safeguarding</strong></td>
+        <td>Incident reporting + audit compliance</td>
+        <td>Incident log + annual third-party audit</td>
+        <td>Ongoing + annual</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Data Infrastructure & Reporting</h3>
+
+    <div class="grid cols-2">
+      <div class="callout">
+        <h3>Participant Data System</h3>
+        <p>Simple, cloud-based CRM for enrollment, attendance, assessment, and follow-up tracking. PDPA-compliant with opt-in parental consent. Coaches input data in real-time via mobile app (offline-capable).</p>
+      </div>
+      <div class="callout">
+        <h3>Impact Dashboard</h3>
+        <p>Quarterly-updated public dashboard showing: participants served, retention rates, skills completed, education/employment placements. Accessible to funders, partners, and government stakeholders.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 40px;">
+      <h3>Reporting Cadence</h3>
+      <p><strong>Monthly:</strong> Operational metrics (sessions delivered, attendance, enrollment). <strong>Quarterly:</strong> Outcome progress (completion, skills, placement). <strong>Annual:</strong> Full impact report + audited financials + third-party safeguarding review.</p>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Evaluation Approach: Built-In Learning</h3>
+
+    <p style="margin-bottom: 24px;">
+      GOL will commission an external evaluation at end of Phase 1 to:
+    </p>
+
+    <ul style="margin-left: 20px; color: var(--ink-soft); margin-bottom: 40px;">
+      <li style="margin-bottom: 12px;">Validate participant-level outcomes against comparison cohort (where feasible)</li>
+      <li style="margin-bottom: 12px;">Assess theory of change assumptions (does sport → digital skills actually hold?)</li>
+      <li style="margin-bottom: 12px;">Document implementation fidelity and site-level variation</li>
+      <li style="margin-bottom: 12px;">Estimate cost-effectiveness (cost per participant, cost per outcome achieved)</li>
+      <li style="margin-bottom: 12px;">Identify scaling bottlenecks and refine Phase 2 model</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     VIII. GOVERNANCE & INSTITUTIONAL TRUST
+============================================================ -->
+
+<section id="governance" class="section-alt">
+  <div class="wrap">
+    <div class="kicker">(Governance – Institutional Trust)</div>
+    <h2>Governance Architecture: Two-Layer Model</h2>
+
+    <h3 style="margin-bottom: 40px;">Clean Separation of Powers</h3>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 60px;">
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Governance Tier: CLBG Foundation</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 12px;"><strong>Role:</strong> Strategic governance, fiduciary duty, compliance.</p>
+        <p style="font-size: 0.95rem;"><strong>Structure:</strong> Independent Board of Trustees. Approves strategy, budgets, partnerships, scaling phases. Owns compliance and financial transparency.</p>
+      </div>
+      <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px;">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Operations Tier: Momentum</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 12px;"><strong>Role:</strong> Day-to-day execution, delivery, partnerships.</p>
+        <p style="font-size: 0.95rem;"><strong>Structure:</strong> Executive team manages court nodes, coach teams, programs within CLBG-approved budgets. Owns delivery outcomes and operational efficiency.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 24px;">Decision Rights (30-Second Version)</h3>
+    <table class="metrics-table" style="font-size: 0.9rem;">
+      <tr>
+        <th>Function</th>
+        <th>CLBG Board</th>
+        <th>Momentum</th>
+      </tr>
+      <tr>
+        <td><strong>Strategy & Expansion</strong></td>
+        <td>Approves phases + gates</td>
+        <td>Executes roadmap</td>
+      </tr>
+      <tr>
+        <td><strong>Court Node Operations</strong></td>
+        <td>Monitors quality + risk</td>
+        <td>Manages coaches, programs, recruitment</td>
+      </tr>
+      <tr>
+        <td><strong>M&E & Data</strong></td>
+        <td>Reviews + approves public reports</td>
+        <td>Collects, validates, submits data</td>
+      </tr>
+      <tr>
+        <td><strong>Funder & Government</strong></td>
+        <td>Approves reporting + policy engagement</td>
+        <td>Prepares materials + liaison</td>
+      </tr>
+      <tr>
+        <td><strong>Risk Management</strong></td>
+        <td>Oversight, policy, escalation</td>
+        <td>Day-to-day mitigation, incident reporting</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Board Responsibilities & Partner Governance</h3>
+
+    <p style="margin-bottom: 40px;">
+      <strong>Board responsibilities:</strong> Fiduciary duty (budgets, audits, compliance) | Strategic direction (multi-year plans, expansion phases) | Risk management (safeguarding, incident review) | Stakeholder accountability (funder reporting, partner coordination).
+    </p>
+
+    <p style="margin-bottom: 40px;">
+      <strong>Partner governance:</strong> Schools (referral, outcomes reporting), Corporates (internships, impact tracking), Government (space, co-funding, policy alignment), NGOs (complementary programs, coordination). All formalized via MOUs with clear roles, contributions, and accountability.
+    </p>
+
+    <div class="callout">
+      <h3>Financial Transparency</h3>
+      <p>Annual independent audit by big-four accounting firm. Quarterly funder reports with participant-level data. Public annual impact statement. Conflict of interest register. Zero backdoor governance.</p>
+
+    <div class="callout" style="margin-top: 40px;">
+      <h3>Conflict of Interest Policy</h3>
+      <p>Board members, staff, and partner representatives disclose potential conflicts; formal process for conflict review and recusal. Public COI register maintained.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     IX. FOUNDER & EXECUTION CAPABILITY
+============================================================ -->
+
+<section id="founder">
+  <div class="wrap">
+    <div class="kicker">(People – Execution Credibility)</div>
+    <h2>Why This Founder, Why This Team</h2>
+
+    <h3 style="margin-bottom: 40px;">Founder: Samuel Siew</h3>
+
+    <div class="grid cols-2">
+      <div>
+        <h3 style="margin-bottom: 24px;">Track Record</h3>
+        <p><strong>16 years in Malaysian sport:</strong> Grassroots-to-commercial experience across football, court sports, and community activation.</p>
+        <p style="margin-top: 20px;"><strong>Former Head of Grassroots (FAM):</strong> Designed and oversaw national youth football development system; deep policy understanding.</p>
+        <p style="margin-top: 20px;"><strong>Former CEO (Courtsite):</strong> Scaled community sports platform from 64 to 350+ venues with 630K+ users. Proven operational and fundraising track record.</p>
+        <p style="margin-top: 20px;"><strong>Current role (Momentum + PSC):</strong> Operating commercial sports venue with multi-tenant model. Direct execution experience in sport-based community engagement.</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 24px;">Why GOL: System Insight</h3>
+        <p>Sam's career has exposed him to the structural fragmentation in Malaysian youth sport: excellent facilities sit idle in PPRs; talented youth lack pathways; programs operate in silos. GOL is not a startup hypothesis—it's a response to observed, lived system failure.</p>
+        <p style="margin-top: 20px;"><strong>Network credibility:</strong> Direct relationships with FAM, DBKL, KPKT, sport bodies, major corporates, and NGO ecosystem. Positioned to navigate complex stakeholder landscape.</p>
+        <p style="margin-top: 20px;"><strong>Execution discipline:</strong> Built and scaled ventures; understands operational trade-offs, cost discipline, and partnership management.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Core Team Composition (Phase 1)</h3>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Role</th>
+        <th>Profile</th>
+        <th>Key Functions</th>
+      </tr>
+      <tr>
+        <td><strong>Executive Director</strong></td>
+        <td>Sport or youth development professional with management + fundraising experience</td>
+        <td>Overall strategic direction, funder relationships, policy engagement, board liaison</td>
+      </tr>
+      <tr>
+        <td><strong>Head of Programs</strong></td>
+        <td>Coach trainer or youth program leader; 5+ years in sport/youth NGO</td>
+        <td>Curriculum design, coach recruitment + training, program quality assurance, site visits</td>
+      </tr>
+      <tr>
+        <td><strong>Head of Partnerships</strong></td>
+        <td>Business development or community engagement professional</td>
+        <td>School/corporate/government partnerships, MOU negotiation, activation revenue</td>
+      </tr>
+      <tr>
+        <td><strong>Head of M&E</strong></td>
+        <td>Data analyst or impact evaluation specialist</td>
+        <td>System design, data collection, reporting, third-party audit coordination</td>
+      </tr>
+      <tr>
+        <td><strong>Finance Manager</strong></td>
+        <td>Accounting or nonprofit finance professional</td>
+        <td>Budgeting, financial reporting, compliance, audit liaison</td>
+      </tr>
+      <tr>
+        <td><strong>Site Coordinators (3 in Phase 1)</strong></td>
+        <td>Community-based manager or experienced coach</td>
+        <td>Day-to-day program delivery, participant management, local partnerships, data entry</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Why This Team Works</h3>
+
+    <p style="margin-bottom: 24px;">
+      <strong>Separation of governance and operations:</strong> Founder serves as strategic advisor or board member; professional management ensures accountability and scalability. This structure attracts major funders (Khazanah, Sunway) who require non-founder-dependent organizations.
+    </p>
+
+    <p>
+      <strong>Sector expertise:</strong> Team combines sport delivery, youth development, partnership management, and impact measurement—the four pillars of execution. No single person is a bottleneck.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     X. UNIT ECONOMICS & COST STRUCTURE
+============================================================ -->
+
+<section id="economics" class="section-alt">
+  <div class="wrap">
+    <div class="kicker">(Financial – Capital Model)</div>
+    <h2>Unit Economics: Capital-Efficient Model</h2>
+
+    <h3 style="margin-bottom: 40px;">Cost-Per-Court Model (Phase 1)</h3>
+
+    <p style="margin-bottom: 40px;">
+      GOL's economics are built on a fixed "cost per court per year" structure, enabling rapid replication and scaling:
+    </p>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Cost Category</th>
+        <th>Annual (per court)</th>
+        <th>Notes</th>
+      </tr>
+      <tr>
+        <td><strong>Coaching Staff</strong></td>
+        <td>RM 40–50K</td>
+        <td>Lead coach (full-time, RM 28–32K) + assistant/volunteer (RM 12–18K stipend)</td>
+      </tr>
+      <tr>
+        <td><strong>Program Delivery</strong></td>
+        <td>RM 12–15K</td>
+        <td>Digital equipment (laptops, projector), sport supplies, consumables</td>
+      </tr>
+      <tr>
+        <td><strong>Coordinator/Admin</strong></td>
+        <td>RM 18–24K</td>
+        <td>Part-time court coordinator (RM 1,500–2,000/month)</td>
+      </tr>
+      <tr>
+        <td><strong>Headquarters Allocation</strong></td>
+        <td>RM 10–15K</td>
+        <td>Pro-rata: executive overhead, M&E, compliance (fixed costs per site)</td>
+      </tr>
+      <tr>
+        <td><strong>Court Maintenance/Utilities</strong></td>
+        <td>RM 3–6K</td>
+        <td>Partner or government typically absorbs; GOL covers incremental</td>
+      </tr>
+      <tr>
+        <td><strong style="background: var(--surface-detail);">Total Per Court (Annual)</strong></td>
+        <td style="background: var(--surface-detail);"><strong>RM 83–110K</strong></td>
+        <td style="background: var(--surface-detail);">Serves 40–60 active youth (depending on site cohort size)</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Cost Per Youth Served</h3>
+
+    <p style="margin-bottom: 40px;">
+      Assuming 50 active youth per court per year:
+    </p>
+
+    <div style="background: var(--surface-detail); padding: 32px; border-radius: 12px; margin-bottom: 40px;">
+      <p style="margin: 0;"><strong>Cost per youth per year:</strong> RM 1,660–2,200</p>
+      <p style="margin-top: 12px; color: var(--ink-soft); font-size: 0.95rem;">
+        This includes full program delivery, coaching, digital skills, M&E, and overhead allocation. Competitive with international youth development programs; significantly below cost of incarceration or remedial intervention.
+      </p>
+    </div>
+
+    <h3 style="margin-bottom: 40px;">Revenue Model (Phase 2+)</h3>
+
+    <p style="margin-bottom: 40px;">
+      GOL operates as a social enterprise with diversified revenue streams:
+    </p>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Revenue Stream</th>
+        <th>Mechanism</th>
+        <th>Realistic Annual (per court)</th>
+      </tr>
+      <tr>
+        <td><strong>Court Activations/Memberships</strong></td>
+        <td>Youth or community membership fees (sliding scale); RM 10–50/month depending on cohort</td>
+        <td>RM 8–15K</td>
+      </tr>
+      <tr>
+        <td><strong>Corporate Sponsorship</strong></td>
+        <td>Court naming rights, program sponsorship, employee engagement events</td>
+        <td>RM 20–40K</td>
+      </tr>
+      <tr>
+        <td><strong>Government Partnership Funding</strong></td>
+        <td>Co-funding from KPKT, DBKL, Ministry of Youth for youth programming</td>
+        <td>RM 30–50K</td>
+      </tr>
+      <tr>
+        <td><strong>Foundation / Philanthropic Grants</strong></td>
+        <td>Major grants from Khazanah, Sunway, international donors</td>
+        <td>RM 30–60K (blended)</td>
+      </tr>
+      <tr>
+        <td><strong>Digital Tools Licensing</strong></td>
+        <td>Licensing GOL platform to other countries/partners</td>
+        <td>RM 5–10K (Phase 3+)</td>
+      </tr>
+      <tr>
+        <td style="background: var(--surface-detail);"><strong>Total Realistic Revenue (per court)</strong></td>
+        <td style="background: var(--surface-detail);">Blended across streams</td>
+        <td style="background: var(--surface-detail);"><strong>RM 60–80K (Phase 2+)</strong></td>
+      </tr>
+    </table>
+
+    <p style="margin-top: 40px; color: var(--ink-soft);">
+      <em>Note: Phase 1 is grant-funded. Phase 2+ targets 60–70% self-sustaining (blended revenue), with strategic grants as catalytic capital for expansion.</em>
+    </p>
+
+    <h3 style="margin-top: 60px; margin-bottom: 24px;">Capital Requirements (One-Time)</h3>
+
+    <ul style="margin-left: 20px; color: var(--ink-soft); margin-bottom: 40px;">
+      <li style="margin-bottom: 12px;"><strong>Court activation (per site):</strong> RM 40–80K (lighting, safety upgrades, basic branding). Often shared with partner agencies.</li>
+      <li style="margin-bottom: 12px;"><strong>Digital equipment & systems:</strong> RM 30–50K (laptops, projectors, data platform, phone/internet).</li>
+      <li style="margin-bottom: 12px;"><strong>Initial training & setup (organization-level):</strong> RM 50–80K (coach certification, system design, compliance audit).</li>
+      <li><strong>Total one-time (Phase 1):</strong> RM 150–250K (to be financed by Phase 1 grant funding).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     XI. INVESTMENT ASK & FUNDING ARCHITECTURE
+============================================================ -->
+
+<section id="investment">
+  <div class="wrap">
+    <div class="kicker">(Investment – Catalytic Capital)</div>
+    <h2>Investment Opportunity: Catalytic Capital for Systems Change</h2>
+
+    <h3 style="margin-bottom: 40px;">What We're Raising</h3>
+
+    <div class="callout">
+      <h3>Phase 1 Funding (24 Months)</h3>
+      <p><strong>Amount:</strong> RM 600K–800K<br>
+      <strong>Use:</strong> 3 pilot courts fully operational, coach training, M&E system, central team, external evaluation.</p>
+    </div>
+
+    <div class="callout" style="margin-top: 40px;">
+      <h3>Phase 2 Funding (24 Months, contingent on Phase 1 success)</h3>
+      <p><strong>Amount:</strong> RM 1.8M–2.4M<br>
+      <strong>Use:</strong> Expand to 8–10 courts, system hardening, coach pipeline, government partnership scaling.</p>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Why This Is Catalytic Capital, Not Charity</h3>
+
+    <div class="grid cols-2">
+      <div>
+        <h3>Systems Change Multiplier</h3>
+        <p>GOL's model activates underutilized government assets (existing courts) and creates framework for government-led scale. Catalytic funding unlocks government co-funding at 2–3x multiple.</p>
+      </div>
+      <div>
+        <h3>De-Risking Ecosystem Partners</h3>
+        <p>By proving model and recruiting school/corporate partnerships, GOL reduces private sector risk of youth program investment. Creates market for future activation.</p>
+      </div>
+      <div>
+        <h3>Knowledge Product</h3>
+        <p>GOL's documented model, coach training curriculum, M&E framework, and operational playbook become a regional public good—licensed to other countries, adopted by government bodies.</p>
+      </div>
+      <div>
+        <h3>Social Multiplier</h3>
+        <p>Estimated cost per positive outcome (school re-engagement, employment placement): RM 2,500–4,000. ROI far exceeds direct intervention or remedial spending.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Stakeholder Alignment & Decision Map</h3>
+
+    <p style="margin-bottom: 40px; color: var(--ink-soft);">
+      Different stakeholders have different approval criteria. This table clarifies what each stakeholder needs to believe, what GOL guarantees, and how proof is delivered in Phase 1.
+    </p>
+
+    <table class="metrics-table" style="font-size: 0.9rem;">
+      <tr>
+        <th style="width: 18%;">Stakeholder</th>
+        <th style="width: 27%;">What They Need to Believe</th>
+        <th style="width: 27%;">What GOL Guarantees</th>
+        <th style="width: 28%;">Phase 1 Proof</th>
+      </tr>
+      <tr>
+        <td><strong>Khazanah Nasional</strong></td>
+        <td>This model scales to national impact; government co-funding unlocked; systemic infrastructure gap addressed.</td>
+        <td>Institutional governance (CLBG); transparent M&E; government partnership leverage; capital-efficient replication.</td>
+        <td>3 pilot courts operational; 150–200 youth served; 60%+ retention; 3+ government commitments; Phase 2 funding catalyzed.</td>
+      </tr>
+      <tr>
+        <td><strong>Ministry of Youth &amp; Sports (KBS)</strong></td>
+        <td>Sport-based youth development is effective; existing PPR infrastructure can be activated; GOL is a scalable delivery partner.</td>
+        <td>Alignment with national youth policy; employment linkage outcomes; data transparency; government partner governance role.</td>
+        <td>Formal MOU signed; pilot co-funded or space provided; 40%+ education/employment linkage demonstrated; quarterly reporting to ministry.</td>
+      </tr>
+      <tr>
+        <td><strong>KPKT / DBKL</strong></td>
+        <td>PPR regeneration benefits from sport-based community activation; GOL is low-cost asset activation partner.</td>
+        <td>Court maintenance responsibility shared; community feedback loops; youth employment outcomes tied to urban regeneration goals.</td>
+        <td>Facility access agreements signed; community satisfaction surveys; youth outcomes reported to city planning division.</td>
+      </tr>
+      <tr>
+        <td><strong>Schools (as Partners)</strong></td>
+        <td>GOL reduces out-of-school youth; strengthens digital readiness; trusted coach-led intervention.</td>
+        <td>Transparent enrollment data; school-linked outcomes; no poaching of school activities; referral-based recruitment.</td>
+        <td>Formal MOU; 40%+ referred participants; school re-engagement outcomes; co-branded programming.</td>
+      </tr>
+      <tr>
+        <td><strong>Corporates (Sunway Foundation, etc.)</strong></td>
+        <td>Youth employment pipeline is real; ESG outcomes are verified; brand association with credible system.</td>
+        <td>Internship/placement pathways; employment outcome tracking; transparent impact dashboard; governance involvement (board seat option).</td>
+        <td>2–3 corporate sponsors secured; internship placements documented; quarterly employment reports; co-marketing rights.</td>
+      </tr>
+      <tr>
+        <td><strong>FAM &amp; Sport Bodies</strong></td>
+        <td>GOL strengthens grassroots sport ecosystem; develops talent pipeline; professional management of community delivery.</td>
+        <td>Alignment with FAM youth development strategy; coach training standards; talent identification protocols; federation partnership model.</td>
+        <td>FAM endorsement; formal coaching partnership; athlete-mentor program operational; talent pipeline data shared.</td>
+      </tr>
+      <tr>
+        <td><strong>International Impact Investors</strong></td>
+        <td>Model is replicable across SEA; measurable outcomes demonstrated; governance enables licensing expansion.</td>
+        <td>Rigorous M&E framework; outcome attribution; scalable operational playbook; licensing model for regional partners.</td>
+        <td>External evaluation completed; SEA replication pathway articulated; licensing framework drafted; Phase 2 momentum proven.</td>
+      </tr>
+      <tr>
+        <td><strong>PPR Communities (Direct)</strong></td>
+        <td>Youth program is accessible, safe, and leads to real opportunity; not extractive.</td>
+        <td>Free/low-cost participation; child safeguarding compliance; community input on programming; employment outcomes shared.</td>
+        <td>90%+ community satisfaction survey; zero safeguarding incidents; youth employment placements announced; annual community review.</td>
+      </tr>
+    </table>
+
+</h3>
+
+    <p style="margin-bottom: 40px;">
+      GOL seeks funders aligned with the following criteria:
+    </p>
+
+    <div class="grid cols-2">
+      <div class="callout">
+        <h3>Mission Alignment</h3>
+        <p>Youth development, urban regeneration, digital inclusion, social mobility, inclusive growth. Comfort with systems-level thinking and long-term impact measurement.</p>
+      </div>
+      <div class="callout">
+        <h3>Scale Mindset</h3>
+        <p>Willingness to invest in proof-of-concept (Phase 1) with understanding of path to national/regional scale. Not seeking single-site "good work" but replicable system.</p>
+      </div>
+      <div class="callout">
+        <h3>Partnership Capability</h3>
+        <p>Ability to unlock government co-funding, corporate partnerships, and ecosystem alignment (not just philanthropic capital). "Convener" role valued.</p>
+      </div>
+      <div class="callout">
+        <h3>Patient Capital</h3>
+        <p>Comfort with 24–36 month proof phase before major expansion. Willingness to measure learning and adapt model based on evidence.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Potential Strategic Partners</h3>
+
+    <p style="margin-bottom: 40px;">
+      Ideal anchor investors for Phase 1:
+    </p>
+
+    <ul style="margin-left: 20px; color: var(--ink-soft); margin-bottom: 40px;">
+      <li style="margin-bottom: 16px;"><strong>Khazanah Nasional Berhad:</strong> Strategic fit with inclusive growth mandate, government leverage, multi-year funding capacity.</li>
+      <li style="margin-bottom: 16px;"><strong>Sunway Group Foundation / Tan Sri Jeffrey Cheah Foundation:</strong> Track record in youth development, sport, education; Malaysian leadership; corporate partnership potential.</li>
+      <li style="margin-bottom: 16px;"><strong>Malaysian government (Ministry of Youth & Sports, KPKT):</strong> Co-funding for pilot + commitment to Phase 2 scaling.</li>
+      <li style="margin-bottom: 16px;"><strong>International foundations (e.g., Rockefeller, Ford, Chan Zuckerberg Initiative SEA):</strong> Global youth development expertise; interest in regional models.</li>
+      <li style="margin-bottom: 16px;"><strong>Corporate partners (Maybank, Petronas, Telekom Malaysia):</strong> CSR alignment + employee engagement + employment linkage.</li>
+    </ul>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Use of Funds: Phase 1 Budget (RM 600–800K)</h3>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Details</th>
+      </tr>
+      <tr>
+        <td><strong>Program Delivery (3 courts)</strong></td>
+        <td>RM 240–330K</td>
+        <td>Coaching staff, digital equipment, supplies, utilities allocation (24 months)</td>
+      </tr>
+      <tr>
+        <td><strong>Central Team + Overhead</strong></td>
+        <td>RM 150–200K</td>
+        <td>Executive, Programs, Partnerships, M&E, Finance (24 months)</td>
+      </tr>
+      <tr>
+        <td><strong>M&E & Systems</strong></td>
+        <td>RM 60–80K</td>
+        <td>Data platform, baseline/outcome surveys, external evaluation</td>
+      </tr>
+      <tr>
+        <td><strong>Coach Training & Certification</strong></td>
+        <td>RM 40–60K</td>
+        <td>Initial 40-hour curriculum design, trainer preparation, certification audits</td>
+      </tr>
+      <tr>
+        <td><strong>Court Activation (one-time)</strong></td>
+        <td>RM 60–100K</td>
+        <td>Lighting, safety upgrades, branding, equipment storage</td>
+      </tr>
+      <tr>
+        <td><strong>Governance & Compliance</strong></td>
+        <td>RM 20–30K</td>
+        <td>CLBG registration, insurance, safeguarding audit, legal setup</td>
+      </tr>
+      <tr>
+        <td><strong>Contingency (8%)</strong></td>
+        <td>RM 48–68K</td>
+        <td>Risk buffer for operational variance</td>
+      </tr>
+      <tr>
+        <td style="background: var(--surface-detail);"><strong>Total Phase 1</strong></td>
+        <td style="background: var(--surface-detail);"><strong>RM 618–858K</strong></td>
+        <td style="background: var(--surface-detail);"></td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Expected Returns (Social & Strategic)</h3>
+
+    <p style="margin-bottom: 40px;">
+      By end of Phase 1 (24 months):
+    </p>
+
+    <ul style="margin-left: 20px; color: var(--ink-soft); margin-bottom: 40px;">
+      <li style="margin-bottom: 12px;"><strong>Participant outcomes:</strong> 150–200 youth engaged, 60%+ retention, 70%+ digital skills completion, 40%+ education/employment linkage initiated.</li>
+      <li style="margin-bottom: 12px;"><strong>System proof:</strong> Replicable operational model documented; coach training curriculum certified; M&E framework validated.</li>
+      <li style="margin-bottom: 12px;"><strong>Partnership foundation:</strong> 3+ formal school partnerships, 2+ corporate partners, government MOU in place, ready for Phase 2 scaling.</li>
+      <li style="margin-bottom: 12px;"><strong>Funding leverage:</strong> Phase 1 investment catalyzes RM 1–2M additional government + corporate co-funding for Phase 2.</li>
+      <li style="margin-bottom: 12px;"><strong>Knowledge asset:</strong> Model, playbook, and evaluation results available for regional licensing and adaptation.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     XII. RISK MANAGEMENT & MITIGATION
+============================================================ -->
+
+<section id="risks">
+  <div class="wrap">
+    <div class="kicker">(Risk – Mitigation Framework)</div>
+    <h2>Risk Framework & Mitigation Strategies</h2>
+
+    <h3 style="margin-bottom: 40px;">Key Organizational Risks</h3>
+
+    <table class="metrics-table">
+      <tr>
+        <th>Risk</th>
+        <th>Probability</th>
+        <th>Impact</th>
+        <th>Mitigation</th>
+      </tr>
+      <tr>
+        <td><strong>Founder Dependency</strong><br>(Model perceived as dependent on Sam's involvement)</td>
+        <td>Medium</td>
+        <td>High</td>
+        <td>Professionalize central team; separate governance (CLBG Board) from operations; document all systems; succession planning from Year 1.</td>
+      </tr>
+      <tr>
+        <td><strong>Partner Coordination Friction</strong><br>(Schools, corporates, government unaligned or non-responsive)</td>
+        <td>Medium</td>
+        <td>Medium</td>
+        <td>Formal MOUs with clear KPIs; dedicated partnership manager; quarterly governance reviews; escalation protocols.</td>
+      </tr>
+      <tr>
+        <td><strong>Coach Burnout / Staff Turnover</strong><br>(High-touch field work; lower wages relative to corporate sector)</td>
+        <td>High</td>
+        <td>Medium</td>
+        <td>Competitive compensation packages; clear career progression; peer learning communities; mental health support; volunteer coach pipeline to de-risk.</td>
+      </tr>
+      <tr>
+        <td><strong>Participant Recruitment / Retention Shortfall</strong><br>(Youth don't enroll or complete programs)</td>
+        <td>Medium</td>
+        <td>High</td>
+        <td>Deep community partnerships (schools are referral channel); flexible timing/accessibility; participant incentives; family engagement.</td>
+      </tr>
+      <tr>
+        <td><strong>Safeguarding Incident</strong><br>(Coach misconduct or child protection lapse)</td>
+        <td>Low</td>
+        <td>Critical</td>
+        <td>Institutional-grade child protection systems; background checks; mandatory training; clear reporting; regular audits; insurance; incident response protocol.</td>
+      </tr>
+      <tr>
+        <td><strong>M&E Data Quality / Attribution Questions</strong><br>(Difficulty proving outcomes causally linked to GOL)</td>
+        <td>Medium</td>
+        <td>Medium</td>
+        <td>Rigorous baseline + follow-up surveying; comparison group design (where feasible); external evaluation firm; transparent reporting of limitations.</td>
+      </tr>
+      <tr>
+        <td><strong>Funding / Sustainability Risk</strong><br>(Overreliance on single funder or grant dependence)</td>
+        <td>Medium</td>
+        <td>High</td>
+        <td>Diversified funder base (3–5 anchor partners); revenue model development (sponsorship, govt co-funding); contingency reserves; Phase 2 transition to self-sustaining model.</td>
+      </tr>
+    </table>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Government / Policy Risks</h3>
+
+    <ul style="margin-left: 20px; color: var(--ink-soft); margin-bottom: 40px;">
+      <li style="margin-bottom: 12px;"><strong>Policy reversal or government agency churn:</strong> KPKT/DBKL leadership changes or priorities shift. <em>Mitigation:</em> Build relationships across multiple government levels; embed GOL in formal government strategic plans; diversify partnership agencies.</li>
+      <li style="margin-bottom: 12px;"><strong>Regulatory uncertainty:</strong> Child protection law or charity regulation changes. <em>Mitigation:</em> Proactive legal review; participation in policy consultation; conservative compliance posture.</li>
+      <li><strong>Competition from government programs:</strong> KPKT launches direct sports programming in PPRs, reducing GOL's uniqueness. <em>Mitigation:</em> Position GOL as the implementation partner/operator (not competitor); build interdependence through MOUs.</li>
+    </ul>
+
+    <h3 style="margin-top: 60px; margin-bottom: 40px;">Program Delivery Risks</h3>
+
+    <ul style="margin-left: 20px; color: var(--ink-soft); margin-bottom: 40px;">
+      <li style="margin-bottom: 12px;"><strong>Court access disruption:</strong> Partner agency withdraws facility access. <em>Mitigation:</em> Long-term facility agreements (3+ years); multiple court options per area; rapid relocation protocol.</li>
+      <li style="margin-bottom: 12px;"><strong>Digital equipment failure:</strong> Laptops break, internet down, data lost. <em>Mitigation:</strong> Backup equipment; cloud-based data systems; insurance; redundant internet provision.</li>
+      <li><strong>Low digital skills transfer:</strong> Youth don't retain or apply digital competencies. <em>Mitigation:</em> Embedded skills delivery (not standalone); portfolio-based assessment; employer feedback loop; skill relevance review.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     XIII. CALL TO ACTION
+============================================================ -->
+
+<section class="section-alt">
+  <div class="wrap">
+    <h2>The Moment to Act</h2>
+
+    <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 48px;">
+      Malaysia's urban youth development challenge is well-understood. The policy window is open. The infrastructure exists. What is missing is the systems layer—the connective tissue that turns isolated facilities and good intentions into a replicable, measured, scaled platform.
+    </p>
+
+    <p style="font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 48px;">
+      GOL is that system. Built on institutional structure, partnership depth, and measurable outcomes. Ready for Phase 1 proof, then Phase 2+ national scale.
+    </p>
+
+    <div class="callout">
+      <h3>Next Steps</h3>
+      <p><strong>Interested parties:</strong> We welcome expressions of interest, partnership conversations, and co-investment opportunities. Phase 1 is capital-efficient (RM 600–800K) and outcomes-focused. We are seeking 2–3 anchor funders willing to co-author Malaysia's youth development playbook.</p>
+      <p style="margin-top: 16px;"><strong>Timeline:</strong> Pilot launch targeted for Q3 2026. Funder commitment needed by Q2 2026 to enable recruitment, training, and site activation by launch date.</p>
+    </div>
+
+    <p style="margin-top: 48px; text-align: center; color: var(--ink-faint); font-size: 0.95rem;">
+      For detailed partnership discussions, due diligence materials, or evaluation frameworks, contact the GOL founding team.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+
+<footer>
+  <div class="wrap">
+    <div class="foot-logo">
+      <span>GOL</span>
+    </div>
+    <div class="foot-meta">Making sport safer, smarter, more accessible — Malaysia → SEA</div>
+    <div class="foot-meta">Founder & President: Samuel Siew (Momentum)</div>
+    <div class="foot-meta" style="margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;">
+      This document is intended for institutional stakeholders, funders, and partners. For questions, partnerships, or investment inquiries, contact the GOL team. Last updated June 2026.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
