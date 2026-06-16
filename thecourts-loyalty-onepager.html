@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Courts Loyalty Programme — Tenant One-Pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-pale: #FBF5E6;
+    --gold-mid: #E8D5A3;
+    --gold-dark: #A07828;
+    --black: #111111;
+    --off-white: #FAFAF8;
+    --grey-dark: #3A3A3A;
+    --grey-mid: #888888;
+    --grey-light: #F2F2F0;
+    --border: #E4E4E0;
+    --green: #2D6A4F;
+    --green-pale: #EAF5EE;
+    --white: #FFFFFF;
+  }
+
+  html { font-family: 'Inter', sans-serif; background: #E8E7E4; -webkit-font-smoothing: antialiased; }
+
+  /* ── PAGE WRAPPER ── */
+  .page {
+    max-width: 960px;
+    margin: 24px auto;
+    background: var(--off-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+
+  /* ══════════════════════════════
+     HEADER — Identity + Programme name
+  ══════════════════════════════ */
+  .page-header {
+    background: var(--black);
+    padding: 28px 36px 24px;
+    position: relative; overflow: hidden;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  }
+  .page-header::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), rgba(201,168,76,0.15));
+  }
+  /* decorative circle */
+  .header-deco {
+    position: absolute; right: -60px; top: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-left { flex: 1; }
+  .header-eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(201,168,76,0.6); margin-bottom: 6px;
+  }
+  .header-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.2vw, 32px); font-weight: 900; color: var(--white);
+    line-height: 1.1; margin-bottom: 5px;
+  }
+  .header-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(12px, 1.6vw, 15px); font-weight: 700; color: var(--gold);
+    letter-spacing: 0.03em; margin-bottom: 16px;
+  }
+  .header-punches {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .h-punch {
+    font-size: 12px; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 4px 10px;
+    white-space: nowrap;
+  }
+  .h-punch strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+  .header-right {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0;
+  }
+  .header-stats {
+    display: flex; gap: 18px;
+  }
+  .hstat { text-align: right; }
+  .hstat-num { font-size: 26px; font-weight: 900; color: var(--gold); line-height: 1; }
+  .hstat-label { font-size: 10px; color: rgba(255,255,255,0.45); line-height: 1.3; margin-top: 2px; }
+  .header-conf { font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ══════════════════════════════
+     CUSTOMER JOURNEY HERO
+  ══════════════════════════════ */
+  .journey-section {
+    padding: 28px 36px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-eyebrow::after {
+    content: ''; flex: 1; height: 1px; background: var(--gold-mid); opacity: 0.5;
+  }
+
+  /* Journey flow */
+  .journey-flow {
+    display: flex; align-items: stretch; gap: 0; position: relative;
+  }
+  .jf-step {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    padding: 0 6px;
+    position: relative;
+  }
+  /* connector line between steps */
+  .jf-step:not(:last-child)::after {
+    content: '';
+    position: absolute; top: 30px; right: -14px;
+    width: 28px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), rgba(201,168,76,0.3));
+    z-index: 1;
+  }
+  .jf-bubble {
+    width: 62px; height: 62px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 10px; flex-shrink: 0;
+    position: relative; z-index: 2;
+    border: 2px solid transparent;
+    transition: transform 0.2s;
+  }
+  .jf-bubble.soft { background: var(--grey-light); border-color: var(--border); }
+  .jf-bubble.gold { background: var(--gold-pale); border-color: var(--gold-mid); }
+  .jf-bubble.dark { background: var(--black); border-color: rgba(201,168,76,0.5); }
+  .jf-title { font-size: 12.5px; font-weight: 800; color: var(--black); text-align: center; margin-bottom: 4px; line-height: 1.25; }
+  .jf-desc { font-size: 11px; color: var(--grey-mid); text-align: center; line-height: 1.45; }
+  .jf-step.dark-step .jf-title { color: var(--black); }
+
+  /* Arrow pointer between steps */
+  .jf-arrow {
+    display: flex; align-items: center; padding-bottom: 32px; flex-shrink: 0;
+    color: var(--gold); font-size: 16px; font-weight: 900; line-height: 62px;
+    margin-top: 0;
+  }
+
+  /* ══════════════════════════════
+     MIDDLE ROW — 3 columns
+  ══════════════════════════════ */
+  .middle-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .mid-col {
+    padding: 22px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .mid-col:last-child { border-right: none; }
+  .mid-col-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-dark); margin-bottom: 14px;
+  }
+
+  /* Mechanic block */
+  .mechanic-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--black); border-radius: 8px; padding: 9px 14px;
+    margin-bottom: 12px;
+  }
+  .mp-chip {
+    background: var(--gold); color: var(--black); font-size: 14px; font-weight: 900;
+    padding: 3px 9px; border-radius: 5px; white-space: nowrap;
+  }
+  .mp-text { font-size: 13px; font-weight: 700; color: var(--white); }
+
+  .mechanic-rules { display: flex; flex-direction: column; gap: 7px; }
+  .mrule {
+    display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--grey-dark); line-height: 1.45;
+  }
+  .mrule-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .no-cost-badge {
+    margin-top: 12px;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--green-pale); border: 1px solid #B7DFC9; border-radius: 20px;
+    padding: 5px 12px; font-size: 12px; font-weight: 700; color: var(--green);
+  }
+
+  /* Cashier steps */
+  .cashier-steps { display: flex; flex-direction: column; gap: 9px; }
+  .cs-item {
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .cs-num {
+    width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%;
+    background: var(--gold); font-size: 11px; font-weight: 800; color: var(--black);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cs-item > div { flex: 1; }
+  .cs-label { font-size: 12.5px; font-weight: 700; color: var(--black); line-height: 1.3; }
+  .cs-sub { font-size: 11.5px; color: var(--grey-mid); line-height: 1.4; margin-top: 2px; }
+
+  /* Voucher rules */
+  .voucher-rules { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+  .vrule {
+    font-size: 12px; color: var(--grey-dark); line-height: 1.45;
+    padding-left: 14px; position: relative;
+  }
+  .vrule::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; }
+  .vrule-note {
+    margin-top: 8px; font-size: 11px; color: var(--grey-mid); font-style: italic;
+    padding: 6px 10px; background: var(--grey-light); border-radius: 6px; line-height: 1.45;
+  }
+
+  /* ══════════════════════════════
+     REWARDS STRIP
+  ══════════════════════════════ */
+  .rewards-section {
+    padding: 16px 36px;
+    border-bottom: 1px solid var(--border);
+    background: var(--gold-pale);
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .rewards-label-inline {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-dark); white-space: nowrap; flex-shrink: 0;
+  }
+  .rewards-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .r-pill {
+    display: flex; align-items: center; gap: 5px;
+    background: var(--white); border: 1px solid var(--gold-mid);
+    border-radius: 30px; padding: 5px 12px;
+    font-size: 12px; font-weight: 700; color: #7A5010; white-space: nowrap;
+  }
+
+  /* ══════════════════════════════
+     BOTTOM ROW — Data + Timeline + Ask
+  ══════════════════════════════ */
+  .bottom-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+  }
+  .bot-col {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .bot-col:last-child { border-right: none; }
+  .bot-col-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--grey-mid); margin-bottom: 12px;
+  }
+
+  /* Data list */
+  .data-list { display: flex; flex-direction: column; gap: 5px; }
+  .ditem {
+    font-size: 12px; color: var(--grey-dark); line-height: 1.4;
+    padding-left: 13px; position: relative;
+  }
+  .ditem::before { content: '—'; position: absolute; left: 0; color: var(--grey-mid); }
+  .data-note {
+    margin-top: 9px; font-size: 11px; color: var(--grey-mid);
+    padding: 6px 9px; background: var(--grey-light); border-radius: 6px; line-height: 1.4;
+  }
+
+  /* Timeline */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item { display: flex; align-items: flex-start; gap: 9px; }
+  .tl-dot-wrap { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+  .tl-dot.gold { background: var(--gold); }
+  .tl-dot.blue { background: #3B82F6; }
+  .tl-dot.green { background: var(--green); }
+  .tl-line { width: 1px; height: 14px; background: var(--border); margin-top: 3px; }
+  .tl-content { flex: 1; }
+  .tl-when { font-size: 10px; font-weight: 700; color: var(--grey-mid); letter-spacing: 0.04em; margin-bottom: 1px; }
+  .tl-what { font-size: 12.5px; font-weight: 800; color: var(--black); line-height: 1.25; }
+  .tl-detail { font-size: 11px; color: var(--grey-mid); line-height: 1.35; margin-top: 2px; }
+
+  /* Checklist */
+  .ask-list { display: flex; flex-direction: column; gap: 8px; }
+  .ask-item { display: flex; align-items: flex-start; gap: 8px; }
+  .ask-num {
+    width: 20px; height: 20px; flex-shrink: 0; background: var(--gold); border-radius: 50%;
+    font-size: 11px; font-weight: 800; color: var(--black);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ask-item p { font-size: 12.5px; color: var(--grey-dark); line-height: 1.5; }
+  .ask-item p strong { font-weight: 700; color: var(--black); }
+
+  /* ══════════════════════════════
+     FOOTER / CLOSE
+  ══════════════════════════════ */
+  .page-footer {
+    background: var(--black); padding: 14px 36px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+  .footer-left { font-size: 12.5px; color: rgba(255,255,255,0.75); line-height: 1.55; }
+  .footer-left strong { color: var(--white); font-weight: 700; }
+  .footer-right { font-size: 11.5px; font-weight: 700; color: var(--gold); white-space: nowrap; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .page { margin: 12px; border-radius: 12px; }
+    .page-header { padding: 20px 20px 18px; flex-direction: column; }
+    .header-right { align-items: flex-start; flex-direction: row; gap: 20px; }
+    .journey-section { padding: 20px 20px 18px; }
+    .journey-flow { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .jf-step { flex-direction: row; align-items: center; gap: 12px; padding: 0; }
+    .jf-bubble { margin-bottom: 0; width: 48px; height: 48px; font-size: 19px; }
+    .jf-step:not(:last-child)::after {
+      top: unset; right: unset; left: 24px; bottom: -10px;
+      width: 2px; height: 20px;
+      background: linear-gradient(180deg, var(--gold), rgba(201,168,76,0.2));
+    }
+    .jf-title { text-align: left; }
+    .jf-desc { text-align: left; }
+    .jf-arrow { display: none; }
+    .middle-row { grid-template-columns: 1fr; }
+    .mid-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .mid-col:last-child { border-bottom: none; }
+    .rewards-section { padding: 14px 20px; }
+    .bottom-row { grid-template-columns: 1fr; }
+    .bot-col { border-right: none; border-bottom: 1px solid var(--border); }
+    .bot-col:last-child { border-bottom: none; }
+    .page-footer { padding: 14px 20px; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ═══════ HEADER ═══════ -->
+  <div class="page-header">
+    <div class="header-deco"></div>
+    <div class="header-left">
+      <div class="header-eyebrow">Introducing</div>
+      <div class="header-name">The Courts Loyalty Programme</div>
+      <div class="header-tagline">One Membership. Seven Experiences.</div>
+      <div class="header-punches">
+        <div class="h-punch"><strong>Play.</strong> Train. Dine. Recover. Connect.</div>
+        <div class="h-punch"><strong>Every spend earns points.</strong></div>
+        <div class="h-punch"><strong>Every visit unlocks discovery.</strong></div>
+        <div class="h-punch">Every tenant wins from the shared ecosystem.</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-stats">
+        <div class="hstat">
+          <div class="hstat-num">25K</div>
+          <div class="hstat-label">est. monthly<br>footfall</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">7</div>
+          <div class="hstat-label">tenants<br>one programme</div>
+        </div>
+      </div>
+      <div class="header-conf">Tenant Brief &middot; June 2026 &middot; Confidential</div>
+    </div>
+  </div>
+
+  <!-- ═══════ CUSTOMER JOURNEY ═══════ -->
+  <div class="journey-section">
+    <div class="section-eyebrow">How it works for your customer</div>
+
+    <div class="journey-flow">
+
+      <div class="jf-step">
+        <div class="jf-bubble soft">🏓</div>
+        <div class="jf-title">Customer visits<br>any tenant</div>
+        <div class="jf-desc">Play, dine,<br>train, recover</div>
+      </div>
+
+      <div class="jf-arrow">&#8594;</div>
+
+      <div class="jf-step">
+        <div class="jf-bubble gold">&#11088;</div>
+        <div class="jf-title">Scans &amp; earns<br>points instantly</div>
+        <div class="jf-desc">RM1&nbsp;=&nbsp;1&nbsp;pt<br>at any outlet</div>
+      </div>
+
+      <div class="jf-arrow">&#8594;</div>
+
+      <div class="jf-step">
+        <div class="jf-bubble gold">📱</div>
+        <div class="jf-title">Points build up<br>in their app</div>
+        <div class="jf-desc">Rewards catalogue<br>shows all 7 tenants</div>
+      </div>
+
+      <div class="jf-arrow">&#8594;</div>
+
+      <div class="jf-step">
+        <div class="jf-bubble gold">&#127873;</div>
+        <div class="jf-title">Unlocks a<br>reward voucher</div>
+        <div class="jf-desc">Your offer<br>appears in app</div>
+      </div>
+
+      <div class="jf-arrow">&#8594;</div>
+
+      <div class="jf-step">
+        <div class="jf-bubble dark">&#128694;</div>
+        <div class="jf-title">Walks into<br>your outlet</div>
+        <div class="jf-desc">First visit or<br>returning customer</div>
+      </div>
+
+      <div class="jf-arrow">&#8594;</div>
+
+      <div class="jf-step">
+        <div class="jf-bubble dark">&#128257;</div>
+        <div class="jf-title">Earns again.<br>Comes back.</div>
+        <div class="jf-desc">Loop repeats<br>every visit</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ REWARDS STRIP ═══════ -->
+  <div class="rewards-section">
+    <div class="rewards-label-inline">Rewards they unlock</div>
+    <div class="rewards-pills">
+      <div class="r-pill">&#9749; Free Coffee</div>
+      <div class="r-pill">&#127955; Court Credit</div>
+      <div class="r-pill">&#127947; Studio Class</div>
+      <div class="r-pill">&#129514; Recovery Session</div>
+      <div class="r-pill">&#10024; Beauty Treatment</div>
+      <div class="r-pill">&#127860; Dining Voucher</div>
+      <div class="r-pill">&#127881; Birthday Reward</div>
+    </div>
+  </div>
+
+  <!-- ═══════ MIDDLE ROW ═══════ -->
+  <div class="middle-row">
+
+    <!-- Col 1: Mechanics -->
+    <div class="mid-col">
+      <div class="mid-col-title">Programme Mechanics</div>
+      <div class="mechanic-pill">
+        <div class="mp-chip">RM1 = 1 pt</div>
+        <div class="mp-text">Spend anywhere. Earn anywhere.</div>
+      </div>
+      <div class="mechanic-rules">
+        <div class="mrule"><span class="mrule-icon">&#11088;</span>200 welcome points gifted to every new member on sign-up</div>
+        <div class="mrule"><span class="mrule-icon">&#127873;</span>Points redeem for vouchers across all 7 tenants</div>
+        <div class="mrule"><span class="mrule-icon">&#8987;</span>Points valid for 12 months from date earned</div>
+        <div class="mrule"><span class="mrule-icon">&#127760;</span>Closed-loop — rewards stay within The Courts ecosystem</div>
+      </div>
+      <div class="no-cost-badge">&#10003;&nbsp; No platform cost to tenants</div>
+    </div>
+
+    <!-- Col 2: Cashier Process -->
+    <div class="mid-col">
+      <div class="mid-col-title">What Your Cashier Does</div>
+      <div class="cashier-steps">
+        <div class="cs-item">
+          <div class="cs-num">1</div>
+          <div>
+            <div class="cs-label">Customer presents QR or phone number</div>
+            <div class="cs-sub">They show the app or give their registered number</div>
+          </div>
+        </div>
+        <div class="cs-item">
+          <div class="cs-num">2</div>
+          <div>
+            <div class="cs-label">Cashier scans or enters at POS device</div>
+            <div class="cs-sub">Takes under 5 seconds. Points added automatically.</div>
+          </div>
+        </div>
+        <div class="cs-item">
+          <div class="cs-num">3</div>
+          <div>
+            <div class="cs-label">If redeeming — scan the voucher to apply</div>
+            <div class="cs-sub">Discount applied at POS. Transaction complete.</div>
+          </div>
+        </div>
+      </div>
+      <div class="no-cost-badge" style="margin-top:12px; background:#EFF6FF; border-color:#BFDBFE; color:#1D4ED8;">
+        &#9201;&nbsp; Staff training under 30 minutes
+      </div>
+    </div>
+
+    <!-- Col 3: Your Voucher, Your Rules -->
+    <div class="mid-col">
+      <div class="mid-col-title">Your Voucher, Your Rules</div>
+      <div class="voucher-rules">
+        <div class="vrule">Set your own minimum spend threshold</div>
+        <div class="vrule">Limit to first-time customers only</div>
+        <div class="vrule">Restrict to specific services or products</div>
+        <div class="vrule">Cap monthly redemption quantity</div>
+        <div class="vrule">Off-peak or weekday windows only</div>
+        <div class="vrule">Bundle with another product or service</div>
+        <div class="vrule">Seasonal, time-limited, or quarterly offers</div>
+      </div>
+      <div class="vrule-note">
+        You only fund the rewards you choose to offer.<br>
+        <strong>You control the offer. You control the economics.</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════ BOTTOM ROW ═══════ -->
+  <div class="bottom-row">
+
+    <!-- Col 1: Data -->
+    <div class="bot-col">
+      <div class="bot-col-title">📋 Data You Receive Every Quarter</div>
+      <div class="data-list">
+        <div class="ditem">New sign-ups attributed to your outlet</div>
+        <div class="ditem">Voucher redemption rate by tier</div>
+        <div class="ditem">Cross-tenant movement — who came from where</div>
+        <div class="ditem">Repeat visit frequency for redeemers</div>
+        <div class="ditem">Cold &amp; lapsed member signals</div>
+        <div class="ditem">Average spend trends among members</div>
+      </div>
+      <div class="data-note">
+        PDPA-compliant &middot; Aggregated insights only &middot; Customer privacy protected
+      </div>
+    </div>
+
+    <!-- Col 2: Timeline -->
+    <div class="bot-col">
+      <div class="bot-col-title">&#128197; Timeline</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-dot gold"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-when">June 2026</div>
+            <div class="tl-what">Setup &amp; Buy-In</div>
+            <div class="tl-detail">Confirm vouchers · Sign agreement · Staff training</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-dot blue"></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-when">1 July 2026</div>
+            <div class="tl-what">Beta Launch</div>
+            <div class="tl-detail">Soft start · First members earn &amp; redeem</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-wrap">
+            <div class="tl-dot green"></div>
+          </div>
+          <div class="tl-content">
+            <div class="tl-when">1 August 2026</div>
+            <div class="tl-what">Official Launch</div>
+            <div class="tl-detail">Full marketing push · Target 600 members by Aug</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 3: What We Need -->
+    <div class="bot-col">
+      <div class="bot-col-title">&#9989; What We Need From You</div>
+      <div class="ask-list">
+        <div class="ask-item">
+          <div class="ask-num">1</div>
+          <p><strong>Confirm your voucher offer(s).</strong> 1–2 rewards that work for your margins. You set the terms.</p>
+        </div>
+        <div class="ask-item">
+          <div class="ask-num">2</div>
+          <p><strong>Sign the participation agreement.</strong> Short document. No surprises.</p>
+        </div>
+        <div class="ask-item">
+          <div class="ask-num">3</div>
+          <p><strong>30-min staff onboarding.</strong> POS + redemption flow. The Courts handles everything else.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <div class="page-footer">
+    <div class="footer-left">
+      <strong>The Courts brings the platform, the audience, the campaigns, and the reporting.</strong>
+      You bring the offer that makes sense for your business. That&rsquo;s the whole deal.
+    </div>
+    <div class="footer-right">Questions? Let&rsquo;s talk &#8594;</div>
+  </div>
+
+</div>
+</body>
+</html>
