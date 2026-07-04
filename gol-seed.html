@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOL SEED Phase — Ground Canvassing Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16241C;
+    --paper:#F3F5F0;
+    --court:#2E6B4F;
+    --court-deep:#1E4A36;
+    --line-yellow:#D9A62E;
+    --concrete:#7E8A81;
+    --card:#FFFFFF;
+    --rule:#D8DED6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Archivo',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    font-size:16px;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--court-deep);
+    color:#F3F5F0;
+    padding:64px 0 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  /* court line markings */
+  header::before{
+    content:"";
+    position:absolute;inset:0;
+    background:
+      linear-gradient(to right, transparent 49.7%, rgba(243,245,240,.14) 49.7%, rgba(243,245,240,.14) 50.3%, transparent 50.3%),
+      radial-gradient(circle at 50% 100%, transparent 118px, rgba(243,245,240,.14) 118px, rgba(243,245,240,.14) 121px, transparent 121px);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--line-yellow);
+    font-weight:600;
+  }
+  header h1{
+    font-weight:900;
+    font-size:clamp(34px,5.4vw,54px);
+    line-height:1.04;
+    letter-spacing:-.015em;
+    margin:14px 0 18px;
+    position:relative;
+  }
+  header p.sub{
+    font-size:17px;max-width:560px;color:rgba(243,245,240,.82);
+    position:relative;
+  }
+  .meta{
+    margin-top:30px;display:flex;gap:28px;flex-wrap:wrap;position:relative;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:rgba(243,245,240,.7);
+  }
+  .meta b{display:block;color:#F3F5F0;font-weight:600;font-size:13.5px;margin-top:2px;}
+
+  /* ---------- Sections ---------- */
+  section{padding:52px 0 8px;}
+  .sec-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--court);font-weight:600;
+    display:flex;align-items:center;gap:12px;
+  }
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--rule);}
+  h2{
+    font-weight:800;font-size:clamp(24px,3.4vw,32px);
+    letter-spacing:-.01em;margin:10px 0 16px;line-height:1.15;
+  }
+  p{margin-bottom:14px;max-width:720px;}
+  .lede{font-size:18px;font-weight:500;}
+  em.callout{font-style:normal;background:linear-gradient(transparent 62%, rgba(217,166,46,.45) 62%);padding:0 2px;}
+
+  /* ---------- Hypothesis cards (signature) ---------- */
+  .hypo{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-left:4px solid var(--court);
+    border-radius:6px;
+    padding:22px 24px;
+    margin:18px 0;
+  }
+  .hypo .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--court);
+  }
+  .hypo p{margin:8px 0 0;max-width:none;font-size:15.5px;}
+  .blank{
+    background:rgba(46,107,79,.1);
+    border-bottom:2px solid var(--court);
+    padding:0 4px;font-weight:600;
+  }
+  .signal{
+    margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:13px;
+    color:var(--court-deep);
+  }
+  .signal b{color:var(--line-yellow);background:var(--ink);padding:1px 7px;border-radius:3px;font-weight:600;margin-right:6px;font-size:11.5px;letter-spacing:.06em;}
+  .risk-flag{
+    background:var(--ink);color:var(--paper);
+    border-radius:6px;padding:20px 24px;margin:20px 0 6px;
+  }
+  .risk-flag .tag{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--line-yellow);font-weight:600;}
+  .risk-flag p{margin:8px 0 0;max-width:none;color:rgba(243,245,240,.9);font-size:15.5px;}
+
+  /* ---------- Week track ---------- */
+  .track{margin:26px 0 10px;position:relative;}
+  .track::before{
+    content:"";position:absolute;left:11px;top:8px;bottom:8px;width:3px;
+    background:var(--court);border-radius:2px;
+  }
+  .week{position:relative;padding:0 0 26px 44px;}
+  .week:last-child{padding-bottom:4px;}
+  .week::before{
+    content:"";position:absolute;left:3px;top:5px;
+    width:19px;height:19px;border-radius:50%;
+    background:var(--paper);border:3px solid var(--court);
+  }
+  .week.gate::before{background:var(--line-yellow);border-color:var(--ink);}
+  .week h3{font-size:16.5px;font-weight:800;letter-spacing:-.005em;}
+  .week h3 span{
+    font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:12px;
+    color:var(--court);letter-spacing:.08em;text-transform:uppercase;margin-right:10px;
+  }
+  .week p{margin:5px 0 0;font-size:15px;color:#3A463F;max-width:660px;}
+  .gate-chip{
+    display:inline-block;margin-top:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;
+    background:var(--ink);color:var(--line-yellow);
+    padding:4px 12px;border-radius:4px;
+  }
+
+  /* ---------- Grid cards ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0;}
+  .cell{
+    background:var(--card);border:1px solid var(--rule);border-radius:6px;
+    padding:18px 20px;
+  }
+  .cell .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--concrete);font-weight:600;}
+  .cell h4{font-size:15.5px;font-weight:800;margin:6px 0 6px;}
+  .cell p{font-size:14px;margin:0;color:#3A463F;max-width:none;}
+
+  /* ---------- Question guide ---------- */
+  .qa{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:6px 24px;margin:18px 0;}
+  .qa-item{padding:16px 0;border-bottom:1px solid var(--rule);}
+  .qa-item:last-child{border-bottom:none;}
+  .qa-item .who{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--court);}
+  .qa-item .q{font-size:15.5px;font-weight:600;margin:4px 0 2px;}
+  .qa-item .why{font-size:13.5px;color:var(--concrete);}
+
+  /* ---------- Kill criteria ---------- */
+  .kill{
+    border:2px solid var(--ink);border-radius:6px;background:var(--card);
+    padding:24px 26px;margin:20px 0;
+  }
+  .kill h3{font-size:17px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .kill h3::before{content:"";width:12px;height:12px;background:var(--line-yellow);border:2px solid var(--ink);border-radius:2px;display:inline-block;}
+  .kill ul{list-style:none;}
+  .kill li{padding:9px 0 9px 26px;position:relative;font-size:15px;border-top:1px dashed var(--rule);}
+  .kill li:first-child{border-top:none;}
+  .kill li::before{content:"→";position:absolute;left:0;font-family:'IBM Plex Mono',monospace;color:var(--court);font-weight:600;}
+
+  /* ---------- Budget table ---------- */
+  table{width:100%;border-collapse:collapse;margin:18px 0;background:var(--card);border:1px solid var(--rule);border-radius:6px;overflow:hidden;font-size:14.5px;}
+  th{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;text-align:left;padding:12px 16px;background:var(--court-deep);color:var(--paper);font-weight:600;}
+  td{padding:11px 16px;border-top:1px solid var(--rule);vertical-align:top;}
+  td.amt{font-family:'IBM Plex Mono',monospace;white-space:nowrap;font-weight:500;}
+  tr.total td{font-weight:800;background:rgba(46,107,79,.07);}
+
+  /* ---------- Advisor questions ---------- */
+  .ask{background:var(--court-deep);color:var(--paper);border-radius:8px;padding:30px 30px 20px;margin:24px 0 8px;}
+  .ask h3{font-size:19px;font-weight:800;margin-bottom:6px;}
+  .ask p{color:rgba(243,245,240,.8);font-size:14.5px;max-width:none;}
+  .ask ol{margin:14px 0 10px 20px;}
+  .ask li{padding:7px 0;font-size:15px;}
+
+  /* ---------- Court site cards ---------- */
+  .court-fig{
+    background:var(--court-deep);border-radius:5px;
+    padding:12px 10px;margin:-4px 0 14px;
+    display:flex;justify-content:center;
+  }
+  .court-fig svg{width:100%;max-width:170px;height:auto;display:block;}
+
+  /* ---------- Interview sample chart ---------- */
+  .sample{
+    background:var(--card);border:1px solid var(--rule);border-radius:6px;
+    padding:18px 22px 14px;margin-top:14px;max-width:640px;
+  }
+  .sample .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--concrete);font-weight:600;
+    display:block;margin-bottom:10px;
+  }
+  .bar-row{
+    display:grid;grid-template-columns:150px 1fr 52px;gap:12px;
+    align-items:center;padding:5px 0;font-size:13.5px;
+  }
+  .bar-row .lbl{font-weight:600;}
+  .bar-track{background:rgba(46,107,79,.08);border-radius:3px;height:14px;}
+  .bar{height:14px;background:var(--court);border-radius:3px;}
+  .bar-row .n{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--court-deep);text-align:right;white-space:nowrap;}
+  .sample .foot{
+    margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule);
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink);font-weight:600;
+  }
+  @media (max-width:520px){
+    .bar-row{grid-template-columns:110px 1fr 46px;gap:8px;font-size:12.5px;}
+  }
+
+  /* ---------- Stakeholder rings ---------- */
+  .tiers{
+    display:flex;gap:30px;align-items:center;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--rule);border-radius:6px;
+    padding:24px 26px;margin:18px 0;
+  }
+  .tiers svg{flex:0 0 220px;max-width:220px;height:auto;}
+  .tier-legend{flex:1;min-width:250px;}
+  .tier-item{padding:10px 0;border-bottom:1px solid var(--rule);display:flex;gap:12px;align-items:flex-start;}
+  .tier-item:last-child{border-bottom:none;}
+  .tier-key{
+    flex:0 0 26px;height:26px;border-radius:50%;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;
+  }
+  .tier-key.p{background:var(--court);color:var(--paper);}
+  .tier-key.s{background:rgba(46,107,79,.14);color:var(--court-deep);border:1.5px solid var(--court);}
+  .tier-key.t{background:var(--paper);color:var(--concrete);border:1.5px dashed var(--concrete);}
+  .tier-item h4{font-size:14.5px;font-weight:800;margin-bottom:2px;}
+  .tier-item p{font-size:13.5px;margin:0;color:#3A463F;max-width:none;}
+
+  footer{
+    padding:44px 0 60px;margin-top:40px;border-top:1px solid var(--rule);
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--concrete);
+  }
+  footer b{color:var(--ink);}
+
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    header{padding:48px 0 42px;}
+    section{padding:42px 0 6px;}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hypo,.cell,.kill{transition:transform .18s ease;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">GOL · Seed Phase · Field Research Protocol</div>
+    <h1>Before we build the solution,<br>we validate the problem.</h1>
+    <p class="sub">A six-week ground canvassing sprint across three PPR communities in the Klang Valley — run by a student working group, designed to prove or kill GOL's core assumptions before a single ringgit is raised.</p>
+    <div class="meta">
+      <div>Field window<b>July – August 2026</b></div>
+      <div>Working group<b>3–4 students + founder</b></div>
+      <div>Sites<b>3 PPR, Klang Valley</b></div>
+      <div>Decision<b>Go / Pivot / Kill by early Sept</b></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <div class="sec-label">01 · Why this exists</div>
+  <h2>The missing SEED phase</h2>
+  <p class="lede">Advisor feedback on the GOL proposal was clear: it is solution-focused, and the problem statement has not been validated. The scope of beneficiaries is imprecise, the sport-to-digital retention link is assumed rather than tested, and the plan jumped to PILOT and LAUNCH with no SEED phase in front of it.</p>
+  <p>This canvassing sprint is that SEED phase. The goalpost is not to confirm GOL — it is to <em class="callout">search for reasons GOL should not exist</em>, and only proceed if it survives. Empathize → Explore → Execute, in that order. Fail fast, fail cheap, before institutional money is involved.</p>
+</section>
+
+<section>
+  <div class="sec-label">02 · What we are testing</div>
+  <h2>Three hypotheses, one riskiest assumption</h2>
+  <p>Written in the standard form: <em>we believe [capability] will result in [outcome], and we will know we have succeeded when [measurable signal]</em>.</p>
+
+  <div class="hypo">
+    <div class="tag">H1 · The problem is real</div>
+    <p>We believe <span class="blank">youth aged 13–21 in PPR communities lack safe, structured pathways from free time to skills and opportunity</span>, and this gap is felt — not imagined by us.</p>
+    <div class="signal"><b>SIGNAL</b>≥60% of youth and parents describe this gap unprompted, in their own words, before GOL is ever mentioned.</div>
+  </div>
+
+  <div class="hypo">
+    <div class="tag">H2 · Sport is a credible hook</div>
+    <p>We believe <span class="blank">regular sport participation can retain PPR youth into digital-skills programming</span> — the desirability link the advisor flagged as unproven.</p>
+    <div class="signal"><b>SIGNAL</b>In week 5's smoke test, a pre-set share of engaged youth voluntarily signs up for a paired sport + digital taster session.</div>
+  </div>
+
+  <div class="hypo">
+    <div class="tag">H3 · The gap is unserved</div>
+    <p>We believe <span class="blank">existing programmes — school, surau, KBS, other NGOs — are not adequately meeting this need</span>. If the competitive scan shows they are, GOL duplicates rather than adds.</p>
+    <div class="signal"><b>SIGNAL</b>Mapping of every programme that has touched each site in 3 years: what it did, why it ended, what residents say about it.</div>
+  </div>
+
+  <div class="risk-flag">
+    <div class="tag">Riskiest assumption — test first</div>
+    <p>The sport → digital skills transfer. Everything in GOL's model depends on it, and it is currently supported by zero primary evidence. If youth come for the court but won't stay for the classroom, GOL as designed does not work. This is the experiment.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">03 · Who does the work</div>
+  <h2>The working group</h2>
+  <div class="grid">
+    <div class="cell">
+      <div class="tag">Role 1</div>
+      <h4>Field Lead</h4>
+      <p>Coordinates site visits, holds the JPKK relationship, owns the schedule and safety protocol. Reports to founder weekly.</p>
+    </div>
+    <div class="cell">
+      <div class="tag">Roles 2–3</div>
+      <h4>Field Interviewers ×2</h4>
+      <p>BM-fluent, run intercepts and sit-down interviews in pairs, capture verbatim notes. Never interview a minor unaccompanied.</p>
+    </div>
+    <div class="cell">
+      <div class="tag">Role 4</div>
+      <h4>Data &amp; Synthesis</h4>
+      <p>Transcribes, codes findings against the three hypotheses weekly, maintains the evidence log that becomes the final report.</p>
+    </div>
+  </div>
+  <p><strong>Recruitment channels:</strong> university sports science and social science cohorts, plus youth volunteer pipelines via Impact Integrated. Half-day training covers non-leading interview technique, consent and child-safeguarding protocol (parental consent for all under-18 interviews), and data handling. Each student receives a modest honorarium plus transport — enough to signal the work is professional, not enough to distort motivation.</p>
+</section>
+
+<section>
+  <div class="sec-label">04 · Where</div>
+  <h2>Three sites, chosen for contrast</h2>
+  <p>Sites are selected against criteria — not convenience — and confirmed through warm introductions (community leaders in the GOL network, Impact Integrated, JPKK) before week 0 ends.</p>
+  <div class="grid">
+    <div class="cell">
+      <div class="court-fig">
+        <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Court surrounded by dense housing blocks">
+          <g fill="none" stroke="#F3F5F0" stroke-width="2">
+            <rect x="45" y="20" width="70" height="50" rx="2"/>
+            <line x1="80" y1="20" x2="80" y2="70"/>
+            <circle cx="80" cy="45" r="8"/>
+          </g>
+          <g fill="#D9A62E">
+            <rect x="10" y="20" width="11" height="6" rx="1"/><rect x="10" y="32" width="11" height="6" rx="1"/><rect x="10" y="44" width="11" height="6" rx="1"/><rect x="10" y="56" width="11" height="6" rx="1"/><rect x="10" y="68" width="11" height="6" rx="1"/>
+            <rect x="27" y="26" width="11" height="6" rx="1"/><rect x="27" y="38" width="11" height="6" rx="1"/><rect x="27" y="50" width="11" height="6" rx="1"/>
+            <rect x="122" y="20" width="11" height="6" rx="1"/><rect x="122" y="32" width="11" height="6" rx="1"/><rect x="122" y="44" width="11" height="6" rx="1"/><rect x="122" y="56" width="11" height="6" rx="1"/>
+            <rect x="139" y="26" width="11" height="6" rx="1"/><rect x="139" y="38" width="11" height="6" rx="1"/><rect x="139" y="50" width="11" height="6" rx="1"/>
+          </g>
+        </svg>
+      </div>
+      <div class="tag">Criterion A</div>
+      <h4>Density contrast</h4>
+      <p>One high-density inner-KL PPR, one Selangor-edge PPR, one mid-scale site — so findings aren't an artefact of a single community type.</p>
+    </div>
+    <div class="cell">
+      <div class="court-fig">
+        <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One maintained court beside one faded, cracked court">
+          <g fill="none" stroke="#F3F5F0" stroke-width="2">
+            <rect x="10" y="18" width="62" height="54" rx="2"/>
+            <line x1="41" y1="18" x2="41" y2="72"/>
+            <circle cx="41" cy="45" r="8"/>
+          </g>
+          <g fill="none" stroke="#F3F5F0" stroke-width="2" stroke-dasharray="5 5" opacity=".45">
+            <rect x="88" y="18" width="62" height="54" rx="2"/>
+            <line x1="119" y1="18" x2="119" y2="72"/>
+            <circle cx="119" cy="45" r="8"/>
+          </g>
+          <path d="M96 68 l10 -10 l-4 -6 l9 -9" stroke="#D9A62E" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <div class="tag">Criterion B</div>
+      <h4>Court condition spread</h4>
+      <p>At least one active court and one neglected court. If the problem only exists where courts are dead, that reshapes the model.</p>
+    </div>
+    <div class="cell">
+      <div class="court-fig">
+        <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Court with an open gate and entry arrow">
+          <g fill="none" stroke="#F3F5F0" stroke-width="2">
+            <rect x="36" y="16" width="92" height="58" rx="2"/>
+            <line x1="82" y1="16" x2="82" y2="74"/>
+            <circle cx="82" cy="45" r="9"/>
+          </g>
+          <line x1="36" y1="36" x2="36" y2="54" stroke="#1E4A36" stroke-width="5"/>
+          <path d="M8 45 h22 m-8 -7 l8 7 l-8 7" stroke="#D9A62E" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tag">Criterion C</div>
+      <h4>Gatekeeper access</h4>
+      <p>A named JPKK or community champion willing to open doors — with a plan to interview beyond who the gatekeeper hand-picks.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">05 · How — six weeks</div>
+  <h2>The sprint</h2>
+  <div class="track">
+    <div class="week">
+      <h3><span>Week 0</span>Setup</h3>
+      <p>Secure access letters and JPKK introductions at all three sites. Recruit and train students. Finalise discussion guides. Founder walks each site once.</p>
+    </div>
+    <div class="week">
+      <h3><span>Weeks 1–2</span>Observe &amp; immerse</h3>
+      <p>Court usage mapping: who plays, when, ages, gender split, organised vs ad-hoc. Community walkabouts and casual intercepts. No GOL pitch — listening only.</p>
+    </div>
+    <div class="week gate">
+      <h3><span>Gate 1</span>End of week 2</h3>
+      <p>Access confirmed at all 3 sites, ≥20 observation hours logged per site, usage maps drafted. If access has failed anywhere, swap the site now.</p>
+      <div class="gate-chip">PASS / SWAP SITE</div>
+    </div>
+    <div class="week">
+      <h3><span>Weeks 3–4</span>Generative interviews</h3>
+      <p>Per site: structured conversations across five respondent groups, with focus groups where natural clusters form. Target floor: 60 conversations across the three sites.</p>
+      <div class="sample">
+        <span class="tag">The sample — conversations per site</span>
+        <div class="bar-row"><span class="lbl">Youth 13–21</span><div class="bar-track"><div class="bar" style="width:100%"></div></div><span class="n">10–12</span></div>
+        <div class="bar-row"><span class="lbl">Parents</span><div class="bar-track"><div class="bar" style="width:64%"></div></div><span class="n">6–8</span></div>
+        <div class="bar-row"><span class="lbl">JPKK / leaders</span><div class="bar-track"><div class="bar" style="width:23%"></div></div><span class="n">2–3</span></div>
+        <div class="bar-row"><span class="lbl">Teachers / ustaz</span><div class="bar-track"><div class="bar" style="width:14%"></div></div><span class="n">1–2</span></div>
+        <div class="bar-row"><span class="lbl">Past operators</span><div class="bar-track"><div class="bar" style="width:14%"></div></div><span class="n">1–2</span></div>
+        <div class="foot">≈ 20–27 per site × 3 sites = 60–80 conversations</div>
+      </div>
+    </div>
+    <div class="week gate">
+      <h3><span>Gate 2</span>End of week 4</h3>
+      <p>≥50 interviews completed. H1 scored: did ≥60% articulate the problem unprompted? H3 scored: competitive map complete for all sites.</p>
+      <div class="gate-chip">PROBLEM VALIDATED?</div>
+    </div>
+    <div class="week">
+      <h3><span>Week 5</span>Comprehension + smoke test</h3>
+      <p>Read the GOL value proposition and tagline aloud in BM; ask respondents to repeat it back in their own words (comprehension test). Then the smoke test: a real sign-up sheet for a free sport + digital taster session, with the fail threshold set <em>before</em> the sheet goes out.</p>
+    </div>
+    <div class="week">
+      <h3><span>Week 6</span>Synthesis &amp; decision</h3>
+      <p>Code all evidence against H1–H3. Segment stakeholders into primary / secondary / tertiary tiers. Write the Problem Validation Report. Founder + working group make the call: go, pivot, or kill.</p>
+    </div>
+    <div class="week gate">
+      <h3><span>Gate 3</span>Early September</h3>
+      <p>Decision made with evidence, not conviction. If GO: fundraising opens with primary research in hand — the strongest asset a pre-revenue NGO can carry into a funder meeting.</p>
+      <div class="gate-chip">GO / PIVOT / KILL</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">06 · What we ask</div>
+  <h2>Discovery guide — non-leading by design</h2>
+  <p>GOL, digital skills, and any solution language are banned from weeks 1–4. We ask about lives, not our idea.</p>
+  <div class="qa">
+    <div class="qa-item">
+      <div class="who">Youth</div>
+      <div class="q">"Walk me through yesterday after school — what did you do, where, with who?"</div>
+      <div class="why">Maps real free-time behaviour instead of asking hypotheticals.</div>
+    </div>
+    <div class="qa-item">
+      <div class="who">Youth</div>
+      <div class="q">"What do you wish existed around here for people your age? What happened to the last thing that came here?"</div>
+      <div class="why">Surfaces pains and the graveyard of past programmes — the competitive analysis in their words.</div>
+    </div>
+    <div class="qa-item">
+      <div class="who">Youth</div>
+      <div class="q">"When you want to learn something new, who do you go to? Where do you look?"</div>
+      <div class="why">Tests current solutions and whether a skills pathway is a felt job-to-be-done.</div>
+    </div>
+    <div class="qa-item">
+      <div class="who">Parents</div>
+      <div class="q">"What worries you most about your kid's time outside school?"</div>
+      <div class="why">Parents are the permission layer. Their pain defines the primary stakeholder pair.</div>
+    </div>
+    <div class="qa-item">
+      <div class="who">JPKK / leaders</div>
+      <div class="q">"Which programmes have come through in the last three years — and why did each one stop?"</div>
+      <div class="why">The single most valuable question on site. Failure patterns of predecessors are GOL's cheapest lessons.</div>
+    </div>
+  </div>
+  <div class="tiers">
+    <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Concentric stakeholder tiers: primary at the core, secondary around it, tertiary outermost">
+      <circle cx="120" cy="120" r="112" fill="#F3F5F0" stroke="#7E8A81" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <circle cx="120" cy="120" r="76" fill="rgba(46,107,79,.12)" stroke="#2E6B4F" stroke-width="1.5"/>
+      <circle cx="120" cy="120" r="40" fill="#2E6B4F"/>
+      <text x="120" y="125" text-anchor="middle" fill="#F3F5F0" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600">P</text>
+      <text x="120" y="66" text-anchor="middle" fill="#1E4A36" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600">S</text>
+      <text x="120" y="27" text-anchor="middle" fill="#7E8A81" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600">T</text>
+    </svg>
+    <div class="tier-legend">
+      <div class="tier-item">
+        <div class="tier-key p">P</div>
+        <div><h4>Primary — youth 13–21 &amp; their parents</h4>
+        <p>The beneficiaries. The problem must be theirs, in their words — every hypothesis is scored against this tier only.</p></div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-key s">S</div>
+        <div><h4>Secondary — JPKK, schools, coaches, surau</h4>
+        <p>The permission and delivery layer. Interviewed for context and access, not for problem validation.</p></div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-key t">T</div>
+        <div><h4>Tertiary — KPKT / DBKL, KBS, funders</h4>
+        <p>Enablers. Deliberately engaged after validation — evidence first, then institutions.</p></div>
+      </div>
+    </div>
+  </div>
+  <p>Beneficiary scope is deliberately narrowed for this sprint; broadening again requires evidence.</p>
+</section>
+
+<section>
+  <div class="sec-label">07 · Honest exits</div>
+  <h2>Kill and pivot criteria — set now, not after</h2>
+  <div class="kill">
+    <h3>GOL does not proceed as designed if:</h3>
+    <ul>
+      <li><strong>The problem isn't felt.</strong> Fewer than 60% of primary stakeholders articulate the gap unprompted → the problem statement is ours, not theirs. Kill or fundamentally reframe.</li>
+      <li><strong>The space is already served.</strong> Existing programmes adequately cover the need → GOL pivots to strengthening incumbents (or exits) rather than duplicating.</li>
+      <li><strong>The hook doesn't transfer.</strong> Smoke-test sign-ups fall below the pre-set threshold → the sport → digital link fails, and the core model must be redesigned before any pilot.</li>
+      <li><strong>Access depends on one gatekeeper.</strong> If we can only reach residents a JPKK selects for us, the data is captured and the community model is fragile.</li>
+    </ul>
+  </div>
+  <p>Zero-based thinking applies throughout: no line of the previous GOL plan survives into the pilot by default. Everything re-earns its place with field evidence, and success is defined <em class="callout">before</em> each stage, not after.</p>
+</section>
+
+<section>
+  <div class="sec-label">08 · What it costs</div>
+  <h2>Zero-based sprint budget</h2>
+  <table>
+    <thead><tr><th>Line</th><th>Basis</th><th>RM</th></tr></thead>
+    <tbody>
+      <tr><td>Student honorarium</td><td>4 × RM800–1,000 for six weeks part-time</td><td class="amt">3,200 – 4,000</td></tr>
+      <tr><td>Transport &amp; meals</td><td>3 sites × ~3 visits/week × 6 weeks</td><td class="amt">1,500 – 2,000</td></tr>
+      <tr><td>Training &amp; materials</td><td>Half-day training, printed guides, consent forms</td><td class="amt">500</td></tr>
+      <tr><td>Taster session (smoke test)</td><td>Equipment hire, refreshments, one session per site</td><td class="amt">900 – 1,200</td></tr>
+      <tr><td>Contingency</td><td>~10%</td><td class="amt">600 – 800</td></tr>
+      <tr class="total"><td>Total SEED sprint</td><td>Every ringgit tied to a validation output</td><td class="amt">6,700 – 8,500</td></tr>
+    </tbody>
+  </table>
+  <p>Founder-funded or micro-grant scale — deliberately. The point of SEED is that invalidation costs under RM10K, not RM600K.</p>
+</section>
+
+<section>
+  <div class="sec-label">09 · How this feeds the bigger clock</div>
+  <h2>Runway to Q4</h2>
+  <div class="grid">
+    <div class="cell">
+      <div class="tag">Jul – Aug 2026</div>
+      <h4>Canvass</h4>
+      <p>Weeks 0–6 in field. ROS registration paperwork prepared in parallel so incorporation isn't waiting on the decision.</p>
+    </div>
+    <div class="cell">
+      <div class="tag">Early Sept 2026</div>
+      <h4>Decide &amp; raise</h4>
+      <p>Go/pivot/kill call. If go: fundraising opens on schedule — the pitch now leads with validated primary evidence, not assumptions.</p>
+    </div>
+    <div class="cell">
+      <div class="tag">Q4 2026</div>
+      <h4>Operate</h4>
+      <p>ROS-registered society running its first evidence-shaped pilot at the strongest of the three canvassed sites. CLBG conversion stays on the 2028 path.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label">10 · For tomorrow's conversation</div>
+  <div class="ask">
+    <h3>Where I'd value your challenge</h3>
+    <p>Five places this plan is most likely to be wrong:</p>
+    <ol>
+      <li>Is 3 sites × ~20 conversations enough signal, or false confidence? Where would you add depth vs breadth?</li>
+      <li>How do we interview beyond the residents a gatekeeper selects for us — without burning the gatekeeper relationship?</li>
+      <li>Are student researchers credible in a PPR context, or do we need a community insider embedded in the team?</li>
+      <li>Is the honorarium clean, or does paying interviewees/volunteers distort what people tell us?</li>
+      <li>What's the right smoke-test fail threshold for the taster sign-up — and what have you seen work at this stage?</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0;">
+    <b>GOL — SEED Phase Canvassing Plan</b> · Prepared July 2026 · Working document, pre-registration · Samuel Siew
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
