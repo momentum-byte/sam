@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Sol Club — Lot 183, TRX</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --copper:#A8756A;
+  --rose:#C9A091;
+  --rose-lt:#E8CFC4;
+  --rose-pale:#F7EDE8;
+  --rose-mist:#FBF5F2;
+  --ink:#1C1917;
+  --ink-2:#44403C;
+  --ink-3:#78716C;
+  --ink-4:#A8A29E;
+  --line:#E7E5E4;
+  --line-2:#F5F5F4;
+  --white:#FFFFFF;
+  --canvas:#FEFCFB;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--canvas);color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:15px;line-height:1.6;font-weight:400;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.wrap{max-width:900px;margin:0 auto;background:var(--white);min-height:100vh}
+
+nav{
+  position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);
+  display:flex;overflow-x:auto;scrollbar-width:none;
+  padding-top:env(safe-area-inset-top);
+}
+nav::-webkit-scrollbar{display:none}
+nav button{
+  flex:0 0 auto;padding:14px 15px;font-family:inherit;font-size:11px;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4);
+  background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;
+  transition:color .18s,border-color .18s;white-space:nowrap;
+}
+nav button.on{color:var(--copper);border-bottom-color:var(--copper)}
+
+.page{display:none;animation:fade .35s ease}
+.page.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+section{padding:2.25rem 1.4rem;border-bottom:1px solid var(--line-2)}
+section:last-child{border-bottom:none}
+
+.eyebrow{
+  font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--copper);margin-bottom:.7rem;
+}
+h1{font-size:2.15rem;font-weight:800;letter-spacing:-.035em;line-height:1.06}
+h2{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+h3{font-size:.98rem;font-weight:700;letter-spacing:-.01em}
+h4{font-size:.85rem;font-weight:700;letter-spacing:-.005em}
+p{color:var(--ink-2)}
+.lede{font-size:1.02rem;color:var(--ink-2);line-height:1.65}
+.sm{font-size:13px;color:var(--ink-3);line-height:1.55}
+.xs{font-size:12px;color:var(--ink-3);line-height:1.5}
+
+.hero{
+  padding:2.75rem 1.4rem 2.25rem;
+  background:linear-gradient(170deg,var(--rose-pale) 0%,var(--white) 78%);
+  border-bottom:1px solid var(--line);
+}
+.mark{
+  width:46px;height:46px;border-radius:50%;margin-bottom:1.3rem;
+  background:linear-gradient(140deg,var(--rose-lt) 0%,var(--rose) 45%,var(--copper) 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;font-weight:800;color:var(--white);letter-spacing:-.04em;
+}
+.tagline{
+  font-size:1.12rem;font-weight:600;color:var(--copper);
+  letter-spacing:-.02em;margin:.65rem 0 .5rem;
+}
+.hero-sub{font-size:.95rem;color:var(--ink-2);line-height:1.55;max-width:44ch}
+
+.rule-c{height:2px;width:34px;background:var(--copper);margin:1.1rem 0;border-radius:2px}
+
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin:1.4rem 0}
+.stat{background:var(--rose-pale);border-radius:11px;padding:.95rem .85rem}
+.stat b{display:block;font-size:1.55rem;font-weight:800;color:var(--copper);letter-spacing:-.035em;line-height:1.05}
+.stat span{display:block;font-size:10.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.07em;margin-top:.3rem;font-weight:600;line-height:1.3}
+
+.card{background:var(--white);border:1px solid var(--line);border-radius:13px;padding:1.15rem}
+.card+.card{margin-top:.7rem}
+.card-tint{background:var(--rose-pale);border-color:transparent}
+
+.row{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem 0;border-bottom:1px solid var(--line-2)}
+.row:last-child{border-bottom:none;padding-bottom:0}
+.row:first-child{padding-top:0}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--copper);flex:0 0 auto;margin-top:.52rem}
+
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl td{padding:.62rem 0;border-bottom:1px solid var(--line-2);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td:last-child{text-align:right;font-weight:600;color:var(--copper);white-space:nowrap;padding-left:.6rem}
+
+.chip{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;
+  padding:3.5px 9px;border-radius:20px;background:var(--rose-pale);color:var(--copper);
+  margin:0 4px 4px 0;
+}
+.chip-o{background:transparent;border:1px solid var(--rose-lt);color:var(--copper)}
+
+.pillar{display:flex;gap:.85rem;align-items:flex-start;padding:.9rem 0;border-bottom:1px solid var(--line-2)}
+.pillar:last-child{border-bottom:none}
+.pillar-n{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+  background:var(--copper);color:var(--white);
+  font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  margin-top:1px;
+}
+
+.zone{border-left:2px solid var(--rose-lt);padding:0 0 1.4rem 1.05rem;position:relative}
+.zone:last-child{padding-bottom:0;border-left-color:transparent}
+.zone::before{
+  content:'';position:absolute;left:-5.5px;top:3px;width:9px;height:9px;
+  border-radius:50%;background:var(--copper);
+}
+.zone-t{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:.3rem}
+
+.bar-row{margin-bottom:.85rem}
+.bar-row:last-child{margin-bottom:0}
+.bar-hd{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:.35rem}
+.bar-hd b{font-weight:600;color:var(--copper);font-size:13.5px}
+.track{height:6px;background:var(--line-2);border-radius:4px;overflow:hidden}
+.fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--rose) 0%,var(--copper) 100%)}
+
+.note{
+  background:var(--rose-pale);border-radius:11px;padding:.95rem 1.05rem;
+  font-size:13px;color:var(--ink-2);line-height:1.55;
+}
+.note b{color:var(--copper);font-weight:700}
+
+.flag{
+  border:1px dashed var(--rose);border-radius:11px;padding:.9rem 1rem;
+  font-size:12.5px;color:var(--ink-2);line-height:1.5;background:var(--white);
+}
+.flag b{color:var(--copper)}
+
+.dayswitch{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;margin-bottom:1.1rem;padding-bottom:.2rem}
+.dayswitch::-webkit-scrollbar{display:none}
+.dayswitch button{
+  flex:0 0 auto;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:9px 14px;border-radius:22px;cursor:pointer;
+  border:1px solid var(--line);background:var(--white);color:var(--ink-3);
+  transition:all .16s;
+}
+.dayswitch button.on{background:var(--copper);border-color:var(--copper);color:var(--white)}
+
+.slot{display:none}
+.slot.on{display:block}
+.ev{
+  background:var(--rose-mist);border-radius:10px;padding:.7rem .85rem;margin-bottom:.5rem;
+  border-left:2px solid var(--rose-lt);
+}
+.ev-hd{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}
+.ev-n{font-size:13.5px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.3}
+.ev-t{font-size:11px;font-weight:700;color:var(--copper);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ev-m{font-size:11.5px;color:var(--ink-4);margin-top:.2rem}
+.ev-free{border-left-color:var(--copper)}
+.band{
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-4);margin:1.2rem 0 .55rem;padding-bottom:.35rem;
+  border-bottom:1px solid var(--line-2);
+}
+.band:first-child{margin-top:0}
+
+.role{border:1px solid var(--line);border-radius:13px;padding:1.15rem;margin-bottom:.7rem}
+.role-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:.7rem;margin-bottom:.55rem}
+.role-p{
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 8px;border-radius:20px;white-space:nowrap;flex:0 0 auto;
+  background:var(--copper);color:var(--white);
+}
+.role-p2{background:var(--rose-lt);color:var(--copper)}
+.jd{margin-top:.7rem;padding-top:.7rem;border-top:1px solid var(--line-2)}
+.jd-l{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-4);margin-bottom:.4rem}
+.jd ul{list-style:none;padding:0}
+.jd li{font-size:12.5px;color:var(--ink-2);line-height:1.5;padding-left:.85rem;position:relative;margin-bottom:.28rem}
+.jd li::before{content:'';position:absolute;left:0;top:.5rem;width:4px;height:4px;border-radius:50%;background:var(--rose)}
+
+.org{background:var(--rose-pale);border-radius:13px;padding:1.15rem}
+.org-l{
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--copper);margin-bottom:.5rem;
+}
+.org-box{
+  background:var(--white);border-radius:9px;padding:.6rem .8rem;margin-bottom:.45rem;
+  font-size:13px;font-weight:600;color:var(--ink);
+}
+.org-box span{display:block;font-size:11.5px;font-weight:400;color:var(--ink-3);margin-top:.12rem}
+.org-sub{margin-left:.9rem;border-left:2px solid var(--rose-lt);padding-left:.7rem}
+.org-sub .org-box{background:var(--rose-mist);padding:.5rem .7rem;font-size:12.5px}
+
+.ftr{padding:2rem 1.4rem 2.5rem;background:var(--rose-pale);text-align:center}
+
+@media(min-width:640px){
+  section{padding:2.75rem 2.25rem}
+  .hero{padding:3.5rem 2.25rem 2.75rem}
+  h1{font-size:2.7rem}
+  .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ftr{padding:2.5rem 2.25rem 3rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav id="nav">
+  <button class="on" data-p="p1">Concept</button>
+  <button data-p="p2">The venue</button>
+  <button data-p="p3">Community</button>
+  <button data-p="p4">The week</button>
+  <button data-p="p5">Team</button>
+  <button data-p="p6">Market</button>
+  <button data-p="p7">Phasing</button>
+  <button data-p="p8">Timeline</button>
+</nav>
+
+<div class="page on" id="p1">
+  <div class="hero">
+    <div class="mark">S</div>
+    <h1>The Sol Club</h1>
+    <p class="tagline">Where TRX connects.</p>
+    <p class="hero-sub">Every day, something worth showing up for. Sport, training, recovery and everything after.</p>
+  </div>
+
+  <section>
+    <div class="eyebrow">The opportunity</div>
+    <h2>TRX has the buildings. It doesn't have the club.</h2>
+    <div class="rule-c"></div>
+    <p class="lede">Twenty thousand people work inside Malaysia's international financial district today, heading toward thirty thousand. Twelve thousand will live here. They have a world-class mall, a ten-acre park, and the city's only MRT interchange under their feet.</p>
+    <p class="lede" style="margin-top:.8rem">What they don't have is somewhere to play, train, recover, and stay — without leaving the precinct.</p>
+    <div class="stats">
+      <div class="stat"><b>20K</b><span>Workers today</span></div>
+      <div class="stat"><b>12K</b><span>Future residents</span></div>
+      <div class="stat"><b>50K</b><span>Daily MRT riders</span></div>
+      <div class="stat"><b>0</b><span>Social clubs at TRX</span></div>
+    </div>
+    <p class="xs">Sources: TRX City / SCMP (Jun 2026), EdgeProp (May 2026), TRX RFP (Nov 2025).</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">The proposition</div>
+    <h2>One address. Five reasons to come.</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">Most racquet venues sell court hours. Sol Club sells a day — and the day is what makes members stay, spend, and come back tomorrow.</p>
+
+    <div class="pillar">
+      <div class="pillar-n">1</div>
+      <div>
+        <h3>Sport</h3>
+        <p class="sm">3 padel courts and 6 pickleball courts. Competitive standard, social atmosphere. The reason people walk in the first time.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">2</div>
+      <div>
+        <h3>Fitness</h3>
+        <p class="sm">HYROX-format training zone. The fastest-growing fitness race format in the world, and nothing like it in the KL city centre. Fills weekday mornings and lunch hours that courts alone can't.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">3</div>
+      <div>
+        <h3>Wellness</h3>
+        <p class="sm">Yoga and pilates studio. Broadens the member base well beyond racquet players — and gives the club a 7am and a 7pm that isn't dependent on court supply.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">4</div>
+      <div>
+        <h3>Recovery</h3>
+        <p class="sm">Ice plunge and hot tub. This is the ritual that turns a session into a habit. It's also the single most photographed thing in every club that has one.</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">5</div>
+      <div>
+        <h3>Social</h3>
+        <p class="sm">Food and drink built for after — not an afterthought. Where the community actually forms. The courts start the relationship; the bar keeps it.</p>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:1.2rem">
+      <b>Under consideration:</b> golf simulator bays indoors, mini putt on the outdoor terrace. Both are strong corporate-event and off-peak revenue plays. Decision point in Q4 once the space plan is fixed.
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Why it wins</div>
+    <h2>The moat isn't the sport. It's the address and the community.</h2>
+    <div class="rule-c"></div>
+    <div class="card">
+      <div class="row"><div class="dot"></div><div><h4>Nobody else is inside the district</h4><p class="sm" style="margin-top:.2rem">Every competitor asks a TRX professional to drive fifteen to thirty minutes. We ask them to take a lift.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Corporate demand is walk-up demand</h4><p class="sm" style="margin-top:.2rem">Ninety per cent of TRX tenants are international corporates with wellness budgets. Their people are already here at 8am.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Five reasons beats one reason</h4><p class="sm" style="margin-top:.2rem">A courts business dies at 10am on a Tuesday. A club with training, wellness, recovery and F&amp;B doesn't.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Community is the retention engine</h4><p class="sm" style="margin-top:.2rem">Leagues, academies and club collaborations are what make a venue hard to leave. That's the part competitors can't copy by building courts.</p></div></div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="p2">
+  <section>
+    <div class="eyebrow">Lot 183</div>
+    <h2>The site</h2>
+    <div class="rule-c"></div>
+    <table class="tbl">
+      <tr><td>Site area</td><td>0.71 acre</td></tr>
+      <tr><td>Gross area</td><td>30,887 sqft</td></tr>
+      <tr><td>Level</td><td>+54 (L2)</td></tr>
+      <tr><td>Character</td><td>Rooftop, DM office</td></tr>
+      <tr><td>TRX City Park</td><td>Direct link</td></tr>
+      <tr><td>Core Residences</td><td>3 min walk</td></tr>
+      <tr><td>The Exchange TRX</td><td>5 min walk</td></tr>
+      <tr><td>Exchange 106</td><td>8 min walk</td></tr>
+      <tr><td>TRX MRT</td><td>8 min walk</td></tr>
+      <tr><td>Menara Prudential / Affin</td><td>10 min walk</td></tr>
+    </table>
+    <p class="xs" style="margin-top:.8rem">Site data per TRX City RFP, November 2025.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Space plan</div>
+    <h2>Indicative allocation</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">Working from 30,887 sqft gross. These are planning figures to test the concept against the envelope — the architect's layout governs.</p>
+
+    <div class="card">
+      <table class="tbl">
+        <tr><td><b>Pickleball</b> — 6 courts<br><span class="xs">Indoor, air-conditioned</span></td><td>7,200 sqft</td></tr>
+        <tr><td><b>Padel</b> — 3 courts<br><span class="xs">Glass-walled</span></td><td>7,500 sqft</td></tr>
+        <tr><td><b>Training zone</b><br><span class="xs">HYROX format — sled, rig, rowers, turf lane</span></td><td>4,500 sqft</td></tr>
+        <tr><td><b>Wellness studio</b><br><span class="xs">Yoga and pilates</span></td><td>1,800 sqft</td></tr>
+        <tr><td><b>Recovery</b><br><span class="xs">Ice plunge, hot tub, changing</span></td><td>2,200 sqft</td></tr>
+        <tr><td><b>Social and F&amp;B</b><br><span class="xs">Bar, café, lounge, terrace</span></td><td>3,600 sqft</td></tr>
+        <tr><td><b>Reception and pro shop</b></td><td>900 sqft</td></tr>
+        <tr><td><b>Back of house and M&amp;E</b></td><td>1,400 sqft</td></tr>
+        <tr><td><b>Circulation</b></td><td>1,787 sqft</td></tr>
+        <tr style="border-top:2px solid var(--copper)"><td style="padding-top:.75rem"><b>Total</b></td><td style="padding-top:.75rem">30,887 sqft</td></tr>
+      </table>
+    </div>
+
+    <div class="flag" style="margin-top:1rem">
+      <b>Open question for the board.</b> Nine courts, a training zone, wellness, recovery and F&amp;B is a tight fit on a rooftop envelope at this size. Three live options: reduce to 2 padel and gain roughly 2,500 sqft; push recovery and part of the social zone onto the outdoor terrace; or accept a smaller training zone at around 3,000 sqft. Worth resolving early — it drives the entire fit-out cost and the revenue model.
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Tech</div>
+    <h2>One system, not five</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">The member experience is the product. A member should book a court, join a class, tap into recovery, and settle a bar tab on one account with one balance. That only works if it's designed as a single stack from the start — retrofitting it later is expensive and members feel the seams.</p>
+
+    <div class="card">
+      <div class="row"><div class="dot"></div><div><h4>Booking and CRM</h4><p class="sm" style="margin-top:.2rem">Courts, classes, coaching, recovery slots. Corporate account hierarchy so a company admin manages their own block.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Integrated POS</h4><p class="sm" style="margin-top:.2rem">F&amp;B, pro shop, events, court walk-ins — one ledger, one member profile, one view of spend.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Credits wallet</h4><p class="sm" style="margin-top:.2rem">Members buy credits annually or monthly. Credits spend across everything. Roll-over, top-up, auto-renew. This is what turns transactional play into recurring revenue.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Access control</h4><p class="sm" style="margin-top:.2rem">Tap-in at the door and at the recovery zone. Ties utilisation data back to the member record.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Member app</h4><p class="sm" style="margin-top:.2rem">Book, pay, see the ladder, join a league, bring a guest. The club in a pocket.</p></div></div>
+    </div>
+
+    <div class="note" style="margin-top:1rem">
+      <b>Why it matters commercially:</b> a credits wallet converts pay-per-play into annual recurring revenue, and it lets you sell to a corporate before a single court is poured. That's the mechanism that makes pre-sales real rather than aspirational.
+    </div>
+    <div class="note" style="margin-top:.6rem">
+      <b>Why it matters operationally:</b> one system is also how a lean team runs a seventeen-hour day. Every process the software doesn't handle becomes a person we have to hire.
+    </div>
+  </section>
+</div>
+
+<div class="page" id="p3">
+  <section>
+    <div class="eyebrow">Community</div>
+    <h2>A club is people, not courts.</h2>
+    <div class="rule-c"></div>
+    <p class="lede">You can copy a facility. You can't copy a community. Sol Club opens with a programme calendar already running and partnerships already signed — so the club has a pulse from day one rather than waiting to develop one.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Club collaborations</div>
+    <h2>Open doors, not closed gates</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">The KL racquet scene has real communities already — leagues, social groups, competitive circles. A premium club that shuts them out gets an empty midweek. A club that hosts them gets a full one, plus a conversion pipeline into membership.</p>
+
+    <div class="card">
+      <div class="row"><div class="dot"></div><div><h4>Host, don't compete</h4><p class="sm" style="margin-top:.2rem">Existing pickleball and padel communities get preferential off-peak blocks. They fill dead hours, bring their own energy, and a percentage convert to members.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Inter-club leagues</h4><p class="sm" style="margin-top:.2rem">Sol Club as the anchor venue for a KL-wide club league. Home fixtures bring rival clubs and their supporters through our doors — and our brand into theirs.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Every level, deliberately</h4><p class="sm" style="margin-top:.2rem">Beginner socials, intermediate ladders, competitive squads. Premium doesn't have to mean intimidating. The beginner who walks in nervous at 34 becomes the member who's still here at 40.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Corporate leagues</h4><p class="sm" style="margin-top:.2rem">TRX tenant versus TRX tenant. HSBC against Accenture on a Thursday evening. This writes itself, and it's the single best corporate membership sales tool we'll have.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Guest instructors and residencies</h4><p class="sm" style="margin-top:.2rem">Independent yoga, pilates and strength coaches run named sessions under our roof. They bring their following, we supply the room and the audience. Low fixed cost, high variety.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Academy</div>
+    <h2>In-house coaching, every level</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">Coaching in-house rather than outsourced — because quality control, member relationships, and margin all matter, and because a coach who works for the club builds the club.</p>
+
+    <div class="card card-tint">
+      <h3 style="margin-bottom:.5rem">Pathways</h3>
+      <div><span class="chip">Never played</span><span class="chip">Beginner clinics</span><span class="chip">Intermediate drills</span><span class="chip">Competitive squad</span><span class="chip">Juniors</span><span class="chip">Corporate intro</span><span class="chip">HYROX small group</span><span class="chip">Private 1-to-1</span></div>
+    </div>
+
+    <div class="card">
+      <div class="row"><div class="dot"></div><div><h4>Padel and pickleball academies</h4><p class="sm" style="margin-top:.2rem">Structured progression, not ad-hoc lessons. A member knows what level they're at and what's next. Retention follows progression.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>HYROX training programmes</h4><p class="sm" style="margin-top:.2rem">Small-group coached sessions on a race format that has an actual finish line. Goal-driven fitness retains far better than open gym floor.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Junior development</h4><p class="sm" style="margin-top:.2rem">Weekend and school-holiday programmes. Juniors bring parents, and parents buy memberships. TRX residents are the immediate catchment.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Coach development</h4><p class="sm" style="margin-top:.2rem">We train and certify our own. Consistent standard across every court, and a bench that scales when we add capacity.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Programming</div>
+    <h2>Always something on</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">The calendar is the product. It's also the marketing — a club with a full calendar markets itself.</p>
+    <div class="card">
+      <table class="tbl">
+        <tr><td><b>Weekly</b><br><span class="xs">Social play nights, ladder fixtures, beginner clinics, HYROX group sessions</span></td><td>Members</td></tr>
+        <tr><td><b>Monthly</b><br><span class="xs">Club tournaments, guest coach sessions, brand pop-ups, member socials</span></td><td>Members + guests</td></tr>
+        <tr><td><b>Quarterly</b><br><span class="xs">Corporate league finals, inter-club championships, wellness weekends</span></td><td>Public + corporate</td></tr>
+        <tr><td><b>Annual</b><br><span class="xs">Sol Club Open, HYROX sanctioned event, founding members' night</span></td><td>City-wide</td></tr>
+      </table>
+    </div>
+    <div class="note" style="margin-top:1rem">
+      <b>The test:</b> if a member checks the app on a random Wednesday, is there a reason to come tonight? If the answer is ever no, the calendar isn't working.
+    </div>
+  </section>
+</div>
+
+<div class="page" id="p4">
+  <section>
+    <div class="eyebrow">The week</div>
+    <h2>Discover the experiences</h2>
+    <div class="rule-c"></div>
+    <p class="lede">Twenty thousand people. Every one of them wants something different at a different hour. The club's job is to always have the thing they want — so that checking the app becomes a habit rather than an errand.</p>
+    <p class="sm" style="margin-top:.8rem">A sample week. Members choose; the calendar never sits empty.</p>
+  </section>
+
+  <section>
+    <div class="dayswitch" id="dsw">
+      <button class="on" data-d="mon">Mon</button>
+      <button data-d="tue">Tue</button>
+      <button data-d="wed">Wed</button>
+      <button data-d="thu">Thu</button>
+      <button data-d="fri">Fri</button>
+      <button data-d="sat">Sat</button>
+      <button data-d="sun">Sun</button>
+    </div>
+
+    <div class="slot on" id="mon">
+      <div class="band">Early — 06:00 to 09:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Foundations</span><span class="ev-t">06:00–07:00</span></div><div class="ev-m">Training zone · coached small group</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Sunrise Vinyasa</span><span class="ev-t">07:00–08:00</span></div><div class="ev-m">Studio · included with membership</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Pickleball Open Play</span><span class="ev-t">07:00–09:00</span></div><div class="ev-m">Courts 1–4 · drop in</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Contrast Recovery</span><span class="ev-t">08:00–09:30</span></div><div class="ev-m">Plunge and hot tub · walk in</div></div>
+      <div class="band">Day — 09:00 to 17:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate Block — reserved</span><span class="ev-t">09:00–11:00</span></div><div class="ev-m">Courts 5–9 · TRX tenant accounts</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Padel for Beginners</span><span class="ev-t">11:00–12:00</span></div><div class="ev-m">Academy · first session free</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Lunch Express HYROX</span><span class="ev-t">12:15–12:55</span></div><div class="ev-m">Training zone · 40 minutes, shower included</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Desk Reset Mobility</span><span class="ev-t">13:00–13:30</span></div><div class="ev-m">Studio · free for all members</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Private Coaching</span><span class="ev-t">14:00–17:00</span></div><div class="ev-m">Courts 1–2 · by appointment</div></div>
+      <div class="band">Evening — 17:00 to 23:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Padel Ladder — Week 3</span><span class="ev-t">17:30–19:30</span></div><div class="ev-m">Courts 7–9 · competitive members</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Reformer Pilates</span><span class="ev-t">18:30–19:30</span></div><div class="ev-m">Studio · guest instructor residency</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Pickleball Social Night</span><span class="ev-t">19:30–22:00</span></div><div class="ev-m">Courts 1–6 · all levels, rotating partners</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Members' Bar</span><span class="ev-t">17:00–23:00</span></div><div class="ev-m">Social · open</div></div>
+    </div>
+
+    <div class="slot" id="tue">
+      <div class="band">Early — 06:00 to 09:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Race Sim</span><span class="ev-t">06:00–07:15</span></div><div class="ev-m">Training zone · full format</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Slow Flow Yoga</span><span class="ev-t">07:15–08:15</span></div><div class="ev-m">Studio · included</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Padel Open Play</span><span class="ev-t">07:00–09:00</span></div><div class="ev-m">Courts 7–9 · drop in</div></div>
+      <div class="band">Day — 09:00 to 17:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate Block — reserved</span><span class="ev-t">09:00–12:00</span></div><div class="ev-m">Courts 1–5 · TRX tenant accounts</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Ladies' Pickleball Clinic</span><span class="ev-t">10:00–11:30</span></div><div class="ev-m">Courts 6–7 · beginner to intermediate</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Lunch Express HYROX</span><span class="ev-t">12:15–12:55</span></div><div class="ev-m">Training zone · 40 minutes</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Breathwork and Reset</span><span class="ev-t">13:00–13:30</span></div><div class="ev-m">Studio · free for all members</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Juniors After School</span><span class="ev-t">15:30–17:00</span></div><div class="ev-m">Courts 3–4 · ages 8–14</div></div>
+      <div class="band">Evening — 17:00 to 23:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate League — Round 3</span><span class="ev-t">18:00–21:00</span></div><div class="ev-m">Courts 1–6 · TRX tenant teams</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Strength and Conditioning</span><span class="ev-t">18:30–19:30</span></div><div class="ev-m">Training zone · coached</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Sunset Yin</span><span class="ev-t">19:45–20:45</span></div><div class="ev-m">Studio · guest instructor</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Members' Bar</span><span class="ev-t">17:00–23:00</span></div><div class="ev-m">Social · open</div></div>
+    </div>
+
+    <div class="slot" id="wed">
+      <div class="band">Early — 06:00 to 09:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Foundations</span><span class="ev-t">06:00–07:00</span></div><div class="ev-m">Training zone · coached small group</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Power Vinyasa</span><span class="ev-t">07:00–08:00</span></div><div class="ev-m">Studio · included</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Pickleball Open Play</span><span class="ev-t">07:00–09:00</span></div><div class="ev-m">Courts 1–4 · drop in</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Contrast Recovery</span><span class="ev-t">08:00–09:30</span></div><div class="ev-m">Plunge and hot tub · walk in</div></div>
+      <div class="band">Day — 09:00 to 17:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate Block — reserved</span><span class="ev-t">09:00–11:00</span></div><div class="ev-m">Courts 5–9</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Pickleball for Beginners</span><span class="ev-t">11:00–12:00</span></div><div class="ev-m">Academy · first session free</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Lunch Express HYROX</span><span class="ev-t">12:15–12:55</span></div><div class="ev-m">Training zone</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Desk Reset Mobility</span><span class="ev-t">13:00–13:30</span></div><div class="ev-m">Studio · free</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Community Club Block</span><span class="ev-t">14:00–17:00</span></div><div class="ev-m">Courts 1–6 · partner club rate</div></div>
+      <div class="band">Evening — 17:00 to 23:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Pickleball Ladder — Week 3</span><span class="ev-t">17:30–19:30</span></div><div class="ev-m">Courts 1–6 · competitive members</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Mat Pilates</span><span class="ev-t">18:30–19:30</span></div><div class="ev-m">Studio</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Padel Social Night</span><span class="ev-t">19:30–22:00</span></div><div class="ev-m">Courts 7–9 · all levels</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Brand Pop-Up</span><span class="ev-t">18:00–21:00</span></div><div class="ev-m">Social · monthly rotation</div></div>
+    </div>
+
+    <div class="slot" id="thu">
+      <div class="band">Early — 06:00 to 09:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Race Sim</span><span class="ev-t">06:00–07:15</span></div><div class="ev-m">Training zone · full format</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Sunrise Vinyasa</span><span class="ev-t">07:15–08:15</span></div><div class="ev-m">Studio · included</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Padel Open Play</span><span class="ev-t">07:00–09:00</span></div><div class="ev-m">Courts 7–9 · drop in</div></div>
+      <div class="band">Day — 09:00 to 17:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate Block — reserved</span><span class="ev-t">09:00–12:00</span></div><div class="ev-m">Courts 1–5</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Padel Intermediate Drills</span><span class="ev-t">10:00–11:30</span></div><div class="ev-m">Courts 8–9 · academy</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Lunch Express HYROX</span><span class="ev-t">12:15–12:55</span></div><div class="ev-m">Training zone</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Breathwork and Reset</span><span class="ev-t">13:00–13:30</span></div><div class="ev-m">Studio · free</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Juniors After School</span><span class="ev-t">15:30–17:00</span></div><div class="ev-m">Courts 3–4 · ages 8–14</div></div>
+      <div class="band">Evening — 17:00 to 23:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate League — Round 3</span><span class="ev-t">18:00–21:00</span></div><div class="ev-m">Courts 1–6 · TRX tenant teams</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Team Training</span><span class="ev-t">18:30–19:45</span></div><div class="ev-m">Training zone · doubles format</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Candlelight Yin</span><span class="ev-t">20:00–21:00</span></div><div class="ev-m">Studio · guest instructor</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Members' Bar — Live Set</span><span class="ev-t">19:00–23:00</span></div><div class="ev-m">Social · weekly DJ</div></div>
+    </div>
+
+    <div class="slot" id="fri">
+      <div class="band">Early — 06:00 to 09:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Foundations</span><span class="ev-t">06:00–07:00</span></div><div class="ev-m">Training zone</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Slow Flow Yoga</span><span class="ev-t">07:00–08:00</span></div><div class="ev-m">Studio · included</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Pickleball Open Play</span><span class="ev-t">07:00–09:00</span></div><div class="ev-m">Courts 1–4</div></div>
+      <div class="band">Day — 09:00 to 17:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate Block — reserved</span><span class="ev-t">09:00–11:00</span></div><div class="ev-m">Courts 5–9</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Corporate Team Activation</span><span class="ev-t">11:00–14:00</span></div><div class="ev-m">Courts 1–6 · bookable event package</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Desk Reset Mobility</span><span class="ev-t">13:00–13:30</span></div><div class="ev-m">Studio · free</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Recovery Lounge Extended</span><span class="ev-t">14:00–18:00</span></div><div class="ev-m">Plunge and hot tub · walk in</div></div>
+      <div class="band">Evening — 17:00 to 23:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Friday Mixer — Padel and Pickle</span><span class="ev-t">18:00–21:00</span></div><div class="ev-m">All courts · rotating partners, all levels</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Sundown Sessions</span><span class="ev-t">18:00–23:00</span></div><div class="ev-m">Terrace · DJ, drinks, no booking needed</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Guest Coach Masterclass</span><span class="ev-t">19:00–20:30</span></div><div class="ev-m">Courts 8–9 · monthly, ticketed</div></div>
+    </div>
+
+    <div class="slot" id="sat">
+      <div class="band">Morning — 07:00 to 12:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Community Race</span><span class="ev-t">07:00–09:00</span></div><div class="ev-m">Training zone · monthly, open to public</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Juniors Academy</span><span class="ev-t">08:00–10:00</span></div><div class="ev-m">Courts 1–4 · ages 6–14</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Family Flow Yoga</span><span class="ev-t">09:00–10:00</span></div><div class="ev-m">Studio · members and children</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Inter-Club Fixture</span><span class="ev-t">10:00–13:00</span></div><div class="ev-m">Courts 5–9 · visiting KL clubs</div></div>
+      <div class="band">Afternoon — 12:00 to 18:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Beginner Taster — Padel</span><span class="ev-t">12:00–13:00</span></div><div class="ev-m">Academy · free, non-members welcome</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Competitive Squad</span><span class="ev-t">14:00–16:00</span></div><div class="ev-m">Courts 7–9 · by invitation</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Recovery Social</span><span class="ev-t">14:00–18:00</span></div><div class="ev-m">Plunge, hot tub, terrace</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Open Courts</span><span class="ev-t">13:00–18:00</span></div><div class="ev-m">All courts · public booking</div></div>
+      <div class="band">Evening — 18:00 to 23:00</div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Club Tournament — Monthly</span><span class="ev-t">18:00–22:00</span></div><div class="ev-m">All courts · members and guests</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Saturday Social</span><span class="ev-t">18:00–23:00</span></div><div class="ev-m">Terrace and bar · live music</div></div>
+    </div>
+
+    <div class="slot" id="sun">
+      <div class="band">Morning — 07:00 to 12:00</div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Sunrise Flow</span><span class="ev-t">07:30–08:30</span></div><div class="ev-m">Studio · included</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Juniors Academy</span><span class="ev-t">08:00–10:00</span></div><div class="ev-m">Courts 1–4 · ages 6–14</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Open Courts</span><span class="ev-t">08:00–12:00</span></div><div class="ev-m">Courts 5–9 · public booking</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">HYROX Open Floor</span><span class="ev-t">09:00–12:00</span></div><div class="ev-m">Training zone · self-guided</div></div>
+      <div class="band">Afternoon — 12:00 to 18:00</div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Beginner Taster — Pickleball</span><span class="ev-t">12:00–13:00</span></div><div class="ev-m">Academy · free, non-members welcome</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Family Courts</span><span class="ev-t">13:00–16:00</span></div><div class="ev-m">Courts 1–4 · members and children</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Community Club Block</span><span class="ev-t">14:00–18:00</span></div><div class="ev-m">Courts 5–9 · partner club rate</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Recovery Reset</span><span class="ev-t">13:00–18:00</span></div><div class="ev-m">Plunge and hot tub</div></div>
+      <div class="band">Evening — 18:00 to 22:00</div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Sunday Wind Down</span><span class="ev-t">17:00–18:00</span></div><div class="ev-m">Studio · restorative yin</div></div>
+      <div class="ev"><div class="ev-hd"><span class="ev-n">Open Courts</span><span class="ev-t">18:00–22:00</span></div><div class="ev-m">All courts · public booking</div></div>
+      <div class="ev ev-free"><div class="ev-hd"><span class="ev-n">Members' Bar</span><span class="ev-t">16:00–22:00</span></div><div class="ev-m">Social · open</div></div>
+    </div>
+
+    <div class="note" style="margin-top:1.4rem">
+      <b>Read what this actually does.</b> Free-to-member sessions at 07:00 and 13:00 cost us almost nothing and buy the two hardest habits to build — the morning visit and the lunch visit. Corporate blocks monetise 09:00 to 12:00, the hours that kill every courts-only business in KL. Community club blocks fill Wednesday and Sunday afternoons at a rate that beats an empty court. And every free beginner taster is a membership conversation.
+    </div>
+    <div class="flag" style="margin-top:.7rem">
+      <b>Illustrative.</b> Session names, times and mix are a working model to show the shape of a full week, not a committed schedule. The real calendar gets built by the community lead against actual demand.
+    </div>
+  </section>
+</div>
+
+<div class="page" id="p5">
+  <section>
+    <div class="eyebrow">Team</div>
+    <h2>Lean by design, not by accident.</h2>
+    <div class="rule-c"></div>
+    <p class="lede">Revenue starts when the doors open. Every hire before that is pure cost, so the sequence matters more than the headcount. My view: hire four people who can each build their own function, give them ownership of their own teams, and keep everything else variable.</p>
+    <p class="lede" style="margin-top:.8rem">Four core hires. Everything below them is part-time, outsourced, or hired by the head who owns it — with me in the final interview.</p>
+    <div class="stats">
+      <div class="stat"><b>4</b><span>Core hires</span></div>
+      <div class="stat"><b>~9</b><span>FTE at opening</span></div>
+      <div class="stat"><b>~14</b><span>Part-time and casual</span></div>
+      <div class="stat"><b>3</b><span>Functions outsourced</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Core team</div>
+    <h2>The four I'd hire first</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.2rem">Each of these people owns a function outright and builds their own sub-team. If I'm hiring a person to be managed, I've hired the wrong person.</p>
+
+    <div class="role">
+      <div class="role-hd">
+        <div>
+          <h3>Head of Business Growth</h3>
+          <p class="xs" style="margin-top:.15rem">Start: August 2026 · Full-time</p>
+        </div>
+        <span class="role-p">Hire 1</span>
+      </div>
+      <p class="sm">The hunter. Revenue has to exist before the club does, and this is the person who makes that true. Owns the corporate pipeline across TRX from day one.</p>
+      <div class="jd">
+        <div class="jd-l">Owns</div>
+        <ul>
+          <li>Corporate membership pipeline — target 20 TRX tenant accounts pre-opening</li>
+          <li>Founding member campaign and conversion</li>
+          <li>Brand partnerships and sponsorship</li>
+          <li>Corporate event and activation sales</li>
+          <li>Membership pricing performance and churn</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Looks like</div>
+        <ul>
+          <li>B2B sales background — corporate wellness, hospitality, or premium services</li>
+          <li>An existing KL corporate network they can open on week one</li>
+          <li>Comfortable selling something that doesn't physically exist yet</li>
+          <li>Carries a number and wants to</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Builds</div>
+        <ul>
+          <li>1 × BD Executive (from Q1 2027)</li>
+          <li>Commission-based corporate referral network</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-hd">
+        <div>
+          <h3>Head of Creative</h3>
+          <p class="xs" style="margin-top:.15rem">Start: September 2026 · Full-time</p>
+        </div>
+        <span class="role-p">Hire 2</span>
+      </div>
+      <p class="sm">The club's face to the market. Owns brand, content, and the pre-opening activation. If nobody knows we exist by December, the pop-up fails and the pre-sales don't land.</p>
+      <div class="jd">
+        <div class="jd-l">Owns</div>
+        <ul>
+          <li>Brand identity and applied guidelines, with the architect's design language</li>
+          <li>Social, content, and community storytelling</li>
+          <li>The December preview activation, end to end</li>
+          <li>Press, influencer, and launch communications</li>
+          <li>Member-facing comms and the app's voice</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Looks like</div>
+        <ul>
+          <li>Sports, lifestyle, or hospitality brand background</li>
+          <li>Can shoot, edit, and ship — not just brief an agency</li>
+          <li>Has built an audience from zero before</li>
+          <li>Taste. This one is not negotiable.</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Builds</div>
+        <ul>
+          <li>1 × Social and content executive (part-time, from Q1 2027)</li>
+          <li>Freelance photo and video bench — per shoot, not retained</li>
+          <li>Design support on retainer, not headcount</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-hd">
+        <div>
+          <h3>Head of Operations and Technology</h3>
+          <p class="xs" style="margin-top:.15rem">Start: September 2026 · Full-time</p>
+        </div>
+        <span class="role-p">Hire 3</span>
+      </div>
+      <p class="sm">The backbone. Owns the systems that let nine full-timers run a seventeen-hour day. Every process this person automates is a headcount we don't carry.</p>
+      <div class="jd">
+        <div class="jd-l">Owns</div>
+        <ul>
+          <li>Booking, CRM, POS, access control, member app — selection and integration</li>
+          <li>Credits wallet design and the recurring revenue mechanics</li>
+          <li>SOPs, rostering, and the operating model</li>
+          <li>Facility standards, maintenance schedule, vendor contracts</li>
+          <li>Licensing, compliance, safety, and PDPA</li>
+          <li>Management reporting and utilisation data</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Looks like</div>
+        <ul>
+          <li>Systems thinker who has launched a venue or a platform before</li>
+          <li>Comfortable in vendor negotiations and in a plant room</li>
+          <li>Obsessive about the member journey being frictionless</li>
+          <li>Builds processes that don't need them present</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Builds</div>
+        <ul>
+          <li>1 × Duty Manager (from Feb 2027)</li>
+          <li>Front-of-house team — part-time and casual</li>
+          <li>Maintenance and cleaning — outsourced contract</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="role-hd">
+        <div>
+          <h3>Head of Community and Academy</h3>
+          <p class="xs" style="margin-top:.15rem">Start: November 2026 · Full-time</p>
+        </div>
+        <span class="role-p role-p2">Hire 4</span>
+      </div>
+      <p class="sm">The soul. Owns the calendar, the coaching, the leagues, and the club collaborations. The reason a member's Wednesday evening belongs to us.</p>
+      <div class="jd">
+        <div class="jd-l">Owns</div>
+        <ul>
+          <li>Weekly programme calendar and its performance</li>
+          <li>Academy pathways — padel, pickleball, HYROX, juniors</li>
+          <li>Coach recruitment, standards, and development</li>
+          <li>Leagues, ladders, tournaments, socials</li>
+          <li>Club collaborations and inter-club fixtures</li>
+          <li>Member retention and community health</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Looks like</div>
+        <ul>
+          <li>Playing or coaching background — credible on court and off it</li>
+          <li>Has built a sporting community from nothing before</li>
+          <li>Warm, visible, and remembers names</li>
+          <li>Understands retention is a programming problem, not a discount problem</li>
+        </ul>
+      </div>
+      <div class="jd">
+        <div class="jd-l">Builds</div>
+        <ul>
+          <li>2 × Head Coach — padel and pickleball (Q1 2027)</li>
+          <li>Coaching bench — part-time and per-session</li>
+          <li>Wellness instructors — revenue share or per-class</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Structure</div>
+    <h2>Who builds what</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">Each head hires their own team. I sit in the final interview — no exceptions — but I don't run the search. That's the whole point of hiring people who can build.</p>
+
+    <div class="org">
+      <div class="org-l">Board / MD</div>
+      <div class="org-box">General Manager<span>P&amp;L, board reporting, partnerships, the room</span></div>
+
+      <div class="org-l" style="margin-top:1.1rem">Core — full-time</div>
+      <div class="org-box">Head of Business Growth
+        <div class="org-sub" style="margin-top:.5rem">
+          <div class="org-box">BD Executive<span>Full-time · Q1 2027</span></div>
+          <div class="org-box">Referral network<span>Commission only</span></div>
+        </div>
+      </div>
+      <div class="org-box">Head of Creative
+        <div class="org-sub" style="margin-top:.5rem">
+          <div class="org-box">Social and content exec<span>Part-time · Q1 2027</span></div>
+          <div class="org-box">Photo and video<span>Freelance, per shoot</span></div>
+          <div class="org-box">Design support<span>Retainer, not headcount</span></div>
+        </div>
+      </div>
+      <div class="org-box">Head of Ops and Technology
+        <div class="org-sub" style="margin-top:.5rem">
+          <div class="org-box">Duty Manager<span>Full-time · Feb 2027</span></div>
+          <div class="org-box">Front of house × 6<span>Part-time, shift-based</span></div>
+          <div class="org-box">Maintenance and cleaning<span>Outsourced contract</span></div>
+        </div>
+      </div>
+      <div class="org-box">Head of Community and Academy
+        <div class="org-sub" style="margin-top:.5rem">
+          <div class="org-box">Head Coach — padel<span>Full-time · Q1 2027</span></div>
+          <div class="org-box">Head Coach — pickleball<span>Full-time · Q1 2027</span></div>
+          <div class="org-box">Coaching bench × 4<span>Part-time, per session</span></div>
+          <div class="org-box">Wellness instructors × 4<span>Revenue share or per class</span></div>
+        </div>
+      </div>
+
+      <div class="org-l" style="margin-top:1.1rem">Outside the org</div>
+      <div class="org-box">Finance and payroll<span>Outsourced — controller from Feb 2027 if volume justifies</span></div>
+      <div class="org-box">Legal and company secretarial<span>Outsourced</span></div>
+      <div class="org-box">F&amp;B<span>Subtenant partner — their team, their payroll, our standards</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">The logic</div>
+    <h2>Why lean, and where I'd spend</h2>
+    <div class="rule-c"></div>
+    <div class="card">
+      <div class="row"><div class="dot"></div><div><h4>Four heads, not eight managers</h4><p class="sm" style="margin-top:.2rem">Fewer, better, more expensive people beats a broad org chart every time in a pre-opening. Each of these four should be able to run their function without me in the room.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Front of house is variable, not fixed</h4><p class="sm" style="margin-top:.2rem">A seventeen-hour day with peaks at 7am, 1pm and 6pm is a rostering problem, not a headcount problem. Part-time shifts flex with demand. One Duty Manager holds the standard.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Coaches earn from what they deliver</h4><p class="sm" style="margin-top:.2rem">Two salaried head coaches for standards and pathways. Everyone else per-session. Academy margin scales with demand instead of sitting as fixed cost through a slow month.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>F&amp;B is a partner, not a payroll</h4><p class="sm" style="margin-top:.2rem">A subtenant operator brings their own team and their own P&amp;L. We take a revenue share and hold the brand standard. Running a kitchen ourselves would add a dozen heads and a whole category of risk we don't need.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Finance stays outsourced until it can't</h4><p class="sm" style="margin-top:.2rem">Bookkeeping and payroll go to a firm. A controller comes in-house in Feb 2027 only if transaction volume genuinely justifies it.</p></div></div>
+      <div class="row"><div class="dot"></div><div><h4>Where I would not economise</h4><p class="sm" style="margin-top:.2rem">The four core hires and the tech stack. Underpaying a head of growth to save RM60k a year is how you miss a RM2M pipeline. Cheap software is how you end up hiring three people to work around it.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">For discussion</div>
+    <h2>What I'd like the board's view on</h2>
+    <div class="rule-c"></div>
+    <div class="card card-tint">
+      <div class="row" style="border-color:rgba(168,117,106,.15)"><div class="dot"></div><div><h4>Is the sequence right?</h4><p class="sm" style="margin-top:.2rem">I've put Business Growth first because revenue has to exist before the building does. An argument exists for Ops and Tech first, since the systems have a longer lead time. I'd like to hear the case.</p></div></div>
+      <div class="row" style="border-color:rgba(168,117,106,.15)"><div class="dot"></div><div><h4>Which names do you already have?</h4><p class="sm" style="margin-top:.2rem">Mark and Martin will both have people in mind. I'd rather blend networks than run parallel searches — bring the names and let's put them against these four roles.</p></div></div>
+      <div class="row" style="border-color:rgba(168,117,106,.15)"><div class="dot"></div><div><h4>Is four too lean?</h4><p class="sm" style="margin-top:.2rem">My view is no — but I'm carrying GM plus a fifth function myself until Q1 2027, and the board should know that's the trade I'm making to keep OPEX down.</p></div></div>
+      <div class="row" style="border-color:rgba(168,117,106,.15)"><div class="dot"></div><div><h4>Hiring authority</h4><p class="sm" style="margin-top:.2rem">I'd want final call on all four core hires and everything below them. Board sign-off on the compensation envelope, not on the individuals. That's the practical line that lets this move at pace.</p></div></div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="p6">
+  <section>
+    <div class="eyebrow">Addressable market</div>
+    <h2>Who's already here</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">Around 120 companies operate at TRX. Roughly 90% are international. Office towers are near full occupancy. These are the day-one corporate targets.</p>
+    <div class="card">
+      <div><span class="chip-o chip">HSBC</span><span class="chip-o chip">Prudential</span><span class="chip-o chip">Affin Bank</span><span class="chip-o chip">Accenture</span><span class="chip-o chip">Agoda</span><span class="chip-o chip">Huawei</span><span class="chip-o chip">CGS International</span><span class="chip-o chip">Ant International</span><span class="chip-o chip">MUFG</span><span class="chip-o chip">Ericsson</span><span class="chip-o chip">Veolia</span><span class="chip-o chip">Swiss Re</span><span class="chip-o chip">JLL</span><span class="chip-o chip">Bin Zayed Group</span><span class="chip-o chip">PwC — 2029</span></div>
+    </div>
+    <p class="xs" style="margin-top:.8rem">Per TRX City tenant disclosures and press, 2025–26.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Competition</div>
+    <h2>Everyone else asks for a drive</h2>
+    <div class="rule-c"></div>
+    <div class="card">
+      <table class="tbl">
+        <tr><td><b>PLAYA @ TREC</b><br><span class="xs">Racquet club, Jalan Tun Razak — nearest by road</span></td><td>~5 min</td></tr>
+        <tr><td><b>Pickle Social Club</b><br><span class="xs">KLGCC Bukit Kiara, RM35–70/hr</span></td><td>~15 min</td></tr>
+        <tr><td><b>The Courts @ KLGCC</b><br><span class="xs">Padel and pickleball, RM70–80/hr</span></td><td>~15 min</td></tr>
+        <tr><td><b>PadelKu</b><br><span class="xs">Berjaya Times Square</span></td><td>~12 min</td></tr>
+        <tr><td><b>Reserve Pickle Padel</b><br><span class="xs">Kota Damansara, sauna and ice bath</span></td><td>~25 min</td></tr>
+        <tr><td><b>Dink Arena</b><br><span class="xs">USJ, 18 courts, RM70/hr peak</span></td><td>~35 min</td></tr>
+        <tr><td><b>Grand Rally</b><br><span class="xs">Shah Alam rooftop, 17 courts, RM50–80/hr</span></td><td>~40 min</td></tr>
+      </table>
+    </div>
+    <div class="note" style="margin-top:1rem">
+      <b>Read it honestly:</b> the market is crowded and getting more so. Over 150 dedicated pickleball courts exist in Malaysia and new venues open monthly. But every one of them competes for the recreational player who'll drive. None of them competes for the banker who has forty-five minutes between meetings. That's a different market, and it's ours by geography.
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Membership</div>
+    <h2>Sell blocks, not hours</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">Weekday off-peak is where courts-only businesses bleed. It's also exactly when corporate demand exists. That's the arbitrage.</p>
+    <div class="card">
+      <table class="tbl">
+        <tr><td><b>Corporate block</b><br><span class="xs">10 seats, off-peak priority, quarterly event credit</span></td><td>RM2,500/mo</td></tr>
+        <tr><td><b>Individual premium</b><br><span class="xs">Full access, court priority, recovery, classes</span></td><td>RM380/mo</td></tr>
+        <tr><td><b>Social</b><br><span class="xs">Classes, recovery, F&amp;B, social play — no court priority</span></td><td>RM180/mo</td></tr>
+        <tr><td><b>Founding member</b><br><span class="xs">Pre-opening only, rate locked 24 months</span></td><td>−20%</td></tr>
+      </table>
+    </div>
+    <p class="xs" style="margin-top:.7rem">Indicative. Benchmarked against KL premium racquet venues at RM70–80/hr peak and positioned at a district premium.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Revenue shape</div>
+    <h2>Where the money comes from</h2>
+    <div class="rule-c"></div>
+    <p class="sm" style="margin-bottom:1.1rem">Indicative Year 2 stabilised mix. Built bottom-up from 9 courts at 35% off-peak and 75% peak utilisation across a 15-hour day, plus membership at the tiers above.</p>
+    <div class="card">
+      <div class="bar-row"><div class="bar-hd"><span>Memberships</span><b>~40%</b></div><div class="track"><div class="fill" style="width:40%"></div></div></div>
+      <div class="bar-row"><div class="bar-hd"><span>Court bookings</span><b>~38%</b></div><div class="track"><div class="fill" style="width:38%"></div></div></div>
+      <div class="bar-row"><div class="bar-hd"><span>Academy and events</span><b>~10%</b></div><div class="track"><div class="fill" style="width:10%"></div></div></div>
+      <div class="bar-row"><div class="bar-hd"><span>Corporate and brand</span><b>~8%</b></div><div class="track"><div class="fill" style="width:8%"></div></div></div>
+      <div class="bar-row"><div class="bar-hd"><span>F&amp;B and retail</span><b>~4%</b></div><div class="track"><div class="fill" style="width:4%"></div></div></div>
+    </div>
+    <div class="flag" style="margin-top:1rem">
+      <b>The number I can't model yet.</b> Tenancy cost. Rent is the largest single line and it determines whether this business works at all. Everything above is revenue shape, not a P&amp;L — the moment lease terms are known, this becomes a real model.
+    </div>
+  </section>
+</div>
+
+<div class="page" id="p7">
+  <section>
+    <div class="eyebrow">Phasing</div>
+    <h2>Start earning before the build finishes</h2>
+    <div class="rule-c"></div>
+    <p class="lede">The expensive version of this project waits for March 2027, opens cold, and spends a year buying a community. The better version builds the community first — so the doors open to people who already belong.</p>
+  </section>
+
+  <section>
+    <div class="zone">
+      <div class="zone-t">Phase 1 · Q4 2026</div>
+      <h3>Preview — build the community</h3>
+      <p class="sm" style="margin-top:.35rem">A pop-up activation while the main build runs. Temporary courts, a coffee and drinks setup, a real programme calendar. Small, cheap, and alive.</p>
+      <div style="margin-top:.6rem">
+        <span class="chip">Founding memberships sold</span><span class="chip">Corporate demos</span><span class="chip">Brand and press</span><span class="chip">Community club nights</span>
+      </div>
+      <p class="sm" style="margin-top:.6rem"><b style="color:var(--copper)">Goal:</b> a member list and a waitlist before a single permanent court is finished.</p>
+    </div>
+
+    <div class="zone">
+      <div class="zone-t">Phase 2 · Q1 2027</div>
+      <h3>Build and fit out</h3>
+      <p class="sm" style="margin-top:.35rem">Main construction and fit-out. The pop-up keeps running alongside — the community doesn't go quiet while we build. Team hired and trained against a live audience.</p>
+      <div style="margin-top:.6rem">
+        <span class="chip">Courts and surfaces</span><span class="chip">Training zone</span><span class="chip">Wellness and recovery</span><span class="chip">F&amp;B fit-out</span><span class="chip">Systems live</span>
+      </div>
+      <p class="sm" style="margin-top:.6rem"><b style="color:var(--copper)">Goal:</b> build complete March 2027, per current board guidance.</p>
+    </div>
+
+    <div class="zone">
+      <div class="zone-t">Phase 3 · Q2 2027</div>
+      <h3>Commission, soft open, then open</h3>
+      <p class="sm" style="margin-top:.35rem">Build completion is not opening day. Between them sit CCC, licensing, systems testing, staff training and a soft-open period with founding members. Skipping this is how clubs open badly.</p>
+      <div style="margin-top:.6rem">
+        <span class="chip">CCC and licences</span><span class="chip">Systems shakedown</span><span class="chip">Staff training</span><span class="chip">Founding members soft open</span><span class="chip">Public opening</span>
+      </div>
+      <p class="sm" style="margin-top:.6rem"><b style="color:var(--copper)">Goal:</b> open to a full house, not an empty room.</p>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="p8">
+  <section>
+    <div class="eyebrow">Working backwards</div>
+    <h2>From March 2027</h2>
+    <div class="rule-c"></div>
+    <div class="flag" style="margin-bottom:1.2rem">
+      <b>Assumption to confirm with the board.</b> This plan reads "March 2027" as build completion — structure and fit-out done, not doors open. On that basis, commissioning and soft open push public opening into Q2 2027. If March 2027 actually means opening day, everything below shifts roughly eight to ten weeks earlier and the design freeze is immediate.
+    </div>
+
+    <div class="zone">
+      <div class="zone-t">Aug 2026</div>
+      <h3>Design freeze and first hire</h3>
+      <p class="sm" style="margin-top:.3rem">Space plan resolved and signed off. Court count locked. Head of Business Growth onboarded. Tech stack vendor shortlisted.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Sep 2026</div>
+      <h3>Detailed design and pre-sales open</h3>
+      <p class="sm" style="margin-top:.3rem">Detailed drawings. Membership tiers and pricing locked. Founding member campaign opens to TRX corporates. Head of Creative and Head of Ops and Technology onboarded. Tech stack contracted.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Oct 2026</div>
+      <h3>Submissions and tender</h3>
+      <p class="sm" style="margin-top:.3rem">Authority submissions in. Contractor tender out. F&amp;B partner shortlisted. Booking system in beta. Pop-up design brief issued.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Nov 2026</div>
+      <h3>Approvals and pop-up build</h3>
+      <p class="sm" style="margin-top:.3rem">Approvals tracking. Contractor appointed. Pop-up assembled. Head of Community and Academy onboarded. Programme calendar published. Corporate pipeline converting.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Dec 2026</div>
+      <h3>Preview launch</h3>
+      <p class="sm" style="margin-top:.3rem">Pop-up opens. Founding memberships sell live. Press and brand activation. Main build begins behind the hoarding.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Jan – Feb 2027</div>
+      <h3>Construction and team build</h3>
+      <p class="sm" style="margin-top:.3rem">Main works. Head coaches, BD executive and duty manager onboarded. Academy pathways designed. Pop-up still running.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Mar 2027</div>
+      <h3>Build complete</h3>
+      <p class="sm" style="margin-top:.3rem">Handover, snagging, defects. Systems installed and tested. Front-of-house team hired and rostered.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Apr 2027</div>
+      <h3>Commissioning</h3>
+      <p class="sm" style="margin-top:.3rem">CCC, licences, insurance. Staff training on live systems. F&amp;B partner fit-out and menu testing. Founding members invited to preview sessions.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">May 2027</div>
+      <h3>Soft open</h3>
+      <p class="sm" style="margin-top:.3rem">Founding members only. Real operations at controlled volume. Find the problems before the public does.</p>
+    </div>
+    <div class="zone">
+      <div class="zone-t">Jun 2027</div>
+      <h3>Public opening</h3>
+      <p class="sm" style="margin-top:.3rem">Full launch to a club that already has members, a calendar, a ladder and a reputation.</p>
+    </div>
+  </section>
+
+  <div class="ftr">
+    <div class="mark" style="margin:0 auto 1rem">S</div>
+    <p style="font-size:1.05rem;font-weight:700;color:var(--copper);letter-spacing:-.02em">Where TRX connects.</p>
+    <p class="sm" style="margin-top:.4rem">Every day, something worth showing up for.</p>
+    <p class="xs" style="margin-top:1.4rem;color:var(--ink-4)">Working draft — Lot 183, Tun Razak Exchange<br>Prepared by Sam Siew · July 2026 · Private and confidential</p>
+  </div>
+</div>
+
+</div>
+<script>
+document.getElementById('nav').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('.page').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');
+  document.getElementById(b.dataset.p).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('dsw').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#dsw button').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');
+  document.getElementById(b.dataset.d).classList.add('on');
+});
+</script>
+</body>
+</html>
