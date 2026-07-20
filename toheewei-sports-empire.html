@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toh Ee Wei Sports Empire — Community Activation Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C2733;
+    --teal:#1AB2AD;
+    --deep:#0E6E75;
+    --sky:#3FB8E8;
+    --sun:#F5A623;      /* warm Melaka accent */
+    --coral:#F26A4B;
+    --ink:#16232A;
+    --slate:#5A6B72;
+    --line:#DCE6E7;
+    --paper:#FBFAF6;
+    --mist:#EAF6F5;
+    --card:#FFFFFF;
+    --shadow:0 1px 2px rgba(12,39,51,.04),0 8px 30px rgba(12,39,51,.07);
+    --shadow-lg:0 20px 60px rgba(12,39,51,.14);
+    --r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    color:var(--ink);background:var(--paper);
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',Georgia,serif;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:'Plus Jakarta Sans';font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;font-size:.72rem;color:var(--deep)}
+
+  /* ---------- progress bar ---------- */
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;
+    background:linear-gradient(90deg,var(--teal),var(--sun));transition:width .1s}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(251,250,246,.82);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;
+    padding-top:14px;padding-bottom:14px;gap:16px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);
+    font-size:.98rem;letter-spacing:-.01em}
+  .brand .dot{width:26px;height:26px;border-radius:8px;flex-shrink:0;
+    background:conic-gradient(from 210deg,var(--teal),var(--sky),var(--sun),var(--teal));
+    box-shadow:inset 0 0 0 3px var(--paper)}
+  .navlinks{display:flex;gap:4px;flex-wrap:wrap}
+  .navlinks a{font-size:.82rem;font-weight:600;color:var(--slate);text-decoration:none;
+    padding:7px 12px;border-radius:99px;transition:.2s;white-space:nowrap}
+  .navlinks a:hover{background:var(--mist);color:var(--deep)}
+  @media(max-width:820px){.navlinks{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:76px 0 64px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0;opacity:.9}
+  .blob{position:absolute;border-radius:50%;filter:blur(2px)}
+  .b1{width:520px;height:520px;right:-160px;top:-180px;
+    background:radial-gradient(circle at 30% 30%,rgba(26,178,173,.28),transparent 62%)}
+  .b2{width:440px;height:440px;left:-160px;bottom:-200px;
+    background:radial-gradient(circle at 60% 40%,rgba(245,166,35,.22),transparent 60%)}
+  .hero .wrap{position:relative;z-index:1}
+  .hero h1{font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.02;font-weight:900;
+    color:var(--navy);letter-spacing:-.02em;margin:14px 0 8px}
+  .hero h1 .hl{background:linear-gradient(180deg,transparent 62%,rgba(245,166,35,.4) 62%)}
+  .hero .sub{font-size:clamp(1.05rem,2vw,1.32rem);color:var(--slate);max-width:640px;
+    font-weight:500;margin-bottom:28px}
+  .hero .sub b{color:var(--deep);font-weight:700}
+  .pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .pill{display:inline-flex;align-items:center;gap:7px;background:var(--card);
+    border:1px solid var(--line);border-radius:99px;padding:9px 15px;font-size:.85rem;
+    font-weight:600;color:var(--navy);box-shadow:var(--shadow)}
+  .pill .em{font-size:1.05rem}
+
+  /* ---------- stat strip ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+  @media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:20px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal)}
+  .stat:nth-child(2)::before{background:var(--sun)}
+  .stat:nth-child(3)::before{background:var(--sky)}
+  .stat:nth-child(4)::before{background:var(--coral)}
+  .stat .num{font-family:'Fraunces';font-weight:900;font-size:2.1rem;color:var(--navy);
+    line-height:1;letter-spacing:-.02em}
+  .stat .lbl{font-size:.8rem;color:var(--slate);font-weight:600;margin-top:6px}
+
+  /* ---------- sections ---------- */
+  section{padding:64px 0;position:relative}
+  section.alt{background:linear-gradient(180deg,var(--mist),#fff 88%)}
+  .sec-head{max-width:720px;margin-bottom:36px}
+  .sec-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);color:var(--navy);font-weight:900;
+    letter-spacing:-.02em;line-height:1.08;margin:10px 0 12px}
+  .sec-head p{color:var(--slate);font-size:1.05rem;font-weight:500}
+  .sec-head p b{color:var(--ink)}
+
+  /* ---------- generic card ---------- */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    box-shadow:var(--shadow);padding:26px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+
+  /* problem/insight callouts */
+  .join-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:720px){.join-grid{grid-template-columns:1fr 1fr}}
+  .join{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+    border-radius:12px;padding:14px 12px;color:#fff;font-weight:600;font-size:.9rem;
+    display:flex;align-items:center;gap:9px}
+  .join span{font-size:1.3rem}
+  .note{border-left:5px solid var(--sun);background:#FFF7E8;border-radius:12px;
+    padding:18px 20px;margin:8px 0}
+  .note.teal{border-color:var(--teal);background:var(--mist)}
+  .note h4{font-family:'Plus Jakarta Sans';font-size:.95rem;color:var(--deep);
+    font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .note p{font-size:.96rem;color:var(--ink)}
+
+  /* ---------- WEEK HEATMAP (signature) ---------- */
+  .heat-legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px;
+    font-size:.82rem;color:var(--slate);font-weight:600}
+  .swatch{display:inline-flex;align-items:center;gap:6px}
+  .swatch i{width:16px;height:16px;border-radius:5px;display:inline-block}
+  .heat{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+  .heat table{border-collapse:separate;border-spacing:5px;min-width:720px;width:100%}
+  .heat th{font-size:.78rem;font-weight:800;color:var(--navy);padding:6px 4px;text-align:center}
+  .heat td.time{font-size:.72rem;font-weight:700;color:var(--slate);white-space:nowrap;
+    text-align:right;padding-right:6px;width:76px}
+  .cell{border-radius:10px;padding:9px 8px;font-size:.72rem;font-weight:600;
+    line-height:1.25;color:#fff;min-height:56px;vertical-align:middle;
+    transition:transform .18s,box-shadow .18s;cursor:default}
+  .cell:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 18px rgba(12,39,51,.2);z-index:2;position:relative}
+  .cell .tag{display:block;font-weight:800;font-size:.68rem;opacity:.85;
+    text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .lo{background:linear-gradient(135deg,#1AB2AD,#0E6E75)}   /* off-peak filled = win */
+  .mid{background:linear-gradient(135deg,#3FB8E8,#2A93C7)}
+  .pk{background:linear-gradient(135deg,#0C2733,#1d4655)}   /* peak */
+  .ac{background:linear-gradient(135deg,#F5A623,#E07B39)}   /* academy placeholder */
+  .heat-caption{font-size:.86rem;color:var(--slate);margin-top:14px;font-weight:500}
+  .heat-caption b{color:var(--deep)}
+
+  /* ---------- format cards ---------- */
+  .fmt{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:22px;box-shadow:var(--shadow);transition:.22s;position:relative;overflow:hidden}
+  .fmt:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--teal)}
+  .fmt .ico{font-size:1.7rem;margin-bottom:10px;display:block}
+  .fmt h4{font-family:'Fraunces';font-size:1.18rem;color:var(--navy);font-weight:600;margin-bottom:7px}
+  .fmt p{font-size:.9rem;color:var(--slate)}
+  .fmt .why{display:inline-block;margin-top:12px;font-size:.74rem;font-weight:800;
+    color:var(--deep);background:var(--mist);padding:5px 10px;border-radius:99px}
+
+  /* ---------- pathway ---------- */
+  .path{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:8px}
+  @media(max-width:820px){.path{grid-template-columns:1fr;gap:14px}}
+  .step{position:relative;padding:22px 16px;text-align:center}
+  .step:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:34px;
+    color:var(--sun);font-weight:900;font-size:1.3rem;z-index:3}
+  @media(max-width:820px){.step:not(:last-child)::after{content:"↓";right:auto;
+    left:50%;top:auto;bottom:-20px;transform:translateX(-50%)}}
+  .step .ring{width:60px;height:60px;border-radius:50%;margin:0 auto 12px;
+    display:grid;place-items:center;font-family:'Fraunces';font-weight:900;font-size:1.4rem;
+    color:#fff;box-shadow:0 6px 16px rgba(12,39,51,.18)}
+  .step:nth-child(1) .ring{background:linear-gradient(135deg,#3FB8E8,#1AB2AD)}
+  .step:nth-child(2) .ring{background:linear-gradient(135deg,#1AB2AD,#0E6E75)}
+  .step:nth-child(3) .ring{background:linear-gradient(135deg,#0E6E75,#0C2733)}
+  .step:nth-child(4) .ring{background:linear-gradient(135deg,#F5A623,#E07B39)}
+  .step:nth-child(5) .ring{background:linear-gradient(135deg,#F26A4B,#C0392B)}
+  .step .nm{font-family:'Fraunces';font-weight:600;font-size:1.05rem;color:var(--navy);margin-bottom:5px}
+  .step .who{font-size:.8rem;color:var(--slate);font-weight:600;margin-bottom:8px}
+  .step .do{font-size:.78rem;color:var(--ink);background:var(--paper);
+    border:1px solid var(--line);border-radius:10px;padding:9px 8px}
+
+  /* ---------- bars (reach) ---------- */
+  .bars{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+  .bar-row{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center}
+  @media(max-width:620px){.bar-row{grid-template-columns:1fr;gap:4px}}
+  .bar-lbl{font-size:.86rem;font-weight:700;color:var(--navy)}
+  .bar-lbl span{display:block;font-size:.74rem;font-weight:500;color:var(--slate)}
+  .bar-track{background:var(--mist);border-radius:99px;height:34px;position:relative;overflow:hidden}
+  .bar-fill{height:100%;border-radius:99px;display:flex;align-items:center;
+    justify-content:flex-end;padding-right:12px;color:#fff;font-weight:800;font-size:.82rem;
+    width:0;transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+
+  /* ---------- tables ---------- */
+  .tbl-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--line);box-shadow:var(--shadow)}
+  table.data{border-collapse:collapse;width:100%;min-width:560px;background:var(--card)}
+  table.data th{background:var(--navy);color:#fff;text-align:left;padding:13px 15px;
+    font-size:.8rem;font-weight:700;letter-spacing:.02em}
+  table.data td{padding:12px 15px;font-size:.88rem;border-top:1px solid var(--line);color:var(--ink);vertical-align:top}
+  table.data tr:nth-child(even) td{background:#F6FBFB}
+  table.data td b{color:var(--navy)}
+  .verify{display:inline-flex;align-items:center;gap:7px;background:#FFF7E8;
+    border:1px solid #F5D48A;color:#8a5a00;font-size:.8rem;font-weight:700;
+    padding:8px 14px;border-radius:99px;margin-bottom:16px}
+
+  /* two-engine diagram */
+  .engines{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin-top:8px}
+  @media(max-width:820px){.engines{grid-template-columns:1fr}}
+  .engine{border-radius:var(--r);padding:24px;color:#fff;position:relative;overflow:hidden}
+  .engine.school{background:linear-gradient(140deg,#0E6E75,#0C2733)}
+  .engine.corp{background:linear-gradient(140deg,#F5A623,#E07B39)}
+  .engine .ico{font-size:2rem}
+  .engine h4{font-family:'Fraunces';font-size:1.35rem;font-weight:600;margin:8px 0 4px}
+  .engine .role{font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;opacity:.85}
+  .engine ul{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .engine li{font-size:.88rem;display:flex;gap:8px;align-items:flex-start}
+  .engine li::before{content:"›";font-weight:900;opacity:.8}
+  .feed{display:grid;place-items:center;font-size:.78rem;font-weight:800;color:var(--deep);
+    text-align:center}
+  .feed .arrows{font-size:1.6rem;color:var(--sun)}
+  @media(max-width:820px){.feed .arrows{transform:rotate(90deg)}}
+
+  /* case cards */
+  .case{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+  .case .flag{font-size:1.8rem;flex-shrink:0;line-height:1}
+  .case h4{font-family:'Fraunces';font-size:1.1rem;color:var(--navy);font-weight:600;margin-bottom:4px}
+  .case p{font-size:.88rem;color:var(--slate)}
+  .case .lesson{margin-top:8px;font-size:.82rem;color:var(--ink)}
+  .case .lesson b{color:var(--deep)}
+
+  /* pitch flow */
+  .flow{counter-reset:f;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  @media(max-width:720px){.flow{grid-template-columns:1fr}}
+  .flow .fi{counter-increment:f;position:relative;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:16px 16px 16px 56px;box-shadow:var(--shadow);font-size:.9rem}
+  .flow .fi::before{content:counter(f);position:absolute;left:14px;top:14px;width:30px;height:30px;
+    border-radius:9px;background:var(--navy);color:#fff;display:grid;place-items:center;
+    font-family:'Fraunces';font-weight:900;font-size:.95rem}
+  .flow .fi b{color:var(--navy)}
+
+  /* timeline */
+  .tl{position:relative;margin-top:12px;padding-left:8px}
+  .tl-item{position:relative;padding:0 0 22px 34px;border-left:2px solid var(--line)}
+  .tl-item:last-child{border-left-color:transparent}
+  .tl-item::before{content:"";position:absolute;left:-9px;top:2px;width:16px;height:16px;
+    border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px var(--mist)}
+  .tl-item.sun::before{background:var(--sun);box-shadow:0 0 0 4px #FFF2DA}
+  .tl-item h4{font-size:.98rem;color:var(--navy);font-weight:800;font-family:'Plus Jakarta Sans';margin-bottom:2px}
+  .tl-item p{font-size:.88rem;color:var(--slate)}
+
+  /* footer */
+  footer{background:var(--navy);color:#cfe0e2;padding:52px 0 40px;margin-top:20px}
+  footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-end}
+  footer .fbrand{font-family:'Fraunces';font-size:1.5rem;color:#fff;font-weight:600}
+  footer .prepared{font-size:.92rem;line-height:1.7}
+  footer .prepared b{color:#fff}
+  footer .confidential{display:inline-block;margin-top:14px;font-size:.8rem;font-weight:700;
+    color:#fff;background:rgba(245,166,35,.16);border:1px solid rgba(245,166,35,.5);
+    padding:7px 14px;border-radius:99px;letter-spacing:.01em}
+  footer .tiny{font-size:.74rem;color:#7d989c;margin-top:18px;max-width:640px;line-height:1.6}
+  footer a{color:var(--sun);text-decoration:none}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .bar-fill{transition:none}
+    *{scroll-behavior:auto}
+  }
+  :focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:6px}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Toh Ee Wei Sports Empire</div>
+    <div class="navlinks">
+      <a href="#why">The idea</a>
+      <a href="#week">The week</a>
+      <a href="#play">How they play</a>
+      <a href="#path">Player journey</a>
+      <a href="#reach">Who we reach</a>
+      <a href="#engines">Schools & corporate</a>
+      <a href="#plan">First 90 days</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"><span class="blob b1"></span><span class="blob b2"></span></div>
+  <div class="wrap">
+    <span class="eyebrow">Community Activation Plan · Melaka</span>
+    <h1>Not a court to rent.<br>A place to <span class="hl">belong.</span></h1>
+    <p class="sub">A plan to make Toh Ee Wei Sports Empire buzz <b>seven days a week, morning and night</b> — turning quiet weekday hours into full courts, and first-time visitors into lifelong members.</p>
+    <div class="pills">
+      <span class="pill"><span class="em">🏸</span> 24 badminton courts</span>
+      <span class="pill"><span class="em">🎾</span> 8 pickleball courts</span>
+      <span class="pill"><span class="em">📍</span> Bachang, Melaka</span>
+      <span class="pill"><span class="em">☕</span> Café · F&B · Pool</span>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><div class="num" data-count="3" data-prefix="#">0</div><div class="lbl">Malaysia now ranks #3 in the world for rated pickleball players</div></div>
+      <div class="stat reveal"><div class="num" data-count="140" data-suffix="k+">0</div><div class="lbl">active pickleball players in Malaysia by late 2025</div></div>
+      <div class="stat reveal"><div class="num" data-count="40" data-suffix="%">0</div><div class="lbl">of a top facility's revenue comes from programming, not bookings</div></div>
+      <div class="stat reveal"><div class="num" data-count="7">0</div><div class="lbl">days a week we want the venue genuinely alive</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The core idea</span>
+      <h2>The money is in the quiet hours</h2>
+      <p>Evenings and weekend mornings will fill themselves. The real opportunity — and the real community — lives in the hours nobody fights over: weekday mornings, lunchtimes, and afternoons.</p>
+    </div>
+    <div class="grid2">
+      <div class="note reveal">
+        <h4>⏳ Court time can't be saved</h4>
+        <p>An empty court at 3:30pm on a Tuesday is money gone forever — you can't sell that hour back later. The plan gives <b>every off-peak hour a reason to show up</b>.</p>
+      </div>
+      <div class="note teal reveal">
+        <h4>🎯 Programming fills courts — not bookings</h4>
+        <p>Nobody drives out at 10am on a Wednesday to book an empty court. They come because a <b>named session</b> is already running and a group is expecting them.</p>
+      </div>
+    </div>
+    <div class="card reveal" style="margin-top:22px">
+      <p style="font-size:1.02rem"><b style="font-family:Fraunces;font-weight:600;color:var(--navy)">Three jobs this plan does →</b></p>
+      <div class="grid3" style="margin-top:16px">
+        <div><div style="font-size:1.5rem">📅</div><h4 style="font-family:Fraunces;color:var(--navy);margin:6px 0">Fill the quiet hours</h4><p style="font-size:.9rem;color:var(--slate)">Repeatable, branded sessions that give people a standing reason to come by day.</p></div>
+        <div><div style="font-size:1.5rem">🪜</div><h4 style="font-family:Fraunces;color:var(--navy);margin:6px 0">Build a visible journey</h4><p style="font-size:.9rem;color:var(--slate)">A clear path from nervous beginner to tournament player — the strongest way to keep people.</p></div>
+        <div><div style="font-size:1.5rem">🤝</div><h4 style="font-family:Fraunces;color:var(--navy);margin:6px 0">Become Melaka's hub</h4><p style="font-size:.9rem;color:var(--slate)">Café, F&B and pool turn a quick game into a long social visit — and a reason to return.</p></div>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:22px;background:linear-gradient(135deg,var(--navy),#14414f);border:none">
+      <p class="eyebrow" style="color:var(--sun)">The promise to every visitor</p>
+      <p style="font-family:'Fraunces';font-weight:600;font-size:1.35rem;color:#fff;line-height:1.3;margin:8px 0 16px">Come back for more — because it's genuinely easy to join.</p>
+      <div class="join-grid">
+        <div class="join"><span>🕘</span> Before or after work</div>
+        <div class="join"><span>👥</span> With friends — or on your own</div>
+        <div class="join"><span>🎯</span> Skilled, or never played before</div>
+        <div class="join"><span>👶</span> Kids, adults, seniors — all ages</div>
+      </div>
+      <p style="font-size:.9rem;color:#bfd6d9;margin-top:16px">Every session on this page is built so a first-timer can walk in alone and leave with a game, a friendly face, and a reason to return. That's how regulars — and memberships — are made.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK HEATMAP -->
+<section id="week" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The signature: a living week</span>
+      <h2>No dead hours, Monday to Sunday</h2>
+      <p>This is the whole plan in one picture. Every block is a real, named session. The <b style="color:var(--deep)">teal blocks are the quiet hours we're filling</b> — the ones that would otherwise sit empty. Hover any block to lift it.</p>
+    </div>
+    <div class="heat-legend reveal">
+      <span class="swatch"><i class="lo" style="background:linear-gradient(135deg,#1AB2AD,#0E6E75)"></i> Off-peak, now filled</span>
+      <span class="swatch"><i style="background:linear-gradient(135deg,#3FB8E8,#2A93C7)"></i> Building demand</span>
+      <span class="swatch"><i style="background:linear-gradient(135deg,#0C2733,#1d4655)"></i> Peak (fills itself)</span>
+      <span class="swatch"><i style="background:linear-gradient(135deg,#F5A623,#E07B39)"></i> Academy — venue to define</span>
+    </div>
+    <div class="card reveal" style="padding:18px">
+      <div class="heat">
+        <table id="heat"></table>
+      </div>
+    </div>
+    <p class="heat-caption reveal">🏸 = badminton focus · 🎾 = pickleball focus · The <b>orange academy blocks</b> are placeholders for your head coach to fill. Everything else is ready to run.</p>
+  </div>
+</section>
+
+<!-- HOW THEY PLAY -->
+<section id="play">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How people actually play</span>
+      <h2>Formats that fill courts — and mix strangers into friends</h2>
+      <p>These are proven, easy-to-run formats. Players don't organise anything; they just turn up and get good games. Each card shows <b>why it works</b> for an off-peak crowd.</p>
+    </div>
+
+    <h3 style="font-size:1.2rem;color:var(--deep);margin:6px 0 16px;display:flex;align-items:center;gap:8px">🎾 Pickleball — the social magnet</h3>
+    <div class="grid3">
+      <div class="fmt reveal"><span class="ico">🥞</span><h4>Paddle Stacking</h4><p>Drop your paddle in the rack; next four play. Branded by level — New, Social, Intermediate, Competitive — so drop-in feels fair and organised.</p><span class="why">Zero-friction turnout</span></div>
+      <div class="fmt reveal"><span class="ico">👑</span><h4>King of the Court</h4><p>Winners move up, losers move down, partners switch every round. Fast, competitive, endlessly repeatable — venues build their whole identity on it.</p><span class="why">Builds weekly regulars</span></div>
+      <div class="fmt reveal"><span class="ico">🔄</span><h4>Americano / Round Robin</h4><p>Everyone plays with everyone, rotating partners. A beginner and an advanced player share one session and both have fun.</p><span class="why">Perfect for socials</span></div>
+      <div class="fmt reveal"><span class="ico">📈</span><h4>Ladder League</h4><p>Climb the standings over weeks. Self-sorts every skill level without labels and gives players a reason to return every single week.</p><span class="why">The retention backbone</span></div>
+      <div class="fmt reveal"><span class="ico">🏆</span><h4>Minor League (teams)</h4><p>Drafted into mixed-skill teams for a season with a finals day. You don't skip when teammates count on you.</p><span class="why">Locks in a full season</span></div>
+      <div class="fmt reveal"><span class="ico">⚔️</span><h4>Challenge Court</h4><p>One court where stronger players call the next team. Keeps advanced players from leaving for a "more serious" venue.</p><span class="why">Retains your best players</span></div>
+    </div>
+
+    <h3 style="font-size:1.2rem;color:var(--deep);margin:34px 0 16px;display:flex;align-items:center;gap:8px">🏸 Badminton — the anchor sport</h3>
+    <div class="grid3">
+      <div class="fmt reveal"><span class="ico">🎭</span><h4>Mystery Doubles</h4><p>Sign up solo; random pairings each round. Solves the #1 barrier — "I've got no one to play with" — and soaks up walk-ins.</p><span class="why">Turns solos into regulars</span></div>
+      <div class="fmt reveal"><span class="ico">🌗</span><h4>Social + Big League nights</h4><p>One evening, two halves: a relaxed social half, then a competitive league half. Serves newcomers and hardcore players at once.</p><span class="why">One night, two crowds</span></div>
+      <div class="fmt reveal"><span class="ico">📊</span><h4>Ladder & Box Leagues</h4><p>Small groups of similar players face each other over a month, then reshuffle. Regular, fair, competitive games without a big commitment.</p><span class="why">Mid-level loyalty</span></div>
+      <div class="fmt reveal"><span class="ico">🌅</span><h4>Morning Movers</h4><p>Gentle 8–10am doubles for seniors and health-first players, with kopi after. Serves the "health first" motive and fills the deadest hours.</p><span class="why">Fills empty mornings</span></div>
+      <div class="fmt reveal"><span class="ico">🏘️</span><h4>Township Battle Nights</h4><p>Neighbourhood-vs-neighbourhood team nights. Local pride drives attendance — especially powerful in Melaka.</p><span class="why">Local rivalry = turnout</span></div>
+      <div class="fmt reveal"><span class="ico">⭐</span><h4>Beat the Champion</h4><p>Exhibition sessions where locals try a game against invited elite players or coaches. A memory and shareable content no rental hall can match.</p><span class="why">The world-champion edge</span></div>
+    </div>
+
+    <div class="note teal reveal" style="margin-top:26px">
+      <h4>🔀 Cross-pollination perk</h4>
+      <p>Give every member a free intro session in the <i>other</i> sport. Badminton and pickleball share a huge crossover crowd in Malaysia — this deepens membership value and fills whichever court is quieter that hour.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE MELAKA EVENTS -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Made for Melaka</span>
+      <h2>Signature sessions people will talk about</h2>
+      <p>Formats fill courts; <b>events create stories, social posts and first-timers.</b> From sunrise breakfasts for seniors to lunchtime coaching to brand launches — morning to night, every day, always tied to the café.</p>
+    </div>
+    <div class="grid3">
+      <div class="fmt reveal"><span class="ico">🌄</span><h4>Seniors' Sunrise & Sambal</h4><p>7–9am gentle pickleball and social doubles built for retirees and early risers — easy on the body, big on company — finishing with a nasi lemak, roti and kopi breakfast. The food is the hook; the morning becomes the habit.</p><span class="why">Fills the deadest hours</span></div>
+      <div class="fmt reveal"><span class="ico">🥪</span><h4>Lunchtime Coaching (all levels)</h4><p>11am–2pm drop-in clinics for every level — total beginners to competitive players, split into skill bands so nobody feels out of place. A perfect midday reason to come during the quietest hours, solo or with colleagues.</p><span class="why">Beginner-to-pro, every day</span></div>
+      <div class="fmt reveal"><span class="ico">🚀</span><h4>Brand Launches & Corporate Days</h4><p>The venue as a stage: product launches, brand activations, client-hospitality sessions and company team-building — sampling booths, branded courts, and a built-in active audience. Turns quiet daytime slots into sponsor revenue.</p><span class="why">Off-peak, monetised</span></div>
+      <div class="fmt reveal"><span class="ico">🍽️</span><h4>Dink & Dine Nights</h4><p>Weekend Americano, then everyone eats together — the exact formula that grew Chicken N' Pickle to 13 locations.</p></div>
+      <div class="fmt reveal"><span class="ico">🌟</span><h4>Glow Pickleball</h4><p>Friday nights with UV lights, glow balls and music. Photogenic, youth-magnet, made to travel on TikTok & RedNote.</p></div>
+      <div class="fmt reveal"><span class="ico">🫖</span><h4>Paddle & Nyonya</h4><p>A social session with a Melaka café tie-in — Nyonya kuih and local coffee. Culturally rooted, not imported.</p></div>
+      <div class="fmt reveal"><span class="ico">🎈</span><h4>Beginner Bash</h4><p>Free monthly "never held a paddle" taster. Paddles provided, quick lesson, then games. The very top of the funnel.</p></div>
+      <div class="fmt reveal"><span class="ico">🎊</span><h4>Festival Tournaments</h4><p>Themed brackets for CNY, Raya, Deepavali and Christmas. Low-stakes, costume-friendly, family-inclusive.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHWAY -->
+<section id="path">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The retention engine</span>
+      <h2>From first paddle to podium — a journey you can see</h2>
+      <p>The single most valuable thing the venue can build. A visible "passport" with named stages that <b>reassures beginners, gives improvers a target, and keeps competitors loyal to your venue</b>. Anchored to DUPR, the free global rating everyone in Malaysia's competitive scene already uses.</p>
+    </div>
+    <div class="card reveal">
+      <div class="path">
+        <div class="step"><div class="ring">1</div><div class="nm">Try</div><div class="who">Never played · nervous</div><div class="do">Free taster, paddles provided, 60-min intro</div></div>
+        <div class="step"><div class="ring">2</div><div class="nm">Learn</div><div class="who">Building consistency</div><div class="do">4-week course + first 10 matches logged to DUPR</div></div>
+        <div class="step"><div class="ring">3</div><div class="nm">Belong</div><div class="who">Regular player</div><div class="do">Community pass, ladder, level-banded King of the Court</div></div>
+        <div class="step"><div class="ring">4</div><div class="nm">Compete</div><div class="who">Plays to win</div><div class="do">In-house rated tournaments, division leagues</div></div>
+        <div class="step"><div class="ring">5</div><div class="nm">Perform</div><div class="who">Top players</div><div class="do">Venue team, ranking points, path to state / national</div></div>
+      </div>
+    </div>
+    <div class="grid3" style="margin-top:20px">
+      <div class="note reveal"><h4>👀 Make it visible</h4><p>A physical "Pathway Wall" at reception with a live leaderboard. People climb what they can see.</p></div>
+      <div class="note reveal"><h4>🎖️ Celebrate every step</h4><p>A shout-out when someone crosses DUPR 3.0 or wins a first bracket. Fits the 'Young Player of the Year' award already in the deck.</p></div>
+      <div class="note reveal"><h4>🚪 No dead ends</h4><p>Every session has an obvious "what's next" — the clinic graduate is personally invited to open play; the ladder finisher to the tournament.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REACH -->
+<section id="reach" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Who this venue reaches</span>
+      <h2>An audience worth a sponsor's attention</h2>
+      <p>Estimated annual reach across channels — the story to tell brands and corporate partners.</p>
+    </div>
+    <div class="card reveal">
+      <div class="bars">
+        <div class="bar-row"><div class="bar-lbl">Social media <span>IG · TikTok · RedNote</span></div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,#0C2733,#1d4655)">200,000+ impressions</div></div></div>
+        <div class="bar-row"><div class="bar-lbl">Venue foot traffic <span>walk-ins & families</span></div><div class="bar-track"><div class="bar-fill" data-w="50" style="background:linear-gradient(90deg,#0E6E75,#1AB2AD)">100,000+ visitors</div></div></div>
+        <div class="bar-row"><div class="bar-lbl">Local & online press <span>combined readership</span></div><div class="bar-track"><div class="bar-fill" data-w="50" style="background:linear-gradient(90deg,#3FB8E8,#2A93C7)">100,000+ readers</div></div></div>
+        <div class="bar-row"><div class="bar-lbl">On-site participants <span>players & families</span></div><div class="bar-track"><div class="bar-fill" data-w="16" style="background:linear-gradient(90deg,#F5A623,#E07B39)">3,000–4,000</div></div></div>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:20px">
+      <div class="card reveal"><h4 style="font-family:Fraunces;color:var(--navy);font-size:1.15rem;margin-bottom:10px">🙋 Who comes</h4><p style="font-size:.92rem;color:var(--slate)">Children & juniors · parents & families · university students · working professionals · corporate & social groups · seniors.</p></div>
+      <div class="card reveal"><h4 style="font-family:Fraunces;color:var(--navy);font-size:1.15rem;margin-bottom:10px">💚 What they value</h4><p style="font-size:.92rem;color:var(--slate)">Health-conscious · active lifestyle · sports-focused · middle-income and above · strong loyalty within sports communities.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Proof it works elsewhere</span>
+      <h2>Real playbooks we can copy</h2>
+      <p>Each one is a proven model. We're not inventing demand — we're giving Melaka's a home.</p>
+    </div>
+    <div class="grid2">
+      <div class="case reveal"><span class="flag">🇺🇸</span><div><h4>Chicken N' Pickle</h4><p>A 13-location brand where pickleball is the reason to come and food is the reason to stay — over US$6.5m invested into local communities.</p><p class="lesson"><b>Lesson:</b> your café, F&B and pool are a moat. Program them into every session.</p></div></div>
+      <div class="case reveal"><span class="flag">🇺🇸</span><div><h4>King of the Court venues</h4><p>Converted rinks running one permanent format draw daily crowds — place your paddle, you're up next.</p><p class="lesson"><b>Lesson:</b> one well-run format, always on, becomes a destination by itself.</p></div></div>
+      <div class="case reveal"><span class="flag">🏆</span><div><h4>Minor League / DUPR seasons</h4><p>Team-draft seasons create accountability that casual open play never can.</p><p class="lesson"><b>Lesson:</b> fixed off-peak team seasons lock in weeks of guaranteed full courts.</p></div></div>
+      <div class="case reveal"><span class="flag">🇲🇾</span><div><h4>Malaysia's own scene</h4><p>Structured leagues, DUPR events, and the 648-player Alliance Bank KL Open already exist.</p><p class="lesson"><b>Lesson:</b> the appetite is here. Being early in Melaka beats fighting for Klang Valley.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINES: schools + corporate -->
+<section id="engines" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Two engines that feed the community</span>
+      <h2>Schools build the future. Companies fill today.</h2>
+      <p>Community is the heart of the plan. Around it sit two feeder engines — and they feed <b>each other</b>: a child in the academy pulls in parents as members, and those parents' employers become corporate clients.</p>
+    </div>
+    <div class="engines reveal">
+      <div class="engine school">
+        <span class="ico">🎓</span>
+        <div class="role">The pipeline</div>
+        <h4>Schools</h4>
+        <ul>
+          <li>Beginner clubs & PE partnerships</li>
+          <li>Junior squads & school ladders</li>
+          <li>Inter-school challenge series</li>
+          <li>Holiday camps → academy feeder</li>
+        </ul>
+      </div>
+      <div class="feed"><div><div class="arrows">⇄</div>they<br>feed<br>each<br>other</div></div>
+      <div class="engine corp">
+        <span class="ico">💼</span>
+        <div class="role">Off-peak revenue</div>
+        <h4>Corporates</h4>
+        <ul>
+          <li>Lunch-hour wellness play</li>
+          <li>After-work team leagues</li>
+          <li>Product launches & brand activations</li>
+          <li>Client hospitality & challenge days</li>
+          <li>CSR & family sports days</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- corporate pitch -->
+    <div style="margin-top:36px" class="reveal">
+      <h3 style="font-size:1.25rem;color:var(--deep);margin-bottom:6px">💡 How to pitch a company</h3>
+      <div class="note" style="margin-bottom:16px"><p>The winning line isn't <i>"buy court naming rights."</i> It's <b>"here's how your brand solves staff wellness, team bonding and local visibility through sport."</b> That speaks to HR, marketing and culture all at once.</p></div>
+      <div class="flow">
+        <div class="fi"><b>Why this venue matters in Melaka</b> — open with a local story, not a price sheet.</div>
+        <div class="fi"><b>Their pain point</b> — staff are hard to get moving on wellness.</div>
+        <div class="fi"><b>The program</b> — low-friction, social, beginner-friendly, actually fun.</div>
+        <div class="fi"><b>What they get</b> — brand exposure, morale, wellness goals, client hospitality.</div>
+        <div class="fi"><b>How it's measured</b> — participants, repeat attendance, court hours, reach, renewal.</div>
+        <div class="fi"><b>The easy next step</b> — a low-risk pilot event or a 3-month trial.</div>
+      </div>
+    </div>
+
+    <!-- prospect tables -->
+    <div class="grid2" style="margin-top:36px">
+      <div class="reveal">
+        <h3 style="font-size:1.15rem;color:var(--navy);margin-bottom:10px">🎓 Nearby schools to approach</h3>
+        <div class="verify">⚠️ Verify distance & fit before outreach</div>
+        <div class="tbl-wrap">
+          <table class="data">
+            <thead><tr><th>School</th><th>Best-fit offer</th></tr></thead>
+            <tbody>
+              <tr><td><b>SK Bachang</b><br><span style="color:var(--slate);font-size:.8rem">Primary</span></td><td>Beginner club, PE partnership, holiday camp feeder</td></tr>
+              <tr><td><b>SMK Tun Tuah</b><br><span style="color:var(--slate);font-size:.8rem">Secondary</span></td><td>Co-curricular training, ladder nights, inter-school series</td></tr>
+              <tr><td><b>SMK Notre Dame Convent</b><br><span style="color:var(--slate);font-size:.8rem">Secondary</span></td><td>Development squads, house leagues, tournaments</td></tr>
+              <tr><td><b>SRA Jaim Bachang Pasir Putih</b><br><span style="color:var(--slate);font-size:.8rem">Religious</span></td><td>After-school rotations, holiday camps</td></tr>
+              <tr><td><b>KidsZone · Tadika Nilai</b><br><span style="color:var(--slate);font-size:.8rem">Early-learning</span></td><td>Parent-child sports hour, weekend family sessions</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="reveal">
+        <h3 style="font-size:1.15rem;color:var(--navy);margin-bottom:10px">💼 Nearby companies to approach</h3>
+        <div class="verify">⚠️ Verify distance & fit before outreach</div>
+        <div class="tbl-wrap">
+          <table class="data">
+            <thead><tr><th>Cluster</th><th>Best-fit offer</th></tr></thead>
+            <tbody>
+              <tr><td><b>KIP Utama Biz Hub @ Melaka</b><br><span style="color:var(--slate);font-size:.8rem">Business hub, near airport</span></td><td>Lunch wellness, after-work leagues, Founding Partner pitch</td></tr>
+              <tr><td><b>KIPMall Bachang</b><br><span style="color:var(--slate);font-size:.8rem">Retail & services</span></td><td>Social play, staff passes, family sports days</td></tr>
+              <tr><td><b>Taman Bachang Baru / Utama</b><br><span style="color:var(--slate);font-size:.8rem">Offices & SMEs</span></td><td>Team-building packages, department leagues</td></tr>
+              <tr><td><b>Taman Industri Malim Jaya</b><br><span style="color:var(--slate);font-size:.8rem">Industrial / logistics</span></td><td>Recurring wellness, shift-worker morning sessions</td></tr>
+              <tr><td><b>Batu Berendam area</b><br><span style="color:var(--slate);font-size:.8rem">Owner-managed businesses</span></td><td>Trial month → off-peak membership conversion</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--slate);margin-top:14px;font-weight:500">The school and company lists come from property-listing research, so treat them as a starting point to verify against real drive-times — not a confirmed map.</p>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="members">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Turning visits into habits</span>
+      <h2>Membership tiers that reward off-peak play</h2>
+      <p>Programming brings people in; membership keeps them and smooths revenue across the week. Prices to be set for the Melaka market.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="data">
+        <thead><tr><th>Tier</th><th>Who it's for</th><th>Core perks</th></tr></thead>
+        <tbody>
+          <tr><td><b>🟢 Social</b></td><td>Casual & new players</td><td>Off-peak discounts, early booking, free intro to the other sport</td></tr>
+          <tr><td><b>🔵 Player</b></td><td>Regular committed players</td><td>Unlimited off-peak play, free ladder entry, guest passes, shop & café discounts</td></tr>
+          <tr><td><b>🟠 Competitor</b></td><td>Tournament-track players</td><td>All Player perks + priced tournament entries, DUPR events, squad training, peak priority</td></tr>
+          <tr><td><b>👨‍👩‍👧 Family</b></td><td>Households & juniors</td><td>Shared off-peak access, junior academy discount, family event priority</td></tr>
+          <tr><td><b>💼 Corporate</b></td><td>Employers</td><td>Bulk court blocks, team-building, inter-company league entry</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid3" style="margin-top:20px">
+      <div class="note teal reveal"><h4>🎫 Off-peak Passport</h4><p>Attend 8 off-peak sessions in a month, earn a reward. Gamifies exactly the behaviour we need.</p></div>
+      <div class="note teal reveal"><h4>👥 Bring-a-Friend free</h4><p>Members bring a newcomer free during quiet hours — fills courts and feeds the funnel at once.</p></div>
+      <div class="note teal reveal"><h4>☕ Food is the glue</h4><p>Breakfast after Morning Movers, dinner deals after league night. Food turns a game into a visit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan" class="alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Where to start</span>
+      <h2>The first 90 days</h2>
+      <p>A simple sequence that creates energy immediately while building the long-term pathway.</p>
+    </div>
+    <div class="card reveal">
+      <div class="tl">
+        <div class="tl-item"><h4>Week 1 · Set the foundation</h4><p>Turn on off-peak pricing and the booking/DUPR setup from opening day.</p></div>
+        <div class="tl-item"><h4>Weeks 1–2 · Three flagship sessions</h4><p>Stand up Morning Movers, King of the Court, and a weeknight Ladder to build regulars fast.</p></div>
+        <div class="tl-item"><h4>Month 1 · Open the funnel</h4><p>Run the first free Beginner Bash to start filling the top of the player journey.</p></div>
+        <div class="tl-item sun"><h4>Month 1–2 · Schools first</h4><p>Verify the school list, then pitch 2–3 nearby schools a holiday camp + inter-school series.</p></div>
+        <div class="tl-item sun"><h4>Month 2 · One corporate pilot</h4><p>Verify the company clusters, run one intro pilot at KIP Biz Hub, convert into a monthly session.</p></div>
+        <div class="tl-item"><h4>Ongoing · Prove the café loop</h4><p>Program food into two sessions a week to show the F&B-retention effect.</p></div>
+        <div class="tl-item"><h4>Week 8 · Read the data</h4><p>Pull booking numbers, confirm the real demand curve, and double down on what's working.</p></div>
+        <div class="tl-item"><h4>With your coach · Fill the academy</h4><p>Define the orange academy blocks in the weekly grid with your head coach.</p></div>
+      </div>
+    </div>
+    <div class="note reveal" style="margin-top:22px;border-color:var(--teal);background:var(--mist)">
+      <h4>🧭 The whole plan in one line</h4>
+      <p>Build a <b>community engine</b> that fills the quiet hours and turns visitors into members — then wrap it with <b>schools</b> (the future pipeline) and <b>corporates</b> (revenue today). All three feed the same membership base.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fbrand">Toh Ee Wei Sports Empire</div>
+      <p class="prepared" style="margin-top:10px">Prepared by <b>Samuel Siew</b> for Toh Ee Wei Sports Empire</p>
+      <p class="confidential">🔒 Private &amp; Confidential — for Waheeda</p>
+      <p class="tiny">Community, schools and corporate activation plan · Market figures, pricing benchmarks and case studies drawn from public 2025–2026 sources. School and company prospect lists come from property-listing research and should be verified against actual catchment before outreach. Academy coaching structure is intentionally left for the venue team to define.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// progress bar
+const prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const s=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  prog.style.width=s+'%';
+},{passive:true});
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// count-up stats
+function countUp(el){
+  const target=+el.dataset.count, suffix=el.dataset.suffix||'', prefix=el.dataset.prefix||'';
+  const dur=1100, t0=performance.now();
+  function tick(t){
+    const p=Math.min((t-t0)/dur,1);
+    const val=Math.round((0.5-Math.cos(Math.PI*p)/2)*target);
+    el.textContent=prefix+val+suffix;
+    if(p<1) requestAnimationFrame(tick);
+    else el.textContent=prefix+target+suffix;
+  }
+  requestAnimationFrame(tick);
+}
+const statIO=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){countUp(e.target.querySelector('.num'));statIO.unobserve(e.target);}})
+},{threshold:.5});
+document.querySelectorAll('.stat').forEach(s=>statIO.observe(s));
+
+// animate reach bars
+const barIO=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){
+    e.target.querySelectorAll('.bar-fill').forEach(b=>{setTimeout(()=>b.style.width=b.dataset.w+'%',80)});
+    barIO.unobserve(e.target);
+  }})
+},{threshold:.4});
+document.querySelectorAll('#reach .card').forEach(c=>barIO.observe(c));
+
+// build the week heatmap
+const times=[
+  {t:'7–11am',key:'Morning'},
+  {t:'11am–2pm',key:'Midday'},
+  {t:'2–5pm',key:'Afternoon'},
+  {t:'5–7pm',key:'Early eve'},
+  {t:'7–11pm',key:'Peak'}
+];
+const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+// [label, class]
+const G={
+  Morning:[
+    ['🌄 Seniors Sunrise · 🏸 Morning Movers','lo'],
+    ['🏸 Ladies League · 🎾 Learner clinic','lo'],
+    ['🌄 Seniors Sunrise · 🎾 Open play','lo'],
+    ['🏸 Mums Morning · 🎾 King of Court','lo'],
+    ['🌄 Seniors Sunrise · 🏸 Movers','lo'],
+    ['👨‍👩‍👧 Family Morning + junior comp','mid'],
+    ['🏆 Tournament / signature event','pk']
+  ],
+  Midday:[
+    ['🥪 Lunch coaching (all levels)','lo'],
+    ['🥪 Lunch coaching · 🎓 students','lo'],
+    ['💼 Corporate Cup + coaching','lo'],
+    ['🥪 Lunch coaching (all levels)','lo'],
+    ['🚀 Brand launch / corporate day','lo'],
+    ['🎈 Open play + Beginner Bash','mid'],
+    ['🔄 Round robin + Dink & Dine','mid']
+  ],
+  Afternoon:[
+    ['🎓 Academy + school squads','ac'],
+    ['🎓 Academy juniors','ac'],
+    ['🎓 Academy + inter-school','ac'],
+    ['🎓 Academy juniors','ac'],
+    ['🎓 Academy juniors','ac'],
+    ['🎓 Junior squads + family','ac'],
+    ['📈 Improver clinics','mid']
+  ],
+  'Early eve':[
+    ['🎾 Beginner clinic','mid'],
+    ['🏸 Box leagues','mid'],
+    ['🏸 Beginner clinic','mid'],
+    ['🎾 Improver clinic','mid'],
+    ['☀️ Social warm-up','mid'],
+    ['🎾 Open play','mid'],
+    ['🏆 Ladder finals','mid']
+  ],
+  Peak:[
+    ['🎾 Open play + Minor League','pk'],
+    ['🏸 Mystery Doubles + Ladder','pk'],
+    ['🏸 Box & Social/Big League','pk'],
+    ['🏸 Ladders: sgl/dbl/mix','pk'],
+    ['🌟 Glow Pickleball + open','pk'],
+    ['🏘️ Team Battle / mix-in','pk'],
+    ['🍽️ Social night + F&B','pk']
+  ]
+};
+const heat=document.getElementById('heat');
+let html='<thead><tr><th></th>'+days.map(d=>'<th>'+d+'</th>').join('')+'</tr></thead><tbody>';
+times.forEach(row=>{
+  html+='<tr><td class="time">'+row.t+'</td>';
+  G[row.key].forEach(cell=>{
+    html+='<td class="cell '+cell[1]+'">'+cell[0]+'</td>';
+  });
+  html+='</tr>';
+});
+html+='</tbody>';
+heat.innerHTML=html;
+</script>
+</body>
+</html>
