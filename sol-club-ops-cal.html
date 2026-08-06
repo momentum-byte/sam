@@ -52,6 +52,7 @@ table.proj th:first-child,table.proj td:first-child{text-align:left}
 table.proj th{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);font-weight:600}
 table.proj td.n{font-family:'IBM Plex Mono',monospace}
 table.proj tr.hl td{font-weight:700;background:var(--panel2)}
+.ownmap td,.ownmap th{text-align:left}
 .note{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--dim);line-height:1.55;margin-top:12px}
 .note b{color:var(--ink)}
 .fact{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--good);border:1px solid var(--good);border-radius:4px;padding:1px 5px}
@@ -81,38 +82,50 @@ table.proj tr.hl td{font-weight:700;background:var(--panel2)}
 </div>
 
 <div class="card">
-  <h2><span class="dot"></span>Revenue lines — adjust the five engines</h2>
-  <p class="note" style="margin-top:0;margin-bottom:12px">Each engine runs <b>Auto</b> (calculated from the drivers below) or <b>Manual</b> (type a monthly figure to override). Switch to Manual and it pre-fills the current Auto value so you can tweak from there. Courts, Membership and Sublease also keep their detailed drivers further down.</p>
+  <h2><span class="dot"></span>Revenue lines — adjust the seven engines</h2>
+  <p class="note" style="margin-top:0;margin-bottom:12px">Each engine runs <b>Auto</b> (calculated from the drivers below) or <b>Manual</b> (type a monthly figure to override). Switch to Manual and it pre-fills the current Auto value so you can tweak from there. Courts, Membership, Sublease, Events and Brand Partnerships have detailed drivers further down; the line under each name describes what that engine captures.</p>
   <div class="hdr-lot" style="grid-template-columns:1fr 148px 108px 100px"><span>Engine</span><span style="text-align:center">Mode</span><span style="text-align:right">Manual RM/mo</span><span style="text-align:right">Used /mo</span></div>
   <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
-    <span>Courts</span>
+    <span>Courts<small style="display:block;color:var(--dim);font-size:10px">Padel &amp; pickleball court bookings</small></span>
     <span style="text-align:center"><div class="seg" data-line="Court"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
     <span><input type="number" id="mCourt" value="230549" step="1000" disabled></span>
     <span class="rent" id="uCourt">–</span>
   </div>
   <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
-    <span>Membership</span>
+    <span>Membership<small style="display:block;color:var(--dim);font-size:10px">Recurring social, premium &amp; corporate fees</small></span>
     <span style="text-align:center"><div class="seg" data-line="Membership"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
     <span><input type="number" id="mMem" value="145500" step="1000" disabled></span>
     <span class="rent" id="uMem">–</span>
   </div>
   <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
-    <span>Academy</span>
-    <span style="text-align:center;color:var(--dim);font-size:11px">direct</span>
-    <span><input type="number" id="academy" value="30000" step="1000"></span>
+    <span>Academy<small style="display:block;color:var(--dim);font-size:10px">Coaching, clinics &amp; junior programmes</small></span>
+    <span style="text-align:center"><div class="seg" data-line="Academy"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
+    <span><input type="number" id="mAcademy" value="30000" step="1000" disabled></span>
     <span class="rent" id="uAcad">–</span>
   </div>
   <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
-    <span>Pro shop</span>
-    <span style="text-align:center;color:var(--dim);font-size:11px">direct</span>
-    <span><input type="number" id="proshop" value="7500" step="500"></span>
+    <span>Pro Shop / Retail<small style="display:block;color:var(--dim);font-size:10px">Reception — drinks, snacks, merch, gear &amp; stringing</small></span>
+    <span style="text-align:center"><div class="seg" data-line="Proshop"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
+    <span><input type="number" id="mProshop" value="7500" step="500" disabled></span>
     <span class="rent" id="uProshop">–</span>
   </div>
   <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
-    <span>Sublease</span>
+    <span>Sublease<small style="display:block;color:var(--dim);font-size:10px">Tenant rent — F&amp;B, gym, wellness, recovery</small></span>
     <span style="text-align:center"><div class="seg" data-line="Sublease"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
     <span><input type="number" id="mSub" value="122424" step="1000" disabled></span>
     <span class="rent" id="uSub">–</span>
+  </div>
+  <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
+    <span>Events &amp; Corporate<small style="display:block;color:var(--dim);font-size:10px">Brand launches, teambuilding, parties, tournaments</small></span>
+    <span style="text-align:center"><div class="seg" data-line="Events"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
+    <span><input type="number" id="mEvents" value="40000" step="1000" disabled></span>
+    <span class="rent" id="uEvents">–</span>
+  </div>
+  <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
+    <span>Brand Partnerships<small style="display:block;color:var(--dim);font-size:10px">Sponsorships, placements, naming &amp; promotions</small></span>
+    <span style="text-align:center"><div class="seg" data-line="Brand"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
+    <span><input type="number" id="mBrand" value="15000" step="1000" disabled></span>
+    <span class="rent" id="uBrand">–</span>
   </div>
   <div class="out-line tot"><span>Total revenue /mo</span><span class="n" id="uRevTot">–</span></div>
 </div>
@@ -165,7 +178,22 @@ table.proj tr.hl td{font-weight:700;background:var(--panel2)}
     <div class="row"><label>Premium</label><span><input type="number" id="premN" value="180" step="5" style="width:64px"> × <input type="number" id="premP" value="380" step="10" style="width:64px"></span></div>
     <div class="row"><label>Corporate (10 seats ea.)</label><span><input type="number" id="corpN" value="15" step="1" style="width:64px"> × <input type="number" id="corpP" value="2500" step="100" style="width:64px"></span></div>
     <div class="out-line"><span>Membership /mo</span><span class="n" id="oMem">–</span></div>
-    <p class="note" style="margin-bottom:0">Academy and pro shop are set directly in the Revenue lines panel above.</p>
+
+    <div class="row" style="margin-top:12px"><label style="font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase">Events &amp; Corporate · events × RM</label></div>
+    <div class="row"><label>Events / month × avg RM per event</label><span><input type="number" id="evCount" value="8" step="1" style="width:60px"> × <input type="number" id="evValue" value="5000" step="500" style="width:72px"></span></div>
+    <div class="out-line"><span>Events &amp; corporate /mo (auto)</span><span class="n" id="oEvents">–</span></div>
+
+    <div class="row" style="margin-top:12px"><label style="font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase">Brand Partnerships · partners × RM/mo</label></div>
+    <div class="row"><label>Active partners × avg RM/mo each</label><span><input type="number" id="brCount" value="3" step="1" style="width:60px"> × <input type="number" id="brValue" value="5000" step="500" style="width:72px"></span></div>
+    <div class="out-line"><span>Brand partnerships /mo (auto)</span><span class="n" id="oBrand">–</span></div>
+
+    <div class="row" style="margin-top:12px"><label style="font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase">Academy · students × RM/mo</label></div>
+    <div class="row"><label>Active students × avg monthly fee</label><span><input type="number" id="acStudents" value="120" step="5" style="width:60px"> × <input type="number" id="acFee" value="250" step="10" style="width:72px"></span></div>
+    <div class="out-line"><span>Academy /mo (auto)</span><span class="n" id="oAcademy">–</span></div>
+
+    <div class="row" style="margin-top:12px"><label style="font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase">Pro Shop / Retail · spend × visits</label></div>
+    <div class="row"><label>Avg spend per visit × monthly visits</label><span><input type="number" id="psSpend" value="10" step="1" style="width:60px"> × <input type="number" id="psVisits" value="750" step="10" style="width:72px"></span></div>
+    <div class="out-line"><span>Pro shop /mo (auto)</span><span class="n" id="oProshop">–</span></div>
   </div>
 </div>
 
@@ -190,6 +218,8 @@ table.proj tr.hl td{font-weight:700;background:var(--panel2)}
     <div class="out-line"><span>Membership</span><span class="n" id="pMem">–</span></div>
     <div class="out-line"><span>Academy + pro shop</span><span class="n" id="pAcad">–</span></div>
     <div class="out-line"><span>Sublease</span><span class="n" id="pSub">–</span></div>
+    <div class="out-line"><span>Events &amp; corporate</span><span class="n" id="pEvents">–</span></div>
+    <div class="out-line"><span>Brand partnerships</span><span class="n" id="pBrand">–</span></div>
     <div class="out-line" style="font-weight:600"><span>Total revenue</span><span class="n" id="pRev">–</span></div>
     <div class="out-line"><span>Rent to TRX (base + GTO)</span><span class="n neg" id="pRent">–</span></div>
     <div class="out-line"><span>OPEX ex-rent</span><span class="n neg" id="pOpex">–</span></div>
@@ -263,7 +293,7 @@ const LOTS=[
   ['M3 · Yoga / Pilates',974,6.0],
 ];
 let gtoInclSub=true, depYears=3;
-const mode={Court:'auto',Membership:'auto',Sublease:'auto'};
+const mode={Court:'auto',Membership:'auto',Sublease:'auto',Events:'auto',Brand:'auto',Academy:'auto',Proshop:'auto'};
 
 $('lotRows').innerHTML=LOTS.map((l,i)=>
   `<div class="lot"><span>${l[0]}</span><span class="area">${l[1].toLocaleString()}</span>`+
@@ -303,19 +333,31 @@ function calc(){
   const memCalc=num('socN')*num('socP')+num('premN')*num('premP')+num('corpN')*num('corpP');
   $('oMem').textContent=fmt(memCalc);
 
+  const eventsCalc=num('evCount')*num('evValue');
+  const brandCalc=num('brCount')*num('brValue');
+  const academyCalc=num('acStudents')*num('acFee');
+  const proshopCalc=num('psSpend')*num('psVisits');
+  $('oEvents').textContent=fmt(eventsCalc);$('oBrand').textContent=fmt(brandCalc);
+  $('oAcademy').textContent=fmt(academyCalc);$('oProshop').textContent=fmt(proshopCalc);
+
   const courtMonth=lineVal('Court',courtCalc,'mCourt');
   const memMonth=lineVal('Membership',memCalc,'mMem');
   const subPlan=lineVal('Sublease',subCalc,'mSub');
-  const academy=num('academy'), proshop=num('proshop');
-  const planRev=courtMonth+memMonth+academy+proshop+subPlan;
+  const events=lineVal('Events',eventsCalc,'mEvents');
+  const brand=lineVal('Brand',brandCalc,'mBrand');
+  const academy=lineVal('Academy',academyCalc,'mAcademy');
+  const proshop=lineVal('Proshop',proshopCalc,'mProshop');
+  const planRev=courtMonth+memMonth+academy+proshop+subPlan+events+brand;
   $('uCourt').textContent=fmt(courtMonth);$('uMem').textContent=fmt(memMonth);
   $('uAcad').textContent=fmt(academy);$('uProshop').textContent=fmt(proshop);
-  $('uSub').textContent=fmt(subPlan);$('uRevTot').textContent=fmt(planRev);
+  $('uSub').textContent=fmt(subPlan);
+  $('uEvents').textContent=fmt(events);$('uBrand').textContent=fmt(brand);
+  $('uRevTot').textContent=fmt(planRev);
 
   // Scenario scale — moves the whole P&L
   const scen=num('scen')/100; $('scenV').textContent=num('scen')+'%';
-  const court=courtMonth*scen, mem=memMonth*scen, acadps=(academy+proshop)*scen, subTot=subPlan*scen;
-  const directMonth=court+mem+acadps;
+  const court=courtMonth*scen, mem=memMonth*scen, acadps=(academy+proshop)*scen, ev=events*scen, br=brand*scen, subTot=subPlan*scen;
+  const directMonth=court+mem+acadps+ev+br;
   const revMonth=directMonth+subTot;
 
   const baseRent=num('sqft')*num('psf');
@@ -332,6 +374,7 @@ function calc(){
   const ebitdaMonth=revMonth-rentTot-opexEx;
   $('pCourt').textContent=fmt(court);$('pMem').textContent=fmt(mem);
   $('pAcad').textContent=fmt(acadps);$('pSub').textContent=fmt(subTot);
+  $('pEvents').textContent=fmt(ev);$('pBrand').textContent=fmt(br);
   $('pRev').textContent=fmt(revMonth);
   $('pRent').textContent='-'+fmt(rentTot);$('pOpex').textContent='-'+fmt(opexEx);
   $('pEbitda').textContent=fmt(ebitdaMonth);$('pEbitda').className='n '+(ebitdaMonth>=0?'pos':'neg');
