@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>The Sol Club · Operating & Projection Model</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light only;
+  --bg:#EFEBE2; --panel:#FFFDF8; --panel2:#FCF3E0; --ink:#231F18; --dim:#7A7264;
+  --line:#E7E0D2; --sun:#B87710; --good:#2E7D52; --bad:#C2452F; --accent:#3E5E80;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:14px;line-height:1.5;padding:20px 12px 60px}
+.wrap{max-width:1120px;margin:0 auto}
+header{margin-bottom:20px}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun)}
+h1{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;margin:6px 0 4px}
+.sub{color:var(--dim);font-size:13px;max-width:820px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:860px){.grid,.grid3{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;box-shadow:0 1px 8px rgba(35,31,24,.06);margin-top:16px}
+.card h2{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card h2 .dot{width:8px;height:8px;border-radius:50%;background:var(--sun);display:inline-block}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.row label{font-size:12.5px;color:var(--ink);flex:1}
+.row label small{display:block;color:var(--dim);font-size:11px}
+input[type=number]{width:96px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12.5px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel2);color:var(--ink)}
+input[type=number]:focus{outline:2px solid var(--sun);outline-offset:-1px}
+input[type=number]:disabled{opacity:.4;cursor:not-allowed}
+input[type=range]{width:130px;accent-color:var(--sun);cursor:pointer}
+.val{font-family:'IBM Plex Mono',monospace;font-size:12.5px;min-width:42px;text-align:right;color:var(--sun);font-weight:600}
+.slrow{display:flex;align-items:center;gap:8px;min-width:190px;justify-content:flex-end}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;padding:5px 10px;border:none;background:var(--panel2);color:var(--dim);cursor:pointer}
+.seg button.on{background:var(--sun);color:#fff}
+.out-line{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.out-line:last-child{border-bottom:none}
+.out-line .n{font-family:'IBM Plex Mono',monospace}
+.out-line.tot{font-weight:700;border-top:2px solid var(--sun);border-bottom:none;padding-top:8px;margin-top:2px}
+.big{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-align:center}
+.big .label{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.big .num{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+table.proj{width:100%;border-collapse:collapse;font-size:13px}
+table.proj th,table.proj td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--line)}
+table.proj th:first-child,table.proj td:first-child{text-align:left}
+table.proj th{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim);font-weight:600}
+table.proj td.n{font-family:'IBM Plex Mono',monospace}
+table.proj tr.hl td{font-weight:700;background:var(--panel2)}
+.note{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12px;color:var(--dim);line-height:1.55;margin-top:12px}
+.note b{color:var(--ink)}
+.fact{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--good);border:1px solid var(--good);border-radius:4px;padding:1px 5px}
+.assum{color:var(--sun);border-color:var(--sun)}
+.hdr-lot{font-size:11px;color:var(--dim);display:grid;grid-template-columns:1fr 64px 70px 92px;gap:8px;padding:0 0 4px;border-bottom:1px solid var(--line);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+.lot{display:grid;grid-template-columns:1fr 64px 70px 92px;gap:8px;align-items:center;padding:4px 0;font-size:12.5px}
+.lot .area{font-family:'IBM Plex Mono',monospace;color:var(--dim);text-align:right}
+.lot .rent{font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--sun)}
+.lot input{width:100%}
+.foot{margin-top:22px;color:var(--dim);font-size:11.5px;font-family:'IBM Plex Mono',monospace;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">The Sol Club · Lot 183 · TRX · 34,450 sqft · 9-yr lease (3+3+3)</div>
+  <h1>Operating &amp; Projection Model</h1>
+  <p class="sub">Built on confirmed lease terms (RM1.70 psf + 5% GTO) and the Year-3 stabilised targets in the GM Blueprint. Every input is editable — change an assumption and the monthly P&amp;L, break-even, 3-year projection and implied valuation all recalculate live. Green tags = confirmed; amber = assumption to validate.</p>
+</header>
+
+<div class="kpis">
+  <div class="big"><div class="label">Stabilised Revenue /mo</div><div class="num" id="kRev">–</div></div>
+  <div class="big"><div class="label">Cost Base /mo</div><div class="num" id="kCost">–</div></div>
+  <div class="big"><div class="label">EBITDA /mo</div><div class="num" id="kEbitda">–</div></div>
+  <div class="big"><div class="label">EBITDA Margin</div><div class="num" id="kMargin">–</div></div>
+  <div class="big"><div class="label">Sublease share</div><div class="num" id="kSub">–</div></div>
+</div>
+
+<div class="card">
+  <h2><span class="dot"></span>Revenue lines — adjust the five engines</h2>
+  <p class="note" style="margin-top:0;margin-bottom:12px">Each engine runs <b>Auto</b> (calculated from the drivers below) or <b>Manual</b> (type a monthly figure to override). Switch to Manual and it pre-fills the current Auto value so you can tweak from there. Courts, Membership and Sublease also keep their detailed drivers further down.</p>
+  <div class="hdr-lot" style="grid-template-columns:1fr 148px 108px 100px"><span>Engine</span><span style="text-align:center">Mode</span><span style="text-align:right">Manual RM/mo</span><span style="text-align:right">Used /mo</span></div>
+  <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
+    <span>Courts</span>
+    <span style="text-align:center"><div class="seg" data-line="Court"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
+    <span><input type="number" id="mCourt" value="230549" step="1000" disabled></span>
+    <span class="rent" id="uCourt">–</span>
+  </div>
+  <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
+    <span>Membership</span>
+    <span style="text-align:center"><div class="seg" data-line="Membership"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
+    <span><input type="number" id="mMem" value="145500" step="1000" disabled></span>
+    <span class="rent" id="uMem">–</span>
+  </div>
+  <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
+    <span>Academy</span>
+    <span style="text-align:center;color:var(--dim);font-size:11px">direct</span>
+    <span><input type="number" id="academy" value="30000" step="1000"></span>
+    <span class="rent" id="uAcad">–</span>
+  </div>
+  <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
+    <span>Pro shop</span>
+    <span style="text-align:center;color:var(--dim);font-size:11px">direct</span>
+    <span><input type="number" id="proshop" value="7500" step="500"></span>
+    <span class="rent" id="uProshop">–</span>
+  </div>
+  <div class="lot" style="grid-template-columns:1fr 148px 108px 100px">
+    <span>Sublease</span>
+    <span style="text-align:center"><div class="seg" data-line="Sublease"><button data-m="auto" class="on">Auto</button><button data-m="manual">Manual</button></div></span>
+    <span><input type="number" id="mSub" value="122424" step="1000" disabled></span>
+    <span class="rent" id="uSub">–</span>
+  </div>
+  <div class="out-line tot"><span>Total revenue /mo</span><span class="n" id="uRevTot">–</span></div>
+</div>
+
+<div class="card">
+  <h2><span class="dot"></span>TRX Lease — what you pay the landlord <span class="fact">confirmed</span></h2>
+  <div class="grid3">
+    <div>
+      <div class="row"><label>Leased area (sqft)</label><input type="number" id="sqft" value="34450" step="50"></div>
+      <div class="row"><label>Base rent (RM psf/mo)</label><input type="number" id="psf" value="1.70" step="0.05"></div>
+    </div>
+    <div>
+      <div class="row"><label>GTO to TRX (% of turnover)</label><input type="number" id="gtoPct" value="5" step="0.5"></div>
+      <div class="row"><label>GTO base includes sublease?<small>Mark: "on Sol Club revenue" → yes</small></label>
+        <div class="seg" id="gtoBaseSeg"><button data-v="1" class="on">Incl. sublease</button><button data-v="0">Operating only</button></div></div>
+    </div>
+    <div>
+      <div class="row"><label>Base rent /mo</label><span class="n" id="oBaseRent" style="font-family:'IBM Plex Mono',monospace;color:var(--bad)">–</span></div>
+      <div class="row"><label>GTO /mo</label><span class="n" id="oGto" style="font-family:'IBM Plex Mono',monospace;color:var(--bad)">–</span></div>
+      <div class="row"><label>Total rent /mo</label><span class="n" id="oRentTot" style="font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--bad)">–</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2><span class="dot"></span>Sublease income — lot by lot <span class="fact assum">assumption</span></h2>
+    <p class="note" style="margin-top:0;margin-bottom:10px">Base rent = area × psf (the floor). Tenant deals are <b>base OR turnover, whichever higher</b>, so this is the conservative base. Drawn-plan areas; edit psf per lot.</p>
+    <div class="hdr-lot"><span>Lot / tenant</span><span style="text-align:right">sqft</span><span style="text-align:right">psf</span><span style="text-align:right">RM/mo</span></div>
+    <div id="lotRows"></div>
+    <div class="out-line tot"><span>Sublease base /mo</span><span class="n" id="oSubTot">–</span></div>
+    <div class="out-line" style="border:none"><span style="color:var(--dim);font-size:12px">Blended psf</span><span class="n" id="oSubPsf" style="color:var(--dim)">–</span></div>
+    <div class="note">Reference: GM Blueprint target <b>RM125k</b> · 17-Jul schedule ceiling <b>RM142k</b> (older areas, top-of-market psf). F&amp;B carries ~64% of the roll — prioritise those deals.</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="dot"></span>Revenue drivers — feed the Auto lines <span class="fact assum">assumption</span></h2>
+    <div class="row"><label style="font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase">Courts · 3 padel + 6 pickleball · 17-hr day</label></div>
+    <div class="row"><label>Padel rate (off / peak RM/hr)</label><span><input type="number" id="padelOff" value="90" step="5" style="width:64px"> <input type="number" id="padelPeak" value="140" step="5" style="width:64px"></span></div>
+    <div class="row"><label>Pickleball rate (off / peak RM/hr)</label><span><input type="number" id="pbOff" value="70" step="5" style="width:64px"> <input type="number" id="pbPeak" value="110" step="5" style="width:64px"></span></div>
+    <div class="row"><label>Off-peak utilisation<small>Weekday daytime — corporate blocks live here</small></label>
+      <div class="slrow"><input type="range" id="offU" min="0" max="100" step="1" value="25"><span class="val" id="offUV">25%</span></div></div>
+    <div class="row"><label>Peak utilisation<small>Evenings + weekends — the single biggest driver</small></label>
+      <div class="slrow"><input type="range" id="peakU" min="0" max="100" step="1" value="70"><span class="val" id="peakUV">70%</span></div></div>
+    <div class="out-line"><span>Court revenue /mo</span><span class="n" id="oCourt">–</span></div>
+    <div class="out-line" style="border:none;padding-top:2px"><span style="color:var(--dim);font-size:11.5px">Blended utilisation</span><span class="n" id="oBlend" style="color:var(--dim);font-size:11.5px">–</span></div>
+
+    <div class="row" style="margin-top:12px"><label style="font-weight:600;color:var(--dim);font-size:11px;text-transform:uppercase">Membership · count × RM/mo</label></div>
+    <div class="row"><label>Social</label><span><input type="number" id="socN" value="220" step="5" style="width:64px"> × <input type="number" id="socP" value="180" step="10" style="width:64px"></span></div>
+    <div class="row"><label>Premium</label><span><input type="number" id="premN" value="180" step="5" style="width:64px"> × <input type="number" id="premP" value="380" step="10" style="width:64px"></span></div>
+    <div class="row"><label>Corporate (10 seats ea.)</label><span><input type="number" id="corpN" value="15" step="1" style="width:64px"> × <input type="number" id="corpP" value="2500" step="100" style="width:64px"></span></div>
+    <div class="out-line"><span>Membership /mo</span><span class="n" id="oMem">–</span></div>
+    <p class="note" style="margin-bottom:0">Academy and pro shop are set directly in the Revenue lines panel above.</p>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2><span class="dot"></span>Operating costs (ex-rent) /mo <span class="fact assum">assumption</span></h2>
+    <div class="row"><label>People (GM + team + statutory)<small>Blueprint: RM60–70k, proposed at 70k</small></label><input type="number" id="people" value="70000" step="1000"></div>
+    <div class="row"><label>Marketing &amp; activations</label><input type="number" id="mktg" value="22000" step="1000"></div>
+    <div class="row"><label>Utilities &amp; consumables</label><input type="number" id="util" value="18000" step="1000"></div>
+    <div class="row"><label>Maintenance &amp; cleaning</label><input type="number" id="maint" value="12000" step="1000"></div>
+    <div class="row"><label>Insurance / legal / admin</label><input type="number" id="ins" value="11000" step="1000"></div>
+    <div class="row"><label>Systems / loyalty platform</label><input type="number" id="sys" value="10000" step="1000"></div>
+    <div class="row"><label>Contingency</label><input type="number" id="cont" value="8000" step="1000"></div>
+    <div class="out-line tot"><span>OPEX ex-rent /mo</span><span class="n" id="oOpex">–</span></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="dot"></span>Monthly P&amp;L &amp; break-even</h2>
+    <div class="row"><label>Scenario — scale the whole plan<small>Stress revenue up or down; break-even reacts live</small></label>
+      <div class="slrow"><input type="range" id="scen" min="40" max="130" step="1" value="100"><span class="val" id="scenV">100%</span></div></div>
+    <div class="out-line"><span>Courts</span><span class="n" id="pCourt">–</span></div>
+    <div class="out-line"><span>Membership</span><span class="n" id="pMem">–</span></div>
+    <div class="out-line"><span>Academy + pro shop</span><span class="n" id="pAcad">–</span></div>
+    <div class="out-line"><span>Sublease</span><span class="n" id="pSub">–</span></div>
+    <div class="out-line" style="font-weight:600"><span>Total revenue</span><span class="n" id="pRev">–</span></div>
+    <div class="out-line"><span>Rent to TRX (base + GTO)</span><span class="n neg" id="pRent">–</span></div>
+    <div class="out-line"><span>OPEX ex-rent</span><span class="n neg" id="pOpex">–</span></div>
+    <div class="out-line tot"><span>EBITDA</span><span class="n" id="pEbitda">–</span></div>
+    <div class="note" id="beNote">–</div>
+    <div style="margin-top:10px">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-bottom:3px"><span>Break-even revenue</span><span id="beRevLbl">–</span></div>
+      <div style="height:9px;background:var(--line);border-radius:5px;overflow:hidden"><div id="beFill" style="height:100%;width:0%"></div></div>
+      <div style="font-size:11.5px;color:var(--dim);margin-top:4px" id="beSafe">–</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2><span class="dot"></span>3-Year projection — ramp to the stabilised year</h2>
+  <div class="grid3" style="margin-bottom:12px">
+    <div class="row"><label>Year 1 — % of stabilised revenue<small>Build &amp; validate</small></label><input type="number" id="y1rev" value="55" step="5"></div>
+    <div class="row"><label>Year 1 — % of variable opex</label><input type="number" id="y1opex" value="82" step="1"></div>
+    <div class="row"><label>Depreciation of CAPEX<small>swings the PAT valuation hugely</small></label>
+      <div class="seg" id="depSeg"><button data-v="3" class="on">3 yrs</button><button data-v="9">9 yrs</button></div></div>
+    <div class="row"><label>Year 2 — % of stabilised revenue<small>Scale &amp; optimise</small></label><input type="number" id="y2rev" value="83" step="5"></div>
+    <div class="row"><label>Year 2 — % of variable opex</label><input type="number" id="y2opex" value="95" step="1"></div>
+    <div class="row"><label>Corporate tax (%)</label><input type="number" id="taxPct" value="24" step="1"></div>
+  </div>
+  <table class="proj">
+    <thead><tr><th>Line (RM/year)</th><th>Year 1</th><th>Year 2</th><th>Year 3 (stabilised)</th></tr></thead>
+    <tbody id="projBody"></tbody>
+  </table>
+  <div class="note" id="projNote">Rent is held fixed across all years (it's contracted, RM702,780/yr); only variable opex and GTO ramp. Year 3 = your current inputs above.</div>
+</div>
+
+<div class="card">
+  <h2><span class="dot"></span>Implied valuation — two ways to price the company</h2>
+  <div class="grid3">
+    <div>
+      <div class="row"><label>Multiple on 3-yr cumulative PAT<small>Mark's stated basis</small></label><input type="number" id="patMult" value="6" step="0.5"></div>
+      <div class="out-line"><span>3-yr cumulative PAT</span><span class="n" id="vCumPat">–</span></div>
+      <div class="out-line tot"><span>Valuation (PAT basis)</span><span class="n" id="vPat">–</span></div>
+    </div>
+    <div>
+      <div class="row"><label>Multiple on Year-3 EBITDA<small>Standard venue basis, 4–8×</small></label><input type="number" id="ebitdaMult" value="5" step="0.5"></div>
+      <div class="out-line"><span>Year-3 EBITDA</span><span class="n" id="vEbitda">–</span></div>
+      <div class="out-line tot"><span>Valuation (EBITDA basis)</span><span class="n" id="vEv">–</span></div>
+    </div>
+    <div>
+      <div class="out-line"><span>Mark's quoted pre-money</span><span class="n">RM18.0M</span></div>
+      <div class="out-line"><span>PAT basis vs RM18M</span><span class="n" id="vGapPat">–</span></div>
+      <div class="out-line"><span>EBITDA basis vs RM18M</span><span class="n" id="vGapEv">–</span></div>
+    </div>
+  </div>
+  <div class="note" id="valNote">–</div>
+</div>
+
+<p class="foot" id="foot">–</p>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>'RM'+Math.round(n).toLocaleString('en-MY');
+const fmtM=n=>'RM'+(n/1e6).toFixed(2)+'M';
+
+const DAYS=7, OFF_HRS=9, PEAK_HRS=8, WK=52;
+const CAPEX=6500000, MARK_VAL=18000000;
+const LOTS=[
+  ['G2 · Main F&B',2619,9.0],
+  ['G3+G3A · Secondary F&B',2398,8.0],
+  ['M1 · Main F&B / events',4394,8.0],
+  ['G4 · Recovery / ice bath',978,6.0],
+  ['HYROX track',2841,4.5],
+  ['M2 · Gym',4004,5.0],
+  ['M3 · Yoga / Pilates',974,6.0],
+];
+let gtoInclSub=true, depYears=3;
+const mode={Court:'auto',Membership:'auto',Sublease:'auto'};
+
+$('lotRows').innerHTML=LOTS.map((l,i)=>
+  `<div class="lot"><span>${l[0]}</span><span class="area">${l[1].toLocaleString()}</span>`+
+  `<span><input type="number" id="lp${i}" value="${l[2]}" step="0.5"></span>`+
+  `<span class="rent" id="lr${i}">–</span></div>`).join('');
+
+document.querySelectorAll('#gtoBaseSeg button').forEach(b=>b.onclick=()=>{
+  gtoInclSub=b.dataset.v==='1';
+  document.querySelectorAll('#gtoBaseSeg button').forEach(x=>x.classList.toggle('on',x===b));calc();});
+document.querySelectorAll('#depSeg button').forEach(b=>b.onclick=()=>{
+  depYears=+b.dataset.v;
+  document.querySelectorAll('#depSeg button').forEach(x=>x.classList.toggle('on',x===b));calc();});
+document.querySelectorAll('.seg[data-line] button').forEach(b=>b.onclick=()=>{
+  const seg=b.closest('.seg');mode[seg.dataset.line]=b.dataset.m;
+  seg.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));calc();});
+
+function num(id){return parseFloat($(id).value)||0;}
+function lineVal(name,calcV,manualId){
+  if(mode[name]==='auto'){ if(document.activeElement!==$(manualId))$(manualId).value=Math.round(calcV); $(manualId).disabled=true; return calcV; }
+  $(manualId).disabled=false; return num(manualId);
+}
+
+function calc(){
+  let subCalc=0, subArea=0;
+  LOTS.forEach((l,i)=>{const psf=num('lp'+i);const rent=l[1]*psf;subCalc+=rent;subArea+=l[1];$('lr'+i).textContent=fmt(rent);});
+  $('oSubTot').textContent=fmt(subCalc);
+  $('oSubPsf').textContent='RM'+(subCalc/subArea).toFixed(2)+' psf';
+
+  const offU=num('offU')/100, peakU=num('peakU')/100;
+  $('offUV').textContent=num('offU')+'%';$('peakUV').textContent=num('peakU')+'%';
+  const padelWk=3*DAYS*(OFF_HRS*offU*num('padelOff')+PEAK_HRS*peakU*num('padelPeak'));
+  const pbWk=6*DAYS*(OFF_HRS*offU*num('pbOff')+PEAK_HRS*peakU*num('pbPeak'));
+  const courtCalc=(padelWk+pbWk)*WK/12;
+  $('oCourt').textContent=fmt(courtCalc);
+  $('oBlend').textContent=((OFF_HRS*num('offU')+PEAK_HRS*num('peakU'))/(OFF_HRS+PEAK_HRS)).toFixed(0)+'%';
+
+  const memCalc=num('socN')*num('socP')+num('premN')*num('premP')+num('corpN')*num('corpP');
+  $('oMem').textContent=fmt(memCalc);
+
+  const courtMonth=lineVal('Court',courtCalc,'mCourt');
+  const memMonth=lineVal('Membership',memCalc,'mMem');
+  const subPlan=lineVal('Sublease',subCalc,'mSub');
+  const academy=num('academy'), proshop=num('proshop');
+  const planRev=courtMonth+memMonth+academy+proshop+subPlan;
+  $('uCourt').textContent=fmt(courtMonth);$('uMem').textContent=fmt(memMonth);
+  $('uAcad').textContent=fmt(academy);$('uProshop').textContent=fmt(proshop);
+  $('uSub').textContent=fmt(subPlan);$('uRevTot').textContent=fmt(planRev);
+
+  // Scenario scale — moves the whole P&L
+  const scen=num('scen')/100; $('scenV').textContent=num('scen')+'%';
+  const court=courtMonth*scen, mem=memMonth*scen, acadps=(academy+proshop)*scen, subTot=subPlan*scen;
+  const directMonth=court+mem+acadps;
+  const revMonth=directMonth+subTot;
+
+  const baseRent=num('sqft')*num('psf');
+  const gtoBaseAmt=gtoInclSub?revMonth:(revMonth-subTot);
+  const gtoMonth=gtoBaseAmt*num('gtoPct')/100;
+  const rentTot=baseRent+gtoMonth;
+  $('oBaseRent').textContent='-'+fmt(baseRent);
+  $('oGto').textContent='-'+fmt(gtoMonth);
+  $('oRentTot').textContent='-'+fmt(rentTot);
+
+  const opexEx=num('people')+num('mktg')+num('util')+num('maint')+num('ins')+num('sys')+num('cont');
+  $('oOpex').textContent=fmt(opexEx);
+
+  const ebitdaMonth=revMonth-rentTot-opexEx;
+  $('pCourt').textContent=fmt(court);$('pMem').textContent=fmt(mem);
+  $('pAcad').textContent=fmt(acadps);$('pSub').textContent=fmt(subTot);
+  $('pRev').textContent=fmt(revMonth);
+  $('pRent').textContent='-'+fmt(rentTot);$('pOpex').textContent='-'+fmt(opexEx);
+  $('pEbitda').textContent=fmt(ebitdaMonth);$('pEbitda').className='n '+(ebitdaMonth>=0?'pos':'neg');
+
+  // Break-even bar
+  const gg=num('gtoPct')/100, fixedC=baseRent+opexEx;
+  const revBE=gtoInclSub?fixedC/(1-gg):(fixedC-gg*subTot)/(1-gg);
+  const safety=(revMonth-revBE)/revMonth*100;
+  $('beRevLbl').textContent=fmt(revBE)+' /mo';
+  $('beFill').style.width=Math.max(0,Math.min(revBE/revMonth*100,100))+'%';
+  $('beFill').style.background=safety>=0?'linear-gradient(90deg,var(--good),var(--sun))':'var(--bad)';
+  $('beSafe').innerHTML=safety>=0?`Margin of safety <b style="color:var(--good)">${safety.toFixed(0)}%</b> — revenue can fall ${safety.toFixed(0)}% before EBITDA turns negative.`:`<b style="color:var(--bad)">Below break-even</b> by ${fmt(revBE-revMonth)}/mo.`;
+
+  $('kRev').textContent=fmt(revMonth);$('kCost').textContent=fmt(rentTot+opexEx);
+  $('kEbitda').textContent=fmt(ebitdaMonth);$('kEbitda').className='num '+(ebitdaMonth>=0?'pos':'neg');
+  $('kMargin').textContent=(ebitdaMonth/revMonth*100).toFixed(1)+'%';
+  $('kSub').textContent=(subTot/revMonth*100).toFixed(0)+'%';
+
+  const fixedNut=baseRent+opexEx;
+  const cover=subTot/fixedNut*100;
+  const needFromDirect=Math.max(fixedNut-subTot,0);
+  $('beNote').innerHTML=`<b>Fixed nut ≈ ${fmt(fixedNut)}/mo</b> (base rent + OPEX, before GTO). Sublease covers <b>${cover.toFixed(0)}%</b> of it. You break even once courts + membership + academy clear <b>${fmt(needFromDirect)}/mo</b> — stabilised they do ${fmt(directMonth)}, so headroom of ${fmt(directMonth-needFromDirect)}.`;
+
+  const tax=num('taxPct')/100, dep=CAPEX/depYears;
+  function year(revF,opexF){
+    const rev=revMonth*revF/100*12;
+    const sub=subTot*revF/100*12;
+    const gtoBase=gtoInclSub?rev:(rev-sub);
+    const gto=gtoBase*num('gtoPct')/100;
+    const rentY=baseRent*12;
+    const opexY=opexEx*opexF/100*12;
+    const ebitda=rev-rentY-gto-opexY;
+    let pat=ebitda-dep; if(pat>0)pat*=(1-tax);
+    return {rev,ebitda,pat};
+  }
+  const Y1=year(num('y1rev'),num('y1opex'));
+  const Y2=year(num('y2rev'),num('y2opex'));
+  const Y3=year(100,100);
+  const cumPat=Y1.pat+Y2.pat+Y3.pat;
+  const rowsP=[
+    ['Revenue',Y1.rev,Y2.rev,Y3.rev,true],
+    ['EBITDA',Y1.ebitda,Y2.ebitda,Y3.ebitda,true],
+    ['Depreciation (RM'+Math.round(dep).toLocaleString()+'/yr)',-dep,-dep,-dep,false],
+    ['PAT (after tax)',Y1.pat,Y2.pat,Y3.pat,true],
+  ];
+  $('projBody').innerHTML=rowsP.map(r=>
+    `<tr class="${r[4]?'hl':''}"><td>${r[0]}</td><td class="n">${fmt(r[1])}</td><td class="n">${fmt(r[2])}</td><td class="n">${fmt(r[3])}</td></tr>`
+  ).join('')+`<tr><td>3-yr cumulative PAT</td><td colspan="3" class="n" style="text-align:right;font-weight:700">${fmt(cumPat)}</td></tr>`;
+
+  const valPat=cumPat*num('patMult');
+  const valEv=Y3.ebitda*num('ebitdaMult');
+  $('vCumPat').textContent=fmt(cumPat);$('vPat').textContent=fmtM(valPat);
+  $('vEbitda').textContent=fmt(Y3.ebitda);$('vEv').textContent=fmtM(valEv);
+  $('vGapPat').textContent=(valPat>=MARK_VAL?'+':'')+fmtM(valPat-MARK_VAL);
+  $('vGapPat').className='n '+(valPat>=MARK_VAL?'pos':'neg');
+  $('vGapEv').textContent=(valEv>=MARK_VAL?'+':'')+fmtM(valEv-MARK_VAL);
+  $('vGapEv').className='n '+(valEv>=MARK_VAL?'pos':'neg');
+  const evMultFor18=(Y3.ebitda>0?(MARK_VAL/Y3.ebitda):0).toFixed(1);
+  $('valNote').innerHTML=`<b>Why this matters:</b> the PAT basis swings wildly with the depreciation choice (you're on ${depYears}-yr) — toggle 3↔9 yrs and watch it move by tens of millions. The EBITDA basis barely moves. Mark's RM18M reproduces cleanly as ~<b>${evMultFor18}× Year-3 EBITDA</b>, a standard venue multiple — that's the defensible way to anchor RM18M, not "6× cumulative PAT."`;
+
+  $('foot').innerHTML=`Confirmed: 34,450 sqft · RM1.70 psf · 5% GTO · 9-yr (3+3+3), 10% cap/term · deposits RM292,825 · CAPEX RM6.5M (separately funded) · rent commences 1 Mar 2027.<br>Working model — replace assumptions with signed figures as they firm. Prepared by Samuel Siew · confidential.`;
+}
+document.querySelectorAll('input').forEach(el=>el.addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
